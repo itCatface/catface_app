@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
+    <!--&lt;!&ndash;    shape="rectangle"、"oval"、"line"、"ring"  &ndash;&gt;-->
+    <!--&lt;!&ndash;    当shape为ring时下列属性有效：-->
+            <!--innerRadius：尺寸，内环的半径-->
+            <!--innerRadiusRatio：浮点型，以环的宽度比率来表示内环的半径-->
+            <!--thickness：尺寸，环的厚度-->
+            <!--thicknessRatio：浮点型，以环的宽度比率来表示环的厚度，例如，如果android:thicknessRatio="2"-->
+            <!--useLevel：boolean值，如果当做是LevelListDrawable使用时值为true，否则为false  &ndash;&gt;-->
+
+
+    <!--&lt;!&ndash; 基本属性 &ndash;&gt;-->
+    <!--&lt;!&ndash; 1.定义圆角：分别为左上、右上、左下、右下、四个圆角半径[其中radius与其他四个不能同时使用] &ndash;&gt;-->
+    <!--<corners-->
+        <!--android:bottomLeftRadius="4dp"-->
+        <!--android:bottomRightRadius="5dp"-->
+        <!--android:radius="1dp"-->
+        <!--android:topLeftRadius="2dp"-->
+        <!--android:topRightRadius="3dp" />-->
+
+
+    <!--&lt;!&ndash; 2.指定内部填充色 &ndash;&gt;-->
+    <!--<solid android:color="#ffff" />-->
+
+
+    <!--&lt;!&ndash; 3.渐变 &ndash;&gt;-->
+    <!--&lt;!&ndash;    type=["linear" | "radial" | "sweep"]:线性渐变（默认）/放射渐变/扫描式渐变-->
+            <!--angle(仅对线性渐变有效):渐变角度，必须为45的倍数，0为从左到右，90为从上到下-->
+            <!--centerX(仅对放射渐变类型有效):渐变中心X的相当位置，范围为0～1-->
+            <!--centerY(仅对放射渐变类型有效):渐变中心Y的相当位置，范围为0～1-->
+            <!--startColor:渐变开始点的颜色-->
+            <!--centerColor:渐变中间点的颜色-->
+            <!--endColor:渐变结束点的颜色-->
+            <!--gradientRadius:渐变的半径，只有当渐变类型为radial时才能使用-->
+            <!--useLevel(通常不使用):使用LevelListDrawable时就要设置为true。设为false时才有渐变效果   &ndash;&gt;-->
+    <!--<gradient-->
+        <!--android:angle="integer"-->
+        <!--android:centerColor="color"-->
+        <!--android:centerX="float"-->
+        <!--android:centerY="float"-->
+        <!--android:endColor="color"-->
+        <!--android:gradientRadius="float"-->
+        <!--android:startColor="color"-->
+        <!--android:type="linear"-->
+        <!--android:useLevel="true" />-->
+
+
+    <!--&lt;!&ndash; 4.描边属性 &ndash;&gt;-->
+    <!--&lt;!&ndash;    width：描边的宽度-->
+            <!--color：描边的颜色-->
+            <!--dashGap：虚线的宽度(0时为实线)-->
+            <!--dashWidth：虚线的间隔     &ndash;&gt;-->
+    <!--<stroke-->
+        <!--android:width="1dp"-->
+        <!--android:color="#ffff"-->
+        <!--android:dashGap="3dp"-->
+        <!--android:dashWidth="2dp" />-->
+
+
+    <!--&lt;!&ndash; 5.不怎么用|控件本身可设置 &ndash;&gt;-->
+    <!--<size-->
+        <!--android:width="1dp"-->
+        <!--android:height="2dp" />-->
+
+
+    <!--&lt;!&ndash; 6.不怎么用|控件本身可设置 &ndash;&gt;-->
+    <!--<padding-->
+        <!--android:bottom="4dp"-->
+        <!--android:left="1dp"-->
+        <!--android:right="3dp"-->
+        <!--android:top="2dp" />-->
+
+</shape>

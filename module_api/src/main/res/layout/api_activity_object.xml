@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/bt_alpha"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="alp" />
+
+        <Button
+            android:id="@+id/bt_translate"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="tran" />
+
+        <Button
+            android:id="@+id/bt_scale"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="sca" />
+
+        <Button
+            android:id="@+id/bt_rotate"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="rot" />
+
+        <Button
+            android:id="@+id/bt_set"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="set" />
+
+        <Button
+            android:id="@+id/bt_argbEva"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="ae" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:background="#50f0"
+        android:text="基本动画"
+        android:textSize="30sp" />
+
+    <cc.catface.api.view.demo04_object.PointView
+        android:id="@+id/pv"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#3333" />
+
+</RelativeLayout>

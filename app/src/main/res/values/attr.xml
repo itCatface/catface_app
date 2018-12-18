@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 自定义类似Android-SpinKit的loading控件[https://github.com/ybq/Android-SpinKit] -->
+    <declare-styleable name="RotatingPlane">
+        <attr name="cColor" format="color" />
+        <attr name="cDuration" format="integer" />
+    </declare-styleable>
+
+
+</resources>

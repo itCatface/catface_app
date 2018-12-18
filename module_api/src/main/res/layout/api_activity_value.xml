@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/bt_start_easy"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="va" />
+
+        <Button
+            android:id="@+id/bt_start_easy_interpolator"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="int" />
+
+        <Button
+            android:id="@+id/bt_start_easy_evaluator1"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="eva1" />
+
+        <Button
+            android:id="@+id/bt_start_easy_evaluator2"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="eva2" />
+
+        <Button
+            android:id="@+id/bt_start_easy_evaluator3"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="ae2" />
+
+        <Button
+            android:id="@+id/bt_start_easy_ofObject"
+            style="@style/view_bt_default_weight_no_padding"
+            android:text="Obj" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_ch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#00f"
+        android:text="ch"
+        android:textColor="@color/white"
+        android:textSize="46sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:background="#50f0"
+        android:text="基本动画"
+        android:textSize="30sp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <cc.catface.api.view.demo03_value.ofObject_circle.PointView
+            android:id="@+id/pv"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_alignParentBottom="true"
+            android:background="#1333" />
+    </RelativeLayout>
+</LinearLayout>

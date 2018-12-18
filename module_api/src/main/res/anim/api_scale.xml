@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scale xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:fromXScale="0.5"
+    android:toXScale="1.5"
+
+    android:fromYScale="0.5"
+    android:toYScale="1.5"
+
+    android:pivotX="50%"
+    android:pivotY="50%"
+
+    android:fillBefore="true"
+
+    android:duration="1000"
+
+    android:repeatMode="reverse"
+    android:repeatCount="1"
+
+    />
+
+<!-- 其中pivotX和pivotY可设置三种值
+        1. 50(当前控件远点即左上角加50的位置)
+        2. 50%(当前控件左上角加当前控件宽/高的50%)
+        3. 50%p(当前控件左上角加所在父控件宽/高的50%)
+
+     repeatMode可设置两个值
+        1. reverse
+        2. restart
+
+     fillAfter(动画结束后保持最后状态) & fillBefore(动画结束后保持最开始状态)
+-->

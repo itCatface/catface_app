@@ -1,0 +1,80 @@
+if (rootProject.ext.debug_module_api) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        /** ARouter配置 */
+        if (rootProject.ext.debug_module_api) {
+            applicationId "cc.catface.api"
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+    }
+
+    sourceSets {
+        main {
+            if (rootProject.ext.debug_module_api) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude '**/debug/**'
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies_android["appcompat-v7"]
+    testImplementation rootProject.ext.dependencies_android["junit"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-runner"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-espresso-core"]
+    implementation project(':app_base')
+
+    /* ARouter */
+    implementation rootProject.ext.dependencies_api["arouter"]
+    annotationProcessor rootProject.ext.dependencies_api["arouter-compiler"]
+
+    /* View学习： */
+    implementation 'com.github.ybq:Android-SpinKit:1.1.0'
+}

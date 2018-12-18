@@ -1,0 +1,115 @@
+/**
+ * 全局依赖版本控制
+ */
+ext {
+
+    /* 组件化配置 */
+    IS_DEBUG_MODULE_arouter = true
+    debug_module_api = true
+    debug_module_apis = false
+
+
+    version_build = [compileSdkVersion: 28,
+                     buildToolsVersion: "",
+                     minSdkVersion    : 19,
+                     targetSdkVersion : 28,
+
+                     versionCode      : 1,
+                     versionName      : "1.0.2",
+                     applicationId    : "cc.catface.app"]
+
+
+    version_android = [support_v4        : "28.0.0-rc01",
+                       appcompat_v7      : "28.0.0-rc01",
+                       constraint_layout : "1.1.2",
+                       junit             : "4.12",
+                       test_runner       : "1.0.2",
+                       test_espresso_core: "3.0.2",
+                       design            : "28.0.0-rc01",
+                       multidex          : "1.0.3"]
+    dependencies_android = ["support-v4"        : "com.android.support:support-v4:${version_android["support_v4"]}",
+                            "appcompat-v7"      : "com.android.support:appcompat-v7:${version_android["appcompat_v7"]}",
+                            "constraint-layout" : "com.android.support.constraint:constraint-layout:${version_android["constraint_layout"]}",
+                            "junit"             : "junit:junit:${version_android["junit"]}",
+                            "test-runner"       : "com.android.support.test:runner:${version_android["test_runner"]}",
+                            "test-espresso-core": "com.android.support.test.espresso:espresso-core:${version_android["test_espresso_core"]}",
+                            "design"            : "com.android.support:design:${version_android["design"]}",
+                            "multidex"          : "com.android.support:multidex:${version_android["multidex"]}"]
+
+
+    version_api = [butterknife                  : "8.4.0",
+                   butterknife_compiler         : "8.4.0",
+                   BaseRecyclerViewAdapterHelper: "2.9.44",
+                   eventbus                     : "3.1.1",
+                   okio                         : "1.14.0",
+                   okhttp                       : "3.10.0",
+                   logging_interceptor          : "3.8.1",
+                   retrofit                     : "2.4.0",
+                   converter_gson               : "2.4.0",
+                   converter_scalars            : "2.3.0",
+                   rxjava                       : "2.1.12",
+                   rxandroid                    : "2.0.2",
+                   adapter_rxjava               : "2.4.0",
+                   adapter_rxjava2              : "2.4.0",
+                   rxbinding                    : "1.0.0",
+                   rxbinding_support_v4         : "1.0.0",
+                   rxbinding_appcompat_v7       : "1.0.0",
+                   android_gif_drawable         : "1.2.16",
+                   picasso                      : "2.71828",
+                   fresco                       : "1.11.0",
+                   glide                        : "4.8.0",
+                   glide__annotationProcessor   : "4.8.0",
+                   android_pdf_viewer           : "3.0.0-beta.5",
+                   bga_qrcode_zbar              : "1.3.4",
+                   bga_qrcode_zxing             : "1.3.4",
+                   greendao                     : "3.2.2",
+                   leakcanary_android           : "1.5.4",
+                   leakcanary_android_no_op     : "1.5.4",
+                   arouter                      : '1.4.1',
+                   arouter_compiler             : '1.2.2']
+    dependencies_api = [//
+                        "butterknife"                  : "com.jakewharton:butterknife:${version_api["butterknife"]}",
+                        "butterknife-compiler"         : "com.jakewharton:butterknife-compiler:${version_api["butterknife_compiler"]}",
+                        "butterknife-compiler-8.4.0"   : "com.jakewharton:butterknife-compiler:${version_api["butterknife_compiler"]}",
+                        //
+                        "BaseRecyclerViewAdapterHelper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:${version_api["BaseRecyclerViewAdapterHelper"]}",
+                        //
+                        "eventbus"                     : "org.greenrobot:eventbus:${version_api["eventbus"]}",
+                        //
+                        "okio"                         : "com.squareup.okio:okio:${version_api["okio"]}",
+                        "okhttp"                       : "com.squareup.okhttp3:okhttp:${version_api["okhttp"]}",
+                        "logging-interceptor"          : "com.squareup.okhttp3:logging-interceptor:${version_api["logging_interceptor"]}",
+                        //
+                        "retrofit"                     : "com.squareup.retrofit2:retrofit:${version_api["retrofit"]}",
+                        "converter-gson"               : "com.squareup.retrofit2:converter-gson:${version_api["converter_gson"]}",
+                        "converter-scalars"            : "com.squareup.retrofit2:converter-scalars:${version_api["converter_scalars"]}",
+                        //
+                        "rxjava"                       : "io.reactivex.rxjava2:rxjava:${version_api["rxjava"]}",
+                        "rxandroid"                    : "io.reactivex.rxjava2:rxandroid:${version_api["rxandroid"]}",
+                        //
+                        "adapter-rxjava"               : "com.squareup.retrofit2:adapter-rxjava:${version_api["adapter_rxjava"]}",
+                        "adapter-rxjava2"              : "com.squareup.retrofit2:adapter-rxjava2:${version_api["adapter_rxjava2"]}",
+                        //
+                        "rxbinding"                    : "com.jakewharton.rxbinding:rxbinding:${version_api["rxbinding"]}",
+                        "rxbinding-support-v4"         : "com.jakewharton.rxbinding:rxbinding-support-v4:${version_api["rxbinding_support_v4"]}",
+                        "rxbinding-appcompat-v7"       : "com.jakewharton.rxbinding:rxbinding-appcompat-v7:${version_api["rxbinding_appcompat_v7"]}",
+                        "android-gif-drawable"         : "pl.droidsonroids.gif:android-gif-drawable:${version_api["android_gif_drawable"]}",
+                        "picasso"                      : "com.squareup.picasso:picasso:${version_api["picasso"]}",
+                        "fresco"                       : "com.facebook.fresco:fresco:${version_api["fresco"]}",
+                        "glide"                        : "com.github.bumptech.glide:glide:${version_api["glide"]}",
+                        "glide__annotationProcessor"   : "com.github.bumptech.glide:compiler:${version_api["glide__annotationProcessor"]}",
+                        //
+                        "android-pdf-viewer"           : "com.github.barteksc:android-pdf-viewer:${version_api["android_pdf_viewer"]}",
+                        //
+                        "bga-qrcode-zbar"              : "cn.bingoogolapple:bga-qrcode-zbar:${version_api["bga_qrcode_zbar"]}",
+                        "bga-qrcode-zxing"             : "cn.bingoogolapple:bga-qrcode-zxing:${version_api["bga_qrcode_zxing"]}",
+                        //
+                        "greendao"                     : "org.greenrobot:greendao:${version_api["greendao"]}",
+                        //
+                        "leakcanary-android"           : "com.squareup.leakcanary:leakcanary-android:${version_api["leakcanary_android"]}",
+                        "leakcanary-android-no-op"     : "com.squareup.leakcanary:leakcanary-android-no-op:${version_api["leakcanary_android_no_op"]}",
+                        //
+                        "arouter"                      : "com.alibaba:arouter-api:${version_api["arouter"]}",
+                        "arouter-compiler"             : "com.alibaba:arouter-compiler:${version_api["arouter_compiler"]}"]
+
+}

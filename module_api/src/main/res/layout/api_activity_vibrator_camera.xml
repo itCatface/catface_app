@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <cc.catface.base.utils.android.common_title.TitleFontAwesome
+        android:id="@+id/tfa_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/bt_vibrate_once"
+            style="@style/view_bt_default_weight"
+            android:text="振一下" />
+
+        <Button
+            android:id="@+id/bt_vibrate_repeat"
+            style="@style/view_bt_default_weight"
+            android:text="重复振" />
+
+
+        <Button
+            android:id="@+id/bt_vibrate_cancel"
+            style="@style/view_bt_default_weight"
+            android:text="停止振" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="6dp"
+        android:background="@color/c_a" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_flash_open"
+            style="@style/view_bt_default_weight"
+            android:text="开灯" />
+
+        <Button
+            android:id="@+id/bt_flash_close"
+            style="@style/view_bt_default_weight"
+            android:text="闭灯" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="6dp"
+        android:background="@color/c_a" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_scan"
+            style="@style/view_bt_default_weight"
+            android:text="扫一扫" />
+
+        <Button
+            android:id="@+id/bt_takePictureJust"
+            style="@style/view_bt_default_weight"
+            android:text="拍照" />
+
+
+        <Button
+            android:id="@+id/bt_takePictureWithCrop"
+            style="@style/view_bt_default_weight"
+            android:text="拍照裁剪" />
+
+        <Button
+            android:id="@+id/bt_choosePicture"
+            style="@style/view_bt_default_weight"
+            android:text="相册" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/bt_water"
+        style="@style/view_bt_default"
+        android:layout_width="match_parent"
+        android:text="水印" />
+
+    <ImageView
+        android:id="@+id/iv_picture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:scaleType="fitXY" />
+</LinearLayout>

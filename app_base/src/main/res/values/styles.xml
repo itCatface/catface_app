@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="view_bt_default">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/button_selector_default</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
+    <style name="view_bt_default_no_padding">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:background">@drawable/button_selector_default</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+
+
+    <style name="view_bt_default_weight">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@drawable/button_selector_default</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="view_bt_default_weight_no_padding">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@drawable/button_selector_default</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

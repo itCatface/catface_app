@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        /** ARouter配置 */
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    /*针对greenDao的一些配置*/
+    greendao {
+        schemaVersion 1 // 数据库版本号
+        daoPackage 'cc.catface.app_base.greendao.domain.greendao_gen' // 自动生成的工具类的包名
+        targetGenDir 'src/main/java' //路径
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies_android["appcompat-v7"]
+    testImplementation rootProject.ext.dependencies_android["junit"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-runner"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-espresso-core"]
+    api project(':catface_base')
+
+    /* ARouter */
+    api rootProject.ext.dependencies_api["arouter"]
+    annotationProcessor rootProject.ext.dependencies_api["arouter-compiler"]
+}

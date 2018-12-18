@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.Large.RotatingPlane"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                app:SpinKit_Color="@color/colorAccent" />
+
+            <cc.catface.api.view.loading.view.RotatingPlaneView
+                android:id="@+id/loading_rpv"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                android:background="#ddd" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.Large.DoubleBounce"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                app:SpinKit_Color="@color/colorAccent" />
+
+            <cc.catface.api.view.loading.view.DoubleBounceView
+                android:id="@+id/loading_dbv"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                android:background="#ddd" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.Large.RotatingCircle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                app:SpinKit_Color="@color/colorAccent" />
+
+            <cc.catface.api.view.loading.view.RotatingCircleView
+                android:id="@+id/loading_rcv"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                android:background="#0000" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.Large.FoldingCube"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                app:SpinKit_Color="@color/colorAccent" />
+
+            <cc.catface.api.view.loading.view.RotatingCircleView
+                android:id="@+id/loading_fcv"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                android:background="#0000" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cc.catface.api.view.loading.view.WanderingCubesViewGroup
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/loading_wcvg"
+                android:layout_margin="3dp"
+                android:background="#ddd" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+
+</LinearLayout>

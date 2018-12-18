@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cc.catface.api">
+
+    <application>
+
+        <activity android:name="cc.catface.api.view.ViewNavigationActivity" />
+        <activity android:name="cc.catface.api.view.demo01_astrs.ASTRSActivity" />
+        <activity android:name="cc.catface.api.view.demo02_interpolator.InterpolatorActivity" />
+        <activity android:name="cc.catface.api.view.demo03_value.ValueActivity" />
+        <activity android:name="cc.catface.api.view.demo04_object.ObjectActivity" />
+        <activity android:name="cc.catface.api.view.demo05_propertyvaluesholder_keyframe.KeyframeActivity" />
+        <activity android:name="cc.catface.api.view.demo06_anim_set.AnimSetActivity" />
+        <activity android:name="cc.catface.api.view.demo101_paint_canvas.CanvasActivity" />
+        <activity android:name="cc.catface.api.view.demo102_path_text.TextActivity" />
+        <activity android:name="cc.catface.api.view.demo103_range.RangeActivity" />
+        <activity android:name="cc.catface.api.view.demo104_bezier.BezierMainActivity" />
+        <activity android:name="cc.catface.api.view.demo104_bezier.PaintBezierActivity" />
+        <activity android:name="cc.catface.api.view.demo104_bezier.WaveActivity" />
+        <activity android:name="cc.catface.api.view.loading.LoadingIndexActivity" />
+        <activity android:name="cc.catface.api.view.loading.SpinKitActivity" />
+        <activity android:name="cc.catface.api.view.loading.round_smile.RoundSmileActivity" />
+        <activity android:name="cc.catface.api.toast.ToastActivity" />
+        <activity android:name="cc.catface.api.dialog.DialogActivity" />
+        <activity android:name=".hardware.camera.VibratorCameraActivity" />
+        <activity android:name=".hardware.qrcode.ScanQrcodeActivity" />
+        <activity android:name=".eleme.ElemeActivity" />
+        <activity android:name=".toutiao.view.ToutiaoActivity" />
+        <activity android:name=".huge_img.view.LoadHugeImgActivity"/>
+        <activity android:name="cc.catface.api.banner.BannerActivity"/>
+        <activity android:name=".attrs.IVScaleTypeActivity"/>
+
+    </application>
+</manifest>

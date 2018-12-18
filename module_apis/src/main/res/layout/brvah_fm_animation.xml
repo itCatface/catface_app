@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_current_animation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前：渐变"
+                android:textColor="#3333"
+                android:textSize="6sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="(仅初次加载有效)"
+                android:textColor="#8333"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="#000" />
+
+        <Button
+            android:id="@+id/bt_alphaIn"
+            style="@style/view_bt_default_weight"
+            android:text="渐变" />
+
+        <Button
+            android:id="@+id/bt_scaleIn"
+            style="@style/view_bt_default_weight"
+            android:text="缩放" />
+
+
+        <Button
+            android:id="@+id/bt_custom"
+            style="@style/view_bt_default_weight"
+            android:text="自定义" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_slideInBottom"
+            style="@style/view_bt_default_weight"
+            android:text="底部载入" />
+
+        <Button
+            android:id="@+id/bt_slideInLeft"
+            style="@style/view_bt_default_weight"
+            android:text="左侧载入" />
+
+        <Button
+            android:id="@+id/bt_slideInRight"
+            style="@style/view_bt_default_weight"
+            android:text="右侧载入" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none" />
+
+</LinearLayout>

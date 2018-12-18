@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BaseTabApp</string>
+
+    <!-- MessFm -->
+    <!-- 硬件列表 -->
+    <string name="mess_hardware_list_camera">相机[camera]</string>
+    <string name="mess_hardware_list_vibrate">震动[vibrate]</string>
+    <string-array name="mess_hardware_list">
+        <item>@string/mess_hardware_list_camera</item>
+        <item>@string/mess_hardware_list_vibrate</item>
+    </string-array>
+</resources>

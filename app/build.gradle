@@ -1,0 +1,144 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk' // mob分享
+
+android {
+    compileSdkVersion rootProject.ext.version_build.compileSdkVersion
+
+
+
+    defaultConfig {
+        applicationId rootProject.ext.version_build.applicationId
+        minSdkVersion rootProject.ext.version_build.minSdkVersion
+        targetSdkVersion rootProject.ext.version_build.targetSdkVersion
+        versionCode rootProject.ext.version_build.versionCode
+        versionName rootProject.ext.version_build.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        /** 方法数64k */
+        multiDexEnabled true
+
+        /** 极光推送↓ */
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "539a53d45b2f11dda4812a48", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+        /** ↑ */
+
+        /** ARouter配置 */
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    /** 模块apis中的BRVAH demo用到了数据绑定，所以主模块的gradle中也要添加同样声明 */
+    dataBinding {
+        enabled = true
+    }
+
+    /** 更改项目布局文件目录结构 */
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java',
+                            'src/main/java_start']
+
+            res.srcDirs = ['src/main/res',
+                           'src/main/res_main',
+                           'src/main/res_iflytek',
+                           'src/main/res_project_function']
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.dependencies_android["appcompat-v7"]
+    implementation rootProject.ext.dependencies_android["constraint-layout"]
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation rootProject.ext.dependencies_android["junit"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-runner"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-espresso-core"]
+    implementation project(':app_base')
+
+    /* 组件化模块配置 */
+    /* ARouter */
+    implementation rootProject.ext.dependencies_api["arouter"]
+    annotationProcessor rootProject.ext.dependencies_api["arouter-compiler"]
+    if (!rootProject.ext.IS_DEBUG_MODULE_arouter) {
+        implementation project(':module_arouter_demo')
+    }
+    if (!rootProject.ext.debug_module_api) {
+        implementation project(':module_api')
+    }
+    if (!rootProject.ext.debug_module_apis) {
+        implementation project(':module_apis')
+    }
+
+    /**/
+    implementation rootProject.ext.dependencies_api["butterknife"]
+    annotationProcessor rootProject.ext.dependencies_api["butterknife-compiler"]
+
+    /* 极光推送 */
+    implementation 'cn.jiguang.sdk:jpush:3.1.6'
+    implementation 'cn.jiguang.sdk:jcore:1.2.5'
+
+
+}
+
+
+MobSDK {
+    appKey "2812e8836bbe2"
+    appSecret "77c1da88debae5f264eade3cda5eab96"
+
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            SinaWeibo {
+                appKey "2565941592"
+                appSecret "038a30b8a1f4089c0619bdf25f0dbc0c"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient false
+            }
+            Wechat {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            QQ {
+                appId "100371282"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+                shareByAppClient true
+            }
+            Facebook {
+                appKey "1412473428822331"
+                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+                callbackUri "https://mob.com"
+            }
+        }
+    }
+
+}

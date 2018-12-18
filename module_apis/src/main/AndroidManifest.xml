@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cc.catface.module_apis">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application>
+        <activity android:name=".pdf.PDFActivity" />
+        <activity android:name=".nano_httpd.view.ServerActivity" />
+        <!-- 讯飞相关 -->
+        <activity android:name=".iflytek.IflytekIndexActivity" />
+        <activity android:name=".iflytek.IflytekIatActivity" />
+        <activity android:name=".iflytek.IflytekTtsActivity" />
+        <activity android:name=".iflytek.speech.setting.TtsSettings" />
+        <activity android:name=".iflytek.speech.setting.IatSettings" />
+        <activity android:name=".load_img.LoadImgActivity" />
+        <activity android:name=".brvah.view.BRVAH_Activity" />
+        <activity android:name=".memo.view.MemoActivity" />
+        <activity android:name=".showapi.mvp.view.ShowAPIActivity"/>
+
+    </application>
+
+</manifest>

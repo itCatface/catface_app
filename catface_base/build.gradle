@@ -1,0 +1,110 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.version_build.compileSdkVersion
+
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.version_build.minSdkVersion
+        targetSdkVersion rootProject.ext.version_build.targetSdkVersion
+        versionCode rootProject.ext.version_build.versionCode
+        versionName rootProject.ext.version_build.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        /** ARouter配置 */
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+
+            res.srcDirs = ['src/main/res',
+                           'src/main/res_toast',
+                           'src/main/res_activity_head',
+                           'src/main/res_dialog',
+                           'src/main/res_listview',
+                           'src/main/res_button',
+                           'src/main/res_popup']
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies_android["appcompat-v7"]
+    testImplementation rootProject.ext.dependencies_android["junit"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-runner"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-espresso-core"]
+
+    api rootProject.ext.dependencies_android["design"]
+    /**/
+    api rootProject.ext.dependencies_android["multidex"]
+
+    /** 第三方依赖库集中 */
+    /* ARouter */
+    api rootProject.ext.dependencies_api["arouter"]
+    annotationProcessor rootProject.ext.dependencies_api["arouter-compiler"]
+    /**/
+    api rootProject.ext.dependencies_api["butterknife"]
+    annotationProcessor rootProject.ext.dependencies_api["butterknife-compiler"]
+    /**/
+    api rootProject.ext.dependencies_api["BaseRecyclerViewAdapterHelper"]
+    /**/
+    api rootProject.ext.dependencies_api["eventbus"]
+    /**/
+    api rootProject.ext.dependencies_api["okio"]
+    api rootProject.ext.dependencies_api["okhttp"]
+    api rootProject.ext.dependencies_api["logging-interceptor"]
+    /**/
+    api rootProject.ext.dependencies_api["retrofit"]
+    api rootProject.ext.dependencies_api["converter-gson"]
+    api rootProject.ext.dependencies_api["converter-scalars"]
+    /**/
+    api rootProject.ext.dependencies_api["rxjava"]
+    api rootProject.ext.dependencies_api["rxandroid"]
+    /**/
+    api rootProject.ext.dependencies_api["adapter-rxjava"]
+    api rootProject.ext.dependencies_api["adapter-rxjava2"]
+    /**/
+    api rootProject.ext.dependencies_api["rxbinding"]
+    api rootProject.ext.dependencies_api["rxbinding-support-v4"]
+    api rootProject.ext.dependencies_api["rxbinding-appcompat-v7"]
+    /**/
+    api rootProject.ext.dependencies_api["android-gif-drawable"]
+    api rootProject.ext.dependencies_api["picasso"]
+    api rootProject.ext.dependencies_api["fresco"]
+    api rootProject.ext.dependencies_api["glide"]
+    annotationProcessor rootProject.ext.dependencies_api["glide__annotationProcessor"]
+    /**/
+    api rootProject.ext.dependencies_api["bga-qrcode-zxing"]
+    /**/
+    api rootProject.ext.dependencies_api["android-pdf-viewer"]
+    /**/
+    api rootProject.ext.dependencies_api["greendao"]
+    /**/
+    debugCompile rootProject.ext.dependencies_api["leakcanary-android"]
+    releaseCompile rootProject.ext.dependencies_api["leakcanary-android-no-op"]
+
+    // 今日头条顶部刷新控件依赖
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+}

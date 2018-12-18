@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_view_interpolator_title">请选择插值器</string>
+
+    <string-array name="api_view_interpolator">
+        <item>AccelerateDecelerate</item>
+        <item>Accelerate</item>
+        <item>Anticipate</item>
+        <item>AnticipateOvershoot</item>
+        <item>Bounce</item>
+        <item>Cycle</item>
+        <item>Decelerate</item>
+        <item>Linear</item>
+        <item>Overshoot</item>
+    </string-array>
+
+
+
+
+</resources>

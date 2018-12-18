@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cc.catface.module_arouter_demo">
+
+    <application>
+
+        <activity android:name="cc.catface.module_arouter_demo.ARouterDemoActivity" />
+
+    </application>
+
+</manifest>

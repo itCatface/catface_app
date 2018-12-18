@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cc.catface.api">
+
+    <application
+        android:name="cc.catface.app_base.ARouterApp"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <activity android:name=".view.ViewNavigationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.demo01_astrs.ASTRSActivity" />
+        <activity android:name=".view.demo02_interpolator.InterpolatorActivity" />
+        <activity android:name=".view.demo03_value.ValueActivity" />
+        <activity android:name=".view.demo04_object.ObjectActivity" />
+        <activity android:name=".view.demo05_propertyvaluesholder_keyframe.KeyframeActivity" />
+        <activity android:name=".view.demo06_anim_set.AnimSetActivity" />
+        <activity android:name=".view.demo101_paint_canvas.CanvasActivity" />
+        <activity android:name=".view.demo102_path_text.TextActivity" />
+        <activity android:name=".view.demo103_range.RangeActivity" />
+        <activity android:name=".view.demo104_bezier.BezierMainActivity" />
+        <activity android:name=".view.demo104_bezier.PaintBezierActivity" />
+        <activity android:name=".view.demo104_bezier.WaveActivity" />
+        <activity android:name=".view.loading.LoadingIndexActivity" />
+        <activity android:name=".view.loading.SpinKitActivity" />
+        <activity android:name=".view.loading.round_smile.RoundSmileActivity" />
+        <activity android:name=".toast.ToastActivity" />
+        <activity android:name=".dialog.DialogActivity" />
+        <activity android:name=".hardware.camera.VibratorCameraActivity" />
+        <activity android:name=".hardware.qrcode.ScanQrcodeActivity" />
+        <activity android:name=".eleme.ElemeActivity" />
+        <activity android:name=".toutiao.view.ToutiaoActivity" />
+        <activity android:name=".huge_img.view.LoadHugeImgActivity"/>
+        <activity android:name="cc.catface.api.banner.BannerActivity"/>
+        <activity android:name=".attrs.IVScaleTypeActivity"/>
+
+    </application>
+</manifest>

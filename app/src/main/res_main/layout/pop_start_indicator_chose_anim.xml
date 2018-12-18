@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/shape_start_indicator_pop"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="你可以选择切换动画"
+                android:textColor="#666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_accordionTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="accordionTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_cubeInTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="cubeInTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_cubeOutTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="cubeOutTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_depthPageTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="depthPageTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_depthPageTransformer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="depthPageTransformer2"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_drawFromBackTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="drawFromBackTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_flipHorizontalTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="flipHorizontalTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_flipVerticalTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="flipVerticalTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_foregroundToBackgroundTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="foregroundToBackgroundTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_parallaxPageTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="parallaxPageTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_backgroundToForegroundTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="backgroundToForegroundTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_rotateDownTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="rotateDownTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_rotateUpTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="rotateUpTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_stackTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="stackTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_tabletTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="tabletTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_zoomInTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="zoomInTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_zoomOutPageTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="zoomOutPageTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_zoomOutSlideTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="zoomOutSlideTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1px"
+                android:background="#888" />
+
+            <TextView
+                android:id="@+id/tv_zoomOutTransformer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="zoomOutTransformer"
+                android:textColor="#118"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/shape_start_indicator_pop">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="取消"
+            android:textColor="#118"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

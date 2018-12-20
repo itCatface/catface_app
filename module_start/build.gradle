@@ -1,0 +1,110 @@
+if (rootProject.ext.debug_module_start) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'com.mob.sdk' // mob分享
+
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        /** ARouter配置 */
+        if (rootProject.ext.debug_module_start) {
+            applicationId "cc.catface.start"
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+    }
+
+    sourceSets {
+        main {
+            if (rootProject.ext.debug_module_apis) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude '**/debug/**'
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies_android["appcompat-v7"]
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation rootProject.ext.dependencies_android["junit"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-runner"]
+    androidTestImplementation rootProject.ext.dependencies_android["test-espresso-core"]
+    implementation project(':app_base')
+    /* ARouter */
+    implementation rootProject.ext.dependencies_api["arouter"]
+    annotationProcessor rootProject.ext.dependencies_api["arouter-compiler"]
+}
+
+
+MobSDK {
+    appKey "2812e8836bbe2"
+    appSecret "77c1da88debae5f264eade3cda5eab96"
+
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            SinaWeibo {
+                appKey "2565941592"
+                appSecret "038a30b8a1f4089c0619bdf25f0dbc0c"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient false
+            }
+            Wechat {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            QQ {
+                appId "100371282"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+                shareByAppClient true
+            }
+            Facebook {
+                appKey "1412473428822331"
+                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+                callbackUri "https://mob.com"
+            }
+        }
+    }
+}

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 基本纯色 -->
+    <color name="transparent">#0000</color>
     <color name="black">#000</color>
     <color name="white">#fff</color>
-    <color name="c_a">#aaa</color>
+    <color name="red">#f00</color>
     <color name="blue">#00f</color>
+    <color name="c_a">#aaa</color>
     <color name="c_10">#1000</color>
 
 

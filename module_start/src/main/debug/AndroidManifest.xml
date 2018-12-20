@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cc.catface.module_start">
+
+    <application android:name="cc.catface.app_base.ARouterApp">
+        <activity android:name=".welcome.view.WelcomeActivity" />
+        <activity android:name=".ad.view.AdActivity" />
+        <activity android:name=".login.view.LoginActivity" />
+        <activity android:name=".main.mvp.view.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

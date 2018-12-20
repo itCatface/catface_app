@@ -66,6 +66,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation rootProject.ext.dependencies_android["appcompat-v7"]
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation rootProject.ext.dependencies_android["junit"]
     androidTestImplementation rootProject.ext.dependencies_android["test-runner"]
     androidTestImplementation rootProject.ext.dependencies_android["test-espresso-core"]
@@ -77,4 +78,7 @@ dependencies {
 
     /* View学习： */
     implementation 'com.github.ybq:Android-SpinKit:1.1.0'
+
+    // 今日头条顶部刷新控件依赖
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 }

@@ -5,7 +5,8 @@ ext {
 
     /* 组件化配置 */
     IS_DEBUG_MODULE_arouter = true
-    debug_module_api = true
+    debug_module_start = false
+    debug_module_api = false
     debug_module_apis = false
 
 
@@ -15,7 +16,7 @@ ext {
                      targetSdkVersion : 28,
 
                      versionCode      : 1,
-                     versionName      : "1.0.2",
+                     versionName      : "1.0.1",
                      applicationId    : "cc.catface.app"]
 
 

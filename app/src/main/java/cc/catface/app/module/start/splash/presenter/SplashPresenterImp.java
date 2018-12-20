@@ -1,6 +1,5 @@
 package cc.catface.app.module.start.splash.presenter;
 
-
 import cc.catface.app.module.start.splash.view.SplashView;
 import cc.catface.base.core_framework.base_mvp.presenter.BaseMVPPresenter;
 

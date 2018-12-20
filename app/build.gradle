@@ -26,7 +26,7 @@ android {
 
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "539a53d45b2f11dda4812a48", //JPush上注册的包名对应的appkey.
+                JPUSH_APPKEY : "b181c990a8f5db502f408d6d", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
         /** ↑ */
@@ -56,17 +56,16 @@ android {
     }
 
     /** 更改项目布局文件目录结构 */
-    sourceSets {
+    /*sourceSets {
         main {
-            java.srcDirs = ['src/main/java',
-                            'src/main/java_start']
+            java.srcDirs = ['src/main/java']
 
             res.srcDirs = ['src/main/res',
                            'src/main/res_main',
                            'src/main/res_iflytek',
                            'src/main/res_project_function']
         }
-    }
+    }*/
 
     compileOptions {
         targetCompatibility 1.8
@@ -91,6 +90,9 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies_api["arouter-compiler"]
     if (!rootProject.ext.IS_DEBUG_MODULE_arouter) {
         implementation project(':module_arouter_demo')
+    }
+    if (!rootProject.ext.debug_module_start) {
+        implementation project(':module_start')
     }
     if (!rootProject.ext.debug_module_api) {
         implementation project(':module_api')

@@ -1,13 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cc.catface.api">
 
     <application
         android:name="cc.catface.app_base.ARouterApp"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
         <activity android:name=".view.ViewNavigationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -32,9 +33,11 @@
         <activity android:name=".hardware.qrcode.ScanQrcodeActivity" />
         <activity android:name=".eleme.ElemeActivity" />
         <activity android:name=".toutiao.view.ToutiaoActivity" />
-        <activity android:name=".huge_img.view.LoadHugeImgActivity"/>
-        <activity android:name="cc.catface.api.banner.BannerActivity"/>
-        <activity android:name=".attrs.IVScaleTypeActivity"/>
+        <activity android:name=".huge_img.view.LoadHugeImgActivity" />
+        <activity android:name=".banner.BannerActivity" />
+        <activity android:name=".attrs.IVScaleTypeActivity" />
+        <activity android:name=".common.AppInfoActivity"/>
 
     </application>
+
 </manifest>

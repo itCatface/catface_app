@@ -28,6 +28,7 @@
         <activity android:name=".huge_img.view.LoadHugeImgActivity"/>
         <activity android:name="cc.catface.api.banner.BannerActivity"/>
         <activity android:name=".attrs.IVScaleTypeActivity"/>
+        <activity android:name=".common.AppInfoActivity"/>
 
     </application>
 </manifest>

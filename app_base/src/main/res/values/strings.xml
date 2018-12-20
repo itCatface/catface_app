@@ -1,3 +1,9 @@
 <resources>
+    <string name="app_app_name">BaseTabApp</string>
+
+    <!-- app id -->
+    <string name="app_id_bugly">3886d6731c</string>
+
+
     <string name="error_net_error_brvah">Simulate network error...</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/c_10"
+    android:background="@color/setting_gap"
     android:orientation="vertical">
 
 
@@ -12,7 +12,7 @@
         android:id="@+id/lv_version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff" />
+        android:background="@color/white" />
 
 
 </LinearLayout>

@@ -12,6 +12,7 @@
 
     <!-- demo:basetabapp基础颜色 -->
     <color name="blue_title_bg">#1A7DEB</color>
+    <color name="setting_gap">#F0EEF4</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>

@@ -16,11 +16,16 @@ public abstract class NormalBaseActivityID extends FragmentActivity {
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle();
         setContentView(layoutId());
         ButterKnife.bind(this);
         ARouter.getInstance().inject(this);
         ids();
         create();
+    }
+
+    public void setStyle() {
+
     }
 
     public abstract void ids();

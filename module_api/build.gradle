@@ -29,6 +29,9 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        /** 方法数64k */
+        multiDexEnabled true
+
     }
 
     lintOptions {

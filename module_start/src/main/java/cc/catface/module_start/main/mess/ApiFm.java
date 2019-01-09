@@ -27,6 +27,7 @@ public class ApiFm extends NormalBaseFragmentID {
 
     private final String DEMO_TOAST = "demo-toast[系统土司]";
     private final String DEMO_DIALOG = "demo-dialog[系统弹窗]";
+    private final String DEMO_POP = "demo-pop[系统popup示例]";
     private final String DEMO_VIEW = "demo-view[系统view动画]";
     private final String DEMO_HARDWARE = "demo-hardware[硬件]";
     private final String DEMO_MENU_OF_ELEME = "demo[菜单]-饿了么";
@@ -36,7 +37,7 @@ public class ApiFm extends NormalBaseFragmentID {
     private final String DEMO_IV_SCALETYPE = "demo[图片]-ImageView的scaleType属性";
     private final String DEMO_APP_INFO = "demo[信息]-app相关信息";
 
-    private String[] mItems = {DEMO_TOAST, DEMO_DIALOG, DEMO_VIEW, DEMO_HARDWARE, DEMO_MENU_OF_ELEME, DEMO_TOUTIAO, DEMO_BANNER, DEMO_LOAD_BIG_IMG, DEMO_IV_SCALETYPE, DEMO_APP_INFO};
+    private String[] mItems = {DEMO_TOAST, DEMO_DIALOG, DEMO_POP, DEMO_VIEW, DEMO_HARDWARE, DEMO_MENU_OF_ELEME, DEMO_TOUTIAO, DEMO_BANNER, DEMO_LOAD_BIG_IMG, DEMO_IV_SCALETYPE, DEMO_APP_INFO};
 
 
     @Override public void createView() {
@@ -48,13 +49,15 @@ public class ApiFm extends NormalBaseFragmentID {
                 case DEMO_DIALOG:
                     ARouter.getInstance().build("/api/dialog").navigation();
                     break;
+                case DEMO_POP:
+                    ARouter.getInstance().build("/api/popup").navigation();
+                    break;
                 case DEMO_VIEW:
                     ARouter.getInstance().build("/api/navigation").navigation();
                     break;
                 case DEMO_HARDWARE:
                     event(DEMO_HARDWARE);
                     break;
-
                 case DEMO_MENU_OF_ELEME:
                     ARouter.getInstance().build("/api/eleme").navigation();
                     break;

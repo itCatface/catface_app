@@ -25,10 +25,11 @@
         <activity android:name=".hardware.qrcode.ScanQrcodeActivity" />
         <activity android:name=".eleme.ElemeActivity" />
         <activity android:name=".toutiao.view.ToutiaoActivity" />
-        <activity android:name=".huge_img.view.LoadHugeImgActivity"/>
-        <activity android:name="cc.catface.api.banner.BannerActivity"/>
-        <activity android:name=".attrs.IVScaleTypeActivity"/>
-        <activity android:name=".common.AppInfoActivity"/>
+        <activity android:name=".huge_img.view.LoadHugeImgActivity" />
+        <activity android:name="cc.catface.api.banner.BannerActivity" />
+        <activity android:name=".attrs.IVScaleTypeActivity" />
+        <activity android:name=".common.AppInfoActivity" />
+        <activity android:name=".popup.PopupActivity" />
 
     </application>
 </manifest>

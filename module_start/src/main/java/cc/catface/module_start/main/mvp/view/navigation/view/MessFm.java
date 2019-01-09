@@ -16,6 +16,7 @@ import cc.catface.base.core_framework.base_mvp.view.AbsFragmentID;
 import cc.catface.module_start.R;
 import cc.catface.module_start.main.mess.ApiFm;
 import cc.catface.module_start.main.mess.ApisFm;
+import cc.catface.module_start.main.mess.PjsFm;
 import cc.catface.module_start.main.mvp.view.navigation.adapter.ImageTextAdapter;
 import cc.catface.module_start.main.mvp.view.navigation.presenter.MessPresenterImp;
 
@@ -31,7 +32,7 @@ public class MessFm extends AbsFragmentID<MessView, MessPresenterImp> implements
     private TabLayout tl_mess;
     private ViewPager vp_mess;
 
-    private String[] mTabTitles = {"api", "apis"};
+    private String[] mTabTitles = {"api", "apis", "pjs"};
     //    private String[] mTabTitles = {"GIF", "视频"};
     private List<Fragment> mFms;
 
@@ -49,6 +50,7 @@ public class MessFm extends AbsFragmentID<MessView, MessPresenterImp> implements
         mFms = new ArrayList<>();
         mFms.add(new ApiFm());
         mFms.add(new ApisFm());
+        mFms.add(new PjsFm());
 
         vp_mess.setOffscreenPageLimit(mTabTitles.length);
         vp_mess.setAdapter(new ImageTextAdapter(getChildFragmentManager(), mTabTitles, mFms));

@@ -13,7 +13,7 @@ import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 public class IVScaleTypeActivity extends NormalBaseActivityID {
 
     @Override public int layoutId() {
-        return R.layout.attrs_activity_iv_scale_type;
+        return R.layout.api_activity_iv_scale_type;
     }
 
     private TitleFontAwesome tfa;

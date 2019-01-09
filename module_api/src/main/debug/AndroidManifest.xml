@@ -36,7 +36,8 @@
         <activity android:name=".huge_img.view.LoadHugeImgActivity" />
         <activity android:name=".banner.BannerActivity" />
         <activity android:name=".attrs.IVScaleTypeActivity" />
-        <activity android:name=".common.AppInfoActivity"/>
+        <activity android:name=".common.AppInfoActivity" />
+        <activity android:name=".popup.PopupActivity" />
 
     </application>
 

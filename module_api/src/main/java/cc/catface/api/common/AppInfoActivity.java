@@ -13,7 +13,7 @@ import cc.catface.base.utils.android.TAppInfo;
 public class AppInfoActivity extends NormalBaseActivityID {
 
     @Override public int layoutId() {
-        return R.layout.common_activity_app_info;
+        return R.layout.api_activity_app_info;
     }
 
     @SuppressLint("SetTextI18n") @Override public void ids() {

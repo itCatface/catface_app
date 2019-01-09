@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
@@ -46,15 +47,17 @@ public class DialogActivity extends NormalBaseActivity {
         });
     }
 
-    private final String NORMAL_NOTIFICATION = "(系统)[通知对话框]", NORMAL_LIST = "(系统)[列表对话框]", NORMAL_SINGLE_CHOICE = "(系统)[单选对话框]", NORMAL_MULTI_CHOICE = "(系统)[复选对话框]", NORMAL_PROGRESS = "(系统)" +
-            "[进度对话框]", NORMAL_CUSTOM_SIMPLE = "(定制)[简单的自定义样式的弹框]";
+    private final String NORMAL_NOTIFICATION_TWO = "(系统)[通知对话框-两个选项]", NORMAL_NOTIFICATION_THREE = "(系统)[通知对话框-三个选项]", NORMAL_LIST = "(系统)[列表对话框]", NORMAL_SINGLE_CHOICE = "(系统)[单选对话框]",
+            NORMAL_MULTI_CHOICE = "(系统)[复选对话框]", NORMAL_SINGLE_EDITTEXT = "(系统)[单输入框对话框]", NORMAL_PROGRESS = "(系统)" + "[进度对话框]", NORMAL_CUSTOM_SIMPLE = "(定制)[简单的自定义样式的弹框]";
 
     private void initData() {
         mDatas = new ArrayList<>();
-        mDatas.add(NORMAL_NOTIFICATION);
+        mDatas.add(NORMAL_NOTIFICATION_TWO);
+        mDatas.add(NORMAL_NOTIFICATION_THREE);
         mDatas.add(NORMAL_LIST);
         mDatas.add(NORMAL_SINGLE_CHOICE);
         mDatas.add(NORMAL_MULTI_CHOICE);
+        mDatas.add(NORMAL_SINGLE_EDITTEXT);
         mDatas.add(NORMAL_PROGRESS);
         mDatas.add(NORMAL_CUSTOM_SIMPLE);
     }
@@ -71,10 +74,34 @@ public class DialogActivity extends NormalBaseActivity {
         String[] heroes = {"艾希", "锤石", "德莱文", "卡特"};
         mAdapter.setOnItemClickListener((adapter, view, i) -> {
             switch (mDatas.get(i)) {
-                case NORMAL_NOTIFICATION:
-                    TDialogNormal.get(this).notification(R.mipmap.ic_launcher_round, "号外号外", "今天有大新闻...", "看", "不看", isPositive -> {
-                        if (isPositive) TToast.get(this).showBShortView("看看哦", TToast.B_SUCCESS);
-                        else TToast.get(this).showBShortView("不看看了", TToast.B_CANCEL);
+                case NORMAL_NOTIFICATION_TWO:
+                    TDialogNormal.get(this).notification(R.mipmap.ic_launcher_round, "号外号外", "今天有大新闻...", "看", "不看", notificationType -> {
+                        switch (notificationType) {
+                            case TDialogNormal.NotificationPositive:
+                                TToast.get(this).showBShortView("看看哦", TToast.B_SUCCESS);
+                                break;
+                            case TDialogNormal.NotificationNegative:
+                                TToast.get(this).showBShortView("不看看了", TToast.B_CANCEL);
+                                break;
+                            case TDialogNormal.NotificationNeutral:
+
+                                break;
+                        }
+                    });
+                    break;
+                case NORMAL_NOTIFICATION_THREE:
+                    TDialogNormal.get(this).notification(R.mipmap.ic_launcher_round, "号外号外", "今天有大新闻...", "看", "不看", "保持中立", notificationType -> {
+                        switch (notificationType) {
+                            case TDialogNormal.NotificationPositive:
+                                TToast.get(this).showBShortView("看看哦", TToast.B_SUCCESS);
+                                break;
+                            case TDialogNormal.NotificationNegative:
+                                TToast.get(this).showBShortView("不看看了", TToast.B_CANCEL);
+                                break;
+                            case TDialogNormal.NotificationNeutral:
+                                TToast.get(this).showBShortView("保持中立", TToast.B_INFO);
+                                break;
+                        }
                     });
                     break;
                 case NORMAL_LIST:
@@ -92,13 +119,26 @@ public class DialogActivity extends NormalBaseActivity {
                     });
                     break;
                 case NORMAL_MULTI_CHOICE:
-                    TDialogNormal.get(this).MultiChoice(R.mipmap.ic_launcher_round, "选择您需要的英雄", heroes, "选好了", "取消", new TDialogNormal.MultiChoiceCallback() {
+                    TDialogNormal.get(this).multiChoice(R.mipmap.ic_launcher_round, "选择您需要的英雄", heroes, "选好了", "取消", new TDialogNormal.MultiChoiceCallback() {
                         @Override public void onItemClick(int position, boolean isChosen) {
                             TToast.get(DialogActivity.this).showShortImmediately("选项：" + heroes[position] + (isChosen ? "已选" : "取消"));
                         }
 
                         @Override public void onButtonClick(boolean isPositive, List<String> chosenList) {
                             TToast.get(DialogActivity.this).showShortImmediately(isPositive ? "您选择这么多：" + chosenList.size() : "您取消了选择");
+                        }
+                    });
+                    break;
+                case NORMAL_SINGLE_EDITTEXT:
+                    EditText et = new EditText(this);
+                    TDialogNormal.get(this).singleEditText(R.mipmap.ic_launcher, "有点东西", "这里输入一些内容", "确定", "取消", et, notificationType -> {
+                        switch (notificationType) {
+                            case TDialogNormal.NotificationPositive:
+                                TToast.get(this).showBShortView("确定了->" + et.getText().toString(), TToast.B_SUCCESS);
+                                break;
+                            case TDialogNormal.NotificationNegative:
+                                TToast.get(this).showBShortView("不用了", TToast.B_CANCEL);
+                                break;
                         }
                     });
                     break;

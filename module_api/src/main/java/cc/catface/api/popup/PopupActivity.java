@@ -233,7 +233,7 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
 
 
     @Override public void onBackPressed() {
-        if (myPop.isShowing()) {
+        if (null != myPop && myPop.isShowing()) {
             myPop.dismiss();
         } else {
             super.onBackPressed();

@@ -33,9 +33,13 @@ public class TDialogNormal implements TDialogNormalI {
     }
 
 
-    /** 普通对话框 */
+    /** 普通对话框(包含两个选项和三个选项) */
+    public static final int NotificationPositive = 1;
+    public static final int NotificationNegative = -1;
+    public static final int NotificationNeutral = 0;
+
     public interface NotificationCallback {
-        void onClick(boolean isPositive);
+        void onClick(int notificationType);
     }
 
     @Override public void notification(String title, String content, String btPositiveText, String btNegativeText, NotificationCallback callback) {
@@ -48,11 +52,34 @@ public class TDialogNormal implements TDialogNormalI {
         mBuilder = new AlertDialog.Builder(mCtx);
         mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setPositiveButton(btPositiveText, new DialogInterface.OnClickListener() {
             @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(true);
+                if (null != callback) callback.onClick(NotificationPositive);
             }
         }).setNegativeButton(btNegativeText, new DialogInterface.OnClickListener() {
             @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(false);
+                if (null != callback) callback.onClick(NotificationNegative);
+            }
+        }).show();
+    }
+
+    @Override public void notification(String title, String content, String btPositiveText, String btNegativeText, String btNeutralText, NotificationCallback callback) {
+        notification(0, title, content, btPositiveText, btNegativeText, btNeutralText, callback);
+    }
+
+    @Override public void notification(int iconId, String title, String content, String btPositiveText, String btNegativeText, String btNeutralText, NotificationCallback callback) {
+        iconId = (0 == iconId ? R.mipmap.toast_ic_default_warning_sharp_white_96 : iconId);
+        mBuilder = null;
+        mBuilder = new AlertDialog.Builder(mCtx);
+        mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setPositiveButton(btPositiveText, new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                if (null != callback) callback.onClick(NotificationPositive);
+            }
+        }).setNegativeButton(btNegativeText, new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                if (null != callback) callback.onClick(NotificationNegative);
+            }
+        }).setNeutralButton(btNeutralText, new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                if (null != callback) callback.onClick(NotificationNeutral);
             }
         }).show();
     }
@@ -121,11 +148,11 @@ public class TDialogNormal implements TDialogNormalI {
     }
 
 
-    @Override public void MultiChoice(String title, String[] items, String btPositiveText, String btNegativeText, MultiChoiceCallback callback) {
-        MultiChoice(0, title, items, btPositiveText, btNegativeText, callback);
+    @Override public void multiChoice(String title, String[] items, String btPositiveText, String btNegativeText, MultiChoiceCallback callback) {
+        multiChoice(0, title, items, btPositiveText, btNegativeText, callback);
     }
 
-    @Override public void MultiChoice(int iconId, String title, final String[] items, String btPositiveText, String btNegativeText, final MultiChoiceCallback callback) {
+    @Override public void multiChoice(int iconId, String title, final String[] items, String btPositiveText, String btNegativeText, final MultiChoiceCallback callback) {
         final List<String> chosenList = new ArrayList<>();
 
         iconId = (0 == iconId ? R.mipmap.toast_ic_default_warning_sharp_white_96 : iconId);
@@ -152,6 +179,29 @@ public class TDialogNormal implements TDialogNormalI {
         }).show();
     }
 
+
+    /** 单输入框对话框 */
+    @Override public void singleEditText(String title, String content, String btPositiveText, String btNegativeText, EditText et, NotificationCallback callback) {
+        singleEditText(title, content, btPositiveText, btNegativeText, et, callback);
+    }
+
+    @Override public void singleEditText(int iconId, String title, String content, String btPositiveText, String btNegativeText, EditText et, NotificationCallback callback) {
+        iconId = (0 == iconId ? R.mipmap.toast_ic_default_warning_sharp_white_96 : iconId);
+
+        mBuilder = null;
+        mBuilder = new AlertDialog.Builder(mCtx);
+        mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setView(et).setPositiveButton(btPositiveText, new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                if (null != callback) callback.onClick(NotificationPositive);
+            }
+        }).setNegativeButton(btNegativeText, new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                if (null != callback) callback.onClick(NotificationNegative);
+            }
+        }).show();
+    }
+
+
     /** 进度对话框 */
     public interface ProgressCallback {
         void onComplete();
@@ -172,28 +222,11 @@ public class TDialogNormal implements TDialogNormalI {
         mProgressDialog.setProgressStyle(Style);
         mProgressDialog.setMax(max);
         mProgressDialog.show();
-        //        new Thread(new Runnable() {
-        //            @Override public void run() {
-        //                while (true) {
-        //                    mProgressDialog.incrementProgressBy(increment);
-        //                    if (mProgressDialog.getProgress() == mProgressDialog.getMax()) {
-        //                        ((Activity) mCtx).runOnUiThread(new Runnable() {
-        //                            @Override public void run() {
-        //                                mProgressDialog.dismiss();
-        //                                callback.onComplete();
-        //                            }
-        //                        });
-        //                        break;
-        //                    }
-        //                }
-        //            }
-        //        }).start();
-
         return mProgressDialog;
     }
 
 
-    /** 自定义示例对话框 */
+    /** demo-自定义示例对话框 */
     private EditText etPWD1, etPWD2;
     private String pwdStr1, pwdStr2;
 

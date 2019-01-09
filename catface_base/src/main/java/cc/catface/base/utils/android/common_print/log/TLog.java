@@ -4,7 +4,9 @@ import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -22,15 +24,24 @@ public class TLog {
     private static String LOGS_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/log_catface/" + new Date() + "-" + UUID.randomUUID();
     private static int IS_NORMAL_LOGS = 0, IS_NET_LOGS = 1;
 
-    public static void d(String content) {
+    public static void d(Object content) {
         d(DEFAULT_TAG, content);
     }
 
-    public static void d(String tag, String content) {
+    public static void d(String tag, Object content) {
         if (!MODE_DEBUG) return;
-        content = ("❥❥❥[" + DEFAULT_TAG + "]" + tag + "❥❥" + content);
-        Log.d(tag, content);
-        saveLogs(IS_NORMAL_LOGS, content);
+
+        String log = "";
+        if (content instanceof String) {
+            log = ("❥❥❥[" + DEFAULT_TAG + "]" + tag + "❥❥" + content);
+        } else if (content instanceof Object[]) {
+            log = ("❥❥❥[" + DEFAULT_TAG + "]" + tag + "❥❥" + Arrays.toString((Object[]) content));
+        } else if (content instanceof List || content instanceof Map) {
+            log = ("❥❥❥[" + DEFAULT_TAG + "]" + tag + "❥❥" + content.toString());
+        }
+
+        Log.d(tag, log);
+        saveLogs(IS_NORMAL_LOGS, log);
     }
 
     public static void net(String url, Map<String, String> map) {

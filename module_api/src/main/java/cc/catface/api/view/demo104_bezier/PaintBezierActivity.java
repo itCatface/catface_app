@@ -3,7 +3,6 @@ package cc.catface.api.view.demo104_bezier;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 import cc.catface.api.view.demo104_bezier.view.ColorPicker;
 import cc.catface.api.view.demo104_bezier.view.OnSeekColorListener;

@@ -7,4 +7,4 @@ import com.bumptech.glide.module.AppGlideModule;
  * you can use api{GlideApp} by implement this class.
  */
 @GlideModule
-public final class GlideAppHelper extends AppGlideModule {}
+public final class GlideAppHelper extends AppGlideModule { }

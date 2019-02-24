@@ -5,21 +5,24 @@
 
     <application
         android:name=".module.start.App"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/AppThemeForFont"
         tools:replace="android:name">
 
-        <activity android:name=".module.start.splash.view.SplashActivity">
+        <activity
+            android:name=".module.start.splash.view.SplashActivity"
+            android:theme="@style/common_full_screen_no_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".module.start.CrashHandlerActivity" />
     </application>
 
 </manifest>

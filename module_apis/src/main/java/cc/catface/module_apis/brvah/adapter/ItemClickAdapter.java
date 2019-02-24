@@ -1,7 +1,5 @@
 package cc.catface.module_apis.brvah.adapter;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,6 +9,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import cc.catface.app_base.ARouterApp;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.domain.ClickEntity;

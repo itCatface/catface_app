@@ -2,44 +2,29 @@ package cc.catface.module_apis.brvah.view;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.animation.BaseAnimation;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseFragmentID;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.AnimationAdapter;
 import cc.catface.module_apis.brvah.domain.Status;
+import cc.catface.module_apis.databinding.BrvahFmAnimationBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_AnimationFm extends NormalBaseFragmentID implements View.OnClickListener {
+public class BRVAH_AnimationFm extends NormalFragment<BrvahFmAnimationBinding> implements View.OnClickListener {
     @Override public int layoutId() {
         return R.layout.brvah_fm_animation;
     }
 
-    private TextView tv_current_animation;
-    private RecyclerView rv_animation;
     private AnimationAdapter mAnimationAdapter;
-
-    @Override public void ids(View v) {
-        tv_current_animation = (TextView) v.findViewById(R.id.tv_current_animation);
-        rv_animation = (RecyclerView) v.findViewById(R.id.rv_animation);
-        v.findViewById(R.id.cb).setOnClickListener(this);
-        v.findViewById(R.id.bt_alphaIn).setOnClickListener(this);
-        v.findViewById(R.id.bt_scaleIn).setOnClickListener(this);
-        v.findViewById(R.id.bt_slideInBottom).setOnClickListener(this);
-        v.findViewById(R.id.bt_slideInLeft).setOnClickListener(this);
-        v.findViewById(R.id.bt_slideInRight).setOnClickListener(this);
-        v.findViewById(R.id.bt_custom).setOnClickListener(this);
-    }
 
     @Override public void onClick(View view) {
         if (R.id.cb == view.getId()) {
@@ -47,36 +32,44 @@ public class BRVAH_AnimationFm extends NormalBaseFragmentID implements View.OnCl
             mAnimationAdapter.notifyDataSetChanged();
         } else {
             if (R.id.bt_alphaIn == view.getId()) {
-                tv_current_animation.setText("当前：渐变");
+                mBinding.tvCurrentAnimation.setText("当前：渐变");
                 mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
             } else if (R.id.bt_scaleIn == view.getId()) {
-                tv_current_animation.setText("当前：缩放");
+                mBinding.tvCurrentAnimation.setText("当前：缩放");
                 mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
             } else if (R.id.bt_custom == view.getId()) {
-                tv_current_animation.setText("当前：自定义");
+                mBinding.tvCurrentAnimation.setText("当前：自定义");
                 mAnimationAdapter.openLoadAnimation(new CustomAnimation());
             } else if (R.id.bt_slideInBottom == view.getId()) {
-                tv_current_animation.setText("当前：底部载入");
+                mBinding.tvCurrentAnimation.setText("当前：底部载入");
                 mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
             } else if (R.id.bt_slideInLeft == view.getId()) {
-                tv_current_animation.setText("当前：左侧载入");
+                mBinding.tvCurrentAnimation.setText("当前：左侧载入");
                 mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
             } else if (R.id.bt_slideInRight == view.getId()) {
-                tv_current_animation.setText("当前：右侧载入");
+                mBinding.tvCurrentAnimation.setText("当前：右侧载入");
                 mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
             }
-            rv_animation.setAdapter(mAnimationAdapter);
+            mBinding.rvAnimation.setAdapter(mAnimationAdapter);
         }
     }
 
     @Override public void createView() {
+        mBinding.cb.setOnClickListener(this);
+        mBinding.btAlphaIn.setOnClickListener(this);
+        mBinding.btScaleIn.setOnClickListener(this);
+        mBinding.btSlideInBottom.setOnClickListener(this);
+        mBinding.btSlideInLeft.setOnClickListener(this);
+        mBinding.btSlideInRight.setOnClickListener(this);
+        mBinding.btCustom.setOnClickListener(this);
+
         initView();
         initAdapter();
     }
 
     private void initView() {
-        rv_animation.setHasFixedSize(true);
-        rv_animation.setLayoutManager(new LinearLayoutManager(mActivity));
+        mBinding.rvAnimation.setHasFixedSize(true);
+        mBinding.rvAnimation.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     private void initAdapter() {
@@ -98,7 +91,7 @@ public class BRVAH_AnimationFm extends NormalBaseFragmentID implements View.OnCl
                 Toast.makeText(mActivity, content, Toast.LENGTH_SHORT).show();
             }
         });
-        rv_animation.setAdapter(mAnimationAdapter);
+        mBinding.rvAnimation.setAdapter(mAnimationAdapter);
     }
 
 

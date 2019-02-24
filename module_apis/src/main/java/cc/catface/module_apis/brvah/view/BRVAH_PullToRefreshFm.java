@@ -3,9 +3,6 @@ package cc.catface.module_apis.brvah.view;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,13 +12,15 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 
 import java.util.List;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseFragmentID;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.PullToRefreshAdapter;
 import cc.catface.module_apis.brvah.domain.Status;
 import cc.catface.module_apis.brvah.engine.CustomLoadMoreView;
 import cc.catface.module_apis.brvah.engine.DataServer;
+import cc.catface.module_apis.databinding.BrvahFmPullToRefreshBinding;
 
 
 interface RequestCallBack {
@@ -74,24 +73,20 @@ class Request extends Thread {
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_PullToRefreshFm extends NormalBaseFragmentID {
+public class BRVAH_PullToRefreshFm extends NormalFragment<BrvahFmPullToRefreshBinding> {
     @Override public int layoutId() {
         return R.layout.brvah_fm_pull_to_refresh;
     }
 
-    private SwipeRefreshLayout srl_brvah_refresh;
-    private RecyclerView rv_list;
-
-    @Override public void ids(View v) {
-        srl_brvah_refresh = (SwipeRefreshLayout) v.findViewById(R.id.srl_brvah_refresh);
-        rv_list = (RecyclerView) v.findViewById(R.id.rv_list);
+    @Override public void initAction() {
+        mBinding.srlBrvahRefresh.setOnRefreshListener(this::refresh);
+        mBinding.srlBrvahRefresh.setRefreshing(true);
     }
 
     @Override public void createView() {
         initView();
         initAdapter();
         addHeaderView();
-        initEvent();
         refresh();
     }
 
@@ -104,17 +99,17 @@ public class BRVAH_PullToRefreshFm extends NormalBaseFragmentID {
 
 
     private void initView() {
-        srl_brvah_refresh.setColorSchemeColors(Color.rgb(47, 223, 189));
-        rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
+        mBinding.srlBrvahRefresh.setColorSchemeColors(Color.rgb(47, 223, 189));
+        mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     private void initAdapter() {
         mAdapter = new PullToRefreshAdapter();
         mAdapter.setOnLoadMoreListener(this::loadMore);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
-        rv_list.setAdapter(mAdapter);
+        mBinding.rvList.setAdapter(mAdapter);
 
-        rv_list.addOnItemTouchListener(new OnItemClickListener() {
+        mBinding.rvList.addOnItemTouchListener(new OnItemClickListener() {
             @Override public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
                 TToast.get(mActivity).showBShortView("点击位置：" + position, TToast.B_INFO);
             }
@@ -122,24 +117,19 @@ public class BRVAH_PullToRefreshFm extends NormalBaseFragmentID {
     }
 
     private void addHeaderView() {
-        View headView = getLayoutInflater().inflate(R.layout.brvah_item_head_view, (ViewGroup) rv_list.getParent(), false);
+        View headView = getLayoutInflater().inflate(R.layout.brvah_item_head_view, (ViewGroup) mBinding.rvList.getParent(), false);
         headView.findViewById(R.id.iv).setVisibility(View.GONE);
         ((TextView) headView.findViewById(R.id.tv)).setText("change default load view");
         headView.setOnClickListener(v -> {
             mAdapter.setNewData(null);
             mAdapter.setLoadMoreView(new CustomLoadMoreView());
-            rv_list.setAdapter(mAdapter);
+            mBinding.rvList.setAdapter(mAdapter);
             TToast.get(mActivity).showBShortView("change complete...", TToast.B_SUCCESS);
 
-            srl_brvah_refresh.setRefreshing(true);
+            mBinding.srlBrvahRefresh.setRefreshing(true);
             refresh();
         });
         mAdapter.addHeaderView(headView);
-    }
-
-    private void initEvent() {
-        srl_brvah_refresh.setOnRefreshListener(this::refresh);
-        srl_brvah_refresh.setRefreshing(true);
     }
 
     private void refresh() {
@@ -149,13 +139,13 @@ public class BRVAH_PullToRefreshFm extends NormalBaseFragmentID {
             @Override public void success(List<Status> data) {
                 setData(true, data);
                 mAdapter.setEnableLoadMore(true);
-                srl_brvah_refresh.setRefreshing(false);
+                mBinding.srlBrvahRefresh.setRefreshing(false);
             }
 
             @Override public void fail(Exception e) {
                 TToast.get(mActivity).showBShortView("refresh-->" + getResources().getString(R.string.error_net_error_brvah), TToast.B_ERROR);
                 mAdapter.setEnableLoadMore(true);
-                srl_brvah_refresh.setRefreshing(false);
+                mBinding.srlBrvahRefresh.setRefreshing(false);
             }
         }).start();
     }

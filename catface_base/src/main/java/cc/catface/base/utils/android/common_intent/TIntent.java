@@ -20,8 +20,10 @@ public class TIntent implements TIntentI {
         ctx.startActivity(new Intent(ctx, clz));
 
         if (IS_ANIM_ON) {
-            if (in) ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_start_in_default, R.anim.intent_zoom_start_out_default);
-            else ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_exit_in_default, R.anim.intent_zoom_exit_out_default);
+            if (in)
+                ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_start_in_default, R.anim.intent_zoom_start_out_default);
+            else
+                ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_exit_in_default, R.anim.intent_zoom_exit_out_default);
         }
     }
 
@@ -29,8 +31,10 @@ public class TIntent implements TIntentI {
         ctx.startActivity(new Intent(ctx, clz));
 
         if (IS_ANIM_ON) {
-            if (in) ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_start_in_default, R.anim.intent_zoom_start_out_default);
-            else ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_exit_in_default, R.anim.intent_zoom_exit_out_default);
+            if (in)
+                ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_start_in_default, R.anim.intent_zoom_start_out_default);
+            else
+                ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_exit_in_default, R.anim.intent_zoom_exit_out_default);
         }
 
         ((Activity) ctx).finish();
@@ -42,8 +46,10 @@ public class TIntent implements TIntentI {
         ctx.startActivity(intent);
 
         if (IS_ANIM_ON) {
-            if (in) ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_start_in_default, R.anim.intent_zoom_start_out_default);
-            else ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_exit_in_default, R.anim.intent_zoom_exit_out_default);
+            if (in)
+                ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_start_in_default, R.anim.intent_zoom_start_out_default);
+            else
+                ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_exit_in_default, R.anim.intent_zoom_exit_out_default);
         }
     }
 
@@ -53,8 +59,10 @@ public class TIntent implements TIntentI {
         ctx.startActivity(intent);
 
         if (IS_ANIM_ON) {
-            if (in) ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_start_in_default, R.anim.intent_zoom_start_out_default);
-            else ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_exit_in_default, R.anim.intent_zoom_exit_out_default);
+            if (in)
+                ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_start_in_default, R.anim.intent_zoom_start_out_default);
+            else
+                ((Activity) ctx).overridePendingTransition(R.anim.intent_zoom_exit_in_default, R.anim.intent_zoom_exit_out_default);
         }
 
         ((Activity) ctx).finish();

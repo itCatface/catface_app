@@ -1,36 +1,29 @@
 package cc.catface.module_apis.brvah.view;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import java.util.ArrayList;
 import java.util.Random;
-import cc.catface.base.core_framework.base_normal.NormalBaseFragmentID;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.ExpandableAdapter;
 import cc.catface.module_apis.brvah.domain.Level0Item;
 import cc.catface.module_apis.brvah.domain.Level1Item;
 import cc.catface.module_apis.brvah.domain.Person;
+import cc.catface.module_apis.databinding.BrvahFmExpandableBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_ExpandableFm extends NormalBaseFragmentID {
-
+public class BRVAH_ExpandableFm extends NormalFragment<BrvahFmExpandableBinding> {
     @Override public int layoutId() {
         return R.layout.brvah_fm_expandable;
     }
 
-    private RecyclerView rv_list;
     ArrayList<MultiItemEntity> mDatas;
     ExpandableAdapter mAdapter;
-
-    @Override public void ids(View v) {
-        rv_list = (RecyclerView) v.findViewById(R.id.rv_list);
-    }
 
     @Override public void createView() {
         mDatas = generateData();
@@ -43,9 +36,9 @@ public class BRVAH_ExpandableFm extends NormalBaseFragmentID {
             }
         });
 
-        rv_list.setAdapter(mAdapter);
+        mBinding.rvList.setAdapter(mAdapter);
         // important! setLayoutManager should be called after setAdapter
-        rv_list.setLayoutManager(manager);
+        mBinding.rvList.setLayoutManager(manager);
         mAdapter.expandAll();
     }
 

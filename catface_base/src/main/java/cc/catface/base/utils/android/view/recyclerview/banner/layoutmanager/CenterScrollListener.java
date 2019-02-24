@@ -1,7 +1,6 @@
 package cc.catface.base.utils.android.view.recyclerview.banner.layoutmanager;
 
-import android.support.v7.widget.RecyclerView;
-
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A {@link RecyclerView.OnScrollListener} which helps {@link BannerLayoutManager}

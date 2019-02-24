@@ -1,40 +1,33 @@
 package cc.catface.module_apis.brvah.view;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseFragmentID;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.UpFetchAdapter;
 import cc.catface.module_apis.brvah.domain.Movie;
+import cc.catface.module_apis.databinding.BrvahFmUpFetchBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_UpFetchFm extends NormalBaseFragmentID {
+public class BRVAH_UpFetchFm extends NormalFragment<BrvahFmUpFetchBinding> {
     private UpFetchAdapter mAdapter;
 
     @Override public int layoutId() {
         return R.layout.brvah_fm_up_fetch;
     }
 
- private RecyclerView rv_list;
-
-    @Override public void ids(View v) {
-        rv_list = (RecyclerView) v.findViewById(R.id.rv_list);
-    }
 
     @Override public void createView() {
         mAdapter = new UpFetchAdapter();
-        rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
-        rv_list.setAdapter(mAdapter);
+        mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
+        mBinding.rvList.setAdapter(mAdapter);
         mAdapter.setNewData(genData());
         mAdapter.setUpFetchEnable(true);
         /**
@@ -59,7 +52,7 @@ public class BRVAH_UpFetchFm extends NormalBaseFragmentID {
         /**
          * get data from internet.
          */
-        rv_list.postDelayed(new Runnable() {
+        mBinding.rvList.postDelayed(new Runnable() {
             @Override public void run() {
                 mAdapter.addData(0, genData());
                 /**

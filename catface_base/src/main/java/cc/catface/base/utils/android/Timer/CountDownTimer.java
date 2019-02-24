@@ -61,16 +61,16 @@ public abstract class CountDownTimer {
     private long mStopTimeInFuture;
 
     /**
-    * boolean representing if the timer was cancelled
-    */
+     * boolean representing if the timer was cancelled
+     */
     private boolean mCancelled = false;
 
     /**
-     * @param millisInFuture The number of millis in the future from the call
-     *   to {@link #start()} until the countdown is done and {@link #onFinish()}
-     *   is called.
+     * @param millisInFuture    The number of millis in the future from the call
+     *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+     *                          is called.
      * @param countDownInterval The interval along the way to receive
-     *   {@link #onTick(long)} callbacks.
+     *                          {@link #onTick(long)} callbacks.
      */
     public CountDownTimer(long millisInFuture, long countDownInterval) {
         mMillisInFuture = millisInFuture;
@@ -102,6 +102,7 @@ public abstract class CountDownTimer {
 
     /**
      * Callback fired on regular interval.
+     *
      * @param millisUntilFinished The amount of time until finished.
      */
     public abstract void onTick(long millisUntilFinished);

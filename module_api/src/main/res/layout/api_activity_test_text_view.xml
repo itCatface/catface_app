@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <cc.catface.base.utils.android.common_title.TitleFontAwesome
+            android:id="@+id/tfa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_title_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#1f00"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tfa">
+
+            <ImageView
+                android:id="@+id/iv_title_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/iconfont_mian_32"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="高亮显示关键字"
+                android:textColor="#000"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_title_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_title_1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <EditText
+            android:id="@+id/et_key_words"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:hint="输入需要高亮的内容"
+            android:maxLength="40"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_highlight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_title_1" />
+
+
+        <TextView
+            android:id="@+id/tv_highlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="是否区分大小写"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_key_words"
+            app:layout_constraintEnd_toStartOf="@+id/cb_highlight"
+            app:layout_constraintTop_toTopOf="@+id/et_key_words" />
+
+        <CheckBox
+            android:id="@+id/cb_highlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/et_key_words"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_key_words" />
+
+        <TextView
+            android:id="@+id/tv_brbc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/brbc"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_key_words" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

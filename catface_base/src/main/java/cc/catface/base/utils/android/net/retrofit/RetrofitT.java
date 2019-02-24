@@ -1,13 +1,12 @@
 package cc.catface.base.utils.android.net.retrofit;
 
-import android.support.annotation.NonNull;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

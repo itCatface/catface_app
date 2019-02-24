@@ -3,8 +3,7 @@ package cc.catface.base.domain;
 import android.graphics.drawable.Drawable;
 
 /**
- * @author WangYeHan on ${data}
- * @TODO
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class AppInfo {
     public String packageName;

@@ -1,35 +1,29 @@
 package cc.catface.module_apis.brvah.view;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseFragmentID;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.Timer.TTimer;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.EmptyAdapter;
 import cc.catface.module_apis.brvah.domain.Status;
 import cc.catface.module_apis.brvah.engine.DataServer;
+import cc.catface.module_apis.databinding.BrvahFmEmptyViewBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_EmptyViewFm extends NormalBaseFragmentID implements View.OnClickListener {
+public class BRVAH_EmptyViewFm extends NormalFragment<BrvahFmEmptyViewBinding> implements View.OnClickListener {
     @Override public int layoutId() {
         return R.layout.brvah_fm_empty_view;
     }
 
     private boolean isNoData = true, isError = true;
     private View mViewNoData, mViewError;
-    private RecyclerView rv_list;
     private EmptyAdapter mAdapter;
-
-    @Override public void ids(View v) {
-        rv_list = (RecyclerView) v.findViewById(R.id.rv_list);
-        v.findViewById(R.id.btn_reset).setOnClickListener(this);
-    }
 
     @Override public void onClick(View view) {
         if (R.id.btn_reset == view.getId()) {
@@ -41,8 +35,10 @@ public class BRVAH_EmptyViewFm extends NormalBaseFragmentID implements View.OnCl
     }
 
     @Override public void createView() {
-        rv_list.setHasFixedSize(true);
-        rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
+        mBinding.btnReset.setOnClickListener(this);
+
+        mBinding.rvList.setHasFixedSize(true);
+        mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
 
         initHolderView();
         initAdapter();
@@ -50,9 +46,9 @@ public class BRVAH_EmptyViewFm extends NormalBaseFragmentID implements View.OnCl
     }
 
     private void initHolderView() {
-        mViewNoData = getLayoutInflater().inflate(R.layout.brvah_view_empty, (ViewGroup) rv_list.getParent(), false);
+        mViewNoData = getLayoutInflater().inflate(R.layout.brvah_view_empty, (ViewGroup) mBinding.rvList.getParent(), false);
         mViewNoData.setOnClickListener(view -> onRefresh());
-        mViewError = getLayoutInflater().inflate(R.layout.brvah_item_error_view, (ViewGroup) rv_list.getParent(), false);
+        mViewError = getLayoutInflater().inflate(R.layout.brvah_item_error_view, (ViewGroup) mBinding.rvList.getParent(), false);
         mViewError.setOnClickListener(view -> onRefresh());
     }
 
@@ -63,12 +59,12 @@ public class BRVAH_EmptyViewFm extends NormalBaseFragmentID implements View.OnCl
             Status item = (Status) adapter.getItem(position);
             Toast.makeText(mActivity, item.getUserName(), Toast.LENGTH_SHORT).show();
         });
-        rv_list.setAdapter(mAdapter);
+        mBinding.rvList.setAdapter(mAdapter);
     }
 
 
     private void onRefresh() {
-        mAdapter.setEmptyView(R.layout.brvah_loading_view, (ViewGroup) rv_list.getParent());
+        mAdapter.setEmptyView(R.layout.brvah_loading_view, (ViewGroup) mBinding.rvList.getParent());
         TTimer.timeFinished(700, () -> {
             if (isError) {
                 mAdapter.setEmptyView(mViewError);

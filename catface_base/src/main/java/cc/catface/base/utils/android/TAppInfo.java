@@ -17,7 +17,7 @@ import cc.catface.base.domain.AppInfo;
 
 
 /**
- * @author WangYeHan on ${data}
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class TAppInfo {
 

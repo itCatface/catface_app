@@ -2,7 +2,7 @@ package cc.catface.app.module.start;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDex;
+import android.content.Intent;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -10,17 +10,12 @@ import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 import com.mob.MobSDK;
 import com.squareup.leakcanary.LeakCanary;
-import com.tencent.bugly.Bugly;
-import com.tencent.bugly.beta.Beta;
 
+import androidx.multidex.MultiDex;
 import cc.catface.app.R;
-import cc.catface.app.module.start.splash.view.SplashActivity;
 import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
-import cc.catface.base.utils.android.CrashHandler;
-import cc.catface.module_start.main.mvp.view.MainActivity;
-import cc.catface.module_start.main.personal.mvp.view.SettingActivity;
-import cn.jpush.android.api.JPushInterface;
+import cc.catface.base.utils.android.crash.CrashHandler;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -36,18 +31,19 @@ public class App extends Application {
 
         initIflytek();
 
-        initJPush();
-
         initMob();
 
         initLeakCanary();
 
-        CrashHandler.getInstance().init(this);
+        CrashHandler.getInstance().setCrashListener(info -> {
+            Intent intent = new Intent(this, CrashHandlerActivity.class);
+            intent.putExtra("info", info);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }).init(this);
 
         Fresco.initialize(this);
-
-        initBugly();
-
     }
 
 
@@ -59,7 +55,7 @@ public class App extends Application {
 
 
     private void initARouter() {
-        if (Const.IS_DEBUG) {
+        if(Const.IS_DEBUG) {
             ARouter.openLog();
             ARouter.openDebug();
         }
@@ -73,25 +69,12 @@ public class App extends Application {
     }
 
 
-    private void initJPush() {
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
-    }
-
-
     private void initMob() {
         MobSDK.init(this);
     }
 
 
     private void initLeakCanary() {
-        if (Const.IS_DEBUG) LeakCanary.install(this);
-    }
-
-    private void initBugly() {
-        Beta.canShowUpgradeActs.add(SplashActivity.class);
-        Beta.canShowUpgradeActs.add(SettingActivity.class);
-        Beta.upgradeDialogLayoutId =R.layout.bugly_dialog_upgrade;
-        Bugly.init(getApplicationContext(), getResources().getString(R.string.app_id_bugly), Const.IS_DEBUG);
+        if(Const.IS_DEBUG) LeakCanary.install(this);
     }
 }

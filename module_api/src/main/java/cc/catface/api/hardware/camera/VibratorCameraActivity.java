@@ -8,8 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -20,8 +18,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import cc.catface.api.R;
+import cc.catface.api.databinding.ApiActivityVibratorCameraBinding;
 import cc.catface.api.hardware.qrcode.ScanQrcodeActivity;
-import cc.catface.base.core_framework.base_normal.NormalBaseActivity;
+import cc.catface.app_base.Const;
+import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.utils.android.common_intent.TIntent;
 import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 import cc.catface.base.utils.android.sensor.TFlash;
@@ -31,10 +31,24 @@ import cc.catface.base.utils.android.view.ImageUtil;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = "/api/camera")
-public class VibratorCameraActivity extends NormalBaseActivity implements View.OnClickListener {
+@Route(path = Const.AROUTER.api_camera)
+public class VibratorCameraActivity extends NormalActivity<ApiActivityVibratorCameraBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_vibrator_camera;
+    }
+
+    @Override protected void initAction() {
+        mBinding.btVibrateOnce.setOnClickListener(v -> TVibrator.play(this, 2_000));
+        mBinding.btVibrateRepeat.setOnClickListener(v -> TVibrator.play(this, new long[]{500, 1_000, 1_000, 500}, 2));
+        mBinding.btVibrateCancel.setOnClickListener(v -> TVibrator.cancel(this));
+        mBinding.btFlashOpen.setOnClickListener(v -> TFlash.get(this).open());
+        mBinding.btFlashClose.setOnClickListener(v -> TFlash.get(this).close());
+        mBinding.btScan.setOnClickListener(v -> TIntent.startActivity(this, ScanQrcodeActivity.class, true));
+
+        mBinding.btTakePictureJust.setOnClickListener(v -> takePictureJust());
+        mBinding.btTakePictureWithCrop.setOnClickListener(v -> takePictureWithCrop());
+        mBinding.btChoosePicture.setOnClickListener(v -> chosePicture());
+        mBinding.btWater.setOnClickListener(v -> addWaterMask2Picture());
     }
 
     public static final int TAKE_PICTURE_JUST = 0;
@@ -42,50 +56,18 @@ public class VibratorCameraActivity extends NormalBaseActivity implements View.O
     public static final int CROP_PICTURE = 2;
     private Uri imageUri; // 完整的file路径: ///图片地址
 
-    private ImageView iv_picture;
-
-
-    private TitleFontAwesome tfa_camera;
-
-
-    @Override public void onClick(View view) {
-        if (R.id.bt_vibrate_once == view.getId()) TVibrator.play(this, 2_000);
-        else if (R.id.bt_vibrate_repeat == view.getId()) TVibrator.play(this, new long[]{500, 1_000, 1_000, 500}, 2);
-        else if (R.id.bt_vibrate_cancel == view.getId()) TVibrator.cancel(this);
-        else if (R.id.bt_flash_open == view.getId()) TFlash.get(this).open();
-        else if (R.id.bt_flash_close == view.getId()) TFlash.get(this).close();
-        else if (R.id.bt_scan == view.getId()) TIntent.startActivity(this, ScanQrcodeActivity.class, true);
-    }
-
-
     @Override public void create() {
-        tfa_camera = (TitleFontAwesome) findViewById(R.id.tfa_camera);
-        iv_picture = (ImageView) findViewById(R.id.iv_picture);
-        findViewById(R.id.bt_vibrate_once).setOnClickListener(this);
-        findViewById(R.id.bt_vibrate_repeat).setOnClickListener(this);
-        findViewById(R.id.bt_vibrate_cancel).setOnClickListener(this);
-        findViewById(R.id.bt_flash_open).setOnClickListener(this);
-        findViewById(R.id.bt_flash_close).setOnClickListener(this);
-        findViewById(R.id.bt_scan).setOnClickListener(this);
-
-
         initTitle();
 
-
-        findViewById(R.id.bt_takePictureJust).setOnClickListener(v -> takePictureJust());
-        findViewById(R.id.bt_takePictureWithCrop).setOnClickListener(v -> takePictureWithCrop());
-        findViewById(R.id.bt_choosePicture).setOnClickListener(v -> chosePicture());
-        findViewById(R.id.bt_water).setOnClickListener(v -> addWaterMask2Picture());
     }
 
     private void initTitle() {
-        tfa_camera.setTitle("震动&相机");
-        tfa_camera.setIcon1(R.string.fa_chevron_left);
-        tfa_camera.setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if (R.id.tv_serial_1 == view.getId()) finish();
+        mBinding.tfaCamera.setTitle("震动&相机");
+        mBinding.tfaCamera.setIcon1(R.string.fa_chevron_left);
+        mBinding.tfaCamera.setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
+            if (R.id.ttv1 == view.getId()) finish();
         });
     }
-
 
     private final String picPath = Environment.getExternalStorageDirectory() + "/pic_take_" + System.currentTimeMillis() + ".jpg";
 
@@ -156,7 +138,7 @@ public class VibratorCameraActivity extends NormalBaseActivity implements View.O
         textBitmap = ImageUtil.drawTextToLeftBottom(this, textBitmap, "左下角", 16, Color.RED, 0, 0);
         textBitmap = ImageUtil.drawTextToCenter(this, textBitmap, "中间", 16, Color.RED);
 
-        iv_picture.setImageBitmap(textBitmap);
+        mBinding.ivPicture.setImageBitmap(textBitmap);
     }
 
     private void scanPhoto(File file) {
@@ -205,7 +187,7 @@ public class VibratorCameraActivity extends NormalBaseActivity implements View.O
                             b.close();
                         } catch (IOException e) { e.printStackTrace(); }
                     }
-                    iv_picture.setImageBitmap(bitmap);
+                    mBinding.ivPicture.setImageBitmap(bitmap);
 
 
                 } catch (Exception e) {
@@ -237,7 +219,7 @@ public class VibratorCameraActivity extends NormalBaseActivity implements View.O
                         /********************************
                          图片可做压缩处理，防止OOM
                          ********************************/
-                        iv_picture.setImageBitmap(bitmap); // 将裁剪后的照片显示出来
+                        mBinding.ivPicture.setImageBitmap(bitmap); // 将裁剪后的照片显示出来
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

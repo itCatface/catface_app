@@ -1,6 +1,6 @@
 package cc.catface.base.utils.android.view.recyclerview.swipe;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by AItsuki on 2017/7/11.

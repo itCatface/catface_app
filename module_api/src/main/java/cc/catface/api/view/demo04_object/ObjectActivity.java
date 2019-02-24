@@ -3,9 +3,9 @@ package cc.catface.api.view.demo04_object;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 
 public class ObjectActivity extends AppCompatActivity {
@@ -30,7 +30,7 @@ public class ObjectActivity extends AppCompatActivity {
 
     /** 基本动画：当且仅当动画的只有一个过渡值时，系统才会调用对应属性的get函数来得到动画的初始值 */
     private void alpha() {
-        ObjectAnimator.ofFloat(tv, "api_alpha", 0f, 1f, 0.5f, 1f).setDuration(2_000).start();
+        ObjectAnimator.ofFloat(tv, "alpha", 0f, 1f, 0.5f, 1f).setDuration(2_000).start();
     }
 
     private void translate() {

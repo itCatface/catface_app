@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_login">
+
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:padding="10dp"
+                android:textColor="#3000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:text="EMAIL"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/et_username"
+                app:layout_constraintStart_toStartOf="@id/et_username" />
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/api_selector_layer_of_et"
+                android:hint="请输入账号"
+                android:textCursorDrawable="@drawable/api_shape_of_et_cursor"
+                app:layout_constraintBottom_toTopOf="@id/tv_password"
+                app:layout_constraintEnd_toEndOf="@+id/et_password"
+                app:layout_constraintStart_toStartOf="@+id/et_password" />
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:text="PASSWORD"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/et_password"
+                app:layout_constraintStart_toStartOf="@id/et_password" />
+
+            <TextView
+                android:id="@+id/tv_forgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="1dp"
+                android:text="Forgot Password"
+                app:layout_constraintBottom_toBottomOf="@+id/et_password"
+                app:layout_constraintEnd_toEndOf="@id/et_password"
+                app:layout_constraintTop_toTopOf="@+id/et_password" />
+
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                android:background="@drawable/api_selector_layer_of_et"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:textCursorDrawable="@drawable/api_shape_of_et_cursor"
+                app:layout_constraintBottom_toTopOf="@+id/bt_login"
+                app:layout_constraintEnd_toEndOf="@+id/bt_login"
+                app:layout_constraintStart_toStartOf="@+id/bt_login" />
+
+            <Button
+                android:id="@+id/bt_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:background="#9f43"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="SIGN IN"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/ll_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/ll_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DONT HAVE AN ACCOUNT?" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="SIGN UP"
+                    android:textColor="#000" />
+
+            </LinearLayout>
+
+            <cc.catface.api.view.loading.view_publish.CubeGridView
+                android:id="@+id/loading_cgv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

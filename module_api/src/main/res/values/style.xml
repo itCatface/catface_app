@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SwipeTheme_left2right" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
+    <style name="Translucent_right2left">
+        <item name="android:windowEnterAnimation">@anim/anim_activity_slide_enter_left2right</item>
+        <item name="android:windowExitAnimation">@anim/anim_activity_slide_exit_left2right</item>
+    </style>
+    <style name="SwipeTheme_right2left" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/Translucent_right2left</item>
+    </style>
+
+    <style name="Translucent_bottom2top">
+        <item name="android:windowEnterAnimation">@anim/anim_activity_slide_enter_bottom2top</item>
+        <item name="android:windowExitAnimation">@anim/anim_activity_slide_exit_bottom2top</item>
+    </style>
+    <style name="SwipeTheme_bottom2top" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/Translucent_bottom2top</item>
+    </style>
+
+    <style name="Translucent_top2bottom">
+        <item name="android:windowEnterAnimation">@anim/anim_activity_slide_enter_top2bottom</item>
+        <item name="android:windowExitAnimation">@anim/anim_activity_slide_exit_top2bottom</item>
+    </style>
+    <style name="SwipeTheme_top2bottom" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/Translucent_top2bottom</item>
+    </style>
+
+</resources>

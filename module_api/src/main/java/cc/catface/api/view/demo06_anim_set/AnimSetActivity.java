@@ -3,9 +3,9 @@ package cc.catface.api.view.demo06_anim_set;
 import android.animation.AnimatorInflater;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 
 public class AnimSetActivity extends AppCompatActivity {

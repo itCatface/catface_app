@@ -1,43 +1,36 @@
 package cc.catface.module_apis.brvah.view;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseFragmentID;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.DataBindingAdapter;
 import cc.catface.module_apis.brvah.domain.Movie;
+import cc.catface.module_apis.databinding.BrvahFmDataBindingBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_DataBindingFm extends NormalBaseFragmentID {
+public class BRVAH_DataBindingFm extends NormalFragment<BrvahFmDataBindingBinding> {
     @Override public int layoutId() {
         return R.layout.brvah_fm_data_binding;
     }
 
-    private RecyclerView rv_list;
     private DataBindingAdapter mAdapter;
 
-    @Override public void ids(View v) {
-        rv_list = (RecyclerView) v.findViewById(R.id.rv_list);
-    }
-
     @Override public void createView() {
-        rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
+        mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
 
         initAdapter();
     }
 
     private void initAdapter() {
         mAdapter = new DataBindingAdapter(R.layout.brvah_item_data_binding_movie, genData());
-        rv_list.setAdapter(mAdapter);
+        mBinding.rvList.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener((adapter, view, position) -> TToast.get(mActivity).showBShortView("item clicked..." + position, TToast.B_INFO));
         mAdapter.setOnItemLongClickListener((adapter, view, position) -> {
             TToast.get(mActivity).showBShortView("item long clicked..." + position, TToast.B_INFO);

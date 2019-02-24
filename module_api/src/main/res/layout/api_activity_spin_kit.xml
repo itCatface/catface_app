@@ -1,125 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#000"
-    android:orientation="horizontal">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <cc.catface.api.view.loading.view_publish.RotatingView
+            android:id="@+id/loading_rv_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="@+id/loading_rv_2"
+            app:layout_constraintEnd_toStartOf="@id/loading_rv_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/loading_rv_2" />
+
+        <cc.catface.api.view.loading.view_publish.RotatingView
+            android:id="@+id/loading_rv_2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <cc.catface.api.view.loading.view_publish.WanderingCubesView
+            android:id="@+id/loading_wcv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="@id/loading_rv_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/loading_rv_2"
+            app:layout_constraintTop_toTopOf="@+id/loading_rv_2" />
 
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        <cc.catface.api.view.loading.view_publish.WaveView
+            android:id="@+id/loading_wv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="@id/loading_cgv"
+            app:layout_constraintEnd_toStartOf="@id/loading_cgv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/loading_cgv" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <cc.catface.api.view.loading.view_publish.CubeGridView
+            android:id="@+id/loading_cgv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="@id/loading_rv_2"
+            app:layout_constraintStart_toStartOf="@id/loading_rv_2"
+            app:layout_constraintTop_toBottomOf="@+id/loading_rv_2" />
+
+
+        <cc.catface.api.view.loading.view_publish.CircleView
+            android:id="@+id/loading_cv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/loading_cgv"
+            app:layout_constraintTop_toTopOf="@+id/loading_cgv" />
+
+
+        <CheckBox
+            android:id="@+id/cb_ctrl"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="10dp"
+            android:text="是否显示"
+            android:checked="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <com.github.ybq.android.spinkit.SpinKitView
-                style="@style/SpinKitView.Large.RotatingPlane"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="3dp"
-                app:SpinKit_Color="@color/colorAccent" />
-
-            <cc.catface.api.view.loading.view.RotatingPlaneView
-                android:id="@+id/loading_rpv"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="3dp"
-                android:background="#ddd" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <com.github.ybq.android.spinkit.SpinKitView
-                style="@style/SpinKitView.Large.DoubleBounce"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="3dp"
-                app:SpinKit_Color="@color/colorAccent" />
-
-            <cc.catface.api.view.loading.view.DoubleBounceView
-                android:id="@+id/loading_dbv"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="3dp"
-                android:background="#ddd" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <com.github.ybq.android.spinkit.SpinKitView
-                style="@style/SpinKitView.Large.RotatingCircle"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="3dp"
-                app:SpinKit_Color="@color/colorAccent" />
-
-            <cc.catface.api.view.loading.view.RotatingCircleView
-                android:id="@+id/loading_rcv"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="3dp"
-                android:background="#0000" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.github.ybq.android.spinkit.SpinKitView
-                style="@style/SpinKitView.Large.FoldingCube"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="3dp"
-                app:SpinKit_Color="@color/colorAccent" />
-
-            <cc.catface.api.view.loading.view.RotatingCircleView
-                android:id="@+id/loading_fcv"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="3dp"
-                android:background="#0000" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <cc.catface.api.view.loading.view.WanderingCubesViewGroup
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:id="@+id/loading_wcvg"
-                android:layout_margin="3dp"
-                android:background="#ddd" />
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"></LinearLayout>
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,9 +1,6 @@
 package cc.catface.module_apis.showapi.adapter;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cc.catface.base.utils.android.ScreenT;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+import cc.catface.base.utils.android.TScreen;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.showapi.domain.YYJoke341_3;
 import pl.droidsonroids.gif.GifImageView;
@@ -68,7 +68,7 @@ public class YYJoke341_3Adapter extends RecyclerView.Adapter<YYJoke341_3Adapter.
             }
 
             @Override public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
-                int ivWidth = ScreenT.getScreenWidth(holder.giv.getContext());
+                int ivWidth = TScreen.getScreenWidth(holder.giv.getContext());
                 int ivHeight = ivWidth / resource.getMinimumWidth() * resource.getMinimumHeight();
                 mHeight.put(i, ivHeight);
 

@@ -3,10 +3,13 @@
     package="cc.catface.module_start">
 
     <application>
-        <activity android:name=".welcome.view.WelcomeActivity" />
+        <activity android:name=".welcome.view.WelcomeActivity"
+            android:theme="@style/common_full_screen_no_title"/>
         <activity android:name=".ad.view.AdActivity" />
         <activity android:name=".login.view.LoginActivity" />
-        <activity android:name=".main.mvp.view.MainActivity" />
+        <activity
+            android:name=".main.mvp.view.MainActivity"
+            android:fitsSystemWindows="true" />
         <activity android:name=".main.personal.mvp.view.SettingActivity"></activity>
     </application>
 

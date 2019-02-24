@@ -1,12 +1,11 @@
 package cc.catface.api.dialog.adapter;
 
-import android.support.annotation.Nullable;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import cc.catface.api.R;
 
 

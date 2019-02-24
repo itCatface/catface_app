@@ -13,7 +13,7 @@ import android.media.ExifInterface;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.util.LruCache;
+import android.util.LruCache;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;

@@ -1,9 +1,6 @@
 package cc.catface.module_apis.showapi.adapter;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +19,10 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
-import cc.catface.base.utils.android.ScreenT;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+import cc.catface.base.utils.android.TScreen;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.showapi.domain.YYJoke341_2;
 
@@ -70,7 +70,7 @@ public class YYJoke341_2Adapter extends RecyclerView.Adapter<YYJoke341_2Adapter.
             }
 
             @Override public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                //                int ivWidth = ScreenT.getScreenWidth(holder.iv_joke_pic.getContext()) - holder.iv_joke_pic.getContext().getResources().getDimensionPixelSize(R.dimen.dp_1) * 4;
+                //                int ivWidth = TScreen.getScreenWidth(holder.iv_joke_pic.getContext()) - holder.iv_joke_pic.getContext().getResources().getDimensionPixelSize(R.dimen.dp_1) * 4;
                 //                int ivHeight = ivWidth / resource.getWidth() * resource.getHeight();
                 //
                 //                arr.put(i, ivHeight);
@@ -81,7 +81,7 @@ public class YYJoke341_2Adapter extends RecyclerView.Adapter<YYJoke341_2Adapter.
                 //                holder.iv_joke_pic.setLayoutParams(layoutParams);
 
                 ViewGroup.LayoutParams layoutParams = holder.iv_joke_pic.getLayoutParams();
-                int itemWidth = (ScreenT.getScreenWidth(holder.iv_joke_pic.getContext()) - 8 * 3) / 2;
+                int itemWidth = (TScreen.getScreenWidth(holder.iv_joke_pic.getContext()) - 8 * 3) / 2;
                 int itemHeight = (int) (resource.getHeight() * (itemWidth + 0.0f) / resource.getWidth());
                 layoutParams.width = (int) itemWidth;
                 layoutParams.height = (int) itemHeight;

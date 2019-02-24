@@ -4,61 +4,51 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.os.Environment;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.tencent.bugly.Bugly;
-import com.tencent.bugly.beta.Beta;
-import com.tencent.bugly.beta.UpgradeInfo;
 
-import butterknife.BindView;
 import cc.catface.app.R;
 import cc.catface.app.module.start.splash.presenter.SplashPresenterImp;
+import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.AbsAppCompatActivity;
+import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
 import cc.catface.base.utils.android.TAppInfo;
 import cc.catface.base.utils.android.listener.AnimatorEndListener;
+import cc.catface.module_start.databinding.ActivityStartSplashBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 @CreatePresenter(SplashPresenterImp.class)
-public class SplashActivity extends AbsAppCompatActivity<SplashView, SplashPresenterImp> implements SplashView {
-
+public class SplashActivity extends MvpActivity<SplashView, SplashPresenterImp, ActivityStartSplashBinding> implements SplashView {
     @Override public int layoutId() {
         return R.layout.activity_start_splash;
     }
 
-    @BindView(R.id.iv_splash) ImageView iv_splash;
-    @BindView(R.id.tv_splash) TextView tv_splash;
-
     @SuppressLint("SetTextI18n") @Override public void create() {
-        ((TextView) findViewById(R.id.tv_verName)).setText("v." + TAppInfo.getVerName(this));
-        Beta.checkUpgrade();
+        mBinding.tvVerName.setText("v." + TAppInfo.getVerName(this));
         startAnim();
     }
 
     private void startAnim() {
         // 文字平移
-        ObjectAnimator animTvTranslationY = ObjectAnimator.ofFloat(tv_splash, "translationY", -50f, 0f);
-        animTvTranslationY.setDuration(600);
+        ObjectAnimator animTvTranslationY = ObjectAnimator.ofFloat(mBinding.tvSplash, "translationY", -50f, 0f);
+        animTvTranslationY.setDuration(400);
         animTvTranslationY.setInterpolator(new DecelerateInterpolator());
 
         // 文字缩放
-        ObjectAnimator animTvScaleX = ObjectAnimator.ofFloat(tv_splash, "scaleX", 2f, 1f);
-        animTvScaleX.setDuration(1_000);
+        ObjectAnimator animTvScaleX = ObjectAnimator.ofFloat(mBinding.tvSplash, "scaleX", 1.5f, 1f);
+        animTvScaleX.setDuration(600);
 
         // logo渐变
-        ObjectAnimator animIvAlpha = ObjectAnimator.ofFloat(iv_splash, "alpha", 0f, 1f);
-        animIvAlpha.setDuration(800);
+        ObjectAnimator animIvAlpha = ObjectAnimator.ofFloat(mBinding.ivSplash, "alpha", 0f, 1f);
+        animIvAlpha.setDuration(600);
         animIvAlpha.setInterpolator(new BounceInterpolator());
         animIvAlpha.addListener(new AnimatorEndListener() {
             @Override public void onAnimationEnd(Animator animator) {
-                ARouter.getInstance().build("/start/main").navigation();
+                ARouter.getInstance().build(Const.AROUTER.start_main).navigation();
                 finish();
             }
         });

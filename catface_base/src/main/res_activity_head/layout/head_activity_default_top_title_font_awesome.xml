@@ -1,61 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
-    android:background="#d323EB">
+    android:layout_height="wrap_content"
+    android:background="@color/blue_title_bg">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/blue_title_bg">
-
+        android:layout_height="50dp">
 
         <TextView
-            android:id="@+id/tv_serial_1"
+            android:id="@+id/ttv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
+            android:text="tv1"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/tv_serial_2"
+            android:id="@+id/ttv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="70dp"
+            android:text="tv2"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="visible" />
 
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/ttvt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:singleLine="true"
+            android:text="title"
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_serial_3"
+            android:id="@+id/ttv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="70dp"
+            android:text="tv3"
             android:textColor="#fff"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_serial_4"
+            android:id="@+id/ttv4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
+            android:text="tv4"
             android:textColor="#fff"
             android:textSize="20sp" />
 

@@ -1,12 +1,11 @@
 package cc.catface.module_apis.brvah.adapter;
 
-import android.support.annotation.Nullable;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.domain.QuickBean;
 

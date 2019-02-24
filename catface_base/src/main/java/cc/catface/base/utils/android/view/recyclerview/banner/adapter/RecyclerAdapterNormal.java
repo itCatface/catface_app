@@ -5,7 +5,6 @@ package cc.catface.base.utils.android.view.recyclerview.banner.adapter;
  */
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import cc.catface.base.utils.android.view.recyclerview.banner.RecyclerViewBannerBase;
 
 

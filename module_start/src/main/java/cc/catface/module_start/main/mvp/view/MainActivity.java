@@ -1,7 +1,6 @@
 package cc.catface.module_start.main.mvp.view;
 
 import android.graphics.Color;
-import android.support.v4.app.FragmentTabHost;
 import android.widget.TabHost;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -9,10 +8,13 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.FragmentTabHost;
+import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.AbsAppCompatActivityID;
+import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_start.R;
+import cc.catface.module_start.databinding.StartActivityMainBinding;
 import cc.catface.module_start.main.domain.Tab;
 import cc.catface.module_start.main.media.view.VideoFm;
 import cc.catface.module_start.main.mvp.presenter.MainPresenterImp;
@@ -21,11 +23,9 @@ import cc.catface.module_start.main.mvp.view.navigation.view.MessFm;
 import cc.catface.module_start.main.personal.mvp.view.PersonalFm;
 import cc.catface.module_start.main.query.view.QueryFm;
 
-@Route(path = "/start/main")
+@Route(path = Const.AROUTER.start_main)
 @CreatePresenter(MainPresenterImp.class)
-public class MainActivity extends AbsAppCompatActivityID<MainView, MainPresenterImp> implements MainView, MessFm.FragmentListener {
-
-
+public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartActivityMainBinding> implements MainView, MessFm.FragmentListener {
     @Override public int layoutId() {
         return R.layout.start_activity_main;
     }
@@ -34,11 +34,8 @@ public class MainActivity extends AbsAppCompatActivityID<MainView, MainPresenter
     private List<Tab> mFmTabs;
 
     @Override public void create() {
-        initTab();
-    }
-
-    @Override public void ids() {
         tab_host = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        initTab();
     }
 
     private void initTab() {

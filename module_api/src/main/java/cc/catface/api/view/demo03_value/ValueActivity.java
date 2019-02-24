@@ -4,12 +4,12 @@ import android.animation.ArgbEvaluator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 import cc.catface.api.view.demo03_value.ofObject_circle.PointView;
 

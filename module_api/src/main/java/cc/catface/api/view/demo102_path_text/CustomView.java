@@ -7,9 +7,10 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -88,7 +89,7 @@ public class CustomView extends View {
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setTextSize(60);
-        Typeface typeface = Typeface.createFromAsset(mCtx.getAssets(), "fonts/Hill_House.ttf");
+        Typeface typeface = Typeface.createFromAsset(mCtx.getAssets(), "fonts/hill_house.ttf");
         mPaint.setTypeface(typeface);
         canvas.drawText("Be honest rather clever.", 100, 1200, mPaint);
         canvas.drawText("Being on sea, sail; being on land, settle.", 100, 1300, mPaint);

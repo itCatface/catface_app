@@ -1,9 +1,9 @@
 package cc.catface.api.view.demo102_path_text;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 
 public class TextActivity extends AppCompatActivity {

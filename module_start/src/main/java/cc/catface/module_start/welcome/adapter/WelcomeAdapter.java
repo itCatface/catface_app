@@ -1,10 +1,11 @@
 package cc.catface.module_start.welcome.adapter;
 
-import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925

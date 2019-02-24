@@ -2,10 +2,6 @@ package cc.catface.api.dialog;
 
 import android.app.ProgressDialog;
 import android.os.SystemClock;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -13,44 +9,30 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import java.util.ArrayList;
 import java.util.List;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseActivity;
+import cc.catface.api.R;
+import cc.catface.api.databinding.ApiActivityDialogBinding;
+import cc.catface.api.dialog.adapter.DialogAdapter;
+import cc.catface.app_base.Const;
+import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.utils.android.common_print.dialog.normal.TDialogNormal;
 import cc.catface.base.utils.android.common_print.toast.TToast;
-import cc.catface.base.utils.android.common_title.TitleBuilder;
-import cc.catface.api.R;
-import cc.catface.api.dialog.adapter.DialogAdapter;
+import cc.catface.base.utils.android.common_recyclerview.TRV;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = "/api/dialog")
-public class DialogActivity extends NormalBaseActivity {
+@Route(path = Const.AROUTER.api_dialog)
+public class DialogActivity extends NormalActivity<ApiActivityDialogBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_dialog;
     }
 
-    private RecyclerView rv_dialog;
+    private final String NORMAL_NOTIFICATION_TWO = "(系统)[通知对话框-两个选项]", NORMAL_NOTIFICATION_THREE = "(系统)[通知对话框-三个选项]", NORMAL_LIST = "(系统)[列表对话框]", NORMAL_SINGLE_CHOICE = "(系统)[单选对话框]",
+            NORMAL_MULTI_CHOICE = "(系统)[复选对话框]", NORMAL_SINGLE_EDITTEXT = "(系统)[单输入框对话框]", NORMAL_PROGRESS = "(系统)" + "[进度对话框]", NORMAL_CUSTOM_SIMPLE = "(定制)[简单的自定义样式的弹框]";
     private List<String> mDatas;
     private DialogAdapter mAdapter;
 
-    @Override public void create() {
-        rv_dialog = (RecyclerView) findViewById(R.id.rv_dialog);
-        initTitle();
-        initData();
-        initRV();
-        initAdapter();
-    }
-
-    private void initTitle() {
-        new TitleBuilder(this).setIVLeftRes(R.mipmap.flaticon_back).setTVCenterText("Dialog示例").setListener(v -> {
-            if (R.id.iv_title_left == v.getId()) finish();
-        });
-    }
-
-    private final String NORMAL_NOTIFICATION_TWO = "(系统)[通知对话框-两个选项]", NORMAL_NOTIFICATION_THREE = "(系统)[通知对话框-三个选项]", NORMAL_LIST = "(系统)[列表对话框]", NORMAL_SINGLE_CHOICE = "(系统)[单选对话框]",
-            NORMAL_MULTI_CHOICE = "(系统)[复选对话框]", NORMAL_SINGLE_EDITTEXT = "(系统)[单输入框对话框]", NORMAL_PROGRESS = "(系统)" + "[进度对话框]", NORMAL_CUSTOM_SIMPLE = "(定制)[简单的自定义样式的弹框]";
-
-    private void initData() {
+    @Override public void initData() {
         mDatas = new ArrayList<>();
         mDatas.add(NORMAL_NOTIFICATION_TWO);
         mDatas.add(NORMAL_NOTIFICATION_THREE);
@@ -62,21 +44,26 @@ public class DialogActivity extends NormalBaseActivity {
         mDatas.add(NORMAL_CUSTOM_SIMPLE);
     }
 
-    private void initRV() {
-        rv_dialog.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        decoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.shape_rv_devider_colors));
-        rv_dialog.addItemDecoration(decoration);
+    @Override public void create() {
+        title();
+        initAdapter();
     }
 
+    private void title() {
+        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+    }
+
+
     private void initAdapter() {
+        TRV.initDefaultRV(this, mBinding.rvDialog);
+
         mAdapter = new DialogAdapter(mDatas);
         String[] heroes = {"艾希", "锤石", "德莱文", "卡特"};
         mAdapter.setOnItemClickListener((adapter, view, i) -> {
-            switch (mDatas.get(i)) {
+            switch(mDatas.get(i)) {
                 case NORMAL_NOTIFICATION_TWO:
                     TDialogNormal.get(this).notification(R.mipmap.ic_launcher_round, "号外号外", "今天有大新闻...", "看", "不看", notificationType -> {
-                        switch (notificationType) {
+                        switch(notificationType) {
                             case TDialogNormal.NotificationPositive:
                                 TToast.get(this).showBShortView("看看哦", TToast.B_SUCCESS);
                                 break;
@@ -91,7 +78,7 @@ public class DialogActivity extends NormalBaseActivity {
                     break;
                 case NORMAL_NOTIFICATION_THREE:
                     TDialogNormal.get(this).notification(R.mipmap.ic_launcher_round, "号外号外", "今天有大新闻...", "看", "不看", "保持中立", notificationType -> {
-                        switch (notificationType) {
+                        switch(notificationType) {
                             case TDialogNormal.NotificationPositive:
                                 TToast.get(this).showBShortView("看看哦", TToast.B_SUCCESS);
                                 break;
@@ -132,7 +119,7 @@ public class DialogActivity extends NormalBaseActivity {
                 case NORMAL_SINGLE_EDITTEXT:
                     EditText et = new EditText(this);
                     TDialogNormal.get(this).singleEditText(R.mipmap.ic_launcher, "有点东西", "这里输入一些内容", "确定", "取消", et, notificationType -> {
-                        switch (notificationType) {
+                        switch(notificationType) {
                             case TDialogNormal.NotificationPositive:
                                 TToast.get(this).showBShortView("确定了->" + et.getText().toString(), TToast.B_SUCCESS);
                                 break;
@@ -145,10 +132,10 @@ public class DialogActivity extends NormalBaseActivity {
                 case NORMAL_PROGRESS:
                     ProgressDialog progressDialog = TDialogNormal.get(this).progress(R.mipmap.ic_launcher_round, "正在下载", "即将获得全套福利视频！", ProgressDialog.STYLE_HORIZONTAL, 100, 1);
                     new Thread(() -> {
-                        while (true) {
+                        while(true) {
                             SystemClock.sleep(100);
                             progressDialog.incrementProgressBy(1);
-                            if (progressDialog.getProgress() == progressDialog.getMax()) {
+                            if(progressDialog.getProgress() == progressDialog.getMax()) {
                                 runOnUiThread(new Runnable() {
                                     @Override public void run() {
                                         progressDialog.dismiss();
@@ -166,6 +153,6 @@ public class DialogActivity extends NormalBaseActivity {
                     break;
             }
         });
-        rv_dialog.setAdapter(mAdapter);
+        mBinding.rvDialog.setAdapter(mAdapter);
     }
 }

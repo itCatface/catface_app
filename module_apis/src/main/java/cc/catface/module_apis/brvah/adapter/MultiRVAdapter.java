@@ -1,12 +1,11 @@
 package cc.catface.module_apis.brvah.adapter;
 
-import android.support.annotation.Nullable;
-
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.MultipleItemRvAdapter;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import cc.catface.module_apis.brvah.adapter.provider.ImgItemProvider;
 import cc.catface.module_apis.brvah.adapter.provider.TextImgItemProvider;
 import cc.catface.module_apis.brvah.adapter.provider.TextItemProvider;

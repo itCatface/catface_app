@@ -6,11 +6,11 @@ import android.animation.PropertyValuesHolder;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 
 public class KeyframeActivity extends AppCompatActivity {

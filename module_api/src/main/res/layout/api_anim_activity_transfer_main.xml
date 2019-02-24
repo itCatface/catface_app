@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1f00">
+
+        <Button
+            android:id="@+id/bt_ctrl_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="控制子ConstraintLayout显隐性"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/bt_ctrl_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="控制子ConstraintLayout显隐性"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_ctrl_1" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#300f"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_ctrl_2">
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="某某标题"
+                app:layout_constraintBottom_toBottomOf="@+id/bt_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bt_1" />
+
+            <Button
+                android:id="@+id/bt_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="某某标题对应的按钮"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/i"
+            layout="@layout/api_item_anim_activity_transfer_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_1" />
+
+        <Button
+            android:id="@+id/bt_jump"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="跳转至"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/i" />
+
+
+        <Button
+            android:id="@+id/bt_right_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="right in"
+            android:textAllCaps="false"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_jump" />
+
+        <Button
+            android:id="@+id/bt_left_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="left in"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toStartOf="@id/bt_top_in"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/bt_right_in"
+            app:layout_constraintTop_toBottomOf="@+id/bt_jump" />
+
+        <Button
+            android:id="@+id/bt_top_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="top in"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toStartOf="@id/bt_bottom_in"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/bt_left_in"
+            app:layout_constraintTop_toBottomOf="@+id/bt_jump" />
+
+        <Button
+            android:id="@+id/bt_bottom_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="bottom in"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/bt_top_in"
+            app:layout_constraintTop_toBottomOf="@+id/bt_jump" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

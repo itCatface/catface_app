@@ -1,10 +1,11 @@
 package cc.catface.base.utils.android.view.recyclerview.banner.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by test on 2017/11/22.

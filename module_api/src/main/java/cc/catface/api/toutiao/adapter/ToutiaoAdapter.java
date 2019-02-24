@@ -4,15 +4,15 @@ import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import cc.catface.api.R;
 
 import java.util.ArrayList;
@@ -228,7 +228,7 @@ public class ToutiaoAdapter extends RecyclerView.Adapter {
             tv_mediaSrc = (TextView) itemView.findViewById(R.id.tv_mediaSrc);
             tv_commentTimes = (TextView) itemView.findViewById(R.id.tv_commentTimes);
             tv_time = (TextView) itemView.findViewById(R.id.tv_time);
-            iv_1 = (ImageView) itemView.findViewById(R.id.iv_1);
+            iv_1 = (ImageView) itemView.findViewById(R.id.iv_title_1);
             iv_2 = (ImageView) itemView.findViewById(R.id.iv_2);
             iv_3 = (ImageView) itemView.findViewById(R.id.iv_3);
         }

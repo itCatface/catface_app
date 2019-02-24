@@ -1,13 +1,13 @@
 package cc.catface.base.utils.android.view.recyclerview.banner;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import cc.catface.base.utils.android.view.recyclerview.banner.adapter.RecyclerAdapterNormal;
 
 

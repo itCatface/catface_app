@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <cc.catface.api.multi_finger.view.MultiTouchScrollView
+        android:layout_width="match_parent"
+        style="@style/scrollbar_scroll_bar_style_default"
+        android:layout_height="match_parent">
+
+        <cc.catface.api.multi_finger.view.MultiTouchTextView
+            android:id="@+id/mttv_fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lineSpacingExtra="12sp"
+            android:maxLines="40000000"
+            android:paddingLeft="30dp"
+            android:paddingTop="20dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="20dp"
+            android:text="@string/text_default_long"
+            android:textColor="#9B9B9B"
+            android:textSize="18sp" />
+
+    </cc.catface.api.multi_finger.view.MultiTouchScrollView>
+
+</layout>

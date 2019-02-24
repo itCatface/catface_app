@@ -1,35 +1,29 @@
 package cc.catface.module_apis.brvah.view;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseFragmentID;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.ItemClickAdapter;
 import cc.catface.module_apis.brvah.domain.ClickEntity;
+import cc.catface.module_apis.databinding.BrvahFmItemClickBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_ItemClickFm extends NormalBaseFragmentID {
+public class BRVAH_ItemClickFm extends NormalFragment<BrvahFmItemClickBinding> {
     @Override public int layoutId() {
         return R.layout.brvah_fm_item_click;
     }
 
-    private RecyclerView rv_list;
     private ItemClickAdapter mAdapter;
 
-    @Override public void ids(View v) {
-        rv_list = (RecyclerView) v.findViewById(R.id.rv_list);
-    }
-
     @Override public void createView() {
-        rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
+        mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         initAdapter();
         initAdapterEvent();
     }
@@ -44,7 +38,7 @@ public class BRVAH_ItemClickFm extends NormalBaseFragmentID {
         data.add(new ClickEntity(ClickEntity.NEST_CLICK_ITEM_CHILD_VIEW));
         mAdapter = new ItemClickAdapter(data);
         mAdapter.openLoadAnimation();
-        rv_list.setAdapter(mAdapter);
+        mBinding.rvList.setAdapter(mAdapter);
     }
 
 

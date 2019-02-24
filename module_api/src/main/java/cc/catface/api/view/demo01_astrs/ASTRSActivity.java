@@ -1,11 +1,11 @@
 package cc.catface.api.view.demo01_astrs;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 
 

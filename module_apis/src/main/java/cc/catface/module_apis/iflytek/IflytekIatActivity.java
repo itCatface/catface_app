@@ -30,6 +30,8 @@ import com.iflytek.cloud.util.ContactManager.ContactListener;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import cc.catface.app_base.Const;
+import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.iflytek.speech.setting.IatSettings;
 import cc.catface.module_apis.iflytek.speech.util.FucUtil;
@@ -73,6 +75,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
      * 初始化Layout。
      */
     private void initLayout() {
+        ((TitleFontAwesome) findViewById(R.id.tfa)).setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
         findViewById(R.id.iat_recognize).setOnClickListener(this);
         findViewById(R.id.iat_recognize_stream).setOnClickListener(this);
         findViewById(R.id.iat_upload_contacts).setOnClickListener(this);
@@ -85,25 +88,25 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
     int ret = 0;// 函数调用返回值
 
     @Override public void onClick(View view) {
-        if (null == mIat) {
+        if(null == mIat) {
             // 创建单例失败，与 21001 错误为同样原因，参考 http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=9688
             this.showTip("创建对象失败，请确认 libmsc.so 放置正确，\n 且有调用 createUtility 进行初始化");
             return;
         }
 
         // 进入参数设置页面
-        if (R.id.image_iat_set == view.getId()) {
+        if(R.id.image_iat_set == view.getId()) {
             Intent intents = new Intent(IflytekIatActivity.this, IatSettings.class);
             startActivity(intents);
             // 开始听写
             // 如何判断一次听写结束：OnResult isLast=true 或者 onError
-        } else if (R.id.iat_recognize == view.getId()) {
+        } else if(R.id.iat_recognize == view.getId()) {
             mResultText.setText(null);// 清空显示内容
             mIatResults.clear();
             // 设置参数
             setParam();
             boolean isShowDialog = mSharedPreferences.getBoolean(getString(R.string.pref_key_iat_show), true);
-            if (isShowDialog) {
+            if(isShowDialog) {
                 // 显示听写对话框
                 mIatDialog.setListener(mRecognizerDialogListener);
                 mIatDialog.show();
@@ -111,14 +114,14 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
             } else {
                 // 不显示听写对话框
                 ret = mIat.startListening(mRecognizerListener);
-                if (ret != ErrorCode.SUCCESS) {
+                if(ret != ErrorCode.SUCCESS) {
                     showTip("听写失败,错误码：" + ret);
                 } else {
                     showTip(getString(R.string.text_begin));
                 }
             }
             // 音频流识别
-        } else if (R.id.iat_recognize_stream == view.getId()) {
+        } else if(R.id.iat_recognize_stream == view.getId()) {
             mResultText.setText(null);// 清空显示内容
             mIatResults.clear();
             // 设置参数
@@ -129,12 +132,12 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
             // mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-2");
             // mIat.setParameter(SpeechConstant.ASR_SOURCE_PATH, "sdcard/XXX/XXX.pcm");
             ret = mIat.startListening(mRecognizerListener);
-            if (ret != ErrorCode.SUCCESS) {
+            if(ret != ErrorCode.SUCCESS) {
                 showTip("识别失败,错误码：" + ret);
             } else {
                 byte[] audioData = FucUtil.readAudioFile(IflytekIatActivity.this, "iattest.wav");
 
-                if (null != audioData) {
+                if(null != audioData) {
                     showTip(getString(R.string.text_begin_recognizer));
                     // 一次（也可以分多次）写入音频文件数据，数据格式必须是采样率为8KHz或16KHz（本地识别只支持16K采样率，云端都支持），位长16bit，单声道的wav或者pcm
                     // 写入8KHz采样的音频时，必须先调用setParameter(SpeechConstant.SAMPLE_RATE, "8000")设置正确的采样率
@@ -147,20 +150,20 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
                 }
             }
             // 停止听写
-        } else if (R.id.iat_stop == view.getId()) {
+        } else if(R.id.iat_stop == view.getId()) {
             mIat.stopListening();
             showTip("停止听写");
             // 取消听写
-        } else if (R.id.iat_cancel == view.getId()) {
+        } else if(R.id.iat_cancel == view.getId()) {
             mIat.cancel();
             showTip("取消听写");
             // 上传联系人
-        } else if (R.id.iat_upload_contacts == view.getId()) {
+        } else if(R.id.iat_upload_contacts == view.getId()) {
             showTip(getString(R.string.text_upload_contacts));
             ContactManager mgr = ContactManager.createManager(IflytekIatActivity.this, mContactListener);
             mgr.asyncQueryAllContactsName();
             // 上传用户词表
-        } else if (R.id.iat_upload_userwords == view.getId()) {
+        } else if(R.id.iat_upload_userwords == view.getId()) {
             showTip(getString(R.string.text_upload_userwords));
             String contents = FucUtil.readFile(IflytekIatActivity.this, "userwords", "utf-8");
             mResultText.setText(contents);
@@ -169,7 +172,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
             // 置编码类型
             mIat.setParameter(SpeechConstant.TEXT_ENCODING, "utf-8");
             ret = mIat.updateLexicon("userword", contents, mLexiconListener);
-            if (ret != ErrorCode.SUCCESS) showTip("上传热词失败,错误码：" + ret);
+            if(ret != ErrorCode.SUCCESS) showTip("上传热词失败,错误码：" + ret);
         }
     }
 
@@ -180,7 +183,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
 
         @Override public void onInit(int code) {
             Log.d(TAG, "SpeechRecognizer init() code = " + code);
-            if (code != ErrorCode.SUCCESS) {
+            if(code != ErrorCode.SUCCESS) {
                 showTip("初始化失败，错误码：" + code);
             }
         }
@@ -192,7 +195,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
     private LexiconListener mLexiconListener = new LexiconListener() {
 
         @Override public void onLexiconUpdated(String lexiconId, SpeechError error) {
-            if (error != null) {
+            if(error != null) {
                 showTip(error.toString());
             } else {
                 showTip(getString(R.string.text_upload_success));
@@ -213,7 +216,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
         @Override public void onError(SpeechError error) {
             // Tips：
             // 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
-            if (mTranslateEnable && error.getErrorCode() == 14002) {
+            if(mTranslateEnable && error.getErrorCode() == 14002) {
                 showTip(error.getPlainDescription(true) + "\n请确认是否已开通翻译功能");
             } else {
                 showTip(error.getPlainDescription(true));
@@ -226,7 +229,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
         }
 
         @Override public void onResult(RecognizerResult results, boolean isLast) {
-            if (mTranslateEnable) {
+            if(mTranslateEnable) {
                 printTransResult(results);
             } else {
                 String text = JsonParser.parseIatResult(results.getResultString());
@@ -234,7 +237,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
                 mResultText.setSelection(mResultText.length());
             }
 
-            if (isLast) {
+            if(isLast) {
                 //TODO 最后的结果
             }
         }
@@ -261,7 +264,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
         public void onResult(RecognizerResult results, boolean isLast) {
             Log.d(TAG, "recognizer result：" + results.getResultString());
 
-            if (mTranslateEnable) {
+            if(mTranslateEnable) {
                 printTransResult(results);
             } else {
                 String text = JsonParser.parseIatResult(results.getResultString());
@@ -274,7 +277,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
          * 识别回调错误.
          */
         public void onError(SpeechError error) {
-            if (mTranslateEnable && error.getErrorCode() == 14002) {
+            if(mTranslateEnable && error.getErrorCode() == 14002) {
                 showTip(error.getPlainDescription(true) + "\n请确认是否已开通翻译功能");
             } else {
                 showTip(error.getPlainDescription(true));
@@ -302,7 +305,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
             mIat.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
             mIat.setParameter(SpeechConstant.TEXT_ENCODING, "utf-8");
             ret = mIat.updateLexicon("contact", contactInfos, mLexiconListener);
-            if (ret != ErrorCode.SUCCESS) {
+            if(ret != ErrorCode.SUCCESS) {
                 showTip("上传联系人失败：" + ret);
             }
         }
@@ -332,20 +335,20 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
         mIat.setParameter(SpeechConstant.RESULT_TYPE, "json");
 
         this.mTranslateEnable = mSharedPreferences.getBoolean(this.getString(R.string.pref_key_translate), false);
-        if (mTranslateEnable) {
+        if(mTranslateEnable) {
             Log.i(TAG, "api_translate enable");
             mIat.setParameter(SpeechConstant.ASR_SCH, "1");
             mIat.setParameter(SpeechConstant.ADD_CAP, "api_translate");
             mIat.setParameter(SpeechConstant.TRS_SRC, "its");
         }
 
-        if (lag.equals("en_us")) {
+        if(lag.equals("en_us")) {
             // 设置语言
             mIat.setParameter(SpeechConstant.LANGUAGE, "en_us");
             mIat.setParameter(SpeechConstant.ACCENT, null);
 
 
-            if (mTranslateEnable) {
+            if(mTranslateEnable) {
                 mIat.setParameter(SpeechConstant.ORI_LANG, "en");
                 mIat.setParameter(SpeechConstant.TRANS_LANG, "cn");
             }
@@ -355,7 +358,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
             // 设置语言区域
             mIat.setParameter(SpeechConstant.ACCENT, lag);
 
-            if (mTranslateEnable) {
+            if(mTranslateEnable) {
                 mIat.setParameter(SpeechConstant.ORI_LANG, "cn");
                 mIat.setParameter(SpeechConstant.TRANS_LANG, "en");
             }
@@ -379,7 +382,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
         String trans = JsonParser.parseTransResult(results.getResultString(), "dst");
         String oris = JsonParser.parseTransResult(results.getResultString(), "src");
 
-        if (TextUtils.isEmpty(trans) || TextUtils.isEmpty(oris)) {
+        if(TextUtils.isEmpty(trans) || TextUtils.isEmpty(oris)) {
             showTip("解析结果失败，请确认是否已开通翻译功能。");
         } else {
             mResultText.setText("原始语言:\n" + oris + "\n目标语言:\n" + trans);
@@ -390,7 +393,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
     @Override protected void onDestroy() {
         super.onDestroy();
 
-        if (null != mIat) {
+        if(null != mIat) {
             // 退出时释放连接
             mIat.cancel();
             mIat.destroy();

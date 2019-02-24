@@ -2,9 +2,7 @@
     package="cc.catface.module_arouter_demo">
 
     <application>
-
         <activity android:name="cc.catface.module_arouter_demo.ARouterDemoActivity" />
-
     </application>
 
 </manifest>

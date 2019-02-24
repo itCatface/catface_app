@@ -8,6 +8,7 @@
     android:padding="8dp">
 
     <ScrollView
+        style="@style/scrollbar_scroll_bar_style_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
@@ -34,6 +35,7 @@
                 android:background="@color/c_a" />
 
             <ListView
+                style="@style/scrollbar_scroll_bar_style_default"
                 android:id="@+id/lv_popup"
                 android:layout_width="match_parent"
                 android:layout_height="300dp" />

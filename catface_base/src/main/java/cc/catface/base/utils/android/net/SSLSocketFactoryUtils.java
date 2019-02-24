@@ -24,8 +24,8 @@ import javax.net.ssl.X509TrustManager;
 
 public class SSLSocketFactoryUtils {
     //TODO 下面为新
-    static int keyServerStroreID ;
-//    static int keyServerStroreID = R.raw.myungo;
+    static int keyServerStroreID;
+    //    static int keyServerStroreID = R.raw.myungo;
 
     public static SSLSocketFactory createSSLSocketFactory(Context context) {
         SSLSocketFactory mSSLSocketFactory = null;

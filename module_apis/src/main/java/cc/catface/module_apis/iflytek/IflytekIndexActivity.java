@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,9 +20,10 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
+import cc.catface.app_base.Const;
 import cc.catface.module_apis.R;
 
-@Route(path = "/apis/iflytek")
+@Route(path = Const.AROUTER.apis_iflytek)
 public class IflytekIndexActivity extends Activity implements OnClickListener {
 
     private Toast mToast;

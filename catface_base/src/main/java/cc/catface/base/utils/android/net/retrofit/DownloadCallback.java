@@ -1,7 +1,6 @@
 package cc.catface.base.utils.android.net.retrofit;
 
-import android.support.annotation.NonNull;
-
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

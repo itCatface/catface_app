@@ -1,12 +1,9 @@
 package cc.catface.module_start.welcome.view;
 
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -17,42 +14,33 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.viewpager.widget.ViewPager;
+import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.AbsAppCompatActivityID;
+import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
 import cc.catface.base.utils.android.common_intent.TIntent;
 import cc.catface.base.utils.android.view.viewpager.AccordionTransformer;
 import cc.catface.base.utils.android.view.viewpager.base.TransAnim;
 import cc.catface.module_start.R;
 import cc.catface.module_start.ad.view.AdActivity;
+import cc.catface.module_start.databinding.StartActivityWelcomeBinding;
 import cc.catface.module_start.welcome.adapter.WelcomeAdapter;
 import cc.catface.module_start.welcome.presenter.WelcomePresenterImp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = "/start/welcome")
+@Route(path = Const.AROUTER.start_welcome)
 @CreatePresenter(WelcomePresenterImp.class)
-public class WelcomeActivity extends AbsAppCompatActivityID<WelcomeView, WelcomePresenterImp> implements WelcomeView, View.OnClickListener {
-
+public class WelcomeActivity extends MvpActivity<WelcomeView, WelcomePresenterImp, StartActivityWelcomeBinding> implements WelcomeView, View.OnClickListener {
     @Override public int layoutId() {
         return R.layout.start_activity_welcome;
     }
 
-    private ViewPager vp;
     private int[] mImageIDs;
     private List<View> mImageViews;
     private LinearLayout.LayoutParams mImageParams;
-    private Button bt_start;
-    private LinearLayout ll_indicator;
     private LinearLayout.LayoutParams focusParams, defaultParams;
-
-    @Override public void ids() {
-        vp = (ViewPager) findViewById(R.id.vp_indicator);
-        bt_start = (Button) findViewById(R.id.bt_start);
-        ll_indicator = (LinearLayout) findViewById(R.id.ll_indicator);
-        findViewById(R.id.bt_vp_anim).setOnClickListener(this);
-        findViewById(R.id.bt_start).setOnClickListener(this);
-    }
 
     @Override public void onClick(View view) {
         if (R.id.bt_vp_anim == view.getId()) {
@@ -62,8 +50,9 @@ public class WelcomeActivity extends AbsAppCompatActivityID<WelcomeView, Welcome
         }
     }
 
-    @Override public void setFeature() {
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+    @Override protected void initAction() {
+        mBinding.btVpAnim.setOnClickListener(this);
+        mBinding.btStart.setOnClickListener(this);
     }
 
     @Override public void create() {
@@ -95,21 +84,21 @@ public class WelcomeActivity extends AbsAppCompatActivityID<WelcomeView, Welcome
             mImageViews.add(imageView);
         }
 
-        vp.setPageTransformer(true, new AccordionTransformer());
-        vp.setAdapter(new WelcomeAdapter(mImageViews));
+        mBinding.vpIndicator.setPageTransformer(true, new AccordionTransformer());
+        mBinding.vpIndicator.setAdapter(new WelcomeAdapter(mImageViews));
         addViewPagerListener();
     }
 
     private void addViewPagerListener() {
-        vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mBinding.vpIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
             @Override public void onPageSelected(int position) {
-                ll_indicator.removeAllViews();
+                mBinding.llIndicator.removeAllViews();
 
                 paramsLogic(position);
 
-                bt_start.setVisibility(position == mImageIDs.length - 1 ? View.VISIBLE : View.GONE);
+                mBinding.btStart.setVisibility(position == mImageIDs.length - 1 ? View.VISIBLE : View.INVISIBLE);
             }
 
             @Override public void onPageScrollStateChanged(int state) { }
@@ -138,8 +127,8 @@ public class WelcomeActivity extends AbsAppCompatActivityID<WelcomeView, Welcome
             }
 
             mPointViews[i] = iv_point;
-            if ("0".equals(iv_point.getTag())) ll_indicator.addView(iv_point, focusParams);
-            else ll_indicator.addView(iv_point, defaultParams);
+            if ("0".equals(iv_point.getTag())) mBinding.llIndicator.addView(iv_point, focusParams);
+            else mBinding.llIndicator.addView(iv_point, defaultParams);
         }
     }
 
@@ -169,79 +158,79 @@ public class WelcomeActivity extends AbsAppCompatActivityID<WelcomeView, Welcome
     private void viewpagerTransAnimCtrl(View view) {
         view.findViewById(R.id.tv_accordionTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.accordionTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.accordionTransformer);
         });
         view.findViewById(R.id.tv_backgroundToForegroundTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.backgroundToForegroundTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.backgroundToForegroundTransformer);
         });
         view.findViewById(R.id.tv_cubeInTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.cubeInTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.cubeInTransformer);
         });
         view.findViewById(R.id.tv_cubeOutTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.cubeOutTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.cubeOutTransformer);
         });
         view.findViewById(R.id.tv_depthPageTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.depthPageTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.depthPageTransformer);
         });
         view.findViewById(R.id.tv_depthPageTransformer2).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.depthPageTransformer2);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.depthPageTransformer2);
         });
         view.findViewById(R.id.tv_drawFromBackTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.drawFromBackTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.drawFromBackTransformer);
         });
         view.findViewById(R.id.tv_flipHorizontalTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.flipHorizontalTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.flipHorizontalTransformer);
         });
         view.findViewById(R.id.tv_flipVerticalTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.flipVerticalTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.flipVerticalTransformer);
         });
         view.findViewById(R.id.tv_foregroundToBackgroundTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.foregroundToBackgroundTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.foregroundToBackgroundTransformer);
         });
         view.findViewById(R.id.tv_parallaxPageTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.parallaxPageTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.parallaxPageTransformer);
         });
         view.findViewById(R.id.tv_rotateDownTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.rotateDownTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.rotateDownTransformer);
         });
         view.findViewById(R.id.tv_rotateUpTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.rotateUpTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.rotateUpTransformer);
         });
         view.findViewById(R.id.tv_stackTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.stackTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.stackTransformer);
         });
         view.findViewById(R.id.tv_tabletTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.tabletTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.tabletTransformer);
         });
         view.findViewById(R.id.tv_zoomInTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.zoomInTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.zoomInTransformer);
         });
         view.findViewById(R.id.tv_zoomOutPageTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.zoomOutPageTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.zoomOutPageTransformer);
         });
         view.findViewById(R.id.tv_zoomOutSlideTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.zoomOutSlideTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.zoomOutSlideTransformer);
         });
         view.findViewById(R.id.tv_zoomOutTransformer).setOnClickListener(v -> {
             dismissPop();
-            vp.setPageTransformer(true, TransAnim.zoomOutTransformer);
+            mBinding.vpIndicator.setPageTransformer(true, TransAnim.zoomOutTransformer);
         });
         view.findViewById(R.id.tv_cancel).setOnClickListener(v -> dismissPop());
     }

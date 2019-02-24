@@ -1,9 +1,5 @@
 package cc.catface.api.toast;
 
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -12,46 +8,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseActivity;
-import cc.catface.base.utils.android.common_print.toast.TToast;
-import cc.catface.base.utils.android.common_title.TitleBuilder;
 import cc.catface.api.R;
+import cc.catface.api.databinding.ApiActivityToastBinding;
 import cc.catface.api.toast.adapter.ToastAdapter;
+import cc.catface.app_base.Const;
+import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.utils.android.common_print.toast.TToast;
+import cc.catface.base.utils.android.common_recyclerview.TRV;
+import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = "/api/toast")
-public class ToastActivity extends NormalBaseActivity {
+@Route(path = Const.AROUTER.api_toast)
+public class ToastActivity extends NormalActivity<ApiActivityToastBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_toast;
-    }
-
-    private RecyclerView rv_toast;
-    private List<String> mDatas;
-    private ToastAdapter mAdapter;
-
-    @Override public void create() {
-        rv_toast = (RecyclerView) findViewById(R.id.rv_toast);
-        initTitle();
-        initData();
-        initRV();
-        initAdapter();
-    }
-
-    private void initTitle() {
-        new TitleBuilder(this).setIVLeftRes(R.mipmap.flaticon_back).setTVCenterText("Toast示例").setTVRightText("清除").setListener(v -> {
-            if (R.id.iv_title_left == v.getId()) finish();
-            else if (R.id.tv_title_right == v.getId()) TToast.get(this).clearToast();
-        });
     }
 
     private final String NORMAL_SHORT = "系统普通Toast[短]", NORMAL_LONG = "系统普通Toast[长]", CONTENT_SHORT = "立即更新Toast显示内容[短]", CONTENT_LONG = "立即更新Toast显示内容[长]", IMMEDIATELY_SHORT = "立即弹出Toast[短]",
             IMMEDIATELY_LONG = "立即弹出Toast[长]", CUSTOM_GRAVITY_SHORT = "自定义gravity[短]", CUSTOM_GRAVITY_LONG = "自定义gravity[长]", CUSTOM_LOCATION_SHORT = "自定义位置[短]", CUSTOM_LOCATION_LONG = "自定义位置[长]",
             B_TOAST_NORMAL_SHORT = "定制Toast[短normal]", B_TOAST_INFO_SHORT = "定制Toast[短info]", B_TOAST_SUCCESS_SHORT = "定制Toast[短success]", B_TOAST_CANCEL_SHORT = "定制Toast[短cancel]",
             B_TOAST_WARNING_SHORT = "定制Toast[短warning]", B_TOAST_ERROR_SHORT = "定制Toast[短error]", B_TOAST_ANIM_SHORT = "定制Toast动画[短]", B_TOAST_ANIM_LONG = "定制Toast动画[长]";
+    private List<String> mDatas;
+    private ToastAdapter mAdapter;
 
-    private void initData() {
+    @Override public void initData() {
         mDatas = new ArrayList<>();
         mDatas.add(NORMAL_SHORT);
         mDatas.add(NORMAL_LONG);
@@ -73,19 +55,24 @@ public class ToastActivity extends NormalBaseActivity {
         mDatas.add(B_TOAST_ANIM_LONG);
     }
 
-    private void initRV() {
-        rv_toast.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        decoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.shape_rv_devider_colors));
-        rv_toast.addItemDecoration(decoration);
+
+    @Override public void create() {
+        title();
+        initAdapter();
+    }
+
+    private void title() {
+        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon4("清除").setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
+            if(R.id.ttv4 == view.getId()) TToast.get(this).clearToast();
+        });
     }
 
     private void initAdapter() {
+        TRV.initDefaultRV(this, mBinding.rvToast);
+
         mAdapter = new ToastAdapter(mDatas);
         mAdapter.setOnItemClickListener((adapter, view, position) -> {
-
-
-            switch (mDatas.get(position)) {
+            switch(mDatas.get(position)) {
                 case NORMAL_SHORT:
                     TToast.get(this).showShortNormal(NORMAL_SHORT + System.currentTimeMillis());
                     break;
@@ -146,6 +133,6 @@ public class ToastActivity extends NormalBaseActivity {
                     break;
             }
         });
-        rv_toast.setAdapter(mAdapter);
+        mBinding.rvToast.setAdapter(mAdapter);
     }
 }

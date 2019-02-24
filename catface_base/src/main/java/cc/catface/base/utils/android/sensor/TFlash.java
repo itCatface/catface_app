@@ -7,6 +7,9 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 
+/**
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ */
 public class TFlash {
     private boolean isFlashAvailable;
     private Camera mCamera;

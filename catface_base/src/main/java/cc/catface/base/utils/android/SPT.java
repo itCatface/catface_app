@@ -8,7 +8,6 @@ import java.util.Map;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-
 public class SPT {
 
     // SharedPreferences文件名

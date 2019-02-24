@@ -1,12 +1,13 @@
 package cc.catface.api.eleme.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925

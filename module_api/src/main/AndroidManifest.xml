@@ -19,17 +19,42 @@
         <activity android:name="cc.catface.api.view.loading.LoadingIndexActivity" />
         <activity android:name="cc.catface.api.view.loading.SpinKitActivity" />
         <activity android:name="cc.catface.api.view.loading.round_smile.RoundSmileActivity" />
+        <activity android:name=".view.loading.round_progress.RoundProgressActivity" />
         <activity android:name="cc.catface.api.toast.ToastActivity" />
         <activity android:name="cc.catface.api.dialog.DialogActivity" />
         <activity android:name=".hardware.camera.VibratorCameraActivity" />
         <activity android:name=".hardware.qrcode.ScanQrcodeActivity" />
         <activity android:name=".eleme.ElemeActivity" />
-        <activity android:name=".toutiao.view.ToutiaoActivity" />
-        <activity android:name=".huge_img.view.LoadHugeImgActivity" />
+        <activity android:name=".toutiao.ToutiaoActivity" />
+        <activity android:name=".huge_img.LoadHugeImgActivity" />
         <activity android:name="cc.catface.api.banner.BannerActivity" />
-        <activity android:name=".attrs.IVScaleTypeActivity" />
         <activity android:name=".common.AppInfoActivity" />
         <activity android:name=".popup.PopupActivity" />
+        <activity android:name=".widget.TestConstraintLayoutActivity" />
+        <activity android:name=".widget.TestTextViewActivity" />
+        <activity android:name=".multi_finger.MultiTouchActivity" />
+        <activity android:name=".widget.IVScaleTypeActivity" />
+        <activity android:name=".databinding.DataBindingActivity" />
+        <activity android:name=".room.RoomActivity" />
+        <activity android:name=".view.anim_activity_transfer.activity.TransferMainActivity" />
+        <activity
+            android:name=".view.anim_activity_transfer.activity.AnimTransferRightActivity"
+            android:theme="@style/SwipeTheme_left2right" />
+        <activity
+            android:name=".view.anim_activity_transfer.activity.AnimTransferLeftActivity"
+            android:theme="@style/SwipeTheme_right2left" />
+        <activity
+            android:name=".view.anim_activity_transfer.activity.AnimTransferBottomActivity"
+            android:theme="@style/SwipeTheme_top2bottom" />
+        <activity
+            android:name=".view.anim_activity_transfer.activity.AnimTransferTopActivity"
+            android:theme="@style/SwipeTheme_bottom2top" />
+
+        <activity android:name=".view.anim_activity_transfer.test.MainActivity" />
+        <activity android:name=".view.anim_activity_transfer.test.Num2Activity" />
+        <activity android:name=".crash.CrashActivity" />
+        <activity android:name=".frame.DemoFrameActivity" />
+        <activity android:name=".font.DemoFontActivity" />
 
     </application>
 </manifest>

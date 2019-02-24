@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 普通的全屏activity可在清单文件中添加该属性[Theme.AppCompat.Light.NoActionBar] -->
+    <style name="common_full_screen_no_title" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 全屏dialog可使用该样式 -->
+    <style name="dialog_fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 无标题dialog使用该样式 -->
+    <style name="dialog_no_title">
+        <item name="android:windowNoTitle">true</item>
+        <!--<item name="android:windowBackground">@color/transparent</item>-->
+        <!--<item name="android:backgroundDimEnabled">false</item>-->
+    </style>
+
+</resources>

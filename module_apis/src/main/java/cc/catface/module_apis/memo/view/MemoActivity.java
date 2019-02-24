@@ -4,8 +4,6 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,88 +25,76 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import cc.catface.app_base.ARouterApp;
+import cc.catface.app_base.Const;
 import cc.catface.app_base.greendao.Memo;
 import cc.catface.app_base.greendao.domain.greendao_gen.MemoDao;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.AbsAppCompatActivityID;
+import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 import cc.catface.base.utils.android.view.recyclerview.divider.ItemDecorationDivider;
 import cc.catface.base.utils.android.view.recyclerview.swipe.SwipeItemListener;
-import cc.catface.base.utils.android.view.recyclerview.swipe.SwipeMenuRecyclerView;
 import cc.catface.module_apis.R;
+import cc.catface.module_apis.databinding.ApisActivityMemoBinding;
 import cc.catface.module_apis.memo.adapter.MemoAdapter;
 import cc.catface.module_apis.memo.presenter.MemoPresenterImp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = "/apis/memo")
+@Route(path = Const.AROUTER.apis_memo)
 @CreatePresenter(MemoPresenterImp.class)
-public class MemoActivity extends AbsAppCompatActivityID<MemoView, MemoPresenterImp> implements MemoView {
-
-
+public class MemoActivity extends MvpActivity<MemoView, MemoPresenterImp, ApisActivityMemoBinding> implements MemoView {
     @Override public int layoutId() {
         return R.layout.apis_activity_memo;
     }
 
-    private TitleFontAwesome tfa_memo;
-    private SwipeMenuRecyclerView smrv_memo;
-
-    @Override public void ids() {
-        tfa_memo = (TitleFontAwesome) findViewById(R.id.tfa_memo);
-        smrv_memo = (SwipeMenuRecyclerView) findViewById(R.id.smrv_memo);
-    }
-
-    @Override public void create() {
-        initData();
-        initView();
-        initEvent();
+    @Override protected void initAction() {
+        mBinding.tfaMemo.setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
+            if(R.id.ttv1 == view.getId()) {  // 返回
+                finish();
+            } else if(R.id.ttv2 == view.getId()) {  // 查询
+                dialog(MEMO_SEARCH);
+            } else if(R.id.ttv3 == view.getId()) { // 排序
+                popup(view);
+            } else if(R.id.ttv4 == view.getId()) { // 新增
+                dialog(MEMO_ADD);
+            }
+        });
     }
 
 
     private MemoDao mDao;
     private List<Memo> mDatas = new ArrayList<>();
+    private MemoAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
 
-    private void initData() {
+    @Override public void initData() {
         mDao = ARouterApp.getDaoSession().getMemoDao();
         mDatas = mDao.queryBuilder().list();
     }
 
-
-    private MemoAdapter mAdapter;
-
-    private void initView() {
-        tfa_memo.setTitle("备忘录");
-        tfa_memo.setIcon1(R.string.fa_chevron_left);
-        tfa_memo.setIcon2(R.string.fa_search);
-        tfa_memo.setIcon4(R.string.fa_plus);
-        tfa_memo.setIcon3(R.string.fa_reorder);
-
-        smrv_memo.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        smrv_memo.setLayoutManager(mLayoutManager);
-        smrv_memo.addItemDecoration(new ItemDecorationDivider(this, ItemDecorationDivider.VERTICAL));
-
-        mAdapter = new MemoAdapter(mDatas, smrv_memo, mLayoutManager, new MemoSwipeItemListener());
-        smrv_memo.setAdapter(mAdapter);
+    @Override public void create() {
+        title();
+        initView();
     }
 
-    private void initEvent() {
-        tfa_memo.setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if (R.id.tv_serial_1 == view.getId()) {  // 返回
-                finish();
-            } else if (R.id.tv_serial_2 == view.getId()) {  // 查询
-                dialog(MEMO_SEARCH);
-            } else if (R.id.tv_serial_3 == view.getId()) { // 排序
-                popup(view);
-            } else if (R.id.tv_serial_4 == view.getId()) { // 新增
-                dialog(MEMO_ADD);
-            }
-        });
+    private void title() {
+        mBinding.tfaMemo.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon2(R.string.fa_search).setIcon4(R.string.fa_plus).setIcon3(R.string.fa_reorder);
+    }
+
+    private void initView() {
+        mBinding.smrvMemo.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mBinding.smrvMemo.setLayoutManager(mLayoutManager);
+        mBinding.smrvMemo.addItemDecoration(new ItemDecorationDivider(this, ItemDecorationDivider.VERTICAL));
+
+        mAdapter = new MemoAdapter(mDatas, mBinding.smrvMemo, mLayoutManager, new MemoSwipeItemListener());
+        mBinding.smrvMemo.setAdapter(mAdapter);
     }
 
 
@@ -148,7 +134,7 @@ public class MemoActivity extends AbsAppCompatActivityID<MemoView, MemoPresenter
         Button bt_cancel = view.findViewById(R.id.bt_cancel);
 
 
-        switch (type) {
+        switch(type) {
             case MEMO_ADD:
                 bt_ok.setOnClickListener(btView -> {
                     dialog.dismiss();
@@ -182,7 +168,7 @@ public class MemoActivity extends AbsAppCompatActivityID<MemoView, MemoPresenter
 
                     mDatas.clear();
                     mDatas.addAll(mDao.queryBuilder().list());
-                    smrv_memo.getAdapter().notifyItemRangeChanged(0, mDatas.size());
+                    mBinding.smrvMemo.getAdapter().notifyItemRangeChanged(0, mDatas.size());
                 });
                 break;
 
@@ -209,35 +195,35 @@ public class MemoActivity extends AbsAppCompatActivityID<MemoView, MemoPresenter
 
     /* 增删改查逻辑 */
     private void insert(String content, String tag, int stars) {
-        if (TextUtils.isEmpty(content.trim())) TToast.get(this).showShortNormal("请添加备忘内容...");
+        if(TextUtils.isEmpty(content.trim())) TToast.get(this).showShortNormal("请添加备忘内容...");
         else {
             Memo memo = new Memo(SystemClock.currentThreadTimeMillis(), content, SystemClock.currentThreadTimeMillis(), tag, stars);
             mDao.insert(memo);
             mDatas.add(0, memo);
-            smrv_memo.getAdapter().notifyItemInserted(0);
-            smrv_memo.getAdapter().notifyItemRangeChanged(0, mDatas.size());
+            mBinding.smrvMemo.getAdapter().notifyItemInserted(0);
+            mBinding.smrvMemo.getAdapter().notifyItemRangeChanged(0, mDatas.size());
         }
     }
 
 
     private void update(String content, String tag, int stars) {
-        if (TextUtils.isEmpty(content.trim())) TToast.get(this).showShortNormal("清添加修改内容...");
+        if(TextUtils.isEmpty(content.trim())) TToast.get(this).showShortNormal("清添加修改内容...");
         else {
             Memo memo = new Memo(SystemClock.currentThreadTimeMillis(), content, SystemClock.currentThreadTimeMillis(), tag, stars);
             mDao.update(memo);
-            smrv_memo.getAdapter().notifyItemRangeChanged(0, mDatas.size());
+            mBinding.smrvMemo.getAdapter().notifyItemRangeChanged(0, mDatas.size());
         }
     }
 
 
     private void query(String content) {
-        if (TextUtils.isEmpty(content.trim())) TToast.get(this).showShortNormal("清添加查询内容...");
+        if(TextUtils.isEmpty(content.trim())) TToast.get(this).showShortNormal("清添加查询内容...");
         else {
             List<Memo> list = mDao.queryBuilder().where(MemoDao.Properties.Content.like("%" + content + "%")).list();
             TLog.d("size====" + list.size());
             mDatas.clear();
             mDatas.addAll(list);
-            smrv_memo.getAdapter().notifyItemRangeChanged(0, mDatas.size());
+            mBinding.smrvMemo.getAdapter().notifyItemRangeChanged(0, mDatas.size());
         }
     }
 
@@ -246,7 +232,7 @@ public class MemoActivity extends AbsAppCompatActivityID<MemoView, MemoPresenter
     private PopupWindow mPopup;
 
     private void popup(View view) {
-        if (null == mPopup) {
+        if(null == mPopup) {
             ListView lv = new ListView(this);
             lv.setBackgroundColor(Color.WHITE);
 
@@ -256,23 +242,26 @@ public class MemoActivity extends AbsAppCompatActivityID<MemoView, MemoPresenter
             lv.setAdapter(adapter);
 
             lv.setOnItemClickListener((adapterView, view1, i, l) -> {
-                if (tagStar.equals(tagArr[i])) Collections.sort(mDatas, (memo1, memo2) -> memo2.getStars() - memo1.getStars());
-                else if (tagTime.equals(tagArr[i])) Collections.sort(mDatas, (memo1, memo2) -> (int) (memo2.getDate() - memo1.getDate()));
-                else if (tagUUID.equals(tagArr[i])) Collections.sort(mDatas, (memo1, memo2) -> (int) (memo2.getId() - memo1.getId()));
-                else if (tagMess.equals(tagArr[i])) Collections.shuffle(mDatas);
-                else if (tagAddTestData.equals(tagArr[i])) {
-                    for (int j = 0; j < 50; j++) {
+                if(tagStar.equals(tagArr[i]))
+                    Collections.sort(mDatas, (memo1, memo2) -> memo2.getStars() - memo1.getStars());
+                else if(tagTime.equals(tagArr[i]))
+                    Collections.sort(mDatas, (memo1, memo2) -> (int) (memo2.getDate() - memo1.getDate()));
+                else if(tagUUID.equals(tagArr[i]))
+                    Collections.sort(mDatas, (memo1, memo2) -> (int) (memo2.getId() - memo1.getId()));
+                else if(tagMess.equals(tagArr[i])) Collections.shuffle(mDatas);
+                else if(tagAddTestData.equals(tagArr[i])) {
+                    for(int j = 0; j < 50; j++) {
                         Memo memo = new Memo(SystemClock.currentThreadTimeMillis(), "第-" + j + "-条记录", SystemClock.currentThreadTimeMillis(), "默认", new Random().nextInt(5));
                         mDao.insert(memo);
                     }
-                    smrv_memo.getAdapter().notifyDataSetChanged();
-                } else if (tagDelAllData.equals(tagArr[i])) {
+                    mBinding.smrvMemo.getAdapter().notifyDataSetChanged();
+                } else if(tagDelAllData.equals(tagArr[i])) {
                     mDatas.clear();
                     mDao.deleteAll();
-                    smrv_memo.getAdapter().notifyDataSetChanged();
+                    mBinding.smrvMemo.getAdapter().notifyDataSetChanged();
                 }
 
-                smrv_memo.getAdapter().notifyDataSetChanged();
+                mBinding.smrvMemo.getAdapter().notifyDataSetChanged();
                 mPopup.dismiss();
             });
 
@@ -281,5 +270,14 @@ public class MemoActivity extends AbsAppCompatActivityID<MemoView, MemoPresenter
         }
 
         mPopup.showAsDropDown(view, 40, view.getHeight());
+    }
+
+    /** View's */
+    @Override public void daoOperationSuccess() {
+
+    }
+
+    @Override public void daoOperationFailure(String reason) {
+
     }
 }

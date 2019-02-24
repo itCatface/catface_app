@@ -1,89 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_eleme_pages"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp" />
+    <data />
 
     <LinearLayout
-        android:id="@+id/ll_eleme_points"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5px"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#f00" />
+        <cc.catface.base.utils.android.common_title.TitleFontAwesome
+            android:id="@+id/tfa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_text_pages"
-        android:layout_width="match_parent"
-        android:layout_height="120dp" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_eleme_pages"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp" />
 
+        <LinearLayout
+            android:id="@+id/ll_eleme_points"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal" />
 
-    <LinearLayout
-        android:id="@+id/ll_text_points"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5px"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#f00" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5px"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#f00" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_text_pages"
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
 
 
-        <GridView
-            android:id="@+id/gv_single_page_multi_chosen"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_centerInParent="true"
-            android:numColumns="2" />
+        <LinearLayout
+            android:id="@+id/ll_text_points"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal" />
 
-        <Button
-            android:id="@+id/bt_select_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:text="全选" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5px"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#f00" />
 
-        <TextView
-            android:id="@+id/tv_sum_ages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="ages" />
-
-        <Button
-            android:id="@+id/bt_single_page_multi_chosen_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:text="确定"
-            android:textAllCaps="false" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
 
 
-    </RelativeLayout>
+            <GridView
+                android:id="@+id/gv_single_page_multi_chosen"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:numColumns="2" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/bt_select_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="全选" />
+
+            <TextView
+                android:id="@+id/tv_sum_ages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="ages" />
+
+            <Button
+                android:id="@+id/bt_single_page_multi_chosen_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="确定"
+                android:textAllCaps="false" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

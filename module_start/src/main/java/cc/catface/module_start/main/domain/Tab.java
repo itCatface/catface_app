@@ -2,11 +2,11 @@ package cc.catface.module_start.main.domain;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import cc.catface.module_start.R;
 
 /**

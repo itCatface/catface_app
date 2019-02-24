@@ -16,6 +16,7 @@
         android:textSize="@dimen/txt_size" />
 
     <ListView
+        style="@style/scrollbar_scroll_bar_style_default"
         android:id="@+id/listview_main"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

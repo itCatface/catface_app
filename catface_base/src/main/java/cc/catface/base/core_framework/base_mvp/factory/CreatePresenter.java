@@ -4,8 +4,7 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import cc.catface.base.core_framework.base_mvp.presenter.BaseMVPPresenter;
-
+import cc.catface.base.core_framework.base_mvp.presenter.MvpPresenter;
 
 /**
  * @author 刘镓旗[2017.11][https://blog.csdn.net/yulong0809/article/details/78622428]
@@ -13,5 +12,5 @@ import cc.catface.base.core_framework.base_mvp.presenter.BaseMVPPresenter;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CreatePresenter {
-    Class<? extends BaseMVPPresenter> value();
+    Class<? extends MvpPresenter> value();
 }

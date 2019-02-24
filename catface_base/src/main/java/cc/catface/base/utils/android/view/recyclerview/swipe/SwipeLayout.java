@@ -3,14 +3,14 @@ package cc.catface.base.utils.android.view.recyclerview.swipe;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ViewDragHelper;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.customview.widget.ViewDragHelper;
 import cc.catface.base.R;
 
 

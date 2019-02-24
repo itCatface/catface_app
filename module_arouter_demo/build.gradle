@@ -2,7 +2,6 @@ if (rootProject.ext.IS_DEBUG_MODULE_arouter) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
-    apply plugin: 'com.jakewharton.butterknife'
 }
 
 
@@ -28,7 +27,10 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        /** 方法数64k */
+        multiDexEnabled true
     }
 
     lintOptions {
@@ -54,6 +56,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    /** */
+    dataBinding {
+        enabled = true
+    }
+
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
@@ -64,21 +72,17 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation rootProject.ext.dependencies_android["appcompat-v7"]
-    testImplementation rootProject.ext.dependencies_android["junit"]
-    androidTestImplementation rootProject.ext.dependencies_android["test-runner"]
-    androidTestImplementation rootProject.ext.dependencies_android["test-espresso-core"]
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "androidx.test:runner:1.1.2-alpha01"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.2-alpha01"
+    annotationProcessor 'androidx.annotation:annotation:1.0.1'
     implementation project(':app_base')
 
     /* ARouter */
-    implementation rootProject.ext.dependencies_api["arouter"]
-    annotationProcessor rootProject.ext.dependencies_api["arouter-compiler"]
-    /* ButterKnife */
-    if (!rootProject.ext.IS_DEBUG_MODULE_arouter) {
-        implementation rootProject.ext.dependencies_api["butterknife"]
-        annotationProcessor rootProject.ext.dependencies_api["butterknife-compiler"]
-    } else {
-        implementation 'com.jakewharton:butterknife:8.8.1'
-        annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    }
+    api "com.alibaba:arouter-api:1.4.1"
+    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"
+
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
 }

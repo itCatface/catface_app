@@ -1,19 +1,17 @@
 package cc.catface.module_start.main.mvp.view.navigation.view;
 
 import android.app.Activity;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.view.View;
+import androidx.core.content.ContextCompat;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.AbsFragmentID;
+import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
 import cc.catface.module_start.R;
+import cc.catface.module_start.databinding.StartFmMessBinding;
 import cc.catface.module_start.main.mess.ApiFm;
 import cc.catface.module_start.main.mess.ApisFm;
 import cc.catface.module_start.main.mess.PjsFm;
@@ -24,25 +22,17 @@ import cc.catface.module_start.main.mvp.view.navigation.presenter.MessPresenterI
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 @CreatePresenter(MessPresenterImp.class)
-public class MessFm extends AbsFragmentID<MessView, MessPresenterImp> implements MessView {
+public class MessFm extends MvpFragment<MessView, MessPresenterImp, StartFmMessBinding> implements MessView {
     @Override public int layoutId() {
         return R.layout.start_fm_mess;
     }
-
-    private TabLayout tl_mess;
-    private ViewPager vp_mess;
 
     private String[] mTabTitles = {"api", "apis", "pjs"};
     //    private String[] mTabTitles = {"GIF", "视频"};
     private List<Fragment> mFms;
 
-    @Override public void ids(View v) {
-        tl_mess = (TabLayout) v.findViewById(R.id.tl_mess);
-        vp_mess = (ViewPager) v.findViewById(R.id.vp_mess);
-    }
-
     @Override public void viewCreated() {
-        LinearLayout ll = (LinearLayout) tl_mess.getChildAt(0);
+        LinearLayout ll = (LinearLayout) mBinding.tlMess.getChildAt(0);
         ll.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         ll.setDividerPadding(40);
         ll.setDividerDrawable(ContextCompat.getDrawable(mActivity, R.drawable.showapi_shape_top_bar_line));
@@ -52,9 +42,9 @@ public class MessFm extends AbsFragmentID<MessView, MessPresenterImp> implements
         mFms.add(new ApisFm());
         mFms.add(new PjsFm());
 
-        vp_mess.setOffscreenPageLimit(mTabTitles.length);
-        vp_mess.setAdapter(new ImageTextAdapter(getChildFragmentManager(), mTabTitles, mFms));
-        tl_mess.setupWithViewPager(vp_mess);
+        mBinding.vpMess.setOffscreenPageLimit(mTabTitles.length);
+        mBinding.vpMess.setAdapter(new ImageTextAdapter(getChildFragmentManager(), mTabTitles, mFms));
+        mBinding.tlMess.setupWithViewPager(mBinding.vpMess);
 
         mListener.process("fragment处理结束");
     }
@@ -80,9 +70,9 @@ public class MessFm extends AbsFragmentID<MessView, MessPresenterImp> implements
     //        if (null != mListener) mListener.process("onStart...");
     //    }
     //
-    //    @Override public void onResume() {
-    //        super.onResume();
-    //        if (null != mListener) mListener.process("onResume...");
+    //    @Override public void onCreate() {
+    //        super.onCreate();
+    //        if (null != mListener) mListener.process("onCreate...");
     //    }
     //
     //    @Override public void onPause() {

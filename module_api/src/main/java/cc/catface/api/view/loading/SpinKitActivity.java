@@ -1,33 +1,33 @@
 package cc.catface.api.view.loading;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.View;
+
+import com.jakewharton.rxbinding.widget.RxCompoundButton;
 
 import cc.catface.api.R;
-import cc.catface.api.view.loading.view.DoubleBounceView;
-import cc.catface.api.view.loading.view.RotatingCircleView;
-import cc.catface.api.view.loading.view.RotatingPlaneView;
-import cc.catface.api.view.loading.view.WanderingCubesViewGroup;
+import cc.catface.api.databinding.ApiActivitySpinKitBinding;
+import cc.catface.api.view.loading.view_publish.RotatingView;
+import cc.catface.base.core_framework.base_normal.NormalActivity;
 
-public class SpinKitActivity extends AppCompatActivity {
+public class SpinKitActivity extends NormalActivity<ApiActivitySpinKitBinding> {
 
-    private RotatingPlaneView loading_rpv;
-    private DoubleBounceView loading_dbv;
-    private RotatingCircleView loading_rcv;
-    private WanderingCubesViewGroup loading_wcvg;
+    @Override public int layoutId() {
+        return R.layout.api_activity_spin_kit;
+    }
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.api_activity_spin_kit);
+    @Override protected void initAction() {
+        mBinding.loadingRv2.setShape(RotatingView.SHAPE_CIRCLE);
+        RxCompoundButton.checkedChanges(mBinding.cbCtrl).subscribe(isChecked -> {
+            mBinding.loadingRv1.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+            mBinding.loadingRv2.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+            mBinding.loadingWcv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+            mBinding.loadingWv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+            mBinding.loadingCgv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+            mBinding.loadingCv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+        });
+    }
 
-        loading_rpv = (RotatingPlaneView) findViewById(R.id.loading_rpv);
-        loading_dbv = (DoubleBounceView) findViewById(R.id.loading_dbv);
-        loading_rcv = (RotatingCircleView) findViewById(R.id.loading_rcv);
-        loading_wcvg = (WanderingCubesViewGroup) findViewById(R.id.loading_wcvg);
+    @Override public void create() {
 
-        loading_rpv.setOnClickListener(view -> loading_rpv.startAnim());
-        loading_dbv.setOnClickListener(view -> loading_dbv.startAnim());
-        loading_rcv.setOnClickListener(view -> loading_rcv.startAnim());
-        loading_wcvg.setOnClickListener(view -> loading_wcvg.startAnim());
     }
 }

@@ -8,7 +8,6 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.support.annotation.RequiresApi;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -23,6 +22,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import androidx.annotation.RequiresApi;
+
+/**
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ */
 public class FileT {
 
 
@@ -280,7 +284,8 @@ public class FileT {
 
         File file = new File(filePath);
 
-        if (!file.exists() || !file.isFile()) throw new RuntimeException("FileT -> read() --> file does not exist");
+        if (!file.exists() || !file.isFile())
+            throw new RuntimeException("FileT -> read() --> file does not exist");
 
         String content = "";
         InputStream is = null;

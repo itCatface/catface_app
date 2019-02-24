@@ -3,10 +3,7 @@ package cc.catface.module_apis.brvah.view;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -19,15 +16,19 @@ import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import cc.catface.base.core_framework.base_normal.NormalBaseFragmentID;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.DragSwipeAdapter;
+import cc.catface.module_apis.databinding.BrvahFmDragSwipeBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_DragSwipeFm extends NormalBaseFragmentID {
+public class BRVAH_DragSwipeFm extends NormalFragment<BrvahFmDragSwipeBinding> {
 
     private static final String TAG = BRVAH_DragSwipeFm.class.getSimpleName();
     private List<String> mData;
@@ -39,14 +40,8 @@ public class BRVAH_DragSwipeFm extends NormalBaseFragmentID {
         return R.layout.brvah_fm_drag_swipe;
     }
 
-  private RecyclerView rv_list;
-
-    @Override public void ids(View v) {
-        rv_list = (RecyclerView) v.findViewById(R.id.rv_list);
-    }
-
     @Override public void createView() {
-        rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
+        mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         mData = generateData(50);
         OnItemDragListener listener = new OnItemDragListener() {
             @Override public void onItemDragStart(RecyclerView.ViewHolder viewHolder, int pos) {
@@ -95,7 +90,7 @@ public class BRVAH_DragSwipeFm extends NormalBaseFragmentID {
         mAdapter = new DragSwipeAdapter(mData);
         mItemDragAndSwipeCallback = new ItemDragAndSwipeCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(mItemDragAndSwipeCallback);
-        mItemTouchHelper.attachToRecyclerView(rv_list);
+        mItemTouchHelper.attachToRecyclerView(mBinding.rvList);
 
         //mItemDragAndSwipeCallback.setDragMoveFlags(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.UP | ItemTouchHelper.DOWN);
         mItemDragAndSwipeCallback.setSwipeMoveFlags(ItemTouchHelper.START | ItemTouchHelper.END);
@@ -103,10 +98,10 @@ public class BRVAH_DragSwipeFm extends NormalBaseFragmentID {
         mAdapter.setOnItemSwipeListener(onItemSwipeListener);
         mAdapter.enableDragItem(mItemTouchHelper);
         mAdapter.setOnItemDragListener(listener);
-        //        rv_list.addItemDecoration(new GridItemDecoration(this ,R.drawable.list_divider));
+        //        rvList.addItemDecoration(new GridItemDecoration(this ,R.drawable.list_divider));
 
-        rv_list.setAdapter(mAdapter);
-        //        rv_list.addOnItemTouchListener(new OnItemClickListener() {
+        mBinding.rvList.setAdapter(mAdapter);
+        //        rvList.addOnItemTouchListener(new OnItemClickListener() {
         //            @Override
         //            public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
         //                ToastUtils.showShortToast("点击了" + position);

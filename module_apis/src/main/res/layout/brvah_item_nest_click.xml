@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:background="@color/bg">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
+        style="@style/scrollbar_scroll_bar_style_default"
         android:id="@+id/nest_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

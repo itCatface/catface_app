@@ -4,11 +4,6 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -25,47 +18,40 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import cc.catface.api.R;
-import cc.catface.base.core_framework.base_normal.NormalBaseActivityID;
+import cc.catface.api.databinding.ApiActivityPopupBinding;
+import cc.catface.app_base.Const;
+import cc.catface.base.core_framework.base_normal.NormalActivity;
 
-@Route(path = "/api/popup")
-public class PopupActivity extends NormalBaseActivityID implements View.OnClickListener {
+@Route(path = Const.AROUTER.api_popup)
+public class PopupActivity extends NormalActivity<ApiActivityPopupBinding> implements View.OnClickListener {
+    @Override public int layoutId() {
+        return R.layout.api_activity_popup;
+    }
 
-    private Button btnPopDown;
-    private CardView cvMain;
-    private RelativeLayout rlMain;
-    private FloatingActionButton fabStart;
-    private FloatingActionButton fadEnd;
+    @Override protected void initAction() {
+        mBinding.btnPopPicSelect.setOnClickListener(this);
+        mBinding.btnPopQq.setOnClickListener(this);
+        mBinding.btnPagerCenter.setOnClickListener(this);
+        mBinding.flbPopStart.setOnClickListener(this);
+        mBinding.flbPopEnd.setOnClickListener(this);
+        mBinding.btnPopDown.setOnClickListener(this);
+    }
 
     private PopupWindow myPop;
     private View view, picView01, picView02, picView03, picView04;
     private List<View> views;
 
-    @Override public int layoutId() {
-        return R.layout.api_activity_popup;
-    }
-
-    @Override public void ids() {
-        rlMain = findViewById(R.id.rl_main);
-        Button btnPopPicSelect = findViewById(R.id.btn_pop_pic_select);
-        Button btnPopQq = findViewById(R.id.btn_pop_qq);
-        Button btnPagerCenter = findViewById(R.id.btn_pager_center);
-        btnPopDown = findViewById(R.id.btn_pop_down);
-        fabStart = findViewById(R.id.flb_pop_start);
-        fadEnd = findViewById(R.id.flb_pop_end);
-        cvMain = findViewById(R.id.cv_pop);
-
-        btnPopPicSelect.setOnClickListener(this);
-        btnPopQq.setOnClickListener(this);
-        btnPagerCenter.setOnClickListener(this);
-        fabStart.setOnClickListener(this);
-        fadEnd.setOnClickListener(this);
-        btnPopDown.setOnClickListener(this);
-    }
-
-
     @Override public void create() {
+        title();
+    }
 
+
+    private void title() {
+        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
     }
 
 
@@ -117,7 +103,7 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
 
         myPop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         myPop.setBackgroundDrawable(new ColorDrawable());
-        myPop.showAtLocation(rlMain, Gravity.BOTTOM, 0, 0);
+        myPop.showAtLocation(mBinding.rlMain, Gravity.BOTTOM, 0, 0);
     }
 
     /**
@@ -125,16 +111,14 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
      */
     @SuppressLint("InflateParams") private void showQq() {
         view = LayoutInflater.from(this).inflate(R.layout.api_item_popup_qq, null, false);
-        TextView tvTop = view.findViewById(R.id.tv_be_top);
-        TextView tvDelete = view.findViewById(R.id.tv_delete);
-        tvDelete.setOnClickListener(this);
-        tvTop.setOnClickListener(this);
+        view.findViewById(R.id.tv_delete).setOnClickListener(this);
+        view.findViewById(R.id.tv_be_top).setOnClickListener(this);
 
         myPop = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         myPop.setBackgroundDrawable(new ColorDrawable());
         myPop.setOutsideTouchable(true);
         myPop.getContentView().measure(0, 0);
-        myPop.showAsDropDown(cvMain, (cvMain.getWidth() - myPop.getContentView().getMeasuredWidth()) / 2, -(cvMain.getHeight() + myPop.getContentView().getMeasuredHeight()));
+        myPop.showAsDropDown(mBinding.cvPop, (mBinding.cvPop.getWidth() - myPop.getContentView().getMeasuredWidth()) / 2, -(mBinding.cvPop.getHeight() + myPop.getContentView().getMeasuredHeight()));
     }
 
     /**
@@ -143,7 +127,6 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) private void showPager() {
         views = new ArrayList<>();
         view = LayoutInflater.from(this).inflate(R.layout.api_item_popup_pager, null, false);
-        ViewPager vpPop = view.findViewById(R.id.vp_pop);
         picView01 = LayoutInflater.from(this).inflate(R.layout.api_item_popup_pop_vp_01, null, false);
         picView02 = LayoutInflater.from(this).inflate(R.layout.api_item_popup_pop_vp_02, null, false);
         picView03 = LayoutInflater.from(this).inflate(R.layout.api_item_popup_pop_vp_03, null, false);
@@ -153,14 +136,14 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
         views.add(picView02);
         views.add(picView03);
         views.add(picView04);
-        vpPop.setAdapter(new MyPopAdapter());
+        ((ViewPager) view.findViewById(R.id.vp_pop)).setAdapter(new MyPopAdapter());
 
         myPop = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         myPop.setOutsideTouchable(true);
         //悬浮效果
         myPop.setElevation(5);
         myPop.setBackgroundDrawable(new ColorDrawable(0x00ffffff));
-        myPop.showAtLocation(rlMain, Gravity.CENTER, 0, 0);
+        myPop.showAtLocation(mBinding.rlMain, Gravity.CENTER, 0, 0);
     }
 
     /**
@@ -199,7 +182,7 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
         myPop.setBackgroundDrawable(new ColorDrawable());
         myPop.setOutsideTouchable(true);
         myPop.getContentView().measure(0, 0);
-        myPop.showAsDropDown(btnPopDown, -((myPop.getContentView().getMeasuredWidth() - btnPopDown.getWidth()) / 2), 0);
+        myPop.showAsDropDown(mBinding.btnPopDown, -((myPop.getContentView().getMeasuredWidth() - mBinding.btnPopDown.getWidth()) / 2), 0);
     }
 
     /**
@@ -212,7 +195,7 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
         myPop.setBackgroundDrawable(new ColorDrawable());
         myPop.setOutsideTouchable(true);
         myPop.getContentView().measure(0, 0);
-        myPop.showAsDropDown(fabStart, -(myPop.getContentView().getMeasuredWidth()), -(fabStart.getHeight() / 2 + myPop.getContentView().getMeasuredHeight()));
+        myPop.showAsDropDown(mBinding.flbPopStart, -(myPop.getContentView().getMeasuredWidth()), -(mBinding.flbPopStart.getHeight() / 2 + myPop.getContentView().getMeasuredHeight()));
     }
 
 
@@ -228,7 +211,7 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
         myPop.setOutsideTouchable(true);
         myPop.setFocusable(true);
         myPop.getContentView().measure(0, 0);
-        myPop.showAsDropDown(fadEnd, (int) (fadEnd.getWidth() * 1.3), -((fadEnd.getHeight() + myPop.getContentView().getMeasuredHeight()) / 2));
+        myPop.showAsDropDown(mBinding.flbPopEnd, (int) (mBinding.flbPopEnd.getWidth() * 1.3), -((mBinding.flbPopEnd.getHeight() + myPop.getContentView().getMeasuredHeight()) / 2));
     }
 
 
@@ -248,7 +231,7 @@ public class PopupActivity extends NormalBaseActivityID implements View.OnClickL
             views.remove(picView03);
             views.remove(picView04);
         }
-        if (myPop.isShowing()) {
+        if (null != myPop && myPop.isShowing()) {
             myPop.dismiss();
         }
     }

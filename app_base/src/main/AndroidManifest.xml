@@ -1,5 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cc.catface.app_base">
-
-
-</manifest>
+<manifest package="cc.catface.app_base" />

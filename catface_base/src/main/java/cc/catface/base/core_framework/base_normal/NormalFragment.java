@@ -29,6 +29,7 @@ public abstract class NormalFragment<B extends ViewDataBinding> extends Fragment
         mBinding = DataBindingUtil.inflate(inflater, layoutId(), container, false);
 
         initAction();
+        initData();
         createView();
         return mBinding.getRoot();
     }
@@ -36,6 +37,8 @@ public abstract class NormalFragment<B extends ViewDataBinding> extends Fragment
     public abstract int layoutId();
 
     protected void initAction() { }
+
+    protected void initData() { }
 
     public abstract void createView();
 }

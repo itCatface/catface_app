@@ -22,7 +22,7 @@ import cc.catface.module_apis.databinding.BrvahActivityBrvahBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.AROUTER.apis_brvah)
+@Route(path = Const.ARouter.apis_brvah)
 @CreatePresenter(BRVAH_PresenterImp.class)
 public class BRVAH_Activity extends MvpActivity<BRVAH_View, BRVAH_PresenterImp, BrvahActivityBrvahBinding> implements BRVAH_View {
     @Override public int layoutId() {
@@ -42,7 +42,7 @@ public class BRVAH_Activity extends MvpActivity<BRVAH_View, BRVAH_PresenterImp, 
     }
 
     private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon4(R.string.fa_reorder);
+        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon4(R.string.fa_reorder);
     }
 
 

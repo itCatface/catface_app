@@ -24,7 +24,7 @@ import cc.catface.module_apis.databinding.ApisActivityDemoFlowLayoutBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.AROUTER.apis_flow_layout)
+@Route(path = Const.ARouter.apis_flow_layout)
 public class DemoFlowLayoutActivity extends NormalActivity<ApisActivityDemoFlowLayoutBinding> {
 
     @Override public int layoutId() {
@@ -44,7 +44,7 @@ public class DemoFlowLayoutActivity extends NormalActivity<ApisActivityDemoFlowL
     }
 
     private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon4("更新数据").setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
+        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon4("更新数据").setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
             if(view.getId() == R.id.ttv4) showData();
         });
     }

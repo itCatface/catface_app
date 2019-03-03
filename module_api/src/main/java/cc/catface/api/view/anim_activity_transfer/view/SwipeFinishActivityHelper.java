@@ -152,6 +152,7 @@ public class SwipeFinishActivityHelper {
             anim.addListener(new AnimatorListenerAdapter() {
                 @Override public void onAnimationEnd(Animator animation) {
                     mActivity.finish();
+                    mActivity.overridePendingTransition(0, 0);
                 }
             });
             anim.start();

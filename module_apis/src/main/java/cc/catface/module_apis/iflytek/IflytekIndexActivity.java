@@ -23,7 +23,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import cc.catface.app_base.Const;
 import cc.catface.module_apis.R;
 
-@Route(path = Const.AROUTER.apis_iflytek)
+@Route(path = Const.ARouter.apis_iflytek)
 public class IflytekIndexActivity extends Activity implements OnClickListener {
 
     private Toast mToast;

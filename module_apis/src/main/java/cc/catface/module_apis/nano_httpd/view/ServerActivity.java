@@ -21,7 +21,7 @@ import cc.catface.module_apis.nano_httpd.presenter.ServerPresenterImp;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.AROUTER.apis_nano)
+@Route(path = Const.ARouter.apis_nano)
 @CreatePresenter(ServerPresenterImp.class)
 public class ServerActivity extends MvpActivity<ServerView, ServerPresenterImp, ApisActivityServerBinding> implements ServerView {
     @Override public int layoutId() {
@@ -45,7 +45,7 @@ public class ServerActivity extends MvpActivity<ServerView, ServerPresenterImp, 
     }
 
     private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
     }
 
     @Override protected void onResume() {

@@ -81,5 +81,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv" />
 
+        <ImageView
+            android:id="@+id/iv_move"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="140dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -30,7 +30,7 @@ import cc.catface.module_start.welcome.presenter.WelcomePresenterImp;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.AROUTER.start_welcome)
+@Route(path = Const.ARouter.start_welcome)
 @CreatePresenter(WelcomePresenterImp.class)
 public class WelcomeActivity extends MvpActivity<WelcomeView, WelcomePresenterImp, StartActivityWelcomeBinding> implements WelcomeView, View.OnClickListener {
     @Override public int layoutId() {

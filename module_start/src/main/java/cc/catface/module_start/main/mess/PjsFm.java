@@ -26,7 +26,7 @@ public class PjsFm extends NormalFragment<PagePureListviewBinding> {
         TListView.str(mActivity, mBinding.lvList, mItems, pos -> {
             switch (mItems[pos]) {
                 case PJS_NEWS:
-                    ARouter.getInstance().build(Const.AROUTER.start_login).navigation();
+                    ARouter.getInstance().build(Const.ARouter.start_login).navigation();
                     break;
             }
         });

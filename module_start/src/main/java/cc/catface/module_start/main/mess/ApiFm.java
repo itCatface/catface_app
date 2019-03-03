@@ -18,7 +18,7 @@ public class ApiFm extends NormalFragment<PagePureListviewBinding> {
         return R.layout.page_pure_listview;
     }
 
-    private final String DEMO_FRAME = "demo-框架-android基础开发框架示例";
+    private final String DEMO_FRAME = "demo-框架-基础框架示例";
     private final String DEMO_FONT = "demo-系统-字体示例";
     private final String DEMO_TOAST = "demo-系统-toast示例";
     private final String DEMO_DIALOG = "demo-系统-dialog示例";
@@ -26,10 +26,9 @@ public class ApiFm extends NormalFragment<PagePureListviewBinding> {
     private final String DEMO_VIEW = "demo-系统-view&animator示例";
     private final String DEMO_HARDWARE = "demo-系统-硬件示例";
     private final String DEMO_MENU_OF_ELEME = "demo-功能-饿了么菜单";
-    private final String DEMO_TOUTIAO = "demo-系统控件-原生多条目RecyclerView示例";
-    private final String DEMO_BANNER = "demo-功能-广告轮播图";
+    private final String DEMO_RECYCLERVIEW = "demo-RecyclerView示例";
     private final String DEMO_LOAD_BIG_IMG = "demo-功能-加载大图片";
-    private final String DEMO_APP_INFO = "demo系统-系统info展示示例";
+    private final String DEMO_APP_INFO = "demo系统-系统信息";
     private final String DEMO_MULTI_FINGER = "demo系统-多点触控示例";
     private final String DEMO_TEXT_VIEW = "demo-系统控件-TextView效果示例";
     private final String DEMO_IV_SCALETYPE = "demo-系统控件-ImageView的scaleType属性示例";
@@ -38,81 +37,80 @@ public class ApiFm extends NormalFragment<PagePureListviewBinding> {
     private final String DEMO_ROOM = "demo-系统-room示例";
     private final String DEMO_CRASH = "demo-系统-crash处理示例";
 
-    private String[] mItems = {DEMO_FRAME, DEMO_FONT, DEMO_TOAST, DEMO_DIALOG, DEMO_POP, DEMO_VIEW, DEMO_HARDWARE, DEMO_MENU_OF_ELEME, DEMO_TOUTIAO, DEMO_BANNER, DEMO_LOAD_BIG_IMG, DEMO_APP_INFO, DEMO_MULTI_FINGER, DEMO_TEXT_VIEW,
+    private String[] mItems = {DEMO_FRAME, DEMO_FONT, DEMO_TOAST, DEMO_DIALOG, DEMO_POP, DEMO_VIEW, DEMO_HARDWARE, DEMO_RECYCLERVIEW, DEMO_MENU_OF_ELEME, DEMO_LOAD_BIG_IMG, DEMO_APP_INFO, DEMO_MULTI_FINGER, DEMO_TEXT_VIEW,
             DEMO_IV_SCALETYPE, DEMO_CONSTRAINT_LAYOUT, DEMO_DATA_BINDING, DEMO_ROOM, DEMO_CRASH};
 
 
     @Override public void createView() {
         TListView.str(mActivity, mBinding.lvList, mItems, pos -> {
-            switch(mItems[pos]) {
+            switch (mItems[pos]) {
                 case DEMO_FRAME:
-                    ARouter.getInstance().build(Const.AROUTER.api_frame).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_FRAME)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_frame).navigation();
                     break;
                 case DEMO_FONT:
-                    ARouter.getInstance().build(Const.AROUTER.api_font).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_FONT)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_font_type).navigation();
                     break;
                 case DEMO_TOAST:
-                    ARouter.getInstance().build(Const.AROUTER.api_toast).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_TOAST)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_toast).navigation();
                     break;
                 case DEMO_DIALOG:
-                    ARouter.getInstance().build(Const.AROUTER.api_dialog).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_DIALOG)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_dialog).navigation();
                     break;
                 case DEMO_POP:
-                    ARouter.getInstance().build(Const.AROUTER.api_popup).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_POP)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_popup).navigation();
                     break;
                 case DEMO_VIEW:
-                    ARouter.getInstance().build(Const.AROUTER.api_navigation).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_VIEW)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_view_anim).navigation();
                     break;
                 case DEMO_HARDWARE:
-                    event(DEMO_HARDWARE);
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_hardware).navigation();
                     break;
                 case DEMO_MENU_OF_ELEME:
-                    ARouter.getInstance().build(Const.AROUTER.api_eleme).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_MENU_OF_ELEME)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_eleme).navigation();
                     break;
-                case DEMO_TOUTIAO:
-                    ARouter.getInstance().build(Const.AROUTER.api_toutiao).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_TOUTIAO)).navigation();
-                    break;
-                case DEMO_BANNER:
-                    ARouter.getInstance().build(Const.AROUTER.api_banner).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_BANNER)).navigation();
+                case DEMO_RECYCLERVIEW:
+                    event(DEMO_RECYCLERVIEW);
                     break;
                 case DEMO_LOAD_BIG_IMG:
-                    ARouter.getInstance().build(Const.AROUTER.api_loadHugeImg).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_LOAD_BIG_IMG)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_load_large_image).navigation();
                     break;
                 case DEMO_APP_INFO:
-                    ARouter.getInstance().build(Const.AROUTER.api_appInfo).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_APP_INFO)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_system_info).navigation();
                     break;
                 case DEMO_MULTI_FINGER:
-                    ARouter.getInstance().build(Const.AROUTER.api_multi_finger).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_MULTI_FINGER)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_multi_touch).navigation();
                     break;
                 case DEMO_TEXT_VIEW:
-                    ARouter.getInstance().build(Const.AROUTER.api_test_text_view).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_TEXT_VIEW)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_textview_serial).navigation();
                     break;
                 case DEMO_IV_SCALETYPE:
-                    ARouter.getInstance().build(Const.AROUTER.api_attrs_ivScaleType).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_IV_SCALETYPE)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_imageview_serial).navigation();
                     break;
                 case DEMO_CONSTRAINT_LAYOUT:
-                    ARouter.getInstance().build(Const.AROUTER.api_test_constraint_layout).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_CONSTRAINT_LAYOUT)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_constraintlayout).navigation();
                     break;
                 case DEMO_DATA_BINDING:
-                    ARouter.getInstance().build(Const.AROUTER.api_databinding).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_DATA_BINDING)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_data_binding).navigation();
                     break;
                 case DEMO_ROOM:
-                    ARouter.getInstance().build(Const.AROUTER.api_room).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_ROOM)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_room).navigation();
                     break;
                 case DEMO_CRASH:
-                    ARouter.getInstance().build(Const.AROUTER.api_crash).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_CRASH)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_crash).navigation();
                     break;
             }
         });
     }
 
     private void event(String type) {
-        switch(type) {
-            case DEMO_HARDWARE:
-                String[] items = getResources().getStringArray(R.array.mess_hardware_list);
-                TPopup.get(mActivity).show(mBinding.lvList, "请选择具体类型", items, pos -> {
-                    if(items[pos].equals(getResources().getString(R.string.mess_hardware_list_camera))) {
-                        ARouter.getInstance().build(Const.AROUTER.api_camera).navigation();
+        switch (type) {
+            case DEMO_RECYCLERVIEW:
+                String[] items_rv = getResources().getStringArray(R.array.api_rv_list);
+                TPopup.get(mActivity).show(mBinding.lvList, "RecyclerView功能", items_rv, pos -> {
+                    if (items_rv[pos].equals(getResources().getString(R.string.api_rv_list_toutiao))) {
+                        ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_rv_toutiao).navigation();
+                    } else if (items_rv[pos].equals(getResources().getString(R.string.api_rv_list_banner))) {
+                        ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_rv_banner).navigation();
                     }
                 });
                 break;

@@ -17,19 +17,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.nex3z.flowlayout.FlowLayout
-            android:id="@+id/flowlayout"
+        <ScrollView
+            style="@style/scrollbar_scroll_bar_style_default"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1001"
-            android:padding="10dp"
-            android:visibility="gone"
-            app:flChildSpacing="8dp"
-            app:flRowSpacing="18dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tfa" />
+            app:layout_constraintTop_toBottomOf="@+id/tfa">
+
+            <com.nex3z.flowlayout.FlowLayout
+                android:id="@+id/flowlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#1001"
+                android:padding="10dp"
+                app:flChildSpacing="8dp"
+                app:flRowSpacing="18dp" />
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -14,7 +14,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="控制子ConstraintLayout显隐性"
+            android:text="当前区域为 include 区域"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,27 +22,29 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_1"
+            android:id="@+id/cl_2_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:background="#40f0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ttvt">
+            app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
             <TextView
                 android:id="@+id/tv_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="某某include子ConstraintLayout标题"
+                android:text="include(ConstraintLayout) 区域的文本"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/bt_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="某某include子ConstraintLayout标题对应的按钮"
+                android:text="include(ConstraintLayout) 区域的按钮哟"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="@+id/tv_1"
                 app:layout_constraintStart_toStartOf="@+id/tv_1"

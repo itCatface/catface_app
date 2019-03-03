@@ -16,7 +16,7 @@ import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ShowapiActivityShowApiBinding;
 import cc.catface.module_apis.showapi.adapter.ImageTextAdapter;
 
-@Route(path = Const.AROUTER.apis_showapi)
+@Route(path = Const.ARouter.apis_showapi)
 public class ShowAPIActivity extends NormalActivity<ShowapiActivityShowApiBinding> {
     @Override public int layoutId() {
         return R.layout.showapi_activity_show_api;
@@ -45,6 +45,6 @@ public class ShowAPIActivity extends NormalActivity<ShowapiActivityShowApiBindin
     }
 
     private void title() {
-        mBinding.tfaShowapi.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+        mBinding.tfaShowapi.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
     }
 }

@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/bt_ofFloat_ofInt"
-            style="@style/view_bt_default_weight_no_padding"
-            android:text="ofInt" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-        <Button
-            android:id="@+id/bt_ofObject"
-            style="@style/view_bt_default_weight_no_padding"
-            android:text="Obj" />
+            <Button
+                android:id="@+id/bt_ofFloat_ofInt"
+                style="@style/view_bt_default_weight_no_padding"
+                android:text="ofInt" />
 
-        <Button
-            android:id="@+id/bt_keyframe"
-            style="@style/view_bt_default_weight_no_padding"
-            android:text="k" />
+            <Button
+                android:id="@+id/bt_ofObject"
+                style="@style/view_bt_default_weight_no_padding"
+                android:text="Obj" />
 
-        <Button
-            android:id="@+id/bt_keyframe2"
-            style="@style/view_bt_default_weight_no_padding"
-            android:text="k2" />
+            <Button
+                android:id="@+id/bt_keyframe"
+                style="@style/view_bt_default_weight_no_padding"
+                android:text="k" />
 
-        <Button
-            android:id="@+id/bt_set"
-            style="@style/view_bt_default_weight_no_padding"
-            android:text="set" />
+            <Button
+                android:id="@+id/bt_keyframe2"
+                style="@style/view_bt_default_weight_no_padding"
+                android:text="k2" />
 
-        <Button
-            android:id="@+id/bt_argbEva"
-            style="@style/view_bt_default_weight_no_padding"
-            android:text="ae" />
+            <Button
+                android:id="@+id/bt_set"
+                style="@style/view_bt_default_weight_no_padding"
+                android:text="set" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/bt_argbEva"
+                style="@style/view_bt_default_weight_no_padding"
+                android:text="ae" />
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="90dp"
-        android:background="#50f0"
-        android:text="基本动画"
-        android:textSize="36sp" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="90dp"
+            android:background="#50f0"
+            android:text="基本动画"
+            android:textSize="36sp" />
+
+    </RelativeLayout>
+</layout>

@@ -13,7 +13,7 @@
             android:id="@+id/bt_ctrl_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="控制子ConstraintLayout显隐性"
+            android:text="当前子ConstraintLayout显隐性"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
             android:id="@+id/bt_ctrl_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="控制子ConstraintLayout显隐性"
+            android:text="include的子ConstraintLayout显隐性"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
                 android:id="@+id/tv_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="某某标题"
+                android:text="当前页面的ConstraintLayout文字"
                 app:layout_constraintBottom_toBottomOf="@+id/bt_1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/bt_1" />
@@ -54,7 +54,7 @@
                 android:id="@+id/bt_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="某某标题对应的按钮"
+                android:text="按钮哟"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,16 +71,6 @@
             app:layout_constraintTop_toBottomOf="@+id/cl_1" />
 
         <Button
-            android:id="@+id/bt_jump"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="跳转至"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/i" />
-
-
-        <Button
             android:id="@+id/bt_right_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -89,7 +79,7 @@
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_jump" />
+            app:layout_constraintTop_toBottomOf="@+id/i" />
 
         <Button
             android:id="@+id/bt_left_in"
@@ -101,7 +91,7 @@
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/bt_right_in"
-            app:layout_constraintTop_toBottomOf="@+id/bt_jump" />
+            app:layout_constraintTop_toBottomOf="@+id/i" />
 
         <Button
             android:id="@+id/bt_top_in"
@@ -113,7 +103,7 @@
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/bt_left_in"
-            app:layout_constraintTop_toBottomOf="@+id/bt_jump" />
+            app:layout_constraintTop_toBottomOf="@+id/i" />
 
         <Button
             android:id="@+id/bt_bottom_in"
@@ -125,7 +115,7 @@
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/bt_top_in"
-            app:layout_constraintTop_toBottomOf="@+id/bt_jump" />
+            app:layout_constraintTop_toBottomOf="@+id/i" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

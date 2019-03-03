@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import cc.catface.app_base.Const;
 import cc.catface.module_arouter_demo.databinding.ModuleArouterActivityArouterBinding;
 
-@Route(path = Const.AROUTER.test_arouter)
+@Route(path = Const.ARouter.test_arouter)
 public class ARouterDemoActivity extends Activity implements View.OnClickListener {
     private ModuleArouterActivityArouterBinding mBinding;
 

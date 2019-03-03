@@ -75,7 +75,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
      * 初始化Layout。
      */
     private void initLayout() {
-        ((TitleFontAwesome) findViewById(R.id.tfa)).setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+        ((TitleFontAwesome) findViewById(R.id.tfa)).setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
         findViewById(R.id.iat_recognize).setOnClickListener(this);
         findViewById(R.id.iat_recognize_stream).setOnClickListener(this);
         findViewById(R.id.iat_upload_contacts).setOnClickListener(this);

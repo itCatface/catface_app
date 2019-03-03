@@ -17,7 +17,7 @@ import cc.catface.module_apis.sticky_list_headers.adapter.StickyListHeaderAdapte
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.AROUTER.apis_sticky_list)
+@Route(path = Const.ARouter.apis_sticky_list)
 public class DemoStickyListActivity extends NormalActivity<ApisActivityDemoStickyListBinding> {
 
     @Override public int layoutId() {
@@ -32,7 +32,7 @@ public class DemoStickyListActivity extends NormalActivity<ApisActivityDemoStick
     }
 
     private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
     }
 
     private void testStickyListHeaders() {

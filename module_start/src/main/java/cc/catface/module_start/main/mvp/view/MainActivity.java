@@ -23,7 +23,7 @@ import cc.catface.module_start.main.mvp.view.navigation.view.MessFm;
 import cc.catface.module_start.main.personal.mvp.view.PersonalFm;
 import cc.catface.module_start.main.query.view.QueryFm;
 
-@Route(path = Const.AROUTER.start_main)
+@Route(path = Const.ARouter.start_main)
 @CreatePresenter(MainPresenterImp.class)
 public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartActivityMainBinding> implements MainView, MessFm.FragmentListener {
     @Override public int layoutId() {

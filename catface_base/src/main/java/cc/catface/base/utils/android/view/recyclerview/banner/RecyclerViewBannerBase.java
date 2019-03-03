@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import cc.catface.base.R;
+import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.view.recyclerview.banner.adapter.BaseBannerAdapter;
 
 
@@ -68,6 +69,7 @@ public abstract class RecyclerViewBannerBase<L extends RecyclerView.LayoutManage
         @Override public boolean handleMessage(Message msg) {
             if (msg.what == WHAT_AUTO_PLAY) {
                 mRecyclerView.smoothScrollToPosition(++currentIndex);
+                TLog.d("rrrrr", "LIB-currentIndex:" + currentIndex);
                 refreshIndicator();
                 mHandler.sendEmptyMessageDelayed(WHAT_AUTO_PLAY, autoPlayDuration);
 
@@ -229,23 +231,23 @@ public abstract class RecyclerViewBannerBase<L extends RecyclerView.LayoutManage
     /**
      * 设置是否禁止滚动播放
      */
-    public void setAutoPlaying(boolean isAutoPlaying) {
-        this.isAutoPlaying = isAutoPlaying;
-        setPlaying(this.isAutoPlaying);
-    }
-
-    public boolean isPlaying() {
-        return isPlaying;
-    }
-
-    public void setShowIndicator(boolean showIndicator) {
-        this.showIndicator = showIndicator;
-        indicatorContainer.setVisibility(showIndicator ? VISIBLE : GONE);
-    }
-
-    public void setOnBannerItemClickListener(OnBannerItemClickListener onBannerItemClickListener) {
-        this.onBannerItemClickListener = onBannerItemClickListener;
-    }
+//    public void setAutoPlaying(boolean isAutoPlaying) {
+//        this.isAutoPlaying = isAutoPlaying;
+//        setPlaying(this.isAutoPlaying);
+//    }
+//
+//    public boolean isPlaying() {
+//        return isPlaying;
+//    }
+//
+//    public void setShowIndicator(boolean showIndicator) {
+//        this.showIndicator = showIndicator;
+//        indicatorContainer.setVisibility(showIndicator ? VISIBLE : GONE);
+//    }
+//
+//    public void setOnBannerItemClickListener(OnBannerItemClickListener onBannerItemClickListener) {
+//        this.onBannerItemClickListener = onBannerItemClickListener;
+//    }
 
     /**
      * 设置轮播数据集
@@ -284,9 +286,9 @@ public abstract class RecyclerViewBannerBase<L extends RecyclerView.LayoutManage
     /**
      * 设置轮播数据集
      */
-    public void initBannerImageView(@NonNull List<String> newList) {
-        initBannerImageView(newList, null, null);
-    }
+//    public void initBannerImageView(@NonNull List<String> newList) {
+//        initBannerImageView(newList, null, null);
+//    }
 
     @Override public boolean dispatchTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
@@ -374,6 +376,7 @@ public abstract class RecyclerViewBannerBase<L extends RecyclerView.LayoutManage
         }
 
         @Override public int getItemCount() {
+            TLog.d("rrrrr", "LIB-getItemCount：" + bannerSize);
             return bannerSize;
         }
     }

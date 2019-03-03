@@ -1,11 +1,38 @@
 <resources>
-    <string name="app_app_name">BaseTabApp</string>
+    <string name="app_app_name">CatfaceApp</string>
 
     <!-- app id -->
     <string name="app_id_bugly">3886d6731c</string>
 
 
     <string name="error_net_error_brvah">Simulate network error...</string>
+
+
+    <!-- ApiFm -->
+    <!-- 硬件列表 -->
+    <string name="api_hardware_list_camera">相机[camera]</string>
+    <string name="api_hardware_list_vibrate">震动[vibrate]</string>
+    <string-array name="api_hardware_list">
+        <item>@string/api_hardware_list_camera</item>
+        <item>@string/api_hardware_list_vibrate</item>
+    </string-array>
+    <!-- RecyclerView列表 -->
+    <string name="api_rv_list_toutiao">头条新闻</string>
+    <string name="api_rv_list_banner">轮播</string>
+    <string-array name="api_rv_list">
+        <item>@string/api_rv_list_toutiao</item>
+        <item>@string/api_rv_list_banner</item>
+    </string-array>
+    <!-- view&anim列表 -->
+    <string name="api_view_anim_list_loading_spinkit">spinkit</string>
+    <string name="api_view_anim_list_loading_smile">smile</string>
+    <string name="api_view_anim_list_loading_round_progress">round progress</string>
+    <string-array name="api_view_anim_list_loading">
+        <item>@string/api_view_anim_list_loading_spinkit</item>
+        <item>@string/api_view_anim_list_loading_smile</item>
+        <item>@string/api_view_anim_list_loading_round_progress</item>
+    </string-array>
+
 
     <string name="brbc">八荣八耻~\n
 以热爱祖国为荣，以危害祖国为耻；\n

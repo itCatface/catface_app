@@ -18,7 +18,7 @@ import cc.catface.module_apis.databinding.ApisActivityLoadImgBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.AROUTER.apis_loadImg)
+@Route(path = Const.ARouter.apis_loadImg)
 public class LoadImgActivity extends NormalActivity<ApisActivityLoadImgBinding> implements View.OnClickListener {
     @Override public int layoutId() {
         return R.layout.apis_activity_load_img;
@@ -63,7 +63,7 @@ public class LoadImgActivity extends NormalActivity<ApisActivityLoadImgBinding> 
     }
 
     private void title() {
-        mBinding.tfaLoadImg.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+        mBinding.tfaLoadImg.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
     }
 }
 

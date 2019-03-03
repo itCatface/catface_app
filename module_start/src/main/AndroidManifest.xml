@@ -3,6 +3,15 @@
     package="cc.catface.module_start">
 
     <application>
+        <activity
+            android:name="cc.catface.module_start.splash.view.SplashActivity"
+            android:theme="@style/common_full_screen_no_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="cc.catface.module_start.CrashHandlerActivity" />
         <activity android:name=".welcome.view.WelcomeActivity"
             android:theme="@style/common_full_screen_no_title"/>
         <activity android:name=".ad.view.AdActivity" />

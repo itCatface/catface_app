@@ -17,8 +17,7 @@ android:interpolator="decelerate"
 */
 -->
 
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<set xmlns:android="http://schemas.android.com/apk/res/android">
     <translate
         android:duration="@android:integer/config_shortAnimTime"
         android:fromYDelta="75%"

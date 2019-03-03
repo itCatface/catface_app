@@ -15,7 +15,7 @@ import cc.catface.module_apis.databinding.ApisActivityPdfBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.AROUTER.apis_pdf)
+@Route(path = Const.ARouter.apis_pdf)
 public class PDFActivity extends NormalActivity<ApisActivityPdfBinding> implements View.OnClickListener {
     @Override public int layoutId() {
         return R.layout.apis_activity_pdf;
@@ -61,7 +61,7 @@ public class PDFActivity extends NormalActivity<ApisActivityPdfBinding> implemen
     }
 
     private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
     }
 
     private void loadInitPDF() {

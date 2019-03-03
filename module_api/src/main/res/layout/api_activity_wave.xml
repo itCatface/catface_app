@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <cc.catface.api.view.demo104_bezier.Wave1View
-        android:id="@+id/w1v"
+    <data />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <cc.catface.api.view.demo104_bezier.Wave1View
+            android:id="@+id/w1v"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/bt_startX"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="开始动画x" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/bt_startY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开始动画y" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/bt_startX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始动画x" />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/bt_startY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始动画y" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

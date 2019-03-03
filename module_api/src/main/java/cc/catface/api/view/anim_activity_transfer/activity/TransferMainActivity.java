@@ -38,12 +38,8 @@ public class TransferMainActivity extends NormalActivity<ApiAnimActivityTransfer
         });
 
         mBinding.btCtrl2.setOnClickListener(v -> {
-            mBinding.i.cl2.setVisibility(mBinding.i.cl2.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+            mBinding.i.cl21.setVisibility(mBinding.i.cl21.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
         });
-
-        /* activity跳转 */
-        mBinding.btJump.setOnClickListener(v -> TIntent.startActivity(this, MainActivity.class, true));
-
 
         mBinding.btRightIn.setOnClickListener(v -> {
             Intent intent = new Intent(this, AnimTransferRightActivity.class);

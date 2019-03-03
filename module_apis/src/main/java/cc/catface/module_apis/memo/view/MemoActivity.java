@@ -46,7 +46,7 @@ import cc.catface.module_apis.memo.presenter.MemoPresenterImp;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.AROUTER.apis_memo)
+@Route(path = Const.ARouter.apis_memo)
 @CreatePresenter(MemoPresenterImp.class)
 public class MemoActivity extends MvpActivity<MemoView, MemoPresenterImp, ApisActivityMemoBinding> implements MemoView {
     @Override public int layoutId() {
@@ -84,7 +84,7 @@ public class MemoActivity extends MvpActivity<MemoView, MemoPresenterImp, ApisAc
     }
 
     private void title() {
-        mBinding.tfaMemo.setTitle(getIntent().getStringExtra(Const.AROUTER.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon2(R.string.fa_search).setIcon4(R.string.fa_plus).setIcon3(R.string.fa_reorder);
+        mBinding.tfaMemo.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon2(R.string.fa_search).setIcon4(R.string.fa_plus).setIcon3(R.string.fa_reorder);
     }
 
     private void initView() {

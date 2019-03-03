@@ -52,34 +52,34 @@ public class ApisFm extends NormalFragment<PagePureListviewBinding> {
         TListView.str(mActivity, mBinding.lvList, mItems, pos -> {
             switch(mItems[pos]) {
                 case PDF_READER:
-                    ARouter.getInstance().build(Const.AROUTER.apis_pdf).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(PDF_READER)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_pdf).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(PDF_READER)).navigation();
                     break;
                 case BRVAH:
-                    ARouter.getInstance().build(Const.AROUTER.apis_brvah).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(BRVAH)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_brvah).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(BRVAH)).navigation();
                     break;
                 case SPACE:
                     ((MainActivity) mActivity).process("clicked...");
                     break;
                 case DEMO_FLOW_LAYOUT:
-                    ARouter.getInstance().build(Const.AROUTER.apis_flow_layout).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_FLOW_LAYOUT)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_flow_layout).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_FLOW_LAYOUT)).navigation();
                     break;
                 case DEMO_STICKY_LIST:
-                    ARouter.getInstance().build(Const.AROUTER.apis_sticky_list).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_STICKY_LIST)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_sticky_list).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_STICKY_LIST)).navigation();
                     break;
                 case DEMO_NANOHTTPD_SERVER:
-                    ARouter.getInstance().build(Const.AROUTER.apis_nano).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_NANOHTTPD_SERVER)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_nano).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_NANOHTTPD_SERVER)).navigation();
                     break;
                 case DEMO_IFLYTEK:
-                    ARouter.getInstance().build(Const.AROUTER.apis_iflytek).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_IFLYTEK)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_iflytek).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_IFLYTEK)).navigation();
                     break;
                 case DEMO_MEMO:
-                    ARouter.getInstance().build(Const.AROUTER.apis_memo).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_MEMO)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_memo).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_MEMO)).navigation();
                     break;
                 case DEMO_SHOWAPI:
-                    ARouter.getInstance().build(Const.AROUTER.apis_showapi).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(DEMO_SHOWAPI)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_showapi).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_SHOWAPI)).navigation();
                     break;
                 case LOAD_IMG:
-                    ARouter.getInstance().build(Const.AROUTER.apis_loadImg).withString(Const.AROUTER.DEFAULT_STRING_KEY, Const.AROUTER.getDefaultIntentStringValue(LOAD_IMG)).navigation();
+                    ARouter.getInstance().build(Const.ARouter.apis_loadImg).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(LOAD_IMG)).navigation();
                     break;
             }
         });

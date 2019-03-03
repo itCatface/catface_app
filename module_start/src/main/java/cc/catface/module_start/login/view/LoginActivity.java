@@ -15,7 +15,7 @@ import cc.catface.module_start.login.presenter.LoginPresenterImp;
  *
  * @desc 超简单的mvp+DataBinding操作案例
  */
-@Route(path = Const.AROUTER.start_login)
+@Route(path = Const.ARouter.start_login)
 @CreatePresenter(LoginPresenterImp.class)
 public class LoginActivity extends MvpActivity<LoginView, LoginPresenterImp, StartActivityLoginBinding> implements LoginView {
     @Override public int layoutId() {

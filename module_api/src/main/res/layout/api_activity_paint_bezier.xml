@@ -1,70 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <cc.catface.api.view.demo104_bezier.PaintBezierView
-        android:id="@+id/pbv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
-
-    <Button
-        android:id="@+id/bt_reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/selector_bt"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:padding="4dp"
-        android:text="功能"
-        android:textColor="#333"
-        android:textStyle="bold" />
-
-
-    <LinearLayout
-        android:id="@+id/ll_width"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/bt_reset"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="粗细->"
-            android:textStyle="bold" />
-
-        <SeekBar
-            android:id="@+id/sb_width"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="30"
-            android:padding="10dp" />
-
-    </LinearLayout>
+    <data />
 
     <RelativeLayout
-        android:id="@+id/rl_color"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#1333"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
-        <cc.catface.api.view.demo104_bezier.view.ColorPicker
-            android:id="@+id/cp"
+        <cc.catface.api.view.demo104_bezier.PaintBezierView
+            android:id="@+id/pbv"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+        <Button
+            android:id="@+id/bt_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/selector_bt"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="4dp"
+            android:text="功能"
+            android:textColor="#333"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_width"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/bt_reset"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="粗细->"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/sb_width"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="30"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#1333"
+            android:padding="10dp">
+
+            <cc.catface.api.view.demo104_bezier.view.ColorPicker
+                android:id="@+id/cp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
+</layout>

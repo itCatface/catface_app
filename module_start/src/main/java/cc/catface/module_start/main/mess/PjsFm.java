@@ -17,14 +17,18 @@ public class PjsFm extends NormalFragment<PagePureListviewBinding> {
         return R.layout.page_pure_listview;
     }
 
+    private final String PJS_WORK_DEMO = "工作需求demo";
     private final String PJS_NEWS = "mvp+databinding超简单使用案例";
 
-    private String[] mItems = {PJS_NEWS};
+    private String[] mItems = {PJS_WORK_DEMO, PJS_NEWS};
 
 
     @Override public void createView() {
         TListView.str(mActivity, mBinding.lvList, mItems, pos -> {
             switch (mItems[pos]) {
+                case PJS_WORK_DEMO:
+                    ARouter.getInstance().build(Const.ARouter.work_demo_main).navigation();
+                    break;
                 case PJS_NEWS:
                     ARouter.getInstance().build(Const.ARouter.start_login).navigation();
                     break;

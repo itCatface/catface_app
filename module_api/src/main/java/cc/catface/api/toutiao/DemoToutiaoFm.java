@@ -1,7 +1,5 @@
 package cc.catface.api.toutiao;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,8 +13,6 @@ import cc.catface.api.toutiao.adapter.ToutiaoAdapter;
 import cc.catface.api.toutiao.domain.TempDataOfToutiao;
 import cc.catface.api.toutiao.domain.ToutiaoCommonBean;
 import cc.catface.api.toutiao.toutiao_refresh.TodayNewsHeader;
-import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.Timer.TTimer;
 
@@ -27,7 +23,6 @@ import cc.catface.base.utils.android.Timer.TTimer;
  *
  * 1.多条目的RecyclerView使用
  */
-@Route(path = Const.ARouter.api_toutiao)
 public class DemoToutiaoFm extends NormalFragment<ApiActivityToutiaoBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_toutiao;

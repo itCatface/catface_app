@@ -8,6 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <cc.catface.base.utils.android.common_title.TitleFontAwesome
+            android:id="@+id/tfa_room"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/bt_insert"
             android:layout_width="0dp"
@@ -15,7 +23,7 @@
             android:text="增"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tfa_room" />
 
         <Button
             android:id="@+id/bt_delete"
@@ -52,6 +60,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_query_all" />
+
+        <ListView
+            android:id="@+id/lv_room"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

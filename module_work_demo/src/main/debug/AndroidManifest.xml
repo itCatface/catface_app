@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cc.catface.module_work_demo">
+
+    <application
+        android:name="cc.catface.app_base.ARouterApp"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".WorkDemoMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".WorkDemoHolderActivity" />
+        <activity android:name=".swipe_change_page.SwipeChangePageActivity" />
+
+    </application>
+
+</manifest>

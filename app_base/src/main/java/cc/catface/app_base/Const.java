@@ -70,6 +70,13 @@ public class Const {
         public static final String apis_loadImg = "/apis/loadImg";
 
 
+        /* module_work_demo */
+        public static final String work_demo_main = "/work/demo/main";
+        public static final String work_demo_holder = "/work/demo/holder";
+        //
+        public static final int fm_id_work_demo_ifly_swipe_change_page = -0x500001;
+
+
         /** fragment's id */
         public static final String fm_id_key = "fm_id_key";
         public static final int fm_id_frame = -0x99;

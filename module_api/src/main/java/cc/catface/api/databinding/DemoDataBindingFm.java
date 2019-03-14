@@ -3,14 +3,10 @@ package cc.catface.api.databinding;
 import android.os.SystemClock;
 import android.view.View;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.util.Random;
 
 import cc.catface.api.R;
-import cc.catface.app_base.Const;
 import cc.catface.app_base.TestDataSource;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.base.utils.android.common_title.TitleFontAwesome;
@@ -18,8 +14,7 @@ import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_databinding)
-public class DemoDataBindingFm extends NormalFragment<ApiActivityDataBindingBinding> {
+public class DemoDataBindingFm extends NormalFragment<cc.catface.api.databinding.ApiActivityDataBindingBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_data_binding;

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 public abstract class NormalFragment<B extends ViewDataBinding> extends Fragment {
 
     public Activity mActivity;
+    protected View mRootView;
     protected B mBinding;
 
     @Override public void onAttach(Context context) {
@@ -31,7 +32,8 @@ public abstract class NormalFragment<B extends ViewDataBinding> extends Fragment
         initAction();
         initData();
         createView();
-        return mBinding.getRoot();
+        mRootView = mBinding.getRoot();
+        return mRootView;
     }
 
     public abstract int layoutId();

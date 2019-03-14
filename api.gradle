@@ -8,6 +8,7 @@ ext {
     debug_module_start = false
     debug_module_api = false
     debug_module_apis = false
+    debug_module_work_demo = true
 
 
     version_build = [compileSdkVersion: 28,

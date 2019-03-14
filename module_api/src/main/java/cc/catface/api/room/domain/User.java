@@ -1,30 +1,46 @@
 package cc.catface.api.room.domain;
 
-
-import android.graphics.Bitmap;
-
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-/**
- * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
- */
-@Entity
+@Entity(tableName = "user")
 public class User {
 
-    @PrimaryKey(autoGenerate = true) public int uid;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private String name;
+    private int age;
 
-    @ColumnInfo(name = "first_name") public String firstName;
-    @ColumnInfo(name = "last_name") public String lastName;
+    public int getId() {
+        return id;
+    }
 
-    @Ignore Bitmap bitmap;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    //这里的getter/setter方法是必须的
+    //这里的getter/setter方法是必须的
+    //这里的getter/setter方法是必须的
+    //重要的事说三遍
 
 
-    public User(String firstName, String lastName, Bitmap bitmap) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.bitmap = bitmap;
+    @Override public String toString() {
+        return "User{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';
     }
 }

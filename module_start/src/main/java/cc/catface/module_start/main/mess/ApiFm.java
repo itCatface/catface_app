@@ -31,7 +31,7 @@ public class ApiFm extends NormalFragment<PagePureListviewBinding> {
     private final String DEMO_APP_INFO = "demo系统-系统信息";
     private final String DEMO_MULTI_FINGER = "demo系统-多点触控示例";
     private final String DEMO_TEXT_VIEW = "demo-系统控件-TextView效果示例";
-    private final String DEMO_IV_SCALETYPE = "demo-系统控件-ImageView的scaleType属性示例";
+    private final String DEMO_IV_SCALETYPE = "demo-系统控件-IV-scaleType属性示例";
     private final String DEMO_CONSTRAINT_LAYOUT = "demo-系统-ConstraintLayout示例";
     private final String DEMO_DATA_BINDING = "demo-系统-data_binding示例";
     private final String DEMO_ROOM = "demo-系统-room示例";

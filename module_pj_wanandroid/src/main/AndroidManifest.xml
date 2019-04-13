@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cc.catface.wanandroid">
+
+    <application>
+        <activity android:name=".module.WanandroidMainActivity" />
+        <activity android:name=".module.web.WebActivity" />
+        <activity android:name=".module.knowledge.mvp.knowledge_column.KnowledgeColumnActivity" />
+    </application>
+
+</manifest>

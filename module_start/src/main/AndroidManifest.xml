@@ -12,14 +12,15 @@
             </intent-filter>
         </activity>
         <activity android:name="cc.catface.module_start.CrashHandlerActivity" />
-        <activity android:name=".welcome.view.WelcomeActivity"
-            android:theme="@style/common_full_screen_no_title"/>
+        <activity
+            android:name=".welcome.view.WelcomeActivity"
+            android:theme="@style/common_full_screen_no_title" />
         <activity android:name=".ad.view.AdActivity" />
         <activity android:name=".login.view.LoginActivity" />
         <activity
             android:name=".main.mvp.view.MainActivity"
             android:fitsSystemWindows="true" />
-        <activity android:name=".main.personal.mvp.view.SettingActivity"></activity>
+        <activity android:name=".main.personal.mvp.view.SettingActivity" />
     </application>
 
 </manifest>

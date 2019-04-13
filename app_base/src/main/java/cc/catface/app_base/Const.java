@@ -23,42 +23,17 @@ public class Const {
             return result;
         }
 
-
-        /* module_arouter_demo */
-        public static final String test_arouter = "/test/arouter";
-
-
         /* module_start */
         public static final String start_welcome = "/start/welcome";
         public static final String start_login = "/start/login";
         public static final String start_main = "/start/main";
 
-
         /* module_api */
         public static final String api_holder = "/api/api";
         public static final String api_demo_view_holder = "/api/demo_view_holder";
-        public static final String api_frame = "/api/frame";
-        public static final String api_font = "/api/font";
-        public static final String api_toast = "/api/toast";
-        public static final String api_dialog = "/api/dialog";
-        public static final String api_popup = "/api/popup";
-        public static final String api_navigation = "/api/view/navigation";
-        public static final String api_camera = "/api/camera";
-        public static final String api_eleme = "/api/eleme";
-        public static final String api_toutiao = "/api/toutiao";
-        public static final String api_banner = "/api/banner";
-        public static final String api_loadHugeImg = "/api/loadHugeImg";
-        public static final String api_appInfo = "/api/appInfo";
-        public static final String api_multi_finger = "/api/multi_finger";
-        public static final String api_attrs_ivScaleType = "/api/attrs/ivScaleType";
-        public static final String api_test_text_view = "/api/test_text_view";
-        public static final String api_test_constraint_layout = "/api/test_constraint_layout";
-        public static final String api_databinding = "/api/databinding";
-        public static final String api_room = "/api/room";
-        public static final String api_crash = "/api/crash";
-
 
         /* module_apis */
+        public static final String apis_activity_holder = "/apis/activity/holder";
         public static final String apis_pdf = "/apis/pdf";
         public static final String apis_brvah = "/apis/brvah";
         public static final String apis_flow_layout = "/apis/flow_layout";
@@ -66,15 +41,19 @@ public class Const {
         public static final String apis_nano = "/apis/nano";
         public static final String apis_iflytek = "/apis/iflytek";
         public static final String apis_memo = "/apis/memo";
-        public static final String apis_showapi = "/apis/showapi";
         public static final String apis_loadImg = "/apis/loadImg";
-
 
         /* module_work_demo */
         public static final String work_demo_main = "/work/demo/main";
         public static final String work_demo_holder = "/work/demo/holder";
         //
         public static final int fm_id_work_demo_ifly_swipe_change_page = -0x500001;
+
+        /* module_pj_showapi */
+        public static final String pj_showapi_main = "/pj_showapi/main";
+
+        /* module_pj_wanandroid */
+        public static final String pj_wanandroid_main = "/pj_wanandroid/main";
 
 
         /** fragment's id */
@@ -98,6 +77,7 @@ public class Const {
         public static final int fm_id_data_binding = -0x84;
         public static final int fm_id_room = -0x83;
         public static final int fm_id_crash = -0x82;
+        public static final int fm_id_toolbar = -0x82001;
         public static final int fm_id_view_astr = -0x100001;
         public static final int fm_id_view_interpolator = -0x100002;
         public static final int fm_id_view_value = -0x100003;
@@ -115,6 +95,6 @@ public class Const {
         public static final int fm_id_view_loading_smile = -0x110002;
         public static final int fm_id_view_loading_round_progress = -0x110003;
 
-
+        public static final int fm_id_apis_test_retrofit = -0x190001;
     }
 }

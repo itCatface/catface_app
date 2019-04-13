@@ -22,7 +22,6 @@ import cc.catface.base.utils.android.common_recyclerview.TRV;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_dialog)
 public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_dialog;

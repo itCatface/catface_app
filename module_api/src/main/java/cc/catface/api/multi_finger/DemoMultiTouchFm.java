@@ -18,7 +18,6 @@ import rx.functions.Action1;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_multi_finger)
 public class DemoMultiTouchFm extends NormalFragment<ApiActivityMultiFingerBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_multi_finger;

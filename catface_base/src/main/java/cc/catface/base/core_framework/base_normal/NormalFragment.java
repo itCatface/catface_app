@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
+import cc.catface.base.core_framework.BaseFunctionFm;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public abstract class NormalFragment<B extends ViewDataBinding> extends Fragment {
+public abstract class NormalFragment<B extends ViewDataBinding> extends BaseFunctionFm {
 
     public Activity mActivity;
     protected View mRootView;

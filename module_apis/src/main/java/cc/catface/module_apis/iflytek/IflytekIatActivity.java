@@ -99,7 +99,7 @@ public class IflytekIatActivity extends Activity implements OnClickListener {
             Intent intents = new Intent(IflytekIatActivity.this, IatSettings.class);
             startActivity(intents);
             // 开始听写
-            // 如何判断一次听写结束：OnResult isLast=true 或者 onError
+            // 如何判断一次听写结束：OnResult isLast=true 或者 onComplete
         } else if(R.id.iat_recognize == view.getId()) {
             mResultText.setText(null);// 清空显示内容
             mIatResults.clear();

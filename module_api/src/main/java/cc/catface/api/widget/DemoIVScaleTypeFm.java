@@ -11,7 +11,6 @@ import cc.catface.base.core_framework.base_normal.NormalFragment;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_attrs_ivScaleType)
 public class DemoIVScaleTypeFm extends NormalFragment<ApiActivityIvScaleTypeBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_iv_scale_type;

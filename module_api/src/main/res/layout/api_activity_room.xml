@@ -16,6 +16,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <LinearLayout
+            android:id="@+id/ll_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/tfa_room">
+
+            <Button
+                android:id="@+id/bt_query_all"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="查(所有)"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_update" />
+
+            <Button
+                android:id="@+id/bt_query_odd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="查(id为奇数)"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_query_all" />
+
+            <Button
+                android:id="@+id/bt_query_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="查(id倒序)"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_query_odd" />
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/bt_insert"
             android:layout_width="0dp"
@@ -23,7 +63,7 @@
             android:text="增"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tfa_room" />
+            app:layout_constraintTop_toBottomOf="@+id/ll_query" />
 
         <Button
             android:id="@+id/bt_delete"
@@ -43,23 +83,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_delete" />
 
-        <Button
-            android:id="@+id/bt_query_all"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="查(所有)"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_update" />
-
-        <Button
-            android:id="@+id/bt_query_odd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="查(id为奇数)"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_query_all" />
 
         <ListView
             android:id="@+id/lv_room"

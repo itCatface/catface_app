@@ -4,11 +4,13 @@
 ext {
 
     /* 组件化配置 */
-    IS_DEBUG_MODULE_arouter = false
     debug_module_start = false
     debug_module_api = false
     debug_module_apis = false
-    debug_module_work_demo = true
+    debug_module_work_demo = false
+
+    debug_module_pj_wanandroid = false
+    debug_module_pj_showapi = false
 
 
     version_build = [compileSdkVersion: 28,

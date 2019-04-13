@@ -1,0 +1,71 @@
+if (rootProject.ext.debug_module_pj_showapi) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true    // 64k
+        javaCompileOptions {    // ARouter
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        if (rootProject.ext.debug_module_pj_showapi) {
+            applicationId "cc.catface.showapi"
+        }
+    }
+
+    sourceSets {
+        main {
+            if (rootProject.ext.debug_module_pj_showapi) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude '**/debug/**'
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    /** data binding & java1.8 */
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "androidx.test:runner:1.2.0-alpha03"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0-alpha03"
+    annotationProcessor 'androidx.annotation:annotation:1.0.2'
+    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"    // ARouter
+
+    implementation project(':app_base')
+}

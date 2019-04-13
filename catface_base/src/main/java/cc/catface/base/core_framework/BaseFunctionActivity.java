@@ -8,7 +8,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,7 +18,7 @@ import cc.catface.base.utils.android.common_print.toast.TToast;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public abstract class BaseFunctionActivity extends AppCompatActivity {
+public abstract class BaseFunctionActivity extends RxAppCompatActivity {
 
 
     /**

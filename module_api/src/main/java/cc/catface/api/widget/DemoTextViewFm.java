@@ -21,7 +21,6 @@ import cc.catface.base.core_framework.base_normal.NormalFragment;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_test_text_view)
 public class DemoTextViewFm extends NormalFragment<ApiActivityTestTextViewBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_test_text_view;

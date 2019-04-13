@@ -30,7 +30,6 @@ import cc.catface.base.utils.android.common_print.toast.TToast;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_eleme)
 public class DemoElemeFm extends NormalFragment<ApiActivityElemeBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_eleme;

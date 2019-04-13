@@ -20,7 +20,6 @@ import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_frame)
 public class DemoFrameFm extends NormalFragment<ApiActivityDemoFrameBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_demo_frame;

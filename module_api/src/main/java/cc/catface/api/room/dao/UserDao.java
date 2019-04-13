@@ -14,6 +14,12 @@ public interface UserDao {
     @Query("SELECT * FROM user")
     List<User> getAllUsers();
 
+    @Query("SELECT * FROM user WHERE id % 2 != 0")
+    List<User> getOddUsers();
+
+    @Query("SELECT * FROM user ORDER BY id DESC")
+    List<User> getAllUsersDesc();
+
     @Insert
     void insert(User... users);
 
@@ -21,7 +27,7 @@ public interface UserDao {
     void update(User... users);
 
 //    @Query("UPDATE user set user WHERE id = (:id)")
-    void update(User user, int id);
+//    void update(User user, int id);
 
     @Delete
     void delete(User... users);

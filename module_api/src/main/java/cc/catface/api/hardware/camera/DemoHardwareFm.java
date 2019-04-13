@@ -34,7 +34,6 @@ import static android.app.Activity.RESULT_OK;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_camera)
 public class DemoHardwareFm extends NormalFragment<ApiActivityVibratorCameraBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_vibrator_camera;

@@ -22,7 +22,6 @@
         <activity android:name=".load_img.LoadImgActivity" />
         <activity android:name=".brvah.view.BRVAH_Activity" />
         <activity android:name=".memo.view.MemoActivity" />
-        <activity android:name=".showapi.mvp.view.ShowAPIActivity" />
         <activity android:name=".flow_layout.DemoFlowLayoutActivity" />
         <activity android:name=".sticky_list_headers.DemoStickyListActivity"/>
 

@@ -18,6 +18,7 @@ import cc.catface.api.multi_finger.DemoMultiTouchFm;
 import cc.catface.api.popup.DemoPopupFm;
 import cc.catface.api.room.DemoRoomFm;
 import cc.catface.api.toast.DemoToastFm;
+import cc.catface.api.toolbar.DemoToolBarFm;
 import cc.catface.api.toutiao.DemoToutiaoFm;
 import cc.catface.api.view.DemoViewNavigationFm;
 import cc.catface.api.view.loading.DemoSpinKitFm;
@@ -97,6 +98,9 @@ public class ApiHolderActivity extends NormalActivity<ApiActivityApiHolderBindin
                 break;
             case Const.ARouter.fm_id_crash:
                 replace(new DemoCrashFm());
+                break;
+            case Const.ARouter.fm_id_toolbar:
+                replace(new DemoToolBarFm());
                 break;
 
             case Const.ARouter.fm_id_view_loading_spinkit:

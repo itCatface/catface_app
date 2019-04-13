@@ -14,6 +14,7 @@ import com.squareup.leakcanary.LeakCanary;
 import androidx.multidex.MultiDex;
 import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
+import cc.catface.base.AppBase;
 import cc.catface.base.utils.android.crash.CrashHandler;
 import cc.catface.module_start.CrashHandlerActivity;
 
@@ -25,6 +26,7 @@ public class App extends Application {
     @Override public void onCreate() {
         super.onCreate();
         /* 各模块依赖的Application初始化操作 */
+        AppBase.setContext(this);
         ARouterApp.setContext(this);
         ARouterApp.initDB();
 

@@ -34,7 +34,7 @@ import android.os.SystemClock;
  *         mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
  *     }
  *
- *     public void onFinish() {
+ *     public void onFailure() {
  *         mTextField.setText("done!");
  *     }
  *  }.start();
@@ -101,14 +101,14 @@ public abstract class CountDownTimer {
 
 
     /**
-     * Callback fired on regular interval.
+     * DownloadListener fired on regular interval.
      *
      * @param millisUntilFinished The amount of time until finished.
      */
     public abstract void onTick(long millisUntilFinished);
 
     /**
-     * Callback fired when the time is up.
+     * DownloadListener fired when the time is up.
      */
     public abstract void onFinish();
 

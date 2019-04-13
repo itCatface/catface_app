@@ -28,7 +28,6 @@ import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 
-@Route(path = Const.ARouter.api_popup)
 public class DemoPopupFm extends NormalFragment<ApiActivityPopupBinding> implements View.OnClickListener {
     @Override public int layoutId() {
         return R.layout.api_activity_popup;

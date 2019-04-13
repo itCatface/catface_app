@@ -16,7 +16,6 @@ import cc.catface.base.utils.android.view.TFontType;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_font)
 public class DemoFontFm extends NormalFragment<ApiActivityDemoFontBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_demo_font;

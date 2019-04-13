@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:clipChildren="false">
 
-        <cc.catface.module_work_demo.swipe_change_page.HorizontalVerticalViewPager
+        <cc.catface.work_demo.swipe_change_page.HorizontalVerticalViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

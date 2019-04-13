@@ -55,7 +55,6 @@ public class MusicMainFm extends MvpFragment<MusicMainView, MusicMainPresenterIm
             // TODO ARouter
             String value = "" + System.currentTimeMillis();
             Toast.makeText(mActivity, "生成数据：" + value, Toast.LENGTH_SHORT).show();
-            ARouter.getInstance().build(Const.ARouter.test_arouter).withString("value", value).navigation();
         }
     }
 

@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.mob.sdk' // mob分享
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 28
-
-
 
     defaultConfig {
         minSdkVersion 19
@@ -14,32 +12,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        /** 方法数64k */
-        multiDexEnabled true
-
-//        /** 极光推送↓ */
-//        ndk {
-//            //选择要添加的对应cpu类型的.so库。
-//            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
-//        }
-//
-//        manifestPlaceholders = [
-//                JPUSH_PKGNAME: applicationId,
-//                JPUSH_APPKEY : "b181c990a8f5db502f408d6d", //JPush上注册的包名对应的appkey.
-//                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
-//        ]
-//        /** ↑ */
-
-        /** ARouter配置 */
-        javaCompileOptions {
+        multiDexEnabled true    // 64k
+        javaCompileOptions {    // ARouter
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-    }
-
-    lintOptions {
-        disable 'GoogleAppIndexingWarning'
     }
 
     buildTypes {
@@ -49,49 +27,24 @@ android {
         }
     }
 
-    /** 模块apis中的BRVAH demo用到了数据绑定，所以主模块的gradle中也要添加同样声明 */
+    /** data binding & java1.8 */
     dataBinding {
         enabled = true
     }
-
-    /** 更改项目布局文件目录结构 */
-    /*sourceSets {
-        main {
-            java.srcDirs = ['src/main/java']
-
-            res.srcDirs = ['src/main/res',
-                           'src/main/res_main',
-                           'src/main/res_iflytek',
-                           'src/main/res_project_function']
-        }
-    }*/
-
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
-
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation "androidx.appcompat:appcompat:1.1.0-alpha02"
     testImplementation "junit:junit:4.12"
-    androidTestImplementation "androidx.test:runner:1.1.2-alpha02"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0-alpha02"
+    androidTestImplementation "androidx.test:runner:1.2.0-alpha03"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0-alpha03"
     annotationProcessor 'androidx.annotation:annotation:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-
-    implementation project(':app_base')
-
-    /* 组件化模块配置 */
-    /* ARouter */
-    api "com.alibaba:arouter-api:1.4.1"
-    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"
-    if (!rootProject.ext.IS_DEBUG_MODULE_arouter) {
-        implementation project(':module_arouter_demo')
-    }
+    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"    // ARouter
     if (!rootProject.ext.debug_module_start) {
         implementation project(':module_start')
     }
@@ -104,12 +57,14 @@ dependencies {
     if (!rootProject.ext.debug_module_work_demo) {
         implementation project(':module_work_demo')
     }
+    if (!rootProject.ext.debug_module_pj_wanandroid) {
+        implementation project(":module_pj_wanandroid")
+    }
+    if (!rootProject.ext.debug_module_pj_showapi) {
+        implementation project(":module_pj_showapi")
+    }
 
-    /* 极光推送 */
-//    implementation 'cn.jiguang.sdk:jpush:3.1.6'
-//    implementation 'cn.jiguang.sdk:jcore:1.2.5'
-
-
+    implementation project(':app_base')
 }
 
 
@@ -118,7 +73,7 @@ MobSDK {
     appSecret "77c1da88debae5f264eade3cda5eab96"
 
     ShareSDK {
-        //平台配置信息
+        // 平台配置信息
         devInfo {
             SinaWeibo {
                 appKey "2565941592"
@@ -142,5 +97,4 @@ MobSDK {
             }
         }
     }
-
 }

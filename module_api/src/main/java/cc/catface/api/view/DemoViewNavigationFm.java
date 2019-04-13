@@ -16,7 +16,6 @@ import cc.catface.base.utils.android.common_intent.TIntent;
 import cc.catface.base.utils.android.common_print.popup.TPopup;
 import cc.catface.base.utils.android.common_recyclerview.TRV;
 
-@Route(path = Const.ARouter.api_navigation)
 public class DemoViewNavigationFm extends NormalFragment<ApiActivityViewNavigationBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_view_navigation;

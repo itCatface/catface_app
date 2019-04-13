@@ -82,7 +82,7 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
                     User user = new User();
                     user.setName("name++" + TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
                     user.setAge((int) l);
-                    UserDatabase.getInstance(mActivity).getUserDao().update(user, 11);
+//                    UserDatabase.getInstance(mActivity).getUserDao().update(user, 11);
                 }
             }).start();
         });
@@ -96,7 +96,20 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
 
         });
         mBinding.btQueryOdd.setOnClickListener(v -> {
-
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    mAllUsers = UserDatabase.getInstance(mActivity).getUserDao().getOddUsers();
+                    mHandler.obtainMessage().sendToTarget();
+                }
+            }).start();
+        });
+        mBinding.btQueryDesc.setOnClickListener(v -> {
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    mAllUsers = UserDatabase.getInstance(mActivity).getUserDao().getAllUsersDesc();
+                    mHandler.obtainMessage().sendToTarget();
+                }
+            }).start();
         });
     }
 

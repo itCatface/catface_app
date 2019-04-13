@@ -32,16 +32,16 @@ public class ApisFm extends NormalFragment<PagePureListviewBinding> {
     private final String DEMO_NANOHTTPD_SERVER = "demo-nano httpd使用";
     private final String DEMO_IFLYTEK = "demo-讯飞sdk使用";
     private final String DEMO_MEMO = "demo-green dao使用";
-    private final String DEMO_SHOWAPI = "demo-showapi易源接口使用";
     private final String LOAD_IMG = "demo-各图片加载框架使用";
-    private String[] mItems = {PDF_READER, BRVAH, SPACE, DEMO_FLOW_LAYOUT, DEMO_STICKY_LIST, DEMO_NANOHTTPD_SERVER, DEMO_IFLYTEK, DEMO_MEMO, DEMO_SHOWAPI, LOAD_IMG};
+    private final String TEST_RETROFIT = "test-测试retrofit工具类";
+    private String[] mItems = {PDF_READER, BRVAH, SPACE, DEMO_FLOW_LAYOUT, DEMO_STICKY_LIST, DEMO_NANOHTTPD_SERVER, DEMO_IFLYTEK, DEMO_MEMO, LOAD_IMG, TEST_RETROFIT};
 
     /* icon+label */ private List<Map<String, Object>> list = new ArrayList<>();
     private Map<String, Object> map;
     private String[] keys = {"icon", "label"};
 
     @Override public void createView() {
-        for(String mItem : mItems) {
+        for (String mItem : mItems) {
             map = new HashMap<>();
             map.put(keys[0], R.mipmap.ic_launcher_round);
             map.put(keys[1], mItem);
@@ -50,7 +50,7 @@ public class ApisFm extends NormalFragment<PagePureListviewBinding> {
 
         //        TListView.iconStr(mActivity, lv_pages, list, keys, pos -> {
         TListView.str(mActivity, mBinding.lvList, mItems, pos -> {
-            switch(mItems[pos]) {
+            switch (mItems[pos]) {
                 case PDF_READER:
                     ARouter.getInstance().build(Const.ARouter.apis_pdf).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(PDF_READER)).navigation();
                     break;
@@ -75,11 +75,11 @@ public class ApisFm extends NormalFragment<PagePureListviewBinding> {
                 case DEMO_MEMO:
                     ARouter.getInstance().build(Const.ARouter.apis_memo).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_MEMO)).navigation();
                     break;
-                case DEMO_SHOWAPI:
-                    ARouter.getInstance().build(Const.ARouter.apis_showapi).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_SHOWAPI)).navigation();
-                    break;
                 case LOAD_IMG:
                     ARouter.getInstance().build(Const.ARouter.apis_loadImg).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(LOAD_IMG)).navigation();
+                    break;
+                case TEST_RETROFIT:
+                    ARouter.getInstance().build(Const.ARouter.apis_activity_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_apis_test_retrofit).navigation();
                     break;
             }
         });

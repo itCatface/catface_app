@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_app_name">CatfaceApp</string>
+    <string name="app_name_app">CatfaceApp</string>
+    <string name="app_name_wanandroid">wanandroid</string>
+    <string name="app_name_showapi">showapi</string>
 
     <!-- app id -->
     <string name="app_id_bugly">3886d6731c</string>

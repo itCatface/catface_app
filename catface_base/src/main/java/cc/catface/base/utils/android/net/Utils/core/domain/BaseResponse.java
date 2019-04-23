@@ -1,4 +1,4 @@
-package cc.catface.base.utils.android.net.Utils.core;
+package cc.catface.base.utils.android.net.Utils.core.domain;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925

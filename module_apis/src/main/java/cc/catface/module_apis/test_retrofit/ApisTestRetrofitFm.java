@@ -1,5 +1,6 @@
 package cc.catface.module_apis.test_retrofit;
 
+import android.os.Environment;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.Toast;
 
@@ -8,10 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.net.Utils.RequestUtils;
 import cc.catface.base.utils.android.net.Utils.core.CustomObserver;
 import cc.catface.base.utils.android.net.Utils.core.domain.TestData;
-import cc.catface.base.utils.android.net.Utils.download.DownloadEngine;
+import cc.catface.base.utils.android.net.Utils.download.GoOnDownloadEngine;
+import cc.catface.base.utils.android.net.Utils.download.SimpleDownloadEngine;
 import cc.catface.base.utils.android.net.Utils.upload.ProgressRequestBody;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisFragmentTestRetrofitBinding;
@@ -56,7 +59,7 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
             }
         }));
 
-        mBinding.btPostParams.setOnClickListener(v -> RequestUtils.test_post(this, "pp-nn", "pp-pp", new CustomObserver<TestData>(mActivity) {
+        mBinding.btPostParams.setOnClickListener(v -> RequestUtils.test_post(this, "pp-nn", "pp&-=pp", new CustomObserver<TestData>(mActivity) {
             @Override public void onSuccess(TestData result) {
                 mBinding.tvResult.setText("test_post_\r\n" + result.toString());
             }
@@ -108,7 +111,7 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
         }));
 
         mBinding.btDownload.setOnClickListener(v -> {
-            RequestUtils.test_download("name_d", "pass_d", "sdcard/temp.exe", new DownloadEngine.Callback() {
+            RequestUtils.test_download("name_d", "pass_d", "sdcard/temp.exe", new SimpleDownloadEngine.Callback() {
                 @Override public void onComplete() {
                     Toast.makeText(mActivity, "下载完成", Toast.LENGTH_SHORT).show();
                 }
@@ -135,7 +138,7 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
                 }
 
                 @Override public void onProgress(float progress, long uploadedSize, long totalSize) {
-                    mBinding.tvResult.setText("上传进度：" + progress+ " || " + uploadedSize + "/" + totalSize);
+                    mBinding.tvResult.setText("上传进度：" + progress + " || " + uploadedSize + "/" + totalSize);
                 }
 
                 @Override public void onFailure(String error) {
@@ -143,9 +146,50 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
                 }
             }));
         });
+
+
+        /**  */
+        mBinding.btDownloadHttp.setOnClickListener(v -> {
+            cc.catface.base.utils.android.net.http.point_download.DownloadEngine.getInstance().start("http://dldir1.qq.com/qqyy/pc/QQPlayerSetup4.1.3.658.exe", "d:/sasa", "temp.exe", new cc.catface.base.utils.android.net.http.point_download.DownloadEngine.Callback() {
+                @Override
+                public void onProgress(long length, long totalLength) {
+                    TLog.d("正在下载： " + length / totalLength);
+                }
+
+                @Override
+                public void onFailure(String error) {
+                    TLog.d("下载失败：" + error);
+                }
+
+                @Override
+                public void onSuccess() {
+                    TLog.d("下载成功");
+                }
+            });
+        });
     }
 
-    @Override public void createView() {
+    String url = "http://dldir1.qq.com/qqmi/aphone_p2p/TencentVideo_V6.0.0.14297_848.apk";
 
+    @Override public void createView() {
+        mBinding.btGoOnDownload.setOnClickListener(v -> {
+            GoOnDownloadEngine.getInstance().downloadFile(url, Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp_0", "temp.apk", new GoOnDownloadEngine.DownloadCallBack() {
+                @Override public void onProgress(int progress) {
+                    mBinding.tvResult.setText("正在下载: " + progress);
+                }
+
+                @Override public void onComplete() {
+                    mBinding.tvResult.setText("下载完成");
+                }
+
+                @Override public void onError(String msg) {
+                    mBinding.tvResult.setText("下载失败：" + msg);
+                }
+
+                @Override public void onExist() {
+                    mBinding.tvResult.setText("当前文件已存在");
+                }
+            });
+        });
     }
 }

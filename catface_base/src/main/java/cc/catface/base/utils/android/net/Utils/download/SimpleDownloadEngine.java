@@ -18,7 +18,7 @@ import retrofit2.Response;
  *
  * @desc simple download with progress
  */
-public class DownloadEngine extends Thread {
+public class SimpleDownloadEngine extends Thread {
 
     private final int FLAG_SUCCESS = 0x00;
     private final int FLAG_PROGRESS = 0x01;
@@ -45,7 +45,7 @@ public class DownloadEngine extends Thread {
     private String mSavedPath;
     private Callback mCallback;
 
-    public DownloadEngine(Response<ResponseBody> response, String savedPath, Callback callback) {
+    public SimpleDownloadEngine(Response<ResponseBody> response, String savedPath, Callback callback) {
         this.mResponseBody = response.body();
         this.mSavedPath = savedPath;
         this.mCallback = callback;

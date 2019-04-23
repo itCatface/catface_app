@@ -1,5 +1,6 @@
 package cc.catface.base.utils.android.net.Utils.core;
 
+import cc.catface.base.utils.android.net.Utils.core.domain.BaseResponse;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 

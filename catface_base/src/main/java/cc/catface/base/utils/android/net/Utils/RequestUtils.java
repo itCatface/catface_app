@@ -11,7 +11,7 @@ import cc.catface.base.utils.android.net.Utils.core.CustomObserver;
 import cc.catface.base.utils.android.net.Utils.core.RetrofitEngine;
 import cc.catface.base.utils.android.net.Utils.core.RxDispatcher;
 import cc.catface.base.utils.android.net.Utils.core.domain.TestData;
-import cc.catface.base.utils.android.net.Utils.download.DownloadEngine;
+import cc.catface.base.utils.android.net.Utils.download.SimpleDownloadEngine;
 import cc.catface.base.utils.android.net.Utils.upload.ProgressRequestBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -74,10 +74,10 @@ public class RequestUtils {
         });
     }
 
-    public static void test_download(String name, String pass, String savedPath, DownloadEngine.Callback listener) {
+    public static void test_download(String name, String pass, String savedPath, SimpleDownloadEngine.Callback listener) {
         RetrofitEngine.getNetApi().test_download(name, pass).enqueue(new Callback<ResponseBody>() {
             @Override public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                new DownloadEngine(response, savedPath, listener).start();
+                new SimpleDownloadEngine(response, savedPath, listener).start();
             }
 
             @Override public void onFailure(Call<ResponseBody> call, Throwable t) {

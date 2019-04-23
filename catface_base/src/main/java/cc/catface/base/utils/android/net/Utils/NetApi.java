@@ -2,7 +2,7 @@ package cc.catface.base.utils.android.net.Utils;
 
 import java.util.Map;
 
-import cc.catface.base.utils.android.net.Utils.core.BaseResponse;
+import cc.catface.base.utils.android.net.Utils.core.domain.BaseResponse;
 import cc.catface.base.utils.android.net.Utils.core.domain.TestData;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -14,6 +14,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -23,7 +24,17 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
+/**
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ *
+ * 1. @FormUrlEncoded与@FieldMap需连用
+ * 2. 参数添加方式@QueryMap/@FieldMap/@HeaderMap
+ * 3. url传递方式[1.base_url(host)+注解(接口) | 2.通过注解@Url传递完整接口路径带host]
+ * 4. 传递json需使用RequestBody包装该json串[如同时需添加参数可用@HeaderMap传递]
+ * 5. 文件下载时需添加@Streaming防止内存泄漏
+ */
 public interface NetApi {
 
 
@@ -66,95 +77,8 @@ public interface NetApi {
     Observable<BaseResponse<TestData>> login(@QueryMap Map<String, String> map);
 
 
-    //    /**
-    //     * 有效链接
-    //    @GET(Constans.retrofit)
-    //    Call<Bean> getRetrofit();
-    //
-    //    @GET(Constans.retrofit)
-    //    Observable<BaseResponse<Demo>> getData();
-    //
-    //    @GET(Constans.retrofitList)
-    //    Observable<BaseResponse<List<Demo>>> getDemoList();
-    //
-    //
-    //    *//**
-    //     * TODO Get请求
-    //     *//*
-    //    //第一种方式：GET不带参数
-    //    @GET("retrofit.txt")
-    //    Observable<BaseResponse<Demo>> getUser();
-    //    @GET
-    //    Observable<Demo> getUser(@Url String url);
-    //    @GET
-    //    Observable<Demo> getUser1(@Url String url); //简洁方式   直接获取所需数据
-    //    //第二种方式：GET带参数
-    //    @GET("api/data/{type}/{count}/{page}")
-    //    Observable<Demo> getUser(@Path("type") String type, @Path("count") int count, @Path("page") int page);
-    //    //第三种方式：GET带请求参数：https://api.github.com/users/whatever?client_id=xxxx&client_secret=yyyy
-    //    @GET("users/whatever")
-    //    Observable<Demo> getUser(@Query("client_id") String id, @Query("client_secret") String secret);
-    //    @GET("users/whatever")
-    //    Observable<Demo> getUser(@QueryMap Map<String, String> info);
-    //
-    //    *//**
-    //     * TODO POST请求
-    //     *//*
-    //    //第一种方式：@Body
-    //    @Headers("Accept:application/json")
-    //    @POST("login")
-    //    Observable<Demo> postUser(@Body RequestBody body);
-    //    //第二种方式：@Field
-    //
-    //    @Headers("Accept:application/json")
-    //    @POST("auth/login")
-    //    @FormUrlEncoded
-    //    Observable<Demo> postUser(@Field("username") String username, @Field("password") String password);
-    //    //多个参数
-    //    Observable<Demo> postUser(@FieldMap Map<String, String> map);
-    //
-    //    *//**
-    //     * TODO DELETE
-    //     *//*
-    //    @DELETE("member_follow_member/{id}")
-    //    Observable<Demo> delete(@Header("Authorization") String auth, @Path("id") int id);
-    //
-    //    *//**
-    //     * TODO PUT
-    //     *//*
-    //    @PUT("member")
-    //    Observable<Demo> put(@HeaderMap Map<String, String> headers,
-    //                         @Query("nickname") String nickname);
-    //
-    //    *//**
-    //     * TODO 文件上传
-    //     *//*
-    //    @Multipart
-    //    @POST("upload")
-    //    Observable<ResponseBody> upload(@Part("description") RequestBody description, @Part MultipartBody.Part file);
-    //
-    //    //亲测可用
-    //    @Multipart
-    //    @POST("member/avatar")
-    //    Observable<Demo> uploadImage(@HeaderMap Map<String, String> headers, @Part MultipartBody.Part file);
-    //
-    //    *//**
-    //     * 多文件上传
-    //     *//*
-    //    @Multipart
-    //    @POST("register")
-    //    Observable<ResponseBody> upload(@PartMap Map<String, RequestBody> params, @Part("description") RequestBody description);
-    //    //Observable<ResponseBody> upload(@Part() List<MultipartBody.Part> parts);
-    //
-    //    @Multipart
-    //    @POST("member/avatar")
-    //    Observable<Demo> uploadImage1(@HeaderMap Map<String, String> headers, @Part List<MultipartBody.Part> file);
-    //
-    //    *//**
-    //     * 来自https://blog.csdn.net/impure/article/details/79658098
-    //     * @Streaming 这个注解必须添加，否则文件全部写入内存，文件过大会造成内存溢出
-    //     *//*
-    //    @Streaming
-    //    @GET
-    //    Observable<ResponseBody> download(@Header("RANGE") String start, @Url String url);*/
+    /** common api */
+    @Streaming
+    @GET
+    Observable<ResponseBody> commonDownload(@Url String url, @Header("Range") String range);
 }

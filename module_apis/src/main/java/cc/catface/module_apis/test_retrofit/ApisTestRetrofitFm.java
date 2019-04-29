@@ -1,12 +1,16 @@
 package cc.catface.module_apis.test_retrofit;
 
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.Toast;
 
+import com.trello.rxlifecycle2.components.support.RxFragment;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.log.TLog;
@@ -23,6 +27,8 @@ import cc.catface.module_apis.databinding.ApisFragmentTestRetrofitBinding;
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitBinding> {
+    private RxFragment mFm;
+
     @Override public int layoutId() {
         return R.layout.apis_fragment_test_retrofit;
     }
@@ -111,9 +117,11 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
         }));
 
         mBinding.btDownload.setOnClickListener(v -> {
-            RequestUtils.test_download("name_d", "pass_d", "sdcard/temp.exe", new SimpleDownloadEngine.Callback() {
+            String path = "sdcard/" + UUID.randomUUID() + ".png";
+            RequestUtils.test_download("name_d", "pass_d", path, new SimpleDownloadEngine.Callback() {
                 @Override public void onComplete() {
                     Toast.makeText(mActivity, "下载完成", Toast.LENGTH_SHORT).show();
+                    mBinding.ivTemp.setImageBitmap(BitmapFactory.decodeFile(path));
                 }
 
                 @Override public void onProgress(float progress, long downloadedSize, long totalSize) {
@@ -167,11 +175,41 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
                 }
             });
         });
+
+
+        /* 嵌套请求 */
+        mBinding.btNestRequest.setOnClickListener(v -> {
+
+
+            RequestUtils.test_post(this, "pp-nn", "pp&-=pp", new CustomObserver<TestData>(mActivity) {
+                @Override public void onSuccess(TestData result) {
+                    mBinding.tvResult.setText("test_post_\r\n" + result.toString());
+
+                    RequestUtils.test_get(mFm, "gg-nn", "gg-pp", new CustomObserver<TestData>(mActivity) {
+                        @Override public void onSuccess(TestData result) {
+                            mBinding.tvResult.setText("test_get_\r\n" + result.toString());
+                        }
+
+                        @Override public void onFailure(Throwable e, String errorMsg) {
+                            mBinding.tvResult.setText("请求失败-test_get_\n" + e.toString() + "\r\n" + errorMsg);
+                        }
+                    });
+                }
+
+                @Override public void onFailure(Throwable e, String errorMsg) {
+                    mBinding.tvResult.setText("请求失败-test_post_\n" + e.toString() + "\r\n" + errorMsg);
+                }
+            });
+
+
+        });
     }
 
     String url = "http://dldir1.qq.com/qqmi/aphone_p2p/TencentVideo_V6.0.0.14297_848.apk";
 
     @Override public void createView() {
+        mFm = this;
+
         mBinding.btGoOnDownload.setOnClickListener(v -> {
             GoOnDownloadEngine.getInstance().downloadFile(url, Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp_0", "temp.apk", new GoOnDownloadEngine.DownloadCallBack() {
                 @Override public void onProgress(int progress) {

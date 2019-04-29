@@ -1,13 +1,19 @@
 package cc.catface.module_start.main.mvp.view;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTabHost;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
@@ -36,7 +42,46 @@ public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartA
     @Override public void create() {
         tab_host = (FragmentTabHost) findViewById(android.R.id.tabhost);
         initTab();
+
+//        checkPermission();
     }
+
+
+    private void checkPermission() {
+        // 1. 判断用户是否开启该权限
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+
+            // 2. 若用户已拒绝过该权限，返回true. 提示用户开启权限
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.INTERNET)) {
+
+                Toast.makeText(this, "未获得网络权限...", Toast.LENGTH_SHORT).show();
+
+                // 3. 第一次使用该权限时调用以请求适当的权限，用户选择结果在onRequestPermissionsResult方法中获取
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 0);
+            }
+
+        } else {
+//            call();
+        }
+    }
+
+    // 4. 获取用户接受/拒绝权限的情况
+    @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 0:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    call();
+                } else {
+                    Toast.makeText(this, "请到设置页面打开网络...", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
 
     private void initTab() {
         mFmTabs = new ArrayList<>();

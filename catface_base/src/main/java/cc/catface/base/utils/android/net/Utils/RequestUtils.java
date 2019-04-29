@@ -95,5 +95,6 @@ public class RequestUtils {
     private static RequestBody json2RequestBody(String json) {
         return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
     }
+
 }
 

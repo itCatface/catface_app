@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import java.io.File;
@@ -16,12 +17,16 @@ import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.net.Utils.RequestUtils;
 import cc.catface.base.utils.android.net.Utils.core.CustomObserver;
+import cc.catface.base.utils.android.net.Utils.core.RetrofitEngine;
 import cc.catface.base.utils.android.net.Utils.core.domain.TestData;
 import cc.catface.base.utils.android.net.Utils.download.GoOnDownloadEngine;
 import cc.catface.base.utils.android.net.Utils.download.SimpleDownloadEngine;
 import cc.catface.base.utils.android.net.Utils.upload.ProgressRequestBody;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisFragmentTestRetrofitBinding;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -200,8 +205,22 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
                     mBinding.tvResult.setText("请求失败-test_post_\n" + e.toString() + "\r\n" + errorMsg);
                 }
             });
+        });
 
 
+        /* 仅返回后台数据 */
+        mBinding.btJustGet.setOnClickListener(v -> {
+            RetrofitEngine.getNetApi().testGet().enqueue(new Callback<JsonObject>() {
+                @Override public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    TLog.d("后台返回：" + response.body().toString());
+                    mBinding.tvResult.setText("后台返回：" + response.body().toString());
+                }
+
+                @Override public void onFailure(Call<JsonObject> call, Throwable t) {
+                    TLog.d("后台返回错误：" + t.toString());
+                    mBinding.tvResult.setText("后台返回异常：" + t.toString());
+                }
+            });
         });
     }
 

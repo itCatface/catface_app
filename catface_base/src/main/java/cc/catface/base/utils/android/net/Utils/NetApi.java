@@ -1,5 +1,7 @@
 package cc.catface.base.utils.android.net.Utils;
 
+import com.google.gson.JsonObject;
+
 import java.util.Map;
 
 import cc.catface.base.utils.android.net.Utils.core.domain.BaseResponse;
@@ -76,6 +78,10 @@ public interface NetApi {
     @GET("login")
     Observable<BaseResponse<TestData>> login(@QueryMap Map<String, String> map);
 
+
+    /** 仅返回后台返回数据 */
+    @GET("test_get")
+    Call<JsonObject> testGet();
 
     /** common api */
     @Streaming

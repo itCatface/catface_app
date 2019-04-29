@@ -145,6 +145,13 @@
                     android:layout_weight="1"
                     android:text="嵌套请求" />
 
+                <Button
+                    android:id="@+id/bt_just_get"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="仅返回后台数据" />
+
             </LinearLayout>
 
             <ImageView

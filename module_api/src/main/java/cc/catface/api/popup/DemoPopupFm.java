@@ -22,6 +22,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityPopupBinding;
 import cc.catface.app_base.Const;
@@ -47,12 +48,6 @@ public class DemoPopupFm extends NormalFragment<ApiActivityPopupBinding> impleme
     private List<View> views;
 
     @Override public void createView() {
-        title();
-    }
-
-
-    private void title() {
-        mBinding.tfa.setTitle("popup").setIcon1(R.string.fa_chevron_left);
     }
 
 

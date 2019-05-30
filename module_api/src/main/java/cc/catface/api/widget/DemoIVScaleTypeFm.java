@@ -17,10 +17,7 @@ public class DemoIVScaleTypeFm extends NormalFragment<ApiActivityIvScaleTypeBind
     }
 
     @Override public void createView() {
-        title();
+
     }
 
-    private void title() {
-        mBinding.tfa.setTitle("scaleType").setIcon1(R.string.fa_chevron_left);
-    }
 }

@@ -13,6 +13,7 @@ import cc.catface.base.utils.android.net.Utils.core.RxDispatcher;
 import cc.catface.base.utils.android.net.Utils.core.domain.TestData;
 import cc.catface.base.utils.android.net.Utils.download.SimpleDownloadEngine;
 import cc.catface.base.utils.android.net.Utils.upload.ProgressRequestBody;
+import io.reactivex.Observer;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -94,6 +95,16 @@ public class RequestUtils {
 
     private static RequestBody json2RequestBody(String json) {
         return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+    }
+
+    public static void downloadCode(RxFragment rxFragment, String url, Observer<ResponseBody> observer) {
+        RetrofitEngine.getNetApi().downloadCode(url).compose(RxDispatcher.observableIO2Main(rxFragment)).subscribe(observer);
+    }
+
+
+    public static long test_custom_callback(long id, CustomCallback callback) {
+        RetrofitEngine.getNetApi().test_get1().enqueue(callback);
+        return id;
     }
 
 }

@@ -32,18 +32,11 @@ public class DemoMultiTouchFm extends NormalFragment<ApiActivityMultiFingerBindi
     }
 
     @Override public void createView() {
-        title();
-
         AndroidBarUtils.setBarDarkMode(mActivity, false);
 
         mBinding.mtetBrbc.setCallback(isZoomLarge -> {
             if (isZoomLarge) getDialog().show();
         });
-    }
-
-
-    private void title() {
-        mBinding.tfa.setTitle("多点触控").setIcon1(R.string.fa_chevron_left);
     }
 
 

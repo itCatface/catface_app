@@ -22,24 +22,8 @@ public class DemoFontFm extends NormalFragment<ApiActivityDemoFontBinding> {
     }
 
     @Override public void createView() {
-        title();
-
         initEachText();
     }
-
-    private void title() {
-        String[] types = TFontType.Font.getAllTypes().toArray(new String[0]);
-        mBinding.tfaFont.setTitle("字体").setIcon1(R.string.fa_chevron_left).setIcon4("系统").setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if (view.getId() == R.id.ttv4) {
-                TDialogNormal.get(mActivity).list("选择系统字体", types, chosenPosition -> {
-                    Toast.makeText(mActivity, "" + types[chosenPosition], Toast.LENGTH_SHORT).show();
-                    TFontType.replaceFont(mActivity, types[chosenPosition]);
-                    TFontType.Font.CURRENT_SYSTEM_TYPE = types[chosenPosition];
-                });
-            }
-        });
-    }
-
 
     private void initEachText() {
         TFontType.use(mBinding.tv1, TFontType.Font.hill_house, "其形也，翩若惊鸿，婉若游龙");
@@ -48,6 +32,16 @@ public class DemoFontFm extends NormalFragment<ApiActivityDemoFontBinding> {
         TFontType.use(mBinding.tv4, TFontType.Font.ffts, "远而望之，皎若太阳升朝霞");
         TFontType.use(mBinding.tv5, TFontType.Font.gbxs, "迫而察之，灼若芙蕖出渌波");
         TFontType.use(mBinding.tv6, TFontType.Font.jfjc, "体迅飞凫，飘忽若神，凌波微步，罗袜生尘");
+    }
+
+
+    public void tbShowChoseDialog() {
+        String[] types = TFontType.Font.getAllTypes().toArray(new String[0]);
+        TDialogNormal.get(mActivity).list("选择系统字体", types, chosenPosition -> {
+            Toast.makeText(mActivity, "" + types[chosenPosition], Toast.LENGTH_SHORT).show();
+            TFontType.replaceFont(mActivity, types[chosenPosition]);
+            TFontType.Font.CURRENT_SYSTEM_TYPE = types[chosenPosition];
+        });
     }
 }
 

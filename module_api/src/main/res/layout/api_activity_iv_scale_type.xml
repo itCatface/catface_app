@@ -4,193 +4,182 @@
 
     <data />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <cc.catface.base.utils.android.common_title.TitleFontAwesome
-            android:id="@+id/tfa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0f0">
 
-            <RelativeLayout
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#0f0">
+                android:src="@mipmap/api_attrs_scale_type" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="原图"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="#0f0">
-
-                <ImageView
-                    android:layout_width="@dimen/iv_scale_type_height"
-                    android:layout_height="@dimen/iv_scale_type_height"
-                    android:scaleType="matrix"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="matrix"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="#0f0">
-
-                <ImageView
-                    android:layout_width="@dimen/iv_scale_type_height"
-                    android:layout_height="@dimen/iv_scale_type_height"
-                    android:scaleType="center"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="center"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:background="#0f0">
-
-                <ImageView
-                    android:layout_width="@dimen/iv_scale_type_height"
-                    android:layout_height="@dimen/iv_scale_type_height"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="centerCrop"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/iv_scale_type_height"
-                android:layout_height="@dimen/iv_scale_type_height"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:background="#0f0">
-
-                <ImageView
-                    android:layout_width="@dimen/iv_scale_type_height"
-                    android:layout_height="@dimen/iv_scale_type_height"
-                    android:scaleType="centerInside"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="centerInside"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/iv_scale_type_height"
-                android:layout_height="@dimen/iv_scale_type_height"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="#0f0">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="fitXY"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/iv_scale_type_height"
-                android:layout_height="@dimen/iv_scale_type_height"
-                android:layout_alignParentBottom="true"
-                android:background="#0f0">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitStart"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="fitStart"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/iv_scale_type_height"
-                android:layout_height="@dimen/iv_scale_type_height"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:background="#0f0">
-
-                <ImageView
-                    android:layout_width="@dimen/iv_scale_type_height"
-                    android:layout_height="@dimen/iv_scale_type_height"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="fitCenter"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/iv_scale_type_height"
-                android:layout_height="@dimen/iv_scale_type_height"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:background="#0f0">
-
-                <ImageView
-                    android:layout_width="@dimen/iv_scale_type_height"
-                    android:layout_height="@dimen/iv_scale_type_height"
-                    android:scaleType="fitEnd"
-                    android:src="@mipmap/api_attrs_scale_type" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="fitEnd"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
+                android:text="原图"
+                android:textSize="10sp" />
         </RelativeLayout>
-    </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#0f0">
+
+            <ImageView
+                android:layout_width="@dimen/iv_scale_type_height"
+                android:layout_height="@dimen/iv_scale_type_height"
+                android:scaleType="matrix"
+                android:src="@mipmap/api_attrs_scale_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="matrix"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="#0f0">
+
+            <ImageView
+                android:layout_width="@dimen/iv_scale_type_height"
+                android:layout_height="@dimen/iv_scale_type_height"
+                android:scaleType="center"
+                android:src="@mipmap/api_attrs_scale_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="center"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="#0f0">
+
+            <ImageView
+                android:layout_width="@dimen/iv_scale_type_height"
+                android:layout_height="@dimen/iv_scale_type_height"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/api_attrs_scale_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="centerCrop"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/iv_scale_type_height"
+            android:layout_height="@dimen/iv_scale_type_height"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="#0f0">
+
+            <ImageView
+                android:layout_width="@dimen/iv_scale_type_height"
+                android:layout_height="@dimen/iv_scale_type_height"
+                android:scaleType="centerInside"
+                android:src="@mipmap/api_attrs_scale_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="centerInside"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/iv_scale_type_height"
+            android:layout_height="@dimen/iv_scale_type_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#0f0">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@mipmap/api_attrs_scale_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fitXY"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/iv_scale_type_height"
+            android:layout_height="@dimen/iv_scale_type_height"
+            android:layout_alignParentBottom="true"
+            android:background="#0f0">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                android:src="@mipmap/api_attrs_scale_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fitStart"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/iv_scale_type_height"
+            android:layout_height="@dimen/iv_scale_type_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#0f0">
+
+            <ImageView
+                android:layout_width="@dimen/iv_scale_type_height"
+                android:layout_height="@dimen/iv_scale_type_height"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/api_attrs_scale_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fitCenter"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/iv_scale_type_height"
+            android:layout_height="@dimen/iv_scale_type_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="#0f0">
+
+            <ImageView
+                android:layout_width="@dimen/iv_scale_type_height"
+                android:layout_height="@dimen/iv_scale_type_height"
+                android:scaleType="fitEnd"
+                android:src="@mipmap/api_attrs_scale_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fitEnd"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
 </layout>

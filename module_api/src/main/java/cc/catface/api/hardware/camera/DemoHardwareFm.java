@@ -59,16 +59,6 @@ public class DemoHardwareFm extends NormalFragment<ApiActivityVibratorCameraBind
     private Uri imageUri; // 完整的file路径: ///图片地址
 
     @Override public void createView() {
-        initTitle();
-
-    }
-
-    private void initTitle() {
-        mBinding.tfaCamera.setTitle("震动&相机");
-        mBinding.tfaCamera.setIcon1(R.string.fa_chevron_left);
-        mBinding.tfaCamera.setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if (R.id.ttv1 == view.getId()) mActivity.finish();
-        });
     }
 
     private final String picPath = Environment.getExternalStorageDirectory() + "/pic_take_" + System.currentTimeMillis() + ".jpg";

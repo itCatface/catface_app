@@ -38,14 +38,13 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-    testImplementation "junit:junit:4.12"
-    androidTestImplementation "androidx.test:runner:1.2.0-alpha04"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0-alpha04"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
     annotationProcessor 'androidx.annotation:annotation:1.0.2'
-
     implementation project(':app_base')
-
     implementation files('libs/AIUI.jar')
-
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/mail.jar')
 }

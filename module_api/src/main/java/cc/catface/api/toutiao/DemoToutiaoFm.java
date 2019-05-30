@@ -31,13 +31,8 @@ public class DemoToutiaoFm extends NormalFragment<ApiActivityToutiaoBinding> {
     private List<ToutiaoCommonBean> mData;
 
     @Override public void createView() {
-        title();
         initView();
         initViewPagerOperator();
-    }
-
-    private void title() {
-        mBinding.tfa.setTitle("头条新闻").setIcon1(R.string.fa_chevron_left);
     }
 
     private void initView() {

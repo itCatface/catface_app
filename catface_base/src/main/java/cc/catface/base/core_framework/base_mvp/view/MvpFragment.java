@@ -1,19 +1,21 @@
 package cc.catface.base.core_framework.base_mvp.view;
 
-import android.app.Activity;
 import android.content.Context;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
+
+import com.gyf.immersionbar.ImmersionBar;
+
+import cc.catface.base.core_framework.BaseFunctionFm;
 import cc.catface.base.core_framework.base_mvp.factory.PresenterMvpFactory;
 import cc.catface.base.core_framework.base_mvp.factory.PresenterMvpFactoryImpl;
 import cc.catface.base.core_framework.base_mvp.presenter.MvpPresenter;
@@ -23,17 +25,17 @@ import cc.catface.base.core_framework.base_mvp.proxy.PresenterProxyInterface;
 /**
  * 所有子类共有的实例：mActivity、mBinding、mPresenter
  */
-public abstract class MvpFragment<V extends MvpView, P extends MvpPresenter<V>, B extends ViewDataBinding> extends Fragment implements PresenterProxyInterface<V, P> {
-    protected Activity mActivity;       // 当前fragment依附的activity
+public abstract class MvpFragment<V extends MvpView, P extends MvpPresenter<V>, B extends ViewDataBinding> extends BaseFunctionFm implements PresenterProxyInterface<V, P> {
+    protected AppCompatActivity mActivity;       // 当前fragment依附的activity
     protected B mBinding;               // 当前fragment对应的databinding
 
     private BaseMvpProxy<V, P> mProxy = new BaseMvpProxy<>(PresenterMvpFactoryImpl.createFactory(getClass()));      // 创建被代理对象[传入默认Presenter的工厂]
     protected P mPresenter;             // 当前fragment对应的presenter
 
 
-    @Override public void onAttach(Context context) {
+    @Override public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        mActivity = (Activity) context;
+        mActivity = (AppCompatActivity) context;
         mPresenter = mProxy.getMvpPresenter();
     }
 
@@ -43,6 +45,9 @@ public abstract class MvpFragment<V extends MvpView, P extends MvpPresenter<V>, 
     }
 
     @Nullable @Override public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        /*--->沉浸式*/
+        ImmersionBar.with(this).init();
+        /*<---*/
         mBinding = DataBindingUtil.inflate(inflater, layoutId(), container, false);
         initData();
         initAction();

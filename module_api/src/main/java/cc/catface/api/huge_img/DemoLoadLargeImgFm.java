@@ -17,13 +17,7 @@ public class DemoLoadLargeImgFm extends NormalFragment<ApiActivityLoadHugeImgBin
     }
 
     @Override public void createView() {
-        title();
         initView();
-    }
-
-
-    private void title() {
-        mBinding.tfa.setTitle("加载大图").setIcon1(R.string.fa_chevron_left);
     }
 
 

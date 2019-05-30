@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import androidx.fragment.app.Fragment;
@@ -81,6 +82,9 @@ public abstract class BaseFunctionActivity extends RxAppCompatActivity {
     public abstract int layoutId();
 
     protected void initOnCreate() {
+        /*--->沉浸式*/
+        ImmersionBar.with(this).init();
+        /*<---*/
         initData();
         initAction();
         create();

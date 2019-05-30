@@ -114,11 +114,8 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
     }
 
     @Override public void createView() {
-        title();
+
     }
 
-    private void title() {
-        mBinding.tfaRoom.setTitle("room").setIcon1(R.string.fa_chevron_left);
-    }
 
 }

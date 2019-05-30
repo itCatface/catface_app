@@ -33,8 +33,8 @@
             android:id="@+id/tv_chapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:lastBaselineToBottomHeight="@+id/tv_author"
             android:text="公众号/鸿洋"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_author"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_author" />
 

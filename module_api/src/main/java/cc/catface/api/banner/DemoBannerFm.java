@@ -30,8 +30,6 @@ public class DemoBannerFm extends NormalFragment<ApiActivityBannerBinding> {
             "http://t1.huanqiu.cn/6b6e291d95d20583c238613337c48d70.jpeg"};
 
     @Override public void createView() {
-        initTitle();
-
         mBinding.rvdbv.setVisibility(View.VISIBLE);
         mBinding.rvcbv.setVisibility(View.VISIBLE);
 
@@ -59,29 +57,25 @@ public class DemoBannerFm extends NormalFragment<ApiActivityBannerBinding> {
     }
 
 
-    private void initTitle() {
-        mBinding.tfaBanner.setTitle("rv-->banner").setIcon1(R.string.fa_chevron_left).setIcon4("模式").setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if (view.getId() == R.id.ttv4) {
-                TDialogNormal.get(mActivity).list("选择轮播模式", new String[]{"正常纯轮播页", "正常带标题及指示器", "纵向纯轮播页"}, chosenPosition -> {
-                    if (chosenPosition == 0) {
-                        mBinding.rvdbv.setLayoutManager(RecyclerView.HORIZONTAL);
-                        mBinding.rvdbv.showTitle(false);
-                        mBinding.rvdbv.showIndicator(false);
-                        mBinding.rvcbv.setLayoutManager(RecyclerView.HORIZONTAL);
-                        mBinding.rvcbv.showTitle(false);
-                        mBinding.rvcbv.showIndicator(false);
-                    } else if (chosenPosition == 1) {
-                        mBinding.rvdbv.setLayoutManager(RecyclerView.HORIZONTAL);
-                        mBinding.rvdbv.showTitle(true);
-                        mBinding.rvdbv.showIndicator(true);
-                        mBinding.rvcbv.setLayoutManager(RecyclerView.HORIZONTAL);
-                        mBinding.rvcbv.showTitle(true);
-                        mBinding.rvcbv.showIndicator(true);
-                    } else if (chosenPosition == 2) {
-                        mBinding.rvdbv.setLayoutManager(RecyclerView.VERTICAL);
-                        mBinding.rvcbv.setLayoutManager(RecyclerView.VERTICAL);
-                    }
-                });
+    public void tbShowChoseDialog() {
+        TDialogNormal.get(mActivity).list("选择轮播模式", new String[]{"正常纯轮播页", "正常带标题及指示器", "纵向纯轮播页"}, chosenPosition -> {
+            if (chosenPosition == 0) {
+                mBinding.rvdbv.setLayoutManager(RecyclerView.HORIZONTAL);
+                mBinding.rvdbv.showTitle(false);
+                mBinding.rvdbv.showIndicator(false);
+                mBinding.rvcbv.setLayoutManager(RecyclerView.HORIZONTAL);
+                mBinding.rvcbv.showTitle(false);
+                mBinding.rvcbv.showIndicator(false);
+            } else if (chosenPosition == 1) {
+                mBinding.rvdbv.setLayoutManager(RecyclerView.HORIZONTAL);
+                mBinding.rvdbv.showTitle(true);
+                mBinding.rvdbv.showIndicator(true);
+                mBinding.rvcbv.setLayoutManager(RecyclerView.HORIZONTAL);
+                mBinding.rvcbv.showTitle(true);
+                mBinding.rvcbv.showIndicator(true);
+            } else if (chosenPosition == 2) {
+                mBinding.rvdbv.setLayoutManager(RecyclerView.VERTICAL);
+                mBinding.rvcbv.setLayoutManager(RecyclerView.VERTICAL);
             }
         });
     }

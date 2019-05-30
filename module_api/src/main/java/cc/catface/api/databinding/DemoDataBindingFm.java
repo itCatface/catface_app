@@ -21,24 +21,8 @@ public class DemoDataBindingFm extends NormalFragment<cc.catface.api.databinding
     }
 
     @Override public void createView() {
-        /* 初始化顶部标题 */
-        title();
-
         /* 测试基本的DataBinding数据绑定效果 */
         testChangeUser();
-    }
-
-
-    private void title() {
-        mBinding.tfa.setTitle("data binding").setIcon1(R.string.fa_chevron_left).setIcon4("更新数据").setOnClickListener((TitleFontAwesome.OnClickListener) v -> {
-            if(R.id.ttv4 == v.getId()) {
-                mUser.setChecked(new Random().nextInt(2) == 1);
-                mUser.setName(TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
-                mUser.setMale(new Random().nextInt(2) == 1);
-                mUser.setAge(new Random().nextInt(99));
-                mUser.description.set("时间戳：" + System.currentTimeMillis());
-            }
-        });
     }
 
 
@@ -59,5 +43,14 @@ public class DemoDataBindingFm extends NormalFragment<cc.catface.api.databinding
 
     public void click(View view) {
         TToast.get(mActivity).showBShortView("[普通处理]onClick=@{click}: " + System.currentTimeMillis(), TToast.B_SUCCESS);
+    }
+
+
+    public void tbUpdateData() {
+        mUser.setChecked(new Random().nextInt(2) == 1);
+        mUser.setName(TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
+        mUser.setMale(new Random().nextInt(2) == 1);
+        mUser.setAge(new Random().nextInt(99));
+        mUser.description.set("时间戳：" + System.currentTimeMillis());
     }
 }

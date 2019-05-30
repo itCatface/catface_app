@@ -1,5 +1,13 @@
 package cc.catface.module_start.main.mvp.view.navigation.view;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
 import cc.catface.module_start.R;
@@ -17,10 +25,6 @@ public class FunctionFm extends MvpFragment<FunctionView, FunctionPresenterImp, 
 
 
     @Override public void viewCreated() {
-        initTitle();
-    }
 
-    private void initTitle() {
-        mBinding.tfa.setTitle("功能");
     }
 }

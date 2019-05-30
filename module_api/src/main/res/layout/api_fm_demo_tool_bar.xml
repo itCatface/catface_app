@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
+            android:fitsSystemWindows="true"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/iconfont_close_32"
             app:title="标题"

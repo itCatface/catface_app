@@ -17,14 +17,5 @@ public class DemoConstraintLayoutFm extends NormalFragment<ApiActivityTestConstr
     }
 
     @Override public void createView() {
-        initTitle();
-    }
-
-    private void initTitle() {
-        title();
-    }
-
-    private void title() {
-        mBinding.tfa.setTitle("ConstraintLayout").setIcon1(R.string.fa_chevron_left);
     }
 }

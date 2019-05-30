@@ -23,10 +23,6 @@ public class DemoCrashFm extends NormalFragment<ApiActivityCrashBinding> {
     }
 
     @Override public void createView() {
-        title();
     }
 
-    private void title() {
-        mBinding.tfaCrash.setTitle("crash").setIcon1(R.string.fa_chevron_left);
-    }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_search"
+        android:title="搜索"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_normal"
+        android:orderInCategory="80"
+        android:title="删除"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/menu_plus_1"
+        android:orderInCategory="90"
+        android:title="编辑"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_plus_2"
+        android:icon="@mipmap/toast_ic_default_check_white_96"
+        android:orderInCategory="100"
+        android:title="下载"
+        app:showAsAction="never" />
+
+</menu>

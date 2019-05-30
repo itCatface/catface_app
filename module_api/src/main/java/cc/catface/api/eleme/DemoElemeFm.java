@@ -36,18 +36,11 @@ public class DemoElemeFm extends NormalFragment<ApiActivityElemeBinding> {
     }
 
     @Override public void createView() {
-        title();
-
         demoElemeMenu();
 
         demoTextMenu();
 
         singlePageMultiChosen();
-    }
-
-
-    private void title() {
-        mBinding.tfa.setTitle("菜单").setIcon1(R.string.fa_chevron_left);
     }
 
 

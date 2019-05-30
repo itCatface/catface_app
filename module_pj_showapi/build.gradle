@@ -62,8 +62,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     testImplementation "junit:junit:4.12"
-    androidTestImplementation "androidx.test:runner:1.2.0-alpha04"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0-alpha04"
+    androidTestImplementation "androidx.test:runner:1.2.0-beta01"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0-beta01"
     annotationProcessor 'androidx.annotation:annotation:1.0.2'
     annotationProcessor "com.alibaba:arouter-compiler:1.2.2"    // ARouter
 

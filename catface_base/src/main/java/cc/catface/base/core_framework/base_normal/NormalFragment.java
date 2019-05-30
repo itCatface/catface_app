@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import cc.catface.base.core_framework.BaseFunctionFm;
@@ -31,6 +32,9 @@ public abstract class NormalFragment<B extends ViewDataBinding> extends BaseFunc
     }
 
     @Override public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        /*--->沉浸式*/
+        ImmersionBar.with(this).init();
+        /*<---*/
         mRxFragment = this;
         mBinding = DataBindingUtil.inflate(inflater, layoutId(), container, false);
 

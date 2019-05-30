@@ -46,12 +46,7 @@ public class DemoViewNavigationFm extends NormalFragment<ApiActivityViewNavigati
     }
 
     @Override public void createView() {
-        title();
         initAdapter();
-    }
-
-    private void title() {
-        mBinding.tfa.setTitle("view&anim").setIcon1(R.string.fa_chevron_left);
     }
 
     private void initAdapter() {

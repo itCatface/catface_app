@@ -16,6 +16,7 @@ import androidx.databinding.DataBindingUtil;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.iflytek.databinding.ActivityAiuiBinding;
 import cc.catface.iflytek.domain.AiuiIntentData;
+import cc.catface.iflytek.mail.MailTest;
 import cc.catface.iflytek.service.AIUIServer;
 
 /**
@@ -53,6 +54,10 @@ public class AiuiActivity extends AppCompatActivity implements AIUIServer.Recogn
             mBinding.tvResult.setText("---");
         });
 
+
+        mBinding.btSendMail.setOnClickListener(v->{
+            MailTest.sendMailByJavaMail("客户端发来日志", "测试客户端发来日志...");
+        });
 
     }
 

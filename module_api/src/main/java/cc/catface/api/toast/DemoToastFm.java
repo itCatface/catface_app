@@ -2,8 +2,6 @@ package cc.catface.api.toast;
 
 import android.view.Gravity;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,12 +9,9 @@ import java.util.Random;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityToastBinding;
 import cc.catface.api.toast.adapter.ToastAdapter;
-import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.base.utils.android.common_recyclerview.TRV;
-import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -57,14 +52,7 @@ public class DemoToastFm extends NormalFragment<ApiActivityToastBinding> {
 
 
     @Override public void createView() {
-        title();
         initAdapter();
-    }
-
-    private void title() {
-        mBinding.tfa.setTitle("toast").setIcon1(R.string.fa_chevron_left).setIcon4("清除").setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if (R.id.ttv4 == view.getId()) TToast.get(mActivity).clearToast();
-        });
     }
 
     private void initAdapter() {
@@ -134,5 +122,10 @@ public class DemoToastFm extends NormalFragment<ApiActivityToastBinding> {
             }
         });
         mBinding.rvToast.setAdapter(mAdapter);
+    }
+
+
+    public void tbClear() {
+        TToast.get(mActivity).clearToast();
     }
 }

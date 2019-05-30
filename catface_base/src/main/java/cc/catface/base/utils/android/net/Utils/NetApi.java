@@ -43,6 +43,9 @@ public interface NetApi {
     @GET("test_get")
     Observable<BaseResponse<TestData>> test_get();
 
+    @GET("test_get")
+    Call<JsonObject> test_get1();
+
     @GET("test_get_")
     Observable<BaseResponse<TestData>> test_get(@Query("name") String name, @Query("pass") String pass);
 
@@ -87,4 +90,10 @@ public interface NetApi {
     @Streaming
     @GET
     Observable<ResponseBody> commonDownload(@Url String url, @Header("Range") String range);
+
+    /** 录音笔-下载验证码图片 */
+    @Streaming
+    @GET
+    Observable<ResponseBody> downloadCode(@Url String url);
+
 }

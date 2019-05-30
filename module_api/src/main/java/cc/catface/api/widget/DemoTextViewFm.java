@@ -36,12 +36,8 @@ public class DemoTextViewFm extends NormalFragment<ApiActivityTestTextViewBindin
     }
 
     @Override public void createView() {
-        title();
     }
 
-    private void title() {
-        mBinding.tfa.setTitle("tv->高亮").setIcon1(R.string.fa_chevron_left);
-    }
 
     private void handleTextColor() {
         String keyWords = mBinding.etKeyWords.getText().toString().trim();

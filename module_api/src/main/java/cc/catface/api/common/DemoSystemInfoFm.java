@@ -48,10 +48,6 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
     }
 
     @SuppressLint("SetTextI18n") @Override public void createView() {
-        title();
-    }
 
-    private void title() {
-        mBinding.tfa.setTitle("系统信息").setIcon1(R.string.fa_chevron_left);
     }
 }

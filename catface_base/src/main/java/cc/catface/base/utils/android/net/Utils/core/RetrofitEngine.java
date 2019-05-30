@@ -7,6 +7,7 @@ import cc.catface.base.utils.android.net.Utils.NetApi;
 import cc.catface.base.utils.android.net.Utils.core.cookie.AddCookiesInterceptor;
 import cc.catface.base.utils.android.net.Utils.core.cookie.ReceivedCookiesInterceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -47,7 +48,8 @@ public class RetrofitEngine {
                 .connectTimeout(RetrofitConstant.timeout, TimeUnit.SECONDS)
                 .writeTimeout(RetrofitConstant.timeout, TimeUnit.SECONDS)
                 .addInterceptor(new ReceivedCookiesInterceptor()).addInterceptor(new AddCookiesInterceptor())   // cookie
-                .addInterceptor(new CommonInterceptor())    // interceptor of common params.
+                .addInterceptor(new cc.catface.base.utils.android.net.Utils.core.HttpLoggingInterceptor().setLevel(cc.catface.base.utils.android.net.Utils.core.HttpLoggingInterceptor.Level.BODY))
+//                .addInterceptor(new CommonInterceptor())    // interceptor of common params.
                 .addInterceptor(new LoggingInterceptor())   // interceptor of logging.
                 .retryOnConnectionFailure(true)
                 .build();

@@ -23,12 +23,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <cc.catface.base.utils.android.common_title.TitleFontAwesome
-            android:id="@+id/tfa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

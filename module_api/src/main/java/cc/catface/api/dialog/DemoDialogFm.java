@@ -45,14 +45,8 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
     }
 
     @Override public void createView() {
-        title();
         initAdapter();
     }
-
-    private void title() {
-        mBinding.tfa.setTitle("dialog").setIcon1(R.string.fa_chevron_left);
-    }
-
 
     private void initAdapter() {
         TRV.initDefaultRV(mActivity, mBinding.rvDialog);

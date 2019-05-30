@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+
+import com.gyf.immersionbar.ImmersionBar;
+
 import cc.catface.base.core_framework.BaseFunctionActivity;
 import cc.catface.base.core_framework.base_mvp.factory.PresenterMvpFactory;
 import cc.catface.base.core_framework.base_mvp.factory.PresenterMvpFactoryImpl;

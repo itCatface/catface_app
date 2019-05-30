@@ -8,14 +8,6 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <cc.catface.base.utils.android.common_title.TitleFontAwesome
-            android:id="@+id/tfa"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <cc.catface.api.multi_finger.view.MultiTouchScrollView
             style="@style/scrollbar_scroll_bar_style_default"
             android:layout_width="match_parent"
@@ -24,7 +16,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tfa">
+            app:layout_constraintTop_toTopOf="parent">
 
             <cc.catface.api.multi_finger.view.MultiTouchEditText
                 android:id="@+id/mtet_brbc"

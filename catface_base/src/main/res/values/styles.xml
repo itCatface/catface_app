@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+    <!-- toolbar通用样式 -->
+    <style name="toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:background">@color/blue_title_bg</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="base_toolbar" parent="toolbar" />
+
+    <style name="toolbar_theme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="subtitleTextColor">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+    </style>
+
+    <style name="popup_theme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/blue_title_bg</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="overlapAnchor">false</item>
+    </style>
+
+
     <!-- 普通的全屏activity可在清单文件中添加该属性[Theme.AppCompat.Light.NoActionBar] -->
     <style name="common_full_screen_no_title" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>

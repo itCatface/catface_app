@@ -63,6 +63,9 @@ dependencies {
     if (!rootProject.ext.debug_module_pj_showapi) {
         implementation project(":module_pj_showapi")
     }
+    if (!rootProject.ext.debug_module_pj_iflytek) {
+        implementation project(':module_pj_iflytek')
+    }
 
     implementation project(':app_base')
 }

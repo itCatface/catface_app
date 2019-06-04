@@ -1,5 +1,8 @@
 package cc.catface.module_apis.sticky_list_headers;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import java.util.ArrayList;
@@ -25,14 +28,10 @@ public class DemoStickyListActivity extends NormalActivity<ApisActivityDemoStick
     }
 
     @Override public void create() {
-        title();
+        initToolBar();
 
         /* 类似通讯录头部的粘性控件 */
         testStickyListHeaders();
-    }
-
-    private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
     }
 
     private void testStickyListHeaders() {
@@ -68,5 +67,19 @@ public class DemoStickyListActivity extends NormalActivity<ApisActivityDemoStick
             }
         });
         mBinding.slhlv.setAdapter(mAdapter);
+    }
+
+
+    /** tool bar */
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbApis.tbTitle;
+        setSupportActionBar(toolbar);
+        ActionBar bar = getSupportActionBar();
+        if (null != bar) {
+            bar.setDisplayShowHomeEnabled(true);
+            bar.setTitle("列表黏性头部组件使用");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 }

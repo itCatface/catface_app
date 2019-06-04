@@ -9,10 +9,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <cc.catface.base.utils.android.common_title.TitleFontAwesome
-            android:id="@+id/tfa_load_img"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <include
+            android:id="@+id/i_tb_apis"
+            layout="@layout/apis_toolbar" />
 
         <ScrollView
             style="@style/scrollbar_scroll_bar_style_default"

@@ -67,7 +67,6 @@ dependencies {
 
     implementation project(':app_base')
 
-    api files('libs/Msc.jar')
     implementation files('libs/nanohttpd-2.3.1-SNAPSHOT.jar')
 
     /*  */

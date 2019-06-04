@@ -5,6 +5,9 @@ import android.os.Environment;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.gson.JsonObject;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -227,6 +230,7 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
     String url = "http://dldir1.qq.com/qqmi/aphone_p2p/TencentVideo_V6.0.0.14297_848.apk";
 
     @Override public void createView() {
+        initToolBar();
         mFm = this;
 
         mBinding.btGoOnDownload.setOnClickListener(v -> {
@@ -248,5 +252,19 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
                 }
             });
         });
+    }
+
+
+    /** tool bar */
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbTestRetrofit.tbTitle;
+        mActivity.setSupportActionBar(toolbar);
+        ActionBar bar = mActivity.getSupportActionBar();
+        if (null != bar) {
+            bar.setDisplayShowHomeEnabled(true);
+            bar.setTitle("网络请求示例");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> mActivity.finish());
     }
 }

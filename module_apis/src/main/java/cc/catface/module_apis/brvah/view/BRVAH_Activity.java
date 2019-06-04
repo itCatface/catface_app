@@ -2,19 +2,24 @@ package cc.catface.module_apis.brvah.view;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 
-import androidx.fragment.app.Fragment;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
-import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.presenter.BRVAH_PresenterImp;
 import cc.catface.module_apis.databinding.BrvahActivityBrvahBinding;
@@ -29,20 +34,9 @@ public class BRVAH_Activity extends MvpActivity<BRVAH_View, BRVAH_PresenterImp, 
         return R.layout.brvah_activity_brvah;
     }
 
-    @Override protected void initAction() {
-        mBinding.tfa.setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if(R.id.ttv1 == view.getId()) finish();
-            else if(R.id.ttv4 == view.getId()) popup(view);
-        });
-    }
-
     @Override public void create() {
-        title();
+        initToolBar();
         replaceFragment(R.id.fl_brvah, mFms[0]);
-    }
-
-    private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon4(R.string.fa_reorder);
     }
 
 
@@ -52,7 +46,7 @@ public class BRVAH_Activity extends MvpActivity<BRVAH_View, BRVAH_PresenterImp, 
             BRVAH_EmptyViewFm(), new BRVAH_DragSwipeFm(), new BRVAH_ItemClickFm(), new BRVAH_ExpandableFm(), new BRVAH_DataBindingFm(), new BRVAH_UpFetchFm(), new BRVAH_SectionMultiFm()};
 
     private void popup(View view) {
-        if(null == mPopup) {
+        if (null == mPopup) {
             ListView lv = new ListView(this);
             lv.setBackgroundColor(Color.WHITE);
             String[] TITLE = {"Animation", "MultipleItem", "MultipleItem_RVAdapter", "Header/Footer", "PullToRefresh", "Section", "EmptyView", "DragAndSwipe", "ItemClick", "ExpandableItem",
@@ -61,12 +55,45 @@ public class BRVAH_Activity extends MvpActivity<BRVAH_View, BRVAH_PresenterImp, 
             lv.setAdapter(adapter);
             lv.setOnItemClickListener((adapterView, view1, i, l) -> {
                 mPopup.dismiss();
-                mBinding.tfa.setTitle(TITLE[i]);
+                mBar.setTitle(TITLE[i]);
                 replaceFragment(R.id.fl_brvah, mFms[i]);
             });
             mPopup = new PopupWindow(lv, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
             mPopup.setBackgroundDrawable(new ColorDrawable());
         }
-        mPopup.showAsDropDown(view, 40, view.getHeight());
+        //        mPopup.showAsDropDown(view, 40, view.getHeight());
+        mPopup.showAsDropDown(view, 0, 0);
+    }
+
+
+    /** tool bar */
+    private ActionBar mBar;
+
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbApis.tbTitle;
+        setSupportActionBar(toolbar);
+        mBar = getSupportActionBar();
+        if (null != mBar) {
+            mBar.setDisplayShowHomeEnabled(true);
+            mBar.setTitle("BRVAH组件使用");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.base_menu, menu);
+        menu.findItem(R.id.menu_normal).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.findItem(R.id.menu_normal).setVisible(true);
+        menu.findItem(R.id.menu_normal).setTitle("动画");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (R.id.menu_normal == item.getItemId()) {
+            popup(findViewById(R.id.menu_normal));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
@@ -22,13 +23,13 @@ import cc.catface.base.core_framework.BaseFunctionFm;
 public abstract class NormalFragment<B extends ViewDataBinding> extends BaseFunctionFm {
     private RxFragment mRxFragment;
 
-    public Activity mActivity;
+    public AppCompatActivity mActivity;
     protected View mRootView;
     protected B mBinding;
 
     @Override public void onAttach(Context context) {
         super.onAttach(context);
-        mActivity = (Activity) context;
+        mActivity = (AppCompatActivity) context;
     }
 
     @Override public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

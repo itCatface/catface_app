@@ -1,8 +1,7 @@
 package cc.catface.module_apis.nano_httpd.view;
 
-import android.content.Context;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
@@ -11,8 +10,7 @@ import java.io.IOException;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
-import cc.catface.base.utils.android.common_title.TitleFontAwesome;
-import cc.catface.base.utils.android.view.TFontType;
+import cc.catface.base.utils.android.TAppInfo;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityServerBinding;
 import cc.catface.module_apis.nano_httpd.engine.NanoHTTPDServer;
@@ -30,29 +28,16 @@ public class ServerActivity extends MvpActivity<ServerView, ServerPresenterImp, 
 
     private NanoHTTPDServer server = new NanoHTTPDServer(9093);
 
-    @Override public void initData() {
-        TFontType.use(mBinding.tvIp, "fonts/noto_sans_semi_bold.ttf", getCurrentIpAndPort());
-    }
-
-    @Override protected void initAction() {
-        mBinding.tfa.setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if(R.id.ttv1 == view.getId()) finish();
-        });
-    }
-
     @Override public void create() {
-        title();
-    }
-
-    private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+        initToolBar();
+        if (null != mBar) mBar.setSubtitle(TAppInfo.getIp(this));
     }
 
     @Override protected void onResume() {
         super.onResume();
         try {
             server.start();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -62,13 +47,19 @@ public class ServerActivity extends MvpActivity<ServerView, ServerPresenterImp, 
         server.stop();
     }
 
-    private String getCurrentIpAndPort() {
-        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        WifiInfo connectionInfo = wifiManager.getConnectionInfo();
-        return convertIp(connectionInfo.getIpAddress());
-    }
 
-    private String convertIp(int ip) {
-        return (ip & 0xff) + "." + ((ip >> 8) & 0xff) + "." + ((ip >> 16) & 0xff) + "." + ((ip >> 24) & 0xff);
+    /** tool bar */
+    private ActionBar mBar;
+
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbApis.tbTitle;
+        setSupportActionBar(toolbar);
+        mBar = getSupportActionBar();
+        if (null != mBar) {
+            mBar.setDisplayShowHomeEnabled(true);
+            mBar.setTitle("nano httpd组件使用");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 }

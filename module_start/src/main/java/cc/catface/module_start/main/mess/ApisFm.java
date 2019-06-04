@@ -30,11 +30,10 @@ public class ApisFm extends NormalFragment<PagePureListviewBinding> {
     private final String DEMO_FLOW_LAYOUT = "demo-流式布局组件使用";
     private final String DEMO_STICKY_LIST = "demo-列表粘性头部控件使用";
     private final String DEMO_NANOHTTPD_SERVER = "demo-nano httpd使用";
-    private final String DEMO_IFLYTEK = "demo-讯飞sdk使用";
     private final String DEMO_MEMO = "demo-green dao使用";
     private final String LOAD_IMG = "demo-各图片加载框架使用";
     private final String TEST_RETROFIT = "test-测试retrofit工具类";
-    private String[] mItems = {PDF_READER, BRVAH, SPACE, DEMO_FLOW_LAYOUT, DEMO_STICKY_LIST, DEMO_NANOHTTPD_SERVER, DEMO_IFLYTEK, DEMO_MEMO, LOAD_IMG, TEST_RETROFIT};
+    private String[] mItems = {PDF_READER, BRVAH, SPACE, DEMO_FLOW_LAYOUT, DEMO_STICKY_LIST, DEMO_NANOHTTPD_SERVER, DEMO_MEMO, LOAD_IMG, TEST_RETROFIT};
 
     /* icon+label */ private List<Map<String, Object>> list = new ArrayList<>();
     private Map<String, Object> map;
@@ -68,9 +67,6 @@ public class ApisFm extends NormalFragment<PagePureListviewBinding> {
                     break;
                 case DEMO_NANOHTTPD_SERVER:
                     ARouter.getInstance().build(Const.ARouter.apis_nano).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_NANOHTTPD_SERVER)).navigation();
-                    break;
-                case DEMO_IFLYTEK:
-                    ARouter.getInstance().build(Const.ARouter.apis_iflytek).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_IFLYTEK)).navigation();
                     break;
                 case DEMO_MEMO:
                     ARouter.getInstance().build(Const.ARouter.apis_memo).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_MEMO)).navigation();

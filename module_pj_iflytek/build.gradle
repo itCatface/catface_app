@@ -1,10 +1,13 @@
-apply plugin: 'com.android.application'
+if (rootProject.ext.debug_module_pj_iflytek) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "cc.catface.iflytek"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -13,10 +16,31 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters "armeabi"
+            abiFilters("armeabi")
         }
 
         multiDexEnabled true    // 64k
+        javaCompileOptions {    // ARouter
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        if (rootProject.ext.debug_module_pj_iflytek) {
+            applicationId "cc.catface.iflytek"
+        }
+    }
+
+    sourceSets {
+        main {
+            if (rootProject.ext.debug_module_pj_iflytek) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude '**/debug/**'
+                }
+            }
+        }
     }
 
     buildTypes {
@@ -37,14 +61,16 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
     annotationProcessor 'androidx.annotation:annotation:1.0.2'
+    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"    // ARouter
     implementation project(':app_base')
     implementation files('libs/AIUI.jar')
+    implementation files('libs/mail.jar')
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')
-    implementation files('libs/mail.jar')
+    api files('libs/Msc.jar')
 }

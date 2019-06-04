@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,6 +27,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import cc.catface.app_base.ARouterApp;
@@ -79,6 +84,7 @@ public class MemoActivity extends MvpActivity<MemoView, MemoPresenterImp, ApisAc
     }
 
     @Override public void create() {
+        initToolBar();
         title();
         initView();
     }
@@ -279,5 +285,49 @@ public class MemoActivity extends MvpActivity<MemoView, MemoPresenterImp, ApisAc
 
     @Override public void daoOperationFailure(String reason) {
 
+    }
+
+
+    /** tool bar */
+    private ActionBar mBar;
+
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbApis.tbTitle;
+        setSupportActionBar(toolbar);
+        mBar = getSupportActionBar();
+        if (null != mBar) {
+            mBar.setDisplayShowHomeEnabled(true);
+            mBar.setTitle(mTitle);
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    private String mTitle = "PDF组件使用", mNormalTitle = "";
+
+    private void updateToolBar() {
+        if (null != mBar) {
+            mBar.setTitle(mTitle);
+        }
+    }
+
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.base_menu, menu);
+        menu.findItem(R.id.menu_search).setVisible(false);
+        menu.findItem(R.id.menu_normal).setVisible(!TextUtils.isEmpty(mNormalTitle.trim()));
+        menu.findItem(R.id.menu_plus_1).setVisible(false);
+        menu.findItem(R.id.menu_plus_2).setVisible(false);
+
+        menu.findItem(R.id.menu_normal).setTitle(mNormalTitle);
+        menu.findItem(R.id.menu_normal).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

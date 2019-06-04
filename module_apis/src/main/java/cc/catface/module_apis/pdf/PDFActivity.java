@@ -1,6 +1,10 @@
 package cc.catface.module_apis.pdf;
 
+import android.annotation.SuppressLint;
 import android.view.View;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.barteksc.pdfviewer.PDFView;
@@ -10,7 +14,6 @@ import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityPdfBinding;
-
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -22,23 +25,23 @@ public class PDFActivity extends NormalActivity<ApisActivityPdfBinding> implemen
     }
 
     @Override public void onClick(View view) {
-        if(R.id.bt_pre_page == view.getId()) {
-            if(mCurrentPDFPage > 0) mBinding.pdfv.jumpTo(mCurrentPDFPage - 1, true);
+        if (R.id.bt_pre_page == view.getId()) {
+            if (mCurrentPDFPage > 0) mBinding.pdfv.jumpTo(mCurrentPDFPage - 1, true);
             else mBinding.pdfv.jumpTo(0, true);
-        } else if(R.id.bt_sub_page == view.getId()) {
-            if(mCurrentPDFPage < mTotalPDFPages - 1)
+        } else if (R.id.bt_sub_page == view.getId()) {
+            if (mCurrentPDFPage < mTotalPDFPages - 1)
                 mBinding.pdfv.jumpTo(mCurrentPDFPage + 1, true);
             else mBinding.pdfv.jumpTo(mTotalPDFPages, true);
-        } else if(R.id.bt_to_top == view.getId()) {
+        } else if (R.id.bt_to_top == view.getId()) {
             mBinding.pdfv.jumpTo(0, true);
-        } else if(R.id.bt_jump == view.getId()) {
+        } else if (R.id.bt_jump == view.getId()) {
             try {
-                Integer page = Integer.valueOf(mBinding.etPage.getText().toString().trim());
-                if(page >= 0 || page <= mTotalPDFPages) mBinding.pdfv.jumpTo(page, true);
-            } catch(Exception e) {
+                int page = Integer.parseInt(mBinding.etPage.getText().toString().trim());
+                if (page >= 0 || page <= mTotalPDFPages) mBinding.pdfv.jumpTo(page, true);
+            } catch (Exception e) {
                 TToast.get(this).showShortNormal("输入页数不合理...");
             }
-        } else if(R.id.bt_search_pdf == view.getId()) {
+        } else if (R.id.bt_search_pdf == view.getId()) {
 
         }
     }
@@ -55,16 +58,12 @@ public class PDFActivity extends NormalActivity<ApisActivityPdfBinding> implemen
     private int mTotalPDFPages, mCurrentPDFPage;
 
     @Override public void create() {
-        title();
+        initToolBar();
         loadInitPDF();
         loadInitView();
     }
 
-    private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
-    }
-
-    private void loadInitPDF() {
+    @SuppressLint("SetTextI18n") private void loadInitPDF() {
         mPDFConfigure = mBinding.pdfv.fromAsset("pdfs/android-阳哥面试宝典V3.0.pdf");
         mPDFConfigure.onLoad(nbPages -> mTotalPDFPages = nbPages).onPageScroll((page, positionOffset) -> {
             mCurrentPDFPage = page;
@@ -75,9 +74,21 @@ public class PDFActivity extends NormalActivity<ApisActivityPdfBinding> implemen
         mPDFConfigure.load();
     }
 
-    private void loadInitView() {
+    @SuppressLint("SetTextI18n") private void loadInitView() {
         mBinding.tvPdfPage.setText("1/" + mTotalPDFPages);
     }
 
 
+    /** tool bar */
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbApis.tbTitle;
+        setSupportActionBar(toolbar);
+        ActionBar bar = getSupportActionBar();
+        if (null != bar) {
+            bar.setDisplayShowHomeEnabled(true);
+            bar.setTitle("PDF组件使用");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> finish());
+    }
 }

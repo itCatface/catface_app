@@ -55,6 +55,8 @@ public class Const {
         /* module_pj_wanandroid */
         public static final String pj_wanandroid_main = "/pj_wanandroid/main";
 
+        /* module_pj_iflytek */
+        public static final String pj_iflytek_main = "/pj_iflytek/main";
 
         /** fragment's id */
         public static final String fm_id_key = "fm_id_key";

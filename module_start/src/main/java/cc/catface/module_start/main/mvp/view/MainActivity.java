@@ -1,6 +1,5 @@
 package cc.catface.module_start.main.mvp.view;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.text.TextUtils;
@@ -9,14 +8,12 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTabHost;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,25 +45,17 @@ public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartA
     @SuppressLint("CheckResult") @Override public void create() {
         initToolBar();
 
-        new RxPermissions(this)
-                .request(Manifest.permission.READ_PHONE_STATE/*,
-                        Manifest.permission.RECORD_AUDIO,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_FINE_LOCATION*/)
-                .subscribe(granted -> {
-                    if (!granted) {
-                        Toast.makeText(this, "请重启应用允许请求的权限", Toast.LENGTH_SHORT).show();
-                    }
-                    //所有权限通过，初始化界面
-                    onPermissionChecked();
-                });
+        mPresenter.requestPermission(this);
     }
 
-
-    @CallSuper
-    protected void onPermissionChecked() {
+    /* View's */
+    @Override public void requestPermissionSuccess() {
         tab_host = (FragmentTabHost) findViewById(android.R.id.tabhost);
         initTab();
+    }
+
+    @Override public void requestPermissionFailure() {
+        Toast.makeText(this, "请重启应用允许请求的权限", Toast.LENGTH_SHORT).show();
     }
 
 

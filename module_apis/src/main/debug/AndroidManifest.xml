@@ -14,16 +14,11 @@
         </activity>
         <activity android:name=".nano_httpd.view.ServerActivity" />
         <!-- 讯飞相关 -->
-        <activity android:name=".iflytek.IflytekIndexActivity" />
-        <activity android:name="cc.catface.module_apis.iflytek.IflytekIatActivity" />
-        <activity android:name="cc.catface.module_apis.iflytek.IflytekTtsActivity" />
-        <activity android:name="cc.catface.module_apis.iflytek.speech.setting.TtsSettings" />
-        <activity android:name="cc.catface.module_apis.iflytek.speech.setting.IatSettings" />
         <activity android:name=".load_img.LoadImgActivity" />
         <activity android:name=".brvah.view.BRVAH_Activity" />
         <activity android:name=".memo.view.MemoActivity" />
         <activity android:name=".flow_layout.DemoFlowLayoutActivity" />
-        <activity android:name=".sticky_list_headers.DemoStickyListActivity"/>
+        <activity android:name=".sticky_list_headers.DemoStickyListActivity" />
 
     </application>
 </manifest>

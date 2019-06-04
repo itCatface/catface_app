@@ -4,6 +4,9 @@ import android.graphics.BitmapFactory;
 import android.os.SystemClock;
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
@@ -40,16 +43,16 @@ public class LoadImgActivity extends NormalActivity<ApisActivityLoadImgBinding> 
         mBinding.sdv1.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher_round));
         TTimer.timeFinished(1_000, () -> {
             timeStart = SystemClock.currentThreadTimeMillis();
-            if(R.id.bt_glide == view.getId()) {
+            if (R.id.bt_glide == view.getId()) {
                 Glide.with(this).load(url).into(mBinding.iv);
                 tvCodeStr = "Glide.with(this).load(url).into(iv)";
-            } else if(R.id.bt_glide_app == view.getId()) {
+            } else if (R.id.bt_glide_app == view.getId()) {
                 GlideApp.with(this).load(url).placeholder(R.mipmap.ic_launcher).into(mBinding.iv);
                 tvCodeStr = "GlideApp.with(this).load(url).placeholder(R.mipmap.ic_launcher).into(iv)";
-            } else if(R.id.bt_picasso == view.getId()) {
+            } else if (R.id.bt_picasso == view.getId()) {
                 Picasso.get().load(url).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher_round).into(mBinding.iv);
                 tvCodeStr = "Picasso.get().load(url).into(iv)";
-            } else if(R.id.bt_fresco == view.getId()) {
+            } else if (R.id.bt_fresco == view.getId()) {
                 mBinding.sdv1.setImageURI(url);
                 tvCodeStr = "sdv1.setImageURI(url)";
             }
@@ -59,11 +62,21 @@ public class LoadImgActivity extends NormalActivity<ApisActivityLoadImgBinding> 
     }
 
     @Override public void create() {
-        title();
+        initToolBar();
     }
 
-    private void title() {
-        mBinding.tfaLoadImg.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left);
+
+    /** tool bar */
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbApis.tbTitle;
+        setSupportActionBar(toolbar);
+        ActionBar bar = getSupportActionBar();
+        if (null != bar) {
+            bar.setDisplayShowHomeEnabled(true);
+            bar.setTitle("图片加载框架使用");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 }
 

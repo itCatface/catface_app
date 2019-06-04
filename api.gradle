@@ -9,6 +9,7 @@ ext {
     debug_module_apis = false
     debug_module_work_demo = false
 
+    debug_module_pj_iflytek = true
     debug_module_pj_wanandroid = false
     debug_module_pj_showapi = false
 

@@ -2,9 +2,15 @@ package cc.catface.module_apis.flow_layout;
 
 import android.graphics.Color;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
@@ -16,7 +22,6 @@ import cc.catface.app_base.Const;
 import cc.catface.app_base.TestDataSource;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.utils.android.common_print.toast.TToast;
-import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 import cc.catface.base.utils.java.TNumber;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityDemoFlowLayoutBinding;
@@ -39,23 +44,17 @@ public class DemoFlowLayoutActivity extends NormalActivity<ApisActivityDemoFlowL
     }
 
     @Override public void create() {
-        title();
+        initToolBar();
         showData();
-    }
-
-    private void title() {
-        mBinding.tfa.setTitle(getIntent().getStringExtra(Const.ARouter.DEFAULT_STRING_KEY)).setIcon1(R.string.fa_chevron_left).setIcon4("更新数据").setOnClickListener((TitleFontAwesome.OnClickListener) view -> {
-            if(view.getId() == R.id.ttv4) showData();
-        });
     }
 
 
     private void showData() {
         int totalTagSize = mTags.size();
         int[] randoms = TNumber.getRandoms(0, totalTagSize - 1, new Random().nextInt(totalTagSize));
-        if(null == randoms) return;
+        if (null == randoms) return;
 
-        if(randoms.length < 1) {
+        if (randoms.length < 1) {
             TToast.get(this).showBShortView("当前无可显示数据", TToast.B_ERROR);
             mBinding.flowlayout.setVisibility(View.GONE);
             return;
@@ -67,7 +66,7 @@ public class DemoFlowLayoutActivity extends NormalActivity<ApisActivityDemoFlowL
         mBinding.flowlayout.setVisibility(View.VISIBLE);
         mBinding.flowlayout.removeAllViews();
 
-        for(int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             TextView textView = buildLabel(mTags.get(randoms[i]));
             mBinding.flowlayout.addView(textView);
         }
@@ -86,5 +85,36 @@ public class DemoFlowLayoutActivity extends NormalActivity<ApisActivityDemoFlowL
 
     private float dpToPx(float dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+    }
+
+
+    /** tool bar */
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbApis.tbTitle;
+        setSupportActionBar(toolbar);
+        ActionBar bar = getSupportActionBar();
+        if (null != bar) {
+            bar.setDisplayShowHomeEnabled(true);
+            bar.setTitle("流式布局组件使用");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.base_menu, menu);
+        menu.findItem(R.id.menu_normal).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.findItem(R.id.menu_normal).setVisible(true);
+        menu.findItem(R.id.menu_normal).setTitle("更新数据");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (R.id.menu_normal == id) {
+            showData();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

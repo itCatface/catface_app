@@ -2,18 +2,20 @@ package cc.catface.module_start.main.mvp.view;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.text.TextUtils;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTabHost;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
+import cc.catface.base.utils.android.TScreen;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_start.R;
 import cc.catface.module_start.databinding.StartActivityMainBinding;
@@ -34,7 +37,7 @@ import cc.catface.module_start.main.query.view.QueryFm;
 
 @Route(path = Const.ARouter.start_main)
 @CreatePresenter(MainPresenterImp.class)
-public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartActivityMainBinding> implements MainView, MessFm.FragmentListener {
+public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartActivityMainBinding> implements MainView, MessFm.FragmentListener, NavigationView.OnNavigationItemSelectedListener {
     @Override public int layoutId() {
         return R.layout.start_activity_main;
     }
@@ -45,8 +48,35 @@ public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartA
     @SuppressLint("CheckResult") @Override public void create() {
         initToolBar();
 
+        /*  */
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mBinding.dl, mBinding.iTbStart.tbTitle, R.string.app_name, R.string.app_name);
+        mBinding.dl.addDrawerListener(toggle);
+        toggle.syncState();
+        mBinding.nv.setNavigationItemSelectedListener(this);
+
+
+        /* 调整侧边导航布局高度 */
+        int statusBarHeight = TScreen.getStatusBarHeight(this);
+        int actionBarHeight = TScreen.getActionBarHeight(this);
+        DrawerLayout.LayoutParams layoutParams = (DrawerLayout.LayoutParams) mBinding.nv.getLayoutParams();
+        layoutParams.topMargin = statusBarHeight + actionBarHeight;
+        mBinding.nv.setLayoutParams(layoutParams);
+
+
         mPresenter.requestPermission(this);
     }
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = mBinding.dl;
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
     /* View's */
     @Override public void requestPermissionSuccess() {
@@ -114,7 +144,7 @@ public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartA
         toolbar.setNavigationOnClickListener(v -> finish());
     }
 
-    private String mTitle = "功能", mNormalTitle = "";
+    private String mTitle = "功能";
 
     private void updateToolBar() {
         if (null != mBar) {
@@ -122,23 +152,17 @@ public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartA
         }
     }
 
-    @Override public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.base_menu, menu);
-        menu.findItem(R.id.menu_search).setVisible(false);
-        menu.findItem(R.id.menu_normal).setVisible(!TextUtils.isEmpty(mNormalTitle.trim()));
-        menu.findItem(R.id.menu_plus_1).setVisible(false);
-        menu.findItem(R.id.menu_plus_2).setVisible(false);
 
-        menu.findItem(R.id.menu_normal).setTitle(mNormalTitle);
-        menu.findItem(R.id.menu_normal).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        return super.onCreateOptionsMenu(menu);
-    }
+    /** 侧边导航 */
+    @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.nav_home) {
+            Toast.makeText(this, "回到主页", Toast.LENGTH_SHORT).show();
+        } else if (itemId == R.id.nav_gallery) {
+            Toast.makeText(this, "gallery", Toast.LENGTH_SHORT).show();
+        }
 
-
-    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-
-        return super.onOptionsItemSelected(item);
+        mBinding.dl.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

@@ -1,51 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/dl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:openDrawer="start">
 
-        <include
-            android:id="@+id/i_tb_start"
-            layout="@layout/start_toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.fragment.app.FragmentTabHost
-            android:id="@android:id/tabhost"
+        <!-- 顶部导航 -->
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/i_tb_start">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <!-- Fragment 容器 -->
-                <FrameLayout
-                    android:id="@android:id/tabcontent"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <!-- 底部菜单栏 -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@color/c_a" />
-
-                <TabWidget
-                    android:id="@android:id/tabs"
-                    android:layout_width="match_parent"
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/abl"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/c_10" />
-            </LinearLayout>
-        </androidx.fragment.app.FragmentTabHost>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <include
+                        android:id="@+id/i_tb_start"
+                        layout="@layout/start_toolbar" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+
+                <!-- 主布局 -->
+                <androidx.fragment.app.FragmentTabHost
+                    android:id="@android:id/tabhost"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/abl">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <!-- Fragment 容器 -->
+                        <FrameLayout
+                            android:id="@android:id/tabcontent"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <!-- 底部菜单栏 -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/c_a" />
+
+                        <TabWidget
+                            android:id="@android:id/tabs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/c_10" />
+                    </LinearLayout>
+                </androidx.fragment.app.FragmentTabHost>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <!-- 侧边导航 -->
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nv"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:headerLayout="@layout/nav_header_main"
+            app:menu="@menu/activity_main_drawer" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

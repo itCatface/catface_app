@@ -31,7 +31,6 @@ public class PjsFm extends NormalFragment<PagePureListviewBinding> {
             switch (mItems[pos]) {
                 case PJS_IFLYTEK:
                     ARouter.getInstance().build(Const.ARouter.pj_iflytek_main).navigation();
-//                    ARouter.getInstance().build("/qwer/qaz/aa").navigation();
                     break;
                 case PJS_SHOWAPI:
                     ARouter.getInstance().build(Const.ARouter.pj_showapi_main).navigation();

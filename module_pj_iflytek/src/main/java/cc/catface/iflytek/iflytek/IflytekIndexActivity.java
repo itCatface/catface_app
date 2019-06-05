@@ -30,7 +30,6 @@ import cc.catface.iflytek.R;
 import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
 
 @Route(path = Const.ARouter.pj_iflytek_main)
-//@Route(path = "/qwer/qaz/aa")
 public class IflytekIndexActivity extends NormalActivity<ApisIflytekActivityIndexBinding> implements OnClickListener {
 
     private Toast mToast;
@@ -149,7 +148,7 @@ public class IflytekIndexActivity extends NormalActivity<ApisIflytekActivityInde
     private ActionBar mBar;
 
     private void initToolBar() {
-        Toolbar toolbar = mBinding.iTbApis.tbTitle;
+        Toolbar toolbar = mBinding.iTbIflytek.tbTitle;
         setSupportActionBar(toolbar);
         mBar = getSupportActionBar();
         if (null != mBar) {

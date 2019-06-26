@@ -1,11 +1,14 @@
 package cc.catface.wanandroid.module;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.utils.android.i.ICommon;
@@ -45,18 +48,23 @@ public class WanandroidMainActivity extends NormalActivity<WanandroidActivityMai
             switch (position) {
                 case 0:
                     mBinding.bottomNav.setSelectedItemId(R.id.bottom_nav_home);
+                    updateToolBarTitle("首页");
                     break;
                 case 1:
                     mBinding.bottomNav.setSelectedItemId(R.id.bottom_nav_knowledge);
+                    updateToolBarTitle("知识体系");
                     break;
                 case 2:
                     mBinding.bottomNav.setSelectedItemId(R.id.bottom_nav_subscriptions);
+                    updateToolBarTitle("公众号");
                     break;
                 case 3:
                     mBinding.bottomNav.setSelectedItemId(R.id.bottom_nav_navigation);
+                    updateToolBarTitle("导航");
                     break;
                 case 4:
                     mBinding.bottomNav.setSelectedItemId(R.id.bottom_nav_projects);
+                    updateToolBarTitle("项目");
                     break;
             }
         });
@@ -76,7 +84,31 @@ public class WanandroidMainActivity extends NormalActivity<WanandroidActivityMai
     }
 
     @Override public void create() {
+        initToolBar();
+
         mBinding.vpWanandroidMain.setAdapter(new WanandroidMainAdapter(getSupportFragmentManager(), mFragments));
+    }
+
+
+    /** tool bar */
+    private ActionBar mBar;
+
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbWanandroid.tbTitle;
+        setSupportActionBar(toolbar);
+        mBar = getSupportActionBar();
+        if (null != mBar) {
+            mBar.setDisplayShowHomeEnabled(true);
+            mBar.setTitle("wanandroid/首页");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    private void updateToolBarTitle(String title) {
+        if (null != mBar) {
+            mBar.setTitle("wanandroid/" + title);
+        }
     }
 
 

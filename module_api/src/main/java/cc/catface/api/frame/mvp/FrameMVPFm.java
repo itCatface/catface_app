@@ -10,7 +10,7 @@ import cc.catface.base.utils.android.common_print.toast.TToast;
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 @CreatePresenter(FrameMVPPresenterImp.class)
-public class FrameMVPFm extends MvpFragment<FrameMVPView, FrameMVPPresenterImp, ApiFragmentFrameBinding> implements FrameMVPView {
+public class FrameMVPFm extends MvpFragment<FrameMVP_VP.View, FrameMVPPresenterImp, ApiFragmentFrameBinding> implements FrameMVP_VP.View {
     @Override public int layoutId() {
         return R.layout.api_fragment_frame;
     }
@@ -24,6 +24,7 @@ public class FrameMVPFm extends MvpFragment<FrameMVPView, FrameMVPPresenterImp, 
     }
 
 
+    /** private's */
     private void checkAccount() {
         mPresenter.checkAccount(mBinding.etUsername.getText().toString().trim(), mBinding.etPassword.getText().toString().trim());
     }
@@ -33,6 +34,7 @@ public class FrameMVPFm extends MvpFragment<FrameMVPView, FrameMVPPresenterImp, 
     }
 
 
+    /** View's */
     @Override public void checkAccountPass() {
         login();
     }

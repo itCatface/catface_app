@@ -8,12 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:id="@+id/v"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_subscriptions"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#df00"
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/blue_title_bg"
+            app:layout_constraintTop_toBottomOf="@+id/v"
             app:tabGravity="center"
             app:tabIndicatorColor="#fff"
             app:tabMode="scrollable"

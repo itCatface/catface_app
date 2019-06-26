@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "0.1"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true    // 64k
         javaCompileOptions {    // ARouter
@@ -40,10 +40,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    testImplementation "junit:junit:4.12"
-    androidTestImplementation "androidx.test:runner:1.2.0-beta01"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0-beta01"
-    annotationProcessor 'androidx.annotation:annotation:1.0.2'
+    annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor "com.alibaba:arouter-compiler:1.2.2"    // ARouter
     if (!rootProject.ext.debug_module_start) {
         implementation project(':module_start')

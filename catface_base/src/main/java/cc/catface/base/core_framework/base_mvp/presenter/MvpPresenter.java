@@ -20,7 +20,7 @@ import cc.catface.base.core_framework.base_mvp.view.MvpView;
  */
 public class MvpPresenter<V extends MvpView> {
 
-    /** V层View */
+    /** V层View(可通过get()方法向外提供) */
     protected V mView;
     protected Activity mActivity;
 
@@ -48,10 +48,4 @@ public class MvpPresenter<V extends MvpView> {
 
     /** 在Presenter意外销毁的时候被调用[时机和Activity、Fragment、View中的onSaveInstanceState()的调用相同] */
     public void onSaveInstanceState(Bundle outState) { }
-
-
-    /** 获取V层接口View */
-    public V getMvpView() {
-        return mView;
-    }
 }

@@ -40,6 +40,8 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
                                 new Thread(new Runnable() {
                                     @Override public void run() {
                                         UserDatabase.getInstance(mActivity).getUserDao().delete(mAllUsers.get(pos).getId());
+                                        mAllUsers = UserDatabase.getInstance(mActivity).getUserDao().getAllUsers();
+                                        mHandler.obtainMessage().sendToTarget();
                                     }
                                 }).start();
                                 break;
@@ -53,6 +55,7 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
                     }
                 });
             });
+            mBinding.lvRoom.setSelection(mAllUsers.size() - 1);
         }
     };
 
@@ -65,6 +68,8 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
                     user.setName("name-" + TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
                     user.setAge((int) l);
                     UserDatabase.getInstance(mActivity).getUserDao().insert(user);
+                    mAllUsers = UserDatabase.getInstance(mActivity).getUserDao().getAllUsers();
+                    mHandler.obtainMessage().sendToTarget();
                 }
             }).start();
         });
@@ -72,6 +77,8 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
             new Thread(new Runnable() {
                 @Override public void run() {
                     UserDatabase.getInstance(mActivity).getUserDao().deleteAll();
+                    mAllUsers = UserDatabase.getInstance(mActivity).getUserDao().getAllUsers();
+                    mHandler.obtainMessage().sendToTarget();
                 }
             }).start();
         });
@@ -82,7 +89,7 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
                     User user = new User();
                     user.setName("name++" + TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
                     user.setAge((int) l);
-//                    UserDatabase.getInstance(mActivity).getUserDao().update(user, 11);
+                    //                    UserDatabase.getInstance(mActivity).getUserDao().update(user, 11);
                 }
             }).start();
         });
@@ -112,10 +119,4 @@ public class DemoRoomFm extends NormalFragment<ApiActivityRoomBinding> {
             }).start();
         });
     }
-
-    @Override public void createView() {
-
-    }
-
-
 }

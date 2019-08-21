@@ -3,7 +3,7 @@ if (rootProject.ext.debug_module_start) {
 } else {
     apply plugin: 'com.android.library'
 }
-apply plugin: 'com.mob.sdk' // mob分享
+//apply plugin: 'com.mob.sdk' // mob分享
 
 android {
     compileSdkVersion 28
@@ -60,39 +60,38 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor "com.alibaba:arouter-compiler:1.2.2"    // ARouter
 
     implementation project(':app_base')
 }
 
-MobSDK {
-    appKey "2812e8836bbe2"
-    appSecret "77c1da88debae5f264eade3cda5eab96"
-
-    ShareSDK {
-        //平台配置信息
-        devInfo {
-            SinaWeibo {
-                appKey "2565941592"
-                appSecret "038a30b8a1f4089c0619bdf25f0dbc0c"
-                callbackUri "http://www.sharesdk.cn"
-                shareByAppClient false
-            }
-            Wechat {
-                appId "wx4868b35061f87885"
-                appSecret "64020361b8ec4c99936c0e3999a9f249"
-            }
-            QQ {
-                appId "100371282"
-                appKey "aed9b0303e3ed1e27bae87c33761161d"
-                shareByAppClient true
-            }
-            Facebook {
-                appKey "1412473428822331"
-                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
-                callbackUri "https://mob.com"
-            }
-        }
-    }
-}
+//MobSDK {
+//    appKey "2812e8836bbe2"
+//    appSecret "77c1da88debae5f264eade3cda5eab96"
+//
+//    ShareSDK {
+//        //平台配置信息
+//        devInfo {
+//            SinaWeibo {
+//                appKey "2565941592"
+//                appSecret "038a30b8a1f4089c0619bdf25f0dbc0c"
+//                callbackUri "http://www.sharesdk.cn"
+//                shareByAppClient false
+//            }
+//            Wechat {
+//                appId "wx4868b35061f87885"
+//                appSecret "64020361b8ec4c99936c0e3999a9f249"
+//            }
+//            QQ {
+//                appId "100371282"
+//                appKey "aed9b0303e3ed1e27bae87c33761161d"
+//                shareByAppClient true
+//            }
+//            Facebook {
+//                appKey "1412473428822331"
+//                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+//                callbackUri "https://mob.com"
+//            }
+//        }
+//    }
+//}

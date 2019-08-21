@@ -15,7 +15,7 @@ buildscript {
         classpath "com.alibaba:arouter-register:1.0.2"
 
         /* mob分享 */
-        classpath 'com.mob.sdk:MobSDK:+'
+//        classpath 'com.mob.sdk:MobSDK:+'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

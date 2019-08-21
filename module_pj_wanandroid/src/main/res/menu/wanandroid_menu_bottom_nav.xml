@@ -19,7 +19,7 @@
     <item
         android:id="@+id/bottom_nav_subscriptions"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/ic_launcher"
         android:title="公众号"
         app:showAsAction="ifRoom" />
 

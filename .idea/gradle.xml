@@ -6,8 +6,24 @@
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT" />
         </compositeConfiguration>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:/softwares/gradle-5.1.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app_base" />
+            <option value="$PROJECT_DIR$/catface_base" />
+            <option value="$PROJECT_DIR$/module_api" />
+            <option value="$PROJECT_DIR$/module_apis" />
+            <option value="$PROJECT_DIR$/module_pj_iflytek" />
+            <option value="$PROJECT_DIR$/module_pj_showapi" />
+            <option value="$PROJECT_DIR$/module_pj_wanandroid" />
+            <option value="$PROJECT_DIR$/module_start" />
+            <option value="$PROJECT_DIR$/module_work_demo" />
+          </set>
+        </option>
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>

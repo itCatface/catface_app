@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
-import com.mob.MobSDK;
+//import com.mob.MobSDK;
 import com.squareup.leakcanary.LeakCanary;
 
 import androidx.multidex.MultiDex;
@@ -73,7 +73,7 @@ public class App extends Application {
 
 
     private void initMob() {
-        MobSDK.init(this);
+//        MobSDK.init(this);
     }
 
 

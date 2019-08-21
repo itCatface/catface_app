@@ -42,12 +42,10 @@ public class KnowledgeColumnListFm extends MvpFragment<KnowledgeColumnListVP.Kno
 
     @Override protected void initAction() {
         mBinding.srlKnowledgeColumnList.setOnRefreshListener(() -> request(mCid));
-        ItemClickSupport.addTo(mBinding.rvKnowledgeColumnList).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-            @Override public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                String url = mData.getData().getDatas().get(position).getLink();
-                WebActivity.jump(mActivity, url);
-            }
-        });
+        ItemClickSupport.addTo(mBinding.rvKnowledgeColumnList).setOnItemClickListener((recyclerView, position, v) -> {
+            String url = mData.getData().getDatas().get(position).getLink();
+            WebActivity.jump(mActivity, url);
+        }).setOnItemLongClickListener((recyclerView, position, v) -> {return false;});
     }
 
     private KnowledgeColumnListAdapter mAdapter;

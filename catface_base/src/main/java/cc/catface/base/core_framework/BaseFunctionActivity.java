@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import cc.catface.base.utils.android.common_print.toast.TToast;
+import cc.catface.base.utils.android.view.TFontType;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -85,6 +86,7 @@ public abstract class BaseFunctionActivity extends RxAppCompatActivity {
         /*--->沉浸式*/
         ImmersionBar.with(this).init();
         /*<---*/
+        TFontType.replaceFont(this, TFontType.Font.CURRENT_SYSTEM_TYPE);
         initData();
         initAction();
         create();

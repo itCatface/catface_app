@@ -52,5 +52,5 @@ public abstract class NormalFragment<B extends ViewDataBinding> extends BaseFunc
 
     protected void initData() { }
 
-    public abstract void createView();
+    protected void createView() { }
 }

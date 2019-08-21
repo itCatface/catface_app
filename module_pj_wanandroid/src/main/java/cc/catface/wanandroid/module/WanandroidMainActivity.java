@@ -21,8 +21,7 @@ import cc.catface.wanandroid.module.navigation.NavigationFm;
 import cc.catface.wanandroid.module.projects.mvp.projects.ProjectsFm;
 import cc.catface.wanandroid.module.subscriptions.mvp.SubscriptionsFm;
 
-@Route(path = Const.ARouter.pj_wanandroid_main)
-public class WanandroidMainActivity extends NormalActivity<WanandroidActivityMainBinding> {
+@Route(path = Const.ARouter.pj_wanandroid_main) public class WanandroidMainActivity extends NormalActivity<WanandroidActivityMainBinding> {
 
     @Override public int layoutId() {
         return R.layout.wanandroid_activity_main;

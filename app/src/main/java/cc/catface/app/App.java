@@ -16,6 +16,7 @@ import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
 import cc.catface.base.AppBase;
 import cc.catface.base.utils.android.crash.CrashHandler;
+import cc.catface.ctool.system.TContext;
 import cc.catface.module_start.CrashHandlerActivity;
 
 /**
@@ -29,6 +30,8 @@ public class App extends Application {
         AppBase.setContext(this);
         ARouterApp.setContext(this);
         ARouterApp.initDB();
+
+        TContext.setContext(this);
 
         /* 初始化ARouter */
         initARouter();

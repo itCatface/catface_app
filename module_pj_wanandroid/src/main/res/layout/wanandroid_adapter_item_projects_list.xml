@@ -31,10 +31,14 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="一款精致的玩Android客户端"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_pic"
             app:layout_constraintTop_toTopOf="@+id/iv_pic" />
 
@@ -42,8 +46,10 @@
             android:id="@+id/tv_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxLines="4"
-            android:text="项目基于"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于项目基于"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />

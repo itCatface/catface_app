@@ -40,4 +40,5 @@ dependencies {
     annotationProcessor "com.alibaba:arouter-compiler:1.2.2"
 
     api project(':catface_base')
+    api project(':ctool')
 }

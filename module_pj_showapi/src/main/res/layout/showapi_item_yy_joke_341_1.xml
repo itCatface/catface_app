@@ -18,18 +18,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:paddingBottom="0dp"
             android:paddingLeft="12dp"
-            android:paddingRight="12dp"
             android:paddingTop="16dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="0dp"
+            android:text="三大发疯"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_dt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:paddingLeft="12dp"
+            android:text="2019-07-31 19:05:12.984"
+            android:textSize="10dp" />
 
         <TextView
             android:id="@+id/tv_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="6dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="16dp"
+            android:text="阿萨嘎嘎去物管费前无古人确认过我撒发疯如果犬瘟热各个人阿四个确认过企鹅万人个人股安慰人过期过期歪过人让我过去个"
             android:textSize="16sp" />
     </LinearLayout>
 

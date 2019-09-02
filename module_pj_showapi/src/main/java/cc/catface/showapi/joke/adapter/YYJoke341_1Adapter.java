@@ -9,6 +9,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import cc.catface.showapi.R;
 import cc.catface.showapi.joke.domain.YYJoke341_1;
 
@@ -25,11 +26,12 @@ public class YYJoke341_1Adapter extends RecyclerView.Adapter<YYJoke341_1Adapter.
 
 
     static class Holder extends RecyclerView.ViewHolder {
-        TextView tv_title, tv_text;
+        TextView tv_title, tv_dt, tv_text;
 
         Holder(@NonNull View itemView) {
             super(itemView);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+            tv_dt = (TextView) itemView.findViewById(R.id.tv_dt);
             tv_text = (TextView) itemView.findViewById(R.id.tv_text);
         }
     }
@@ -40,6 +42,7 @@ public class YYJoke341_1Adapter extends RecyclerView.Adapter<YYJoke341_1Adapter.
 
     @Override public void onBindViewHolder(@NonNull Holder holder, int i) {
         holder.tv_title.setText(mDatas.get(i).getTitle());
+        holder.tv_dt.setText(mDatas.get(i).getCt());
         holder.tv_text.setText(mDatas.get(i).getText().replaceAll("<br />", "\r\n").replaceAll("<br/>", "\r\n"));
     }
 

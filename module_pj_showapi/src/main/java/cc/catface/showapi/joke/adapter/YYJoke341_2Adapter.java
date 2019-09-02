@@ -1,12 +1,9 @@
 package cc.catface.showapi.joke.adapter;
 
 import android.graphics.Bitmap;
-import android.util.SparseIntArray;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -19,52 +16,35 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import cc.catface.base.utils.android.TScreen;
+import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
 import cc.catface.showapi.R;
+import cc.catface.showapi.databinding.ShowapiItemYyJoke3412Binding;
 import cc.catface.showapi.joke.domain.YYJoke341_2;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class YYJoke341_2Adapter extends RecyclerView.Adapter<YYJoke341_2Adapter.Holder> {
-
-    private List<YYJoke341_2.Showapi_res_body.Contentlist> mDatas;
+public class YYJoke341_2Adapter extends ListBindingAdapter<YYJoke341_2.Showapi_res_body.Contentlist, ShowapiItemYyJoke3412Binding> {
 
     public YYJoke341_2Adapter(List<YYJoke341_2.Showapi_res_body.Contentlist> datas) {
-        this.mDatas = datas;
+        super(datas);
     }
 
-
-    static class Holder extends RecyclerView.ViewHolder {
-        TextView tv_joke_pic;
-        ImageView iv_joke_pic;
-
-        Holder(@NonNull View itemView) {
-            super(itemView);
-            tv_joke_pic = (TextView) itemView.findViewById(R.id.tv_joke_pic);
-            iv_joke_pic = (ImageView) itemView.findViewById(R.id.iv_joke_pic);
-        }
+    @Override public int layoutId() {
+        return R.layout.showapi_item_yy_joke_341_2;
     }
 
-    @NonNull @Override public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new Holder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.showapi_item_yy_joke_341_2, viewGroup, false));
-    }
+    @Override public void onBindHolder(ShowapiItemYyJoke3412Binding binding, int position) {
+        YYJoke341_2.Showapi_res_body.Contentlist data = getDatas().get(position);
 
-
-    private SparseIntArray arr = new SparseIntArray();
-
-    @Override public void onBindViewHolder(@NonNull Holder holder, int i) {
-        holder.tv_joke_pic.setText(mDatas.get(i).getTitle());
+        binding.tvJokePic.setText(data.getTitle());
 
 
         //        GlideApp.with(holder.iv_joke_pic).load(mDatas.get(i).getImg()).into(holder.iv_joke_pic);
 
 
-        Glide.with(holder.iv_joke_pic).asBitmap().load(mDatas.get(i).getImg()).transition(BitmapTransitionOptions.withCrossFade(300)).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)
-        ).apply(RequestOptions.placeholderOf(R.mipmap.ic_launcher)).apply(RequestOptions.errorOf(R.mipmap.ic_launcher_round)).listener(new RequestListener<Bitmap>() {
+        Glide.with(binding.ivJokePic).asBitmap().load(data.getImg()).transition(BitmapTransitionOptions.withCrossFade(300)).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)).apply(RequestOptions.placeholderOf(R.mipmap.ic_launcher)).apply(RequestOptions.errorOf(R.mipmap.ic_launcher_round)).listener(new RequestListener<Bitmap>() {
             @Override public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
                 return false;
             }
@@ -80,21 +60,16 @@ public class YYJoke341_2Adapter extends RecyclerView.Adapter<YYJoke341_2Adapter.
                 //                layoutParams.height = ivHeight;
                 //                holder.iv_joke_pic.setLayoutParams(layoutParams);
 
-                ViewGroup.LayoutParams layoutParams = holder.iv_joke_pic.getLayoutParams();
-                int itemWidth = (TScreen.getScreenWidth(holder.iv_joke_pic.getContext()) - 8 * 3) / 2;
+                ViewGroup.LayoutParams layoutParams = binding.ivJokePic.getLayoutParams();
+                int itemWidth = (TScreen.getScreenWidth(binding.ivJokePic.getContext()) - 8 * 3) / 2;
                 int itemHeight = (int) (resource.getHeight() * (itemWidth + 0.0f) / resource.getWidth());
                 layoutParams.width = (int) itemWidth;
                 layoutParams.height = (int) itemHeight;
-                holder.iv_joke_pic.setLayoutParams(layoutParams);
+                binding.ivJokePic.setLayoutParams(layoutParams);
 
 
                 return false;
             }
-        }).into(holder.iv_joke_pic);
-
-    }
-
-    @Override public int getItemCount() {
-        return mDatas.size();
+        }).into(binding.ivJokePic);
     }
 }

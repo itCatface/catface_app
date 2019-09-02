@@ -1,50 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="1dp"
-    app:cardElevation="1dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="10dp"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="1dp">
 
-        <TextView
-            android:id="@+id/tv_title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:paddingLeft="12dp"
-            android:paddingTop="16dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="0dp"
-            android:text="三大发疯"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_dt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:paddingLeft="12dp"
-            android:text="2019-07-31 19:05:12.984"
-            android:textSize="10dp" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingLeft="12dp"
+                android:paddingTop="16dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="0dp"
+                android:text="三大发疯"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="12dp"
-            android:paddingTop="6dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="16dp"
-            android:text="阿萨嘎嘎去物管费前无古人确认过我撒发疯如果犬瘟热各个人阿四个确认过企鹅万人个人股安慰人过期过期歪过人让我过去个"
-            android:textSize="16sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_dt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingLeft="12dp"
+                android:text="2019-07-31 19:05:12.984"
+                android:textSize="10dp" />
 
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:paddingTop="6dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="16dp"
+                android:text="阿萨嘎嘎去物管费前无古人确认过我撒发疯如果犬瘟热各个人阿四个确认过企鹅万人个人股安慰人过期过期歪过人让我过去个"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <data />
+</layout>

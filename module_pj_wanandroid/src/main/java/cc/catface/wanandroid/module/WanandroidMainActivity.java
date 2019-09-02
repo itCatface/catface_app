@@ -43,6 +43,7 @@ import cc.catface.wanandroid.module.subscriptions.mvp.SubscriptionsFm;
     }
 
     @Override protected void initAction() {
+        mBinding.vpWanandroidMain.setOffscreenPageLimit(5);
         mBinding.vpWanandroidMain.setOnPageChangeListener((ICommon.PageChangeListener) position -> {
             switch (position) {
                 case 0:

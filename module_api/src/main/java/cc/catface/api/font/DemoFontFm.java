@@ -2,15 +2,10 @@ package cc.catface.api.font;
 
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityDemoFontBinding;
-import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.dialog.normal.TDialogNormal;
-import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 import cc.catface.base.utils.android.view.TFontType;
 
 /**
@@ -26,12 +21,15 @@ public class DemoFontFm extends NormalFragment<ApiActivityDemoFontBinding> {
     }
 
     private void initEachText() {
-        TFontType.use(mBinding.tv1, TFontType.Font.hill_house, "其形也，翩若惊鸿，婉若游龙");
-        TFontType.use(mBinding.tv2, TFontType.Font.ayzt, "荣曜秋菊，华茂春松");
-        TFontType.use(mBinding.tv3, TFontType.Font.cyls, "髣髴兮若轻云之蔽月，飘飖兮若流风之回雪");
-        TFontType.use(mBinding.tv4, TFontType.Font.ffts, "远而望之，皎若太阳升朝霞");
-        TFontType.use(mBinding.tv5, TFontType.Font.gbxs, "迫而察之，灼若芙蕖出渌波");
-        TFontType.use(mBinding.tv6, TFontType.Font.jfjc, "体迅飞凫，飘忽若神，凌波微步，罗袜生尘");
+        TFontType.use(mBinding.tv1, TFontType.Font.hill_house, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv2, TFontType.Font.ayzt, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv3, TFontType.Font.cyls, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv4, TFontType.Font.ffts, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv5, TFontType.Font.gbxs, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv6, TFontType.Font.ldhzt, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv7, TFontType.Font.wyzt, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv8, TFontType.Font.qqzt, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv9, TFontType.Font.tkjt, getString(R.string.wzhzjqeds));
     }
 
 

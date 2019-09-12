@@ -4,31 +4,22 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
 import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.utils.android.coomon_listview.TListView;
 import cc.catface.module_start.R;
 import cc.catface.module_start.databinding.StartActivitySettingBinding;
+
+import static android.graphics.Color.parseColor;
 
 public class SettingActivity extends NormalActivity<StartActivitySettingBinding> {
     @Override public int layoutId() {
         return R.layout.start_activity_setting;
     }
 
-    private final String item_version = "版本";
-    private final String item_about = "关于";
-    private final String[] items_version = {item_version, item_about};
+    @Override protected void initAction() {
+        mBinding.sbCache.setBigCircleModel(parseColor("#cccccc"), parseColor("#FF4040"), parseColor("#00ffffff"), parseColor("#ffffff"), parseColor("#ffffff"));
+    }
 
     @Override public void create() {
         initToolBar();
-
-        TListView.str(this, mBinding.lvVersion, items_version, pos -> {
-            switch (items_version[pos]) {
-                case item_version:
-                    break;
-                case item_about:
-
-                    break;
-            }
-        });
     }
 
 

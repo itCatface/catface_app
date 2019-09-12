@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import cc.catface.base.GlideApp;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.engine.domain.ProjectsListData;
@@ -58,6 +59,7 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
             tvDesc = (TextView) itemView.findViewById(R.id.tv_desc);
             tvDate = (TextView) itemView.findViewById(R.id.tv_date);
             tvAuthor = (TextView) itemView.findViewById(R.id.tv_author);
+            tvTitle.setSelected(true);
         }
     }
 }

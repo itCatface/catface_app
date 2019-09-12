@@ -4,11 +4,10 @@
 
     <data />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/setting_gap"
-        android:orientation="vertical">
+        android:background="@color/setting_gap">
 
         <include
             android:id="@+id/i_tb_start"
@@ -17,12 +16,62 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
-            android:id="@+id/lv_version"
-            style="@style/scrollbar_scroll_bar_style_default"
+        <TextView
+            android:id="@+id/tv_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:padding="10dp"
+            android:text="版本"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/i_tb_start" />
 
-    </LinearLayout>
+        <View
+            android:id="@+id/v_version"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#3333"
+            app:layout_constraintTop_toBottomOf="@+id/tv_version" />
+
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:text="关于"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/v_version" />
+
+        <View
+            android:id="@+id/v_about"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#3333"
+            app:layout_constraintTop_toBottomOf="@+id/tv_about" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/v_about">
+
+            <TextView
+                android:id="@+id/tv_cache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="是否缓存"
+                android:textSize="16sp" />
+
+            <cc.catface.base.utils.android.view.custom.SlideButton
+                android:id="@+id/sb_cache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp" />
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

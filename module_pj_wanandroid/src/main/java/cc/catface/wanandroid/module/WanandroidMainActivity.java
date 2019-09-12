@@ -68,6 +68,7 @@ import cc.catface.wanandroid.module.subscriptions.mvp.SubscriptionsFm;
                     break;
             }
         });
+        mBinding.bottomNav.setItemIconTintList(null);   /* 解决item图标不显示原始颜色的问题 */
         mBinding.bottomNav.setOnNavigationItemSelectedListener(item -> {
             if (R.id.bottom_nav_home == item.getItemId())
                 mBinding.vpWanandroidMain.setCurrentItem(0, false);

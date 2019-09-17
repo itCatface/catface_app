@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cc.catface.api">
 
     <application
         android:name="cc.catface.app_base.ARouterApp"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".view.DemoViewHolderActivity" />
         <activity android:name=".view.anim_activity_transfer.activity.TransferMainActivity" />
         <activity
             android:name=".view.anim_activity_transfer.activity.AnimTransferRightActivity"
             android:theme="@style/SwipeTheme_left2right" />
         <activity
             android:name=".view.anim_activity_transfer.activity.AnimTransferLeftActivity"
-            android:theme="@style/SwipeTheme_left2right" />
+            android:theme="@style/SwipeTheme_right2left" />
+        <activity
+            android:name=".view.anim_activity_transfer.activity.AnimTransferBottomActivity"
+            android:theme="@style/SwipeTheme_top2bottom" />
+        <activity
+            android:name=".view.anim_activity_transfer.activity.AnimTransferTopActivity"
+            android:theme="@style/SwipeTheme_bottom2top" />
+
+        <activity android:name=".view.anim_activity_transfer.test.MainActivity" />
+        <activity android:name=".view.anim_activity_transfer.test.Num2Activity" />
+        <activity
+            android:name=".ApiHolderActivity"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
     </application>
 

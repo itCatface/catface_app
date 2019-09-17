@@ -72,10 +72,10 @@ public class DemoElemeFm extends NormalFragment<ApiActivityElemeBinding> {
 
         // 初始化小圆点参数
         LinearLayout.LayoutParams paramsFocused, paramsDefault;
-        paramsFocused = new LinearLayout.LayoutParams(60, 15);
-        paramsFocused.setMargins(5, 0, 5, 0);
-        paramsDefault = new LinearLayout.LayoutParams(48, 15);
-        paramsDefault.setMargins(5, 0, 5, 0);
+        paramsFocused = new LinearLayout.LayoutParams(30, 30);
+        paramsFocused.setMargins(15, 0, 15, 0);
+        paramsDefault = new LinearLayout.LayoutParams(30, 30);
+        paramsDefault.setMargins(15, 0, 15, 0);
 
         ivElemePoints = new ImageView[mElemeTotalPages];
         for (int i = 0; i < mElemeTotalPages; i++) {
@@ -143,10 +143,10 @@ public class DemoElemeFm extends NormalFragment<ApiActivityElemeBinding> {
 
         // 初始化小圆点参数
         LinearLayout.LayoutParams paramsFocused, paramsDefault;
-        paramsFocused = new LinearLayout.LayoutParams(60, 15);
-        paramsFocused.setMargins(5, 0, 5, 0);
-        paramsDefault = new LinearLayout.LayoutParams(48, 15);
-        paramsDefault.setMargins(5, 0, 5, 0);
+        paramsFocused = new LinearLayout.LayoutParams(30, 30);
+        paramsFocused.setMargins(15, 0, 15, 0);
+        paramsDefault = new LinearLayout.LayoutParams(30, 30);
+        paramsDefault.setMargins(15, 0, 15, 0);
 
         ivTextPoints = new ImageView[mTextTotalPages];
         for (int i = 0; i < mTextTotalPages; i++) {

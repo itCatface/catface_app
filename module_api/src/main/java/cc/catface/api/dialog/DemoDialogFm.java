@@ -4,17 +4,14 @@ import android.app.ProgressDialog;
 import android.os.SystemClock;
 import android.widget.EditText;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityDialogBinding;
 import cc.catface.api.dialog.adapter.DialogAdapter;
-import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.utils.android.common_print.dialog.normal.DialogLoadingFm;
 import cc.catface.base.utils.android.common_print.dialog.normal.TDialogNormal;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.base.utils.android.common_recyclerview.TRV;
@@ -27,8 +24,7 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
         return R.layout.api_activity_dialog;
     }
 
-    private final String NORMAL_NOTIFICATION_TWO = "(系统)[通知对话框-两个选项]", NORMAL_NOTIFICATION_THREE = "(系统)[通知对话框-三个选项]", NORMAL_LIST = "(系统)[列表对话框]", NORMAL_SINGLE_CHOICE = "(系统)[单选对话框]",
-            NORMAL_MULTI_CHOICE = "(系统)[复选对话框]", NORMAL_SINGLE_EDITTEXT = "(系统)[单输入框对话框]", NORMAL_PROGRESS = "(系统)" + "[进度对话框]", NORMAL_CUSTOM_SIMPLE = "(定制)[简单的自定义样式的弹框]";
+    private final String NORMAL_NOTIFICATION_TWO = "(系统)[通知对话框-两个选项]", NORMAL_NOTIFICATION_THREE = "(系统)[通知对话框-三个选项]", NORMAL_LIST = "(系统)[列表对话框]", NORMAL_SINGLE_CHOICE = "(系统)[单选对话框]", NORMAL_MULTI_CHOICE = "(系统)[复选对话框]", NORMAL_SINGLE_EDITTEXT = "(系统)[单输入框对话框]", NORMAL_PROGRESS = "(系统)" + "[进度对话框]", NORMAL_CUSTOM_SIMPLE = "(定制)[简单的自定义样式的弹框]", NORMAL_CUSTOM_LOADING = "(定制)[自定义loading fragment弹窗]";
     private List<String> mDatas;
     private DialogAdapter mAdapter;
 
@@ -42,6 +38,7 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
         mDatas.add(NORMAL_SINGLE_EDITTEXT);
         mDatas.add(NORMAL_PROGRESS);
         mDatas.add(NORMAL_CUSTOM_SIMPLE);
+        mDatas.add(NORMAL_CUSTOM_LOADING);
     }
 
     @Override public void createView() {
@@ -70,6 +67,7 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
                         }
                     });
                     break;
+
                 case NORMAL_NOTIFICATION_THREE:
                     TDialogNormal.get(mActivity).notification(R.mipmap.ic_launcher_round, "号外号外", "今天有大新闻...", "看", "不看", "保持中立", notificationType -> {
                         switch (notificationType) {
@@ -85,9 +83,11 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
                         }
                     });
                     break;
+
                 case NORMAL_LIST:
                     TDialogNormal.get(mActivity).list(R.mipmap.ic_launcher_round, "选择英雄", heroes, chosenPosition -> TToast.get(mActivity).showBLongView("你选择了：" + heroes[chosenPosition], TToast.B_SUCCESS));
                     break;
+
                 case NORMAL_SINGLE_CHOICE:
                     TDialogNormal.get(mActivity).singleChoice(R.mipmap.ic_launcher_round, "选择一个英雄", heroes, "选好了", "取消", new TDialogNormal.SingleChoiceCallback() {
                         @Override public void onItemClick(int chosenPosition) {
@@ -99,6 +99,7 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
                         }
                     });
                     break;
+
                 case NORMAL_MULTI_CHOICE:
                     TDialogNormal.get(mActivity).multiChoice(R.mipmap.ic_launcher_round, "选择您需要的英雄", heroes, "选好了", "取消", new TDialogNormal.MultiChoiceCallback() {
                         @Override public void onItemClick(int position, boolean isChosen) {
@@ -110,6 +111,7 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
                         }
                     });
                     break;
+
                 case NORMAL_SINGLE_EDITTEXT:
                     EditText et = new EditText(mActivity);
                     TDialogNormal.get(mActivity).singleEditText(R.mipmap.ic_launcher, "有点东西", "这里输入一些内容", "确定", "取消", et, notificationType -> {
@@ -123,11 +125,12 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
                         }
                     });
                     break;
+
                 case NORMAL_PROGRESS:
                     ProgressDialog progressDialog = TDialogNormal.get(mActivity).progress(R.mipmap.ic_launcher_round, "正在下载", "即将获得全套福利视频！", ProgressDialog.STYLE_HORIZONTAL, 100, 1);
                     new Thread(() -> {
                         while (true) {
-                            SystemClock.sleep(100);
+                            SystemClock.sleep(20);
                             progressDialog.incrementProgressBy(1);
                             if (progressDialog.getProgress() == progressDialog.getMax()) {
                                 mActivity.runOnUiThread(new Runnable() {
@@ -144,6 +147,10 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
 
                 case NORMAL_CUSTOM_SIMPLE:
                     TDialogNormal.get(mActivity).customSimple();
+                    break;
+
+                case NORMAL_CUSTOM_LOADING:
+                    new DialogLoadingFm().show(getFragmentManager(), TAG);
                     break;
             }
         });

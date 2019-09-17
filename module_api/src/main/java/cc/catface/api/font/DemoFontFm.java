@@ -27,9 +27,9 @@ public class DemoFontFm extends NormalFragment<ApiActivityDemoFontBinding> {
         TFontType.use(mBinding.tv4, TFontType.Font.ffts, getString(R.string.wzhzjqeds));
         TFontType.use(mBinding.tv5, TFontType.Font.gbxs, getString(R.string.wzhzjqeds));
         TFontType.use(mBinding.tv6, TFontType.Font.ldhzt, getString(R.string.wzhzjqeds));
-        TFontType.use(mBinding.tv7, TFontType.Font.wyzt, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv7, TFontType.Font.tkjt, getString(R.string.wzhzjqeds));
         TFontType.use(mBinding.tv8, TFontType.Font.qqzt, getString(R.string.wzhzjqeds));
-        TFontType.use(mBinding.tv9, TFontType.Font.tkjt, getString(R.string.wzhzjqeds));
+        TFontType.use(mBinding.tv9, TFontType.Font.xzjt, getString(R.string.wzhzjqeds));
     }
 
 

@@ -10,7 +10,7 @@
 
         <TextView
             android:id="@+id/tv_1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"
@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/tv_2"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"
@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/tv_3"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"
@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/tv_4"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/tv_5"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"
@@ -65,7 +65,7 @@
 
         <TextView
             android:id="@+id/tv_6"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"
@@ -76,7 +76,7 @@
 
         <TextView
             android:id="@+id/tv_7"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"
@@ -87,7 +87,7 @@
 
         <TextView
             android:id="@+id/tv_8"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"
@@ -98,7 +98,7 @@
 
         <TextView
             android:id="@+id/tv_9"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/wzhzjqeds"

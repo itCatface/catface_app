@@ -10,6 +10,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class BaseFunctionFm extends RxFragment {
+    protected String TAG = getClass().getSimpleName();
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         /*--->支持ToolBar中的Menu*/

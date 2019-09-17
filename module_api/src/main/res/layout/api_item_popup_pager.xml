@@ -6,7 +6,7 @@
     android:background="#00000000"
     app:cardCornerRadius="10dp">
 
-    <androidx.core.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_pop"
         android:layout_width="200dp"
         android:layout_height="300dp"

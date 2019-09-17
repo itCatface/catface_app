@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/v_top"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#5f00"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/v_top_content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#af00"
+            app:layout_constraintTop_toBottomOf="@+id/v_top" />
+
+        <!-- ViewGroup-转写文本 -->
+        <com.yinglan.scrolllayout.ScrollLayout
+            android:id="@+id/sl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#000"
+            android:visibility="gone"
+            app:allowHorizontalScroll="true"
+            app:exitOffset="0dp"
+            app:isSupportExit="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_top"
+            app:maxOffset="500dp"
+            app:minOffset="0dp"
+            app:mode="open">
+
+            <com.yinglan.scrolllayout.content.ContentScrollView
+                android:id="@+id/csv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50f0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/bt_pull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="开合"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.yinglan.scrolllayout.content.ContentScrollView>
+        </com.yinglan.scrolllayout.ScrollLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

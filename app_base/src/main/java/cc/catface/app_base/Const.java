@@ -98,5 +98,6 @@ public class Const {
         public static final int fm_id_view_loading_round_progress = -0x110003;
 
         public static final int fm_id_apis_test_retrofit = -0x190001;
+        public static final int fm_id_apis_half_scroll = -0x190002;
     }
 }

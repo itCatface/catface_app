@@ -2,6 +2,9 @@ package cc.catface.module_apis.half_scroll;
 
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+
 import com.yinglan.scrolllayout.ScrollLayout;
 
 import cc.catface.base.core_framework.base_normal.NormalFragment;
@@ -17,6 +20,7 @@ public class HalfScrollFm extends NormalFragment<ApisActivityHalfScrollBinding> 
     }
 
     @Override protected void createView() {
+        initToolBar();
         /* 控制转写文本显示 */
         mBinding.sl.setVisibility(View.VISIBLE);
         mBinding.sl.setOnScrollChangedListener(mOnScrollChangedListener);
@@ -45,4 +49,17 @@ public class HalfScrollFm extends NormalFragment<ApisActivityHalfScrollBinding> 
 
         @Override public void onChildScroll(int top) { }
     };
+
+    /** tool bar */
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbHalfScroll.tbTitle;
+        mActivity.setSupportActionBar(toolbar);
+        ActionBar bar = mActivity.getSupportActionBar();
+        if (null != bar) {
+            bar.setDisplayShowHomeEnabled(true);
+            bar.setTitle("half scroll示例");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> mActivity.finish());
+    }
 }

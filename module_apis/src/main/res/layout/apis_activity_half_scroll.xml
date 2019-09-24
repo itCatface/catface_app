@@ -20,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="#5f00"
-            app:layout_constraintTop_toBottomOf="@+id/i_tb_half_scroll"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/i_tb_half_scroll" />
 
         <View
             android:id="@+id/v_top_content"

@@ -5,18 +5,16 @@ if (rootProject.ext.debug_module_api) {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        multiDexEnabled true    // 64k
-        javaCompileOptions {    // ARouter
+        multiDexEnabled true
+        javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
@@ -60,12 +58,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
-    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"    // ARouter
+    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"
 
     implementation project(':app_base')
 
     /* View学习： */
-    implementation 'com.github.ybq:Android-SpinKit:1.1.0'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
     // 今日头条顶部刷新控件依赖
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'

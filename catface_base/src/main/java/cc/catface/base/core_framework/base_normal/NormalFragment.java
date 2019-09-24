@@ -1,6 +1,5 @@
 package cc.catface.base.core_framework.base_normal;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;

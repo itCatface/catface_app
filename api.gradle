@@ -11,6 +11,7 @@ ext {
 
     debug_module_pj_iflytek = false
     debug_module_pj_wanandroid = false
+    debug_module_pj_wechat = false
     debug_module_pj_showapi = false
 
 

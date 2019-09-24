@@ -33,8 +33,9 @@ public class ApisFm extends NormalFragment<PagePureListviewBinding> {
     private final String DEMO_HALF_SCROLL = "demo-half scroll示例";
     private final String DEMO_MEMO = "demo-green dao使用";
     private final String LOAD_IMG = "demo-各图片加载框架使用";
+    private final String DEMO_LOTTIE = "demo-动画框架lottie示例";
     private final String TEST_RETROFIT = "test-测试retrofit工具类";
-    private String[] mItems = {PDF_READER, BRVAH, SPACE, DEMO_FLOW_LAYOUT, DEMO_STICKY_LIST, DEMO_NANOHTTPD_SERVER, DEMO_HALF_SCROLL, DEMO_MEMO, LOAD_IMG, TEST_RETROFIT};
+    private String[] mItems = {PDF_READER, BRVAH, SPACE, DEMO_FLOW_LAYOUT, DEMO_STICKY_LIST, DEMO_NANOHTTPD_SERVER, DEMO_HALF_SCROLL, DEMO_MEMO, LOAD_IMG, DEMO_LOTTIE, TEST_RETROFIT};
 
     /* icon+label */ private List<Map<String, Object>> list = new ArrayList<>();
     private Map<String, Object> map;
@@ -77,6 +78,9 @@ public class ApisFm extends NormalFragment<PagePureListviewBinding> {
                     break;
                 case LOAD_IMG:
                     ARouter.getInstance().build(Const.ARouter.apis_loadImg).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(LOAD_IMG)).navigation();
+                    break;
+                case DEMO_LOTTIE:
+                    ARouter.getInstance().build(Const.ARouter.apis_activity_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_apis_lottie).navigation();
                     break;
                 case TEST_RETROFIT:
                     ARouter.getInstance().build(Const.ARouter.apis_activity_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_apis_test_retrofit).navigation();

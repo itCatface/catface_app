@@ -8,6 +8,7 @@ import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.module_apis.databinding.ApisActivityApisHolderBinding;
 import cc.catface.module_apis.half_scroll.HalfScrollFm;
+import cc.catface.module_apis.lottie.LottieFm;
 import cc.catface.module_apis.test_retrofit.ApisTestRetrofitFm;
 
 /**
@@ -21,11 +22,14 @@ import cc.catface.module_apis.test_retrofit.ApisTestRetrofitFm;
     @Override public void create() {
         int fm_id = getIntent().getIntExtra(Const.ARouter.fm_id_key, -1);
         switch (fm_id) {
+            case Const.ARouter.fm_id_apis_test_retrofit:
+                replace(new ApisTestRetrofitFm());
+                break;
             case Const.ARouter.fm_id_apis_half_scroll:
                 replace(new HalfScrollFm());
                 break;
-            case Const.ARouter.fm_id_apis_test_retrofit:
-                replace(new ApisTestRetrofitFm());
+            case Const.ARouter.fm_id_apis_lottie:
+                replace(new LottieFm());
                 break;
         }
     }

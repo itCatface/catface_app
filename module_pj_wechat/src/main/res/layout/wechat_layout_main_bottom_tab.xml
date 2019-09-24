@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@drawable/tab_background"
+    android:orientation="horizontal">
+
+    <cc.catface.wechat.utils.ShadeView
+        android:id="@+id/id_indicator_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp"
+        app:icon="@drawable/wechat_icon_main_bottom_tab_chats"
+        app:text="chats" />
+
+    <cc.catface.wechat.utils.ShadeView
+        android:id="@+id/id_indicator_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp"
+        app:icon="@drawable/wechat_icon_main_bottom_tab_contacts"
+        app:text="contacts" />
+
+    <cc.catface.wechat.utils.ShadeView
+        android:id="@+id/id_indicator_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp"
+        app:icon="@drawable/wechat_icon_main_bottom_tab_discover"
+        app:text="discover" />
+
+    <cc.catface.wechat.utils.ShadeView
+        android:id="@+id/id_indicator_four"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp"
+        app:icon="@drawable/wechat_icon_main_bottom_tab_me"
+        app:text="me" />
+
+</LinearLayout>

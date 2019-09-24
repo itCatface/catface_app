@@ -5,22 +5,20 @@ if (rootProject.ext.debug_module_pj_iflytek) {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
-//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ndk {
             abiFilters("armeabi")
         }
 
-        multiDexEnabled true    // 64k
-        javaCompileOptions {    // ARouter
+        multiDexEnabled true
+        javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
@@ -63,7 +61,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
-    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"    // ARouter
+    annotationProcessor "com.alibaba:arouter-compiler:1.2.2"
     implementation project(':app_base')
     implementation files('libs/AIUI.jar')
     implementation files('libs/mail.jar')

@@ -58,6 +58,9 @@ public class Const {
         /* module_pj_iflytek */
         public static final String pj_iflytek_main = "/pj_iflytek/main";
 
+        /* module_pj_wechat */
+        public static final String pj_wechat_main = "/pj_wechat/main";
+
         /** fragment's id */
         public static final String fm_id_key = "fm_id_key";
         public static final int fm_id_frame = -0x99;
@@ -99,5 +102,6 @@ public class Const {
 
         public static final int fm_id_apis_test_retrofit = -0x190001;
         public static final int fm_id_apis_half_scroll = -0x190002;
+        public static final int fm_id_apis_lottie = -0x190003;
     }
 }

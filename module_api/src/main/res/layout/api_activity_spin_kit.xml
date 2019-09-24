@@ -55,11 +55,11 @@
             app:layout_constraintStart_toStartOf="@id/loading_rv_2"
             app:layout_constraintTop_toBottomOf="@+id/loading_rv_2" />
 
-
-        <cc.catface.api.view.loading.view_publish.CircleView
-            android:id="@+id/loading_cv"
+        <cc.catface.api.view.loading.view_publish.ThreeBounceView
+            android:id="@+id/loading_tbv"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="@id/loading_cgv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/loading_cgv"
             app:layout_constraintTop_toTopOf="@+id/loading_cgv" />
@@ -70,8 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="是否显示"
             android:checked="true"
+            android:text="是否显示"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

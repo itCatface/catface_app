@@ -62,9 +62,6 @@ dependencies {
 
     implementation project(':app_base')
 
-    /* View学习： */
-    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
-
     // 今日头条顶部刷新控件依赖
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 

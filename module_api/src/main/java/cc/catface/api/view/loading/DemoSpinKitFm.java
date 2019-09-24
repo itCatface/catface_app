@@ -7,9 +7,14 @@ import com.jakewharton.rxbinding.widget.RxCompoundButton;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivitySpinKitBinding;
 import cc.catface.api.view.loading.view_publish.RotatingView;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 
+/**
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ * -
+ *
+ * 参考-->https://github.com/ybq/Android-SpinKit
+ */
 public class DemoSpinKitFm extends NormalFragment<ApiActivitySpinKitBinding> {
 
     @Override public int layoutId() {
@@ -24,7 +29,7 @@ public class DemoSpinKitFm extends NormalFragment<ApiActivitySpinKitBinding> {
             mBinding.loadingWcv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
             mBinding.loadingWv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
             mBinding.loadingCgv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-            mBinding.loadingCv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+            mBinding.loadingTbv.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
         });
     }
 

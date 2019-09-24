@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+
 import cc.catface.api.R;
 import cc.catface.base.utils.android.listener.AnimatorEndListener;
 

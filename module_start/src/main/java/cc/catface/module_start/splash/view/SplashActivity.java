@@ -9,13 +9,13 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import cc.catface.ctool.system.IInterface.ISystemInterface;
 import cc.catface.module_start.R;
 import cc.catface.module_start.splash.presenter.SplashPresenterImp;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
-import cc.catface.base.utils.android.TAppInfo;
-import cc.catface.base.utils.android.listener.AnimatorEndListener;
+import cc.catface.ctool.system.TAppInfo;
 import cc.catface.module_start.databinding.ActivityStartSplashBinding;
 
 /**
@@ -46,7 +46,7 @@ public class SplashActivity extends MvpActivity<SplashView, SplashPresenterImp, 
         ObjectAnimator animIvAlpha = ObjectAnimator.ofFloat(mBinding.ivSplash, "alpha", 0f, 1f);
         animIvAlpha.setDuration(600);
         animIvAlpha.setInterpolator(new BounceInterpolator());
-        animIvAlpha.addListener(new AnimatorEndListener() {
+        animIvAlpha.addListener(new ISystemInterface.AnimatorEndListener() {
             @Override public void onAnimationEnd(Animator animator) {
                 ARouter.getInstance().build(Const.ARouter.start_main).navigation();
                 finish();

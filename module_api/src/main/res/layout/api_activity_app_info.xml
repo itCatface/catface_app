@@ -1,49 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:id="@+id/rl_loading"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ProgressBar
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/rl_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_verName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
+                app:item_line="true"
+                app:item_title="verName" />
 
-        <TextView
-            android:id="@+id/tv_verName"
-            style="@style/view_tv_default_single_line"
-            android:text="测试文本" />
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_verCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="verCode" />
 
-        <TextView
-            android:id="@+id/tv_verCode"
-            style="@style/view_tv_default_single_line"
-            android:text="测试文本" />
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_romAvailSpace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="romAvailSpace" />
 
-        <TextView
-            android:id="@+id/tv_romAvailSpace"
-            style="@style/view_tv_default_single_line"
-            android:text="测试文本" />
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_sdAvailSpace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="sdAvailSpace" />
 
-        <TextView
-            android:id="@+id/tv_sdAvailSpace"
-            style="@style/view_tv_default_single_line"
-            android:text="测试文本" />
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_appNums"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="appNums" />
 
-        <TextView
-            android:id="@+id/tv_appNums"
-            style="@style/view_tv_default_single_line"
-            android:text="测试文本" />
-    </LinearLayout>
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_ip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="ip" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_status_bar_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="status_bar_height" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_action_bar_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="false"
+                app:item_title="action_bar_height" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_screen_width"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="false"
+                app:item_title="screen_width" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_screen_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="false"
+                app:item_title="screen_height" />
+        </LinearLayout>
+    </ScrollView>
 </layout>

@@ -1,4 +1,4 @@
-package cc.catface.base.domain;
+package cc.catface.ctool.system;
 
 import android.graphics.drawable.Drawable;
 

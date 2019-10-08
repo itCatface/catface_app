@@ -1,4 +1,4 @@
-package cc.catface.base.utils.android;
+package cc.catface.ctool.system;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,9 +14,6 @@ import android.text.format.Formatter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cc.catface.base.domain.AppInfo;
-
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -129,6 +126,7 @@ public class TAppInfo {
     /** ip */
     public static String getIp(Context context) {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (null == wifiManager) return "";
         WifiInfo connectionInfo = wifiManager.getConnectionInfo();
         return convertIp(connectionInfo.getIpAddress());
     }

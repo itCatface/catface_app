@@ -23,7 +23,7 @@ import java.util.List;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
-import cc.catface.base.utils.android.TScreen;
+import cc.catface.ctool.system.TScreen;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_start.R;
 import cc.catface.module_start.databinding.StartActivityMainBinding;

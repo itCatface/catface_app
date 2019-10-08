@@ -8,16 +8,126 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/i_tb_lottie"
+            layout="@layout/apis_toolbar" />
+
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lav_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/lav_5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/i_tb_lottie"
             app:lottie_autoPlay="true"
             app:lottie_fileName="427-happy-birthday.json"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="reverse" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/lav_5"
+            app:layout_constraintEnd_toStartOf="@+id/lav_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/i_tb_lottie"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="9711-payment-from-illustration-animation.json"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="reverse" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/lav_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/i_tb_lottie"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="9626-levitate-meditate-peace-and-love.json"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="reverse" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toTopOf="@id/lav_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/lav_2"
+            app:layout_constraintTop_toBottomOf="@+id/i_tb_lottie"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="9637-check.json"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="reverse" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/lav_5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/i_tb_lottie"
+            app:layout_constraintVertical_weight="1"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="9644-delivery-riding.json"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="reverse" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_6"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/lav_5"
+            app:layout_constraintTop_toTopOf="@+id/i_tb_lottie"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="9686-fun-isometric-city.json"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="reverse" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_7"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/lav_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lav_5"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="9699-walking-for-wifi.json"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="reverse" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_8"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lav_5"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="9704-ecommerce.json"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="reverse" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_9"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/lav_5"
+            app:layout_constraintTop_toBottomOf="@id/lav_5"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="9694-about.json"
             app:lottie_loop="true"
             app:lottie_repeatMode="reverse" />
 

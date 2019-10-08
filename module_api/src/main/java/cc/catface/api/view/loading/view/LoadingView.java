@@ -16,12 +16,10 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
-import com.scwang.smartrefresh.layout.util.DensityUtil;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import cc.catface.api.R;
-import cc.catface.base.utils.android.TScreen;
+import cc.catface.ctool.system.TScreen;
 
 public class LoadingView extends View {
     private Paint paint;

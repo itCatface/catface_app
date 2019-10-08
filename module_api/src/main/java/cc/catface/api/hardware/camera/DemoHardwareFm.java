@@ -10,8 +10,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,12 +19,9 @@ import cc.catface.api.ApiHolderActivity;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityVibratorCameraBinding;
 import cc.catface.api.hardware.qrcode.DemoScanQrcodeFm;
-import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
-import cc.catface.base.utils.android.common_intent.TIntent;
-import cc.catface.base.utils.android.common_title.TitleFontAwesome;
-import cc.catface.base.utils.android.sensor.TFlash;
-import cc.catface.base.utils.android.sensor.TVibrator;
+import cc.catface.ctool.system.sensor.TFlash;
+import cc.catface.ctool.system.sensor.TVibrator;
 import cc.catface.base.utils.android.view.ImageUtil;
 
 import static android.app.Activity.RESULT_OK;

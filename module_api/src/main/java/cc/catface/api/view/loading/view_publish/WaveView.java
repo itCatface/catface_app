@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.RequiresApi;
 
 import cc.catface.api.R;
-import cc.catface.base.utils.android.listener.AnimatorEndListener;
+import cc.catface.ctool.system.IInterface.ISystemInterface;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -95,7 +95,7 @@ public class WaveView extends FrameLayout {
         AnimatorSet as = new AnimatorSet();
         as.playTogether(anim1, anim2, anim3, anim4, anim5);
         as.start();
-        as.addListener(new AnimatorEndListener() {
+        as.addListener(new ISystemInterface.AnimatorEndListener() {
             @Override public void onAnimationEnd(Animator animation) {
                 as.start();
             }

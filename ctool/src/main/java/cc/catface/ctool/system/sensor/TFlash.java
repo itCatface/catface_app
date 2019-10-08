@@ -1,4 +1,4 @@
-package cc.catface.base.utils.android.sensor;
+package cc.catface.ctool.system.sensor;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

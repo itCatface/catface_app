@@ -1,6 +1,6 @@
-package cc.catface.base.utils.android.listener;
+package cc.catface.ctool.system.IInterface;
 
-        import android.animation.Animator;
+import android.animation.Animator;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925

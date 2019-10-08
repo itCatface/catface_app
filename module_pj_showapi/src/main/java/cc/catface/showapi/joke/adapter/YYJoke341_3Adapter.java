@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cc.catface.base.utils.android.TScreen;
+import cc.catface.ctool.system.TScreen;
 import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
 import cc.catface.showapi.R;
 import cc.catface.showapi.databinding.ShowapiItemYyJoke3413Binding;

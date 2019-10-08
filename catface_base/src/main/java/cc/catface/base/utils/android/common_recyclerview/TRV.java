@@ -9,6 +9,7 @@ import java.util.Objects;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import cc.catface.base.R;
 
 /**
@@ -16,10 +17,13 @@ import cc.catface.base.R;
  */
 public class TRV {
 
-    public static void initDefaultRV(Context ctx, RecyclerView rv) {
-        rv.setLayoutManager(new LinearLayoutManager(ctx));
-        DividerItemDecoration decoration = new DividerItemDecoration(ctx, DividerItemDecoration.VERTICAL);
-        decoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(ctx, R.drawable.shape_rv_devider_colors)));
-        rv.addItemDecoration(decoration);
+    public static void initDefaultRV(Context ctx, RecyclerView... rvs) {
+        for (RecyclerView rv : rvs) {
+            if (null == rv) return;
+            rv.setLayoutManager(new LinearLayoutManager(ctx));
+            DividerItemDecoration decoration = new DividerItemDecoration(ctx, DividerItemDecoration.VERTICAL);
+            decoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(ctx, R.drawable.shape_rv_devider_colors)));
+            rv.addItemDecoration(decoration);
+        }
     }
 }

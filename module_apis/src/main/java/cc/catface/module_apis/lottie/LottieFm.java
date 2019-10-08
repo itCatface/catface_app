@@ -2,6 +2,9 @@ package cc.catface.module_apis.lottie;
 
 import android.animation.Animator;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisFragmentLottieBinding;
@@ -15,10 +18,11 @@ public class LottieFm extends NormalFragment<ApisFragmentLottieBinding> {
     }
 
     @Override protected void createView() {
-        mBinding.lav.addAnimatorUpdateListener(animation -> {
+        initToolBar();
+        mBinding.lav5.addAnimatorUpdateListener(animation -> {
 
         });
-        mBinding.lav.addAnimatorListener(new Animator.AnimatorListener() {
+        mBinding.lav5.addAnimatorListener(new Animator.AnimatorListener() {
             @Override public void onAnimationStart(Animator animation) {
 
             }
@@ -35,6 +39,19 @@ public class LottieFm extends NormalFragment<ApisFragmentLottieBinding> {
 
             }
         });
-        mBinding.lav.playAnimation();
+        mBinding.lav5.playAnimation();
+    }
+
+    /** tool bar */
+    private void initToolBar() {
+        Toolbar toolbar = mBinding.iTbLottie.tbTitle;
+        mActivity.setSupportActionBar(toolbar);
+        ActionBar bar = mActivity.getSupportActionBar();
+        if (null != bar) {
+            bar.setDisplayShowHomeEnabled(true);
+            bar.setTitle("lottie示例");
+        }
+        toolbar.setNavigationIcon(R.mipmap.flaticon_back);
+        toolbar.setNavigationOnClickListener(v -> mActivity.finish());
     }
 }

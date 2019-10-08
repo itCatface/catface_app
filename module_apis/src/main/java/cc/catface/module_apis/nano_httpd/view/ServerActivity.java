@@ -10,7 +10,7 @@ import java.io.IOException;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
-import cc.catface.base.utils.android.TAppInfo;
+import cc.catface.ctool.system.TAppInfo;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityServerBinding;
 import cc.catface.module_apis.nano_httpd.engine.NanoHTTPDServer;

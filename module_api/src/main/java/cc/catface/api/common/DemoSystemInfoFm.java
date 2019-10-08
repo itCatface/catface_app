@@ -1,7 +1,5 @@
 package cc.catface.api.common;
 
-import android.annotation.SuppressLint;
-import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 
@@ -11,20 +9,29 @@ import java.util.List;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityAppInfoBinding;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
-import cc.catface.base.domain.AppInfo;
-import cc.catface.base.utils.android.TAppInfo;
+import cc.catface.ctool.system.AppInfo;
+import cc.catface.ctool.system.TAppInfo;
+import cc.catface.ctool.system.TScreen;
+import cc.catface.ctool.system.TString;
+import cc.catface.ctool.system.TWeakHandler;
 
-public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> {
-    @SuppressLint("HandlerLeak") private Handler mHandler = new Handler() {
-        @SuppressLint("SetTextI18n") @Override public void handleMessage(Message msg) {
-            mBinding.rlLoading.setVisibility(View.GONE);
-            mBinding.tvVerName.setText("verName:" + mVersionName);
-            mBinding.tvVerCode.setText("verCode:" + mVersionCode);
-            mBinding.tvRomAvailSpace.setText("romAvailSpace:" + mRomAvailSpace);
-            mBinding.tvSdAvailSpace.setText("sdAvailSpace:" + mAvailSDSpace);
-            mBinding.tvAppNums.setText("appNums:" + mApps.size());
-        }
-    };
+public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> implements TWeakHandler.MessageListener {
+
+    private TWeakHandler<DemoSystemInfoFm> mHandler;
+
+    @Override public void handleMessage(Message msg) {
+        mBinding.rlLoading.setVisibility(View.GONE);
+        mBinding.tiVerName.setContent(mVersionName);
+        mBinding.tiVerCode.setContent(TString.convert2String(mVersionCode));
+        mBinding.tiRomAvailSpace.setContent(mRomAvailSpace);
+        mBinding.tiSdAvailSpace.setContent(mAvailSDSpace);
+        mBinding.tiAppNums.setContent(TString.convert2String(mApps.size()));
+        mBinding.tiIp.setContent(TAppInfo.getIp(mActivity));
+        mBinding.tiStatusBarHeight.setContent(TString.convert2String(TScreen.getStatusBarHeight(mActivity)));
+        mBinding.tiActionBarHeight.setContent(TString.convert2String(TScreen.getActionBarHeight(mActivity)));
+        mBinding.tiScreenWidth.setContent(TString.convert2String(TScreen.getScreenWidth(mActivity)));
+        mBinding.tiScreenHeight.setContent(TString.convert2String(TScreen.getScreenHeight(mActivity)));
+    }
 
 
     @Override public int layoutId() {
@@ -47,7 +54,8 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
         }).start();
     }
 
-    @SuppressLint("SetTextI18n") @Override public void createView() {
-
+    @Override public void createView() {
+        mBinding.rlLoading.setVisibility(View.VISIBLE);
+        mHandler = new TWeakHandler<>(this);
     }
 }

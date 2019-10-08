@@ -11,7 +11,7 @@ import java.util.List;
 
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.utils.android.i.ICommon;
+import cc.catface.ctool.system.IInterface.ISystemInterface;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidActivityMainBinding;
 import cc.catface.wanandroid.engine.adapter.WanandroidMainAdapter;
@@ -44,7 +44,7 @@ import cc.catface.wanandroid.module.subscriptions.mvp.SubscriptionsFm;
 
     @Override protected void initAction() {
         mBinding.vpWanandroidMain.setOffscreenPageLimit(5);
-        mBinding.vpWanandroidMain.setOnPageChangeListener((ICommon.PageChangeListener) position -> {
+        mBinding.vpWanandroidMain.setOnPageChangeListener((ISystemInterface.PageChangeListener) position -> {
             switch (position) {
                 case 0:
                     mBinding.bottomNav.setSelectedItemId(R.id.bottom_nav_home);

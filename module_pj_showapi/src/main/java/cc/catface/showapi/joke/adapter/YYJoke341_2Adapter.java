@@ -16,7 +16,7 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
-import cc.catface.base.utils.android.TScreen;
+import cc.catface.ctool.system.TScreen;
 import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
 import cc.catface.showapi.R;
 import cc.catface.showapi.databinding.ShowapiItemYyJoke3412Binding;

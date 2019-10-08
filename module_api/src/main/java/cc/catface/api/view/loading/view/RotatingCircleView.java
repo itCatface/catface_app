@@ -14,7 +14,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import cc.catface.base.utils.android.listener.AnimatorEndListener;
+
+import cc.catface.ctool.system.IInterface.ISystemInterface;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -68,7 +69,7 @@ public class RotatingCircleView extends View {
         AnimatorSet.Builder builder = animatorSet.play(animRotationX);
         builder.before(animRotationY);
         animatorSet.start();
-        animatorSet.addListener(new AnimatorEndListener() {
+        animatorSet.addListener(new ISystemInterface.AnimatorEndListener() {
             @Override public void onAnimationEnd(Animator animator) {
                 mHandler.obtainMessage().sendToTarget();
             }

@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.RequiresApi;
 
 import cc.catface.api.R;
-import cc.catface.base.utils.android.listener.AnimatorEndListener;
+import cc.catface.ctool.system.IInterface.ISystemInterface;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -101,7 +101,7 @@ public class ThreeBounceView extends FrameLayout {
 
         animatorSet.playTogether(as1, as2, as3, as4, as5);
         animatorSet.start();
-        animatorSet.addListener(new AnimatorEndListener() {
+        animatorSet.addListener(new ISystemInterface.AnimatorEndListener() {
             @Override public void onAnimationEnd(Animator animation) {
                 animatorSet.start();
             }

@@ -26,6 +26,13 @@
             </RelativeLayout>
 
             <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/ti_netState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="netState" />
+
+            <cc.catface.ctool.view.listview.TempItem
                 android:id="@+id/ti_verName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

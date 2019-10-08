@@ -1,7 +1,12 @@
 package cc.catface.api.common;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +19,8 @@ import cc.catface.ctool.system.TAppInfo;
 import cc.catface.ctool.system.TScreen;
 import cc.catface.ctool.system.TString;
 import cc.catface.ctool.system.TWeakHandler;
+import cc.catface.ctool.system.netstate.NetBroadcastReceiver;
+import cc.catface.ctool.system.netstate.NetStateUtil;
 
 public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> implements TWeakHandler.MessageListener {
 
@@ -33,6 +40,32 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
         mBinding.tiScreenHeight.setContent(TString.convert2String(TScreen.getScreenHeight(mActivity)));
     }
 
+
+    private NetBroadcastReceiver mReceiver;
+
+    @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (mReceiver == null) {
+            mReceiver = new NetBroadcastReceiver();
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+            mActivity.registerReceiver(mReceiver, filter);
+            mReceiver.setListener(netWorkType -> {
+                String netState = "无网络连接";
+                if (NetStateUtil.NETWORK_WIFI == netWorkType) {
+                    netState = "wifi";
+                } else if (NetStateUtil.NETWORK_MOBILE == netWorkType) {
+                    netState = "移动网络";
+                }
+                mBinding.tiNetState.setContent("当前网络状态：" + netState);
+            });
+        }
+    }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        if (null != mReceiver) mActivity.unregisterReceiver(mReceiver);
+    }
 
     @Override public int layoutId() {
         return R.layout.api_activity_app_info;

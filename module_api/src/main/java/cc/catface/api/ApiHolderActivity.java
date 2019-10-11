@@ -32,6 +32,7 @@ import cc.catface.api.view.DemoViewNavigationFm;
 import cc.catface.api.view.loading.DemoSpinKitFm;
 import cc.catface.api.view.loading.round_progress.DemoIflyTingjianViewFm;
 import cc.catface.api.view.loading.round_smile.DemoRoundSmileFm;
+import cc.catface.api.viewpager2.DemoViewPager2Fm;
 import cc.catface.api.widget.DemoConstraintLayoutFm;
 import cc.catface.api.widget.DemoIVScaleTypeFm;
 import cc.catface.api.widget.DemoTextViewFm;
@@ -41,8 +42,7 @@ import cc.catface.base.core_framework.base_normal.NormalActivity;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_holder)
-public class ApiHolderActivity extends NormalActivity<ApiActivityApiHolderBinding> {
+@Route(path = Const.ARouter.api_holder) public class ApiHolderActivity extends NormalActivity<ApiActivityApiHolderBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_api_holder;
     }
@@ -71,6 +71,7 @@ public class ApiHolderActivity extends NormalActivity<ApiActivityApiHolderBindin
     private DemoSpinKitFm fmSpinKit = new DemoSpinKitFm();
     private DemoRoundSmileFm fmRoundSmile = new DemoRoundSmileFm();
     private DemoIflyTingjianViewFm fmTingjian = new DemoIflyTingjianViewFm();
+    private DemoViewPager2Fm fmViewPager2 = new DemoViewPager2Fm();
 
     @Override public void create() {
         initToolBar();
@@ -174,6 +175,11 @@ public class ApiHolderActivity extends NormalActivity<ApiActivityApiHolderBindin
             case Const.ARouter.fm_id_view_loading_round_progress:
                 mTitle = "";
                 replace(fmTingjian);
+                break;
+
+            case Const.ARouter.fm_id_viewpager2:
+                mTitle = "viewpager2";
+                replace(fmViewPager2);
                 break;
         }
 

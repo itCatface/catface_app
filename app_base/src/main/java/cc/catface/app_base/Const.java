@@ -83,6 +83,7 @@ public class Const {
         public static final int fm_id_room = -0x83;
         public static final int fm_id_crash = -0x82;
         public static final int fm_id_toolbar = -0x82001;
+        public static final int fm_id_viewpager2 = -0x82002;
         public static final int fm_id_view_astr = -0x100001;
         public static final int fm_id_view_interpolator = -0x100002;
         public static final int fm_id_view_value = -0x100003;

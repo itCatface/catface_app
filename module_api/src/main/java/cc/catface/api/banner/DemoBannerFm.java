@@ -5,29 +5,24 @@ import android.view.View;
 import java.util.Arrays;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 import cc.catface.api.R;
 import cc.catface.api.banner.edit.RVCustomBannerView;
 import cc.catface.api.banner.edit.RVDefaultBannerView;
-import cc.catface.api.databinding.ApiActivityBannerBinding;
+import cc.catface.api.databinding.ApiFragmentBannerBinding;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.dialog.normal.TDialogNormal;
 import cc.catface.base.utils.android.common_print.toast.TToast;
-import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoBannerFm extends NormalFragment<ApiActivityBannerBinding> {
+public class DemoBannerFm extends NormalFragment<ApiFragmentBannerBinding> {
     @Override public int layoutId() {
-        return R.layout.api_activity_banner;
+        return R.layout.api_fragment_banner;
     }
 
-    private String[] mImgUrls = {
-            "http://wallpapersqq.net/wp-content/uploads/2015/11/allen-iverson-wallpapers-wide-desktop-wallpapers.jpg",
-            "http://img.dianying.fm/media/backdrops/7a/7ax1vTwU5MpkRojxqejkX9fqlHq.jpg",
-            "http://pic1.win4000.com/wallpaper/7/50921fa77c258.jpg",
-            "http://n.sinaimg.cn/sinacn/20161226/5fca-fxyxute3388729.jpg",
-            "http://t1.huanqiu.cn/6b6e291d95d20583c238613337c48d70.jpeg"};
+    private String[] mImgUrls = {"http://wallpapersqq.net/wp-content/uploads/2015/11/allen-iverson-wallpapers-wide-desktop-wallpapers.jpg", "http://img.dianying.fm/media/backdrops/7a/7ax1vTwU5MpkRojxqejkX9fqlHq.jpg", "http://pic1.win4000.com/wallpaper/7/50921fa77c258.jpg", "http://n.sinaimg.cn/sinacn/20161226/5fca-fxyxute3388729.jpg", "http://t1.huanqiu.cn/6b6e291d95d20583c238613337c48d70.jpeg"};
 
     @Override public void createView() {
         mBinding.rvdbv.setVisibility(View.VISIBLE);

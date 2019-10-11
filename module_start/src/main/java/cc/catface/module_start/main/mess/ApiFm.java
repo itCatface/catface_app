@@ -37,9 +37,9 @@ public class ApiFm extends NormalFragment<PagePureListviewBinding> {
     private final String DEMO_ROOM = "demo-系统-room示例";
     private final String DEMO_CRASH = "demo-系统-crash处理示例";
     private final String DEMO_TOOLBAR = "demo-系统-toolbar使用示例";
+    private final String DEMO_VIEWPAGER2 = "demo-viewpager2示例";
 
-    private String[] mItems = {DEMO_FRAME, DEMO_FONT, DEMO_TOAST, DEMO_DIALOG, DEMO_POP, DEMO_VIEW, DEMO_HARDWARE, DEMO_RECYCLERVIEW, DEMO_MENU_OF_ELEME, DEMO_LOAD_BIG_IMG, DEMO_APP_INFO, DEMO_MULTI_FINGER, DEMO_TEXT_VIEW,
-            DEMO_IV_SCALETYPE, DEMO_CONSTRAINT_LAYOUT, DEMO_DATA_BINDING, DEMO_ROOM, DEMO_CRASH, DEMO_TOOLBAR};
+    private String[] mItems = {DEMO_FRAME, DEMO_FONT, DEMO_TOAST, DEMO_DIALOG, DEMO_POP, DEMO_VIEW, DEMO_HARDWARE, DEMO_RECYCLERVIEW, DEMO_MENU_OF_ELEME, DEMO_LOAD_BIG_IMG, DEMO_APP_INFO, DEMO_MULTI_FINGER, DEMO_TEXT_VIEW, DEMO_IV_SCALETYPE, DEMO_CONSTRAINT_LAYOUT, DEMO_DATA_BINDING, DEMO_ROOM, DEMO_CRASH, DEMO_TOOLBAR, DEMO_VIEWPAGER2};
 
 
     @Override public void createView() {
@@ -101,6 +101,9 @@ public class ApiFm extends NormalFragment<PagePureListviewBinding> {
                     break;
                 case DEMO_TOOLBAR:
                     ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_toolbar).navigation();
+                    break;
+                case DEMO_VIEWPAGER2:
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_viewpager2).navigation();
                     break;
             }
         });

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import cc.catface.api.R;
-import cc.catface.api.databinding.ApiActivityToastBinding;
+import cc.catface.api.databinding.ApiFmToastBinding;
 import cc.catface.api.toast.adapter.ToastAdapter;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
 import cc.catface.base.utils.android.common_print.toast.TToast;
@@ -16,9 +16,9 @@ import cc.catface.base.utils.android.common_recyclerview.TRV;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoToastFm extends NormalFragment<ApiActivityToastBinding> {
+public class DemoToastFm extends NormalFragment<ApiFmToastBinding> {
     @Override public int layoutId() {
-        return R.layout.api_activity_toast;
+        return R.layout.api_fm_toast;
     }
 
     private final String NORMAL_SHORT = "系统普通Toast[短]", NORMAL_LONG = "系统普通Toast[长]", CONTENT_SHORT = "立即更新Toast显示内容[短]", CONTENT_LONG = "立即更新Toast显示内容[长]", IMMEDIATELY_SHORT = "立即弹出Toast[短]",

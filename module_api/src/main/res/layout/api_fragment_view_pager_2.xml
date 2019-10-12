@@ -15,6 +15,13 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_vp2_1_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/vp2_1"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp2_2"
             android:layout_width="match_parent"

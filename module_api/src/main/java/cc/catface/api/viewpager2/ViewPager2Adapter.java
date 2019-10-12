@@ -1,20 +1,14 @@
 package cc.catface.api.viewpager2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiItemViewPager2Binding;
-import cc.catface.ctool.view.recyclerview.CustomBindingAdapter;
+import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
 
-public class ViewPager2Adapter extends CustomBindingAdapter<ApiItemViewPager2Binding> {
-    private List<Integer> colors = new ArrayList<>();
-
-    {
-        colors.add(android.R.color.holo_red_dark);
-        colors.add(android.R.color.holo_purple);
-        colors.add(android.R.color.holo_blue_dark);
-        colors.add(android.R.color.holo_green_light);
+public class ViewPager2Adapter extends ListBindingAdapter<Integer, ApiItemViewPager2Binding> {
+    public ViewPager2Adapter(List<Integer> datas) {
+        super(datas);
     }
 
     @Override public int layoutId() {
@@ -22,11 +16,12 @@ public class ViewPager2Adapter extends CustomBindingAdapter<ApiItemViewPager2Bin
     }
 
     @Override public void onBindHolder(ApiItemViewPager2Binding binding, int position) {
+        position %= getDatas().size();
         binding.tvTitle.setText("item " + position);
-        binding.rlContainer.setBackgroundResource(colors.get(position));
+        binding.rlContainer.setBackgroundResource(getDatas().get(position));
     }
 
     @Override public int getItemCount() {
-        return colors.size();
+        return Integer.MAX_VALUE;
     }
 }

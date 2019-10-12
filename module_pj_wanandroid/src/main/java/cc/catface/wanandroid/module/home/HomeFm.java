@@ -70,8 +70,8 @@ import cc.catface.wanandroid.module.web.WebActivity;
 
     /** View's */
     @Override public void requestBannerSuccess(Banner banner) {
-        mBinding.vpHomeBanner.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % banner.getData().size());
         mBinding.vpHomeBanner.setAdapter(new HomeBannerAdapter(banner.getData()));
+        mBinding.vpHomeBanner.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % banner.getData().size());
         new Thread(() -> {
             while (true) {
                 SystemClock.sleep(duration);

@@ -89,8 +89,8 @@ public class DemoViewPager2Fm extends NormalFragment<ApiFragmentViewPager2Bindin
                 view.setAlpha(0);
             }
         });
-        mBinding.vp21.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % mDatas.size());
         mBinding.vp21.setAdapter(new ViewPager2Adapter(mDatas));
+        mBinding.vp21.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % mDatas.size());
         new Thread(() -> {
             while (true) {
                 SystemClock.sleep(duration);

@@ -2,8 +2,12 @@ package cc.catface.wanandroid.module.web;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -36,8 +40,17 @@ public class WebActivity extends NormalActivity<WanandroidActivityWebBinding> {
 
     private void loadHtml() {
         mBinding.wv.loadUrl(url);
-        mBinding.wv.getSettings().setJavaScriptEnabled(true);
-        mBinding.wv.getSettings().setSupportZoom(true);
+        WebSettings settings = mBinding.wv.getSettings();
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setJavaScriptEnabled(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDisplayZoomControls(false);
+        settings.setUseWideViewPort(true);
+        settings.setLoadsImagesAutomatically(true);
         mBinding.wv.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -56,14 +69,35 @@ public class WebActivity extends NormalActivity<WanandroidActivityWebBinding> {
 
             }
         });
-        /*mBinding.wv.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
+        /* WebView返回上一页 */
+        mBinding.wv.setOnKeyListener((v, keyCode, event) -> {
+            if ((keyCode == KeyEvent.KEYCODE_BACK) && mBinding.wv.canGoBack()) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    mBinding.wv.goBack();
+                }
                 return true;
             }
+            return false;
         });
-        WebSettings settings = mBinding.wv.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setJavaScriptCanOpenWindowsAutomatically(true);*/
+    }
+
+
+    /* 防止WebView内存泄漏 */
+    @Override public void onDestroy() {
+        if (mBinding.wv != null) {
+            ViewParent parent = mBinding.wv.getParent();
+            if (parent != null) {
+                ((ViewGroup) parent).removeView(mBinding.wv);
+            }
+
+            mBinding.wv.stopLoading();
+            mBinding.wv.getSettings().setJavaScriptEnabled(false);
+            mBinding.wv.clearHistory();
+            mBinding.wv.clearView();
+            mBinding.wv.removeAllViews();
+            mBinding.wv.destroy();
+
+        }
+        super.onDestroy();
     }
 }

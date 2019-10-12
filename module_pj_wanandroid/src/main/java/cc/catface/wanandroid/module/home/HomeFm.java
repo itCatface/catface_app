@@ -1,87 +1,94 @@
 package cc.catface.wanandroid.module.home;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.os.Message;
+import android.os.SystemClock;
+
+import androidx.viewpager2.widget.ViewPager2;
 
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
+import cc.catface.ctool.system.TWeakHandler;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidFragmentHomeBinding;
+import cc.catface.wanandroid.engine.adapter.HomeBannerAdapter;
+import cc.catface.wanandroid.engine.domain.Banner;
+import cc.catface.wanandroid.engine.domain.TopArticle;
+import cc.catface.wanandroid.engine.domain.WanandroidConst;
+import cc.catface.wanandroid.module.web.WebActivity;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  * -
  * desc 支持滑动隐藏顶部ToolBar
  */
-@CreatePresenter(HomePresenterImpl.class) public class HomeFm extends MvpFragment<HomeVP.HomeView, HomePresenterImpl, WanandroidFragmentHomeBinding> implements HomeVP.HomeView {
+@CreatePresenter(HomePresenterImpl.class) public class HomeFm extends MvpFragment<HomeVP.HomeView, HomePresenterImpl, WanandroidFragmentHomeBinding> implements HomeVP.HomeView, TWeakHandler.MessageListener {
+
     @Override public int layoutId() {
         return R.layout.wanandroid_fragment_home;
     }
 
+    private TWeakHandler<HomeFm> mHandler;
+    private final int WHAT_PLAY_NEXT = 0x00;
+    private boolean autoPlay = true;
+    private int duration = 3_000;
+
+    @Override public void handleMessage(Message msg) {
+        int what = msg.what;
+        if (what == WHAT_PLAY_NEXT) {
+            mBinding.vpHomeBanner.setCurrentItem(mBinding.vpHomeBanner.getCurrentItem() + 1);
+        }
+    }
+
+    @Override protected void initAction() {
+        mBinding.btJump2Blog.setOnClickListener(v -> WebActivity.jump(mActivity, WanandroidConst.url_blog));
+    }
+
+    @Override protected void initData() {
+        mHandler = new TWeakHandler<>(this);
+        mPresenter.requestBanner();
+        mPresenter.requestTopArticle();
+    }
+
     @Override public void viewCreated() {
-        WebSettings settings = mBinding.wvHome.getSettings();
-        settings.setUseWideViewPort(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        settings.setJavaScriptEnabled(true);
-        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setSupportZoom(true);
-        settings.setBuiltInZoomControls(true);
-        settings.setDisplayZoomControls(false);
-        settings.setUseWideViewPort(true);
-        settings.setLoadsImagesAutomatically(true);
+        mBinding.vpHomeBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override public void onPageScrollStateChanged(int state) {
+                switch (state) {
+                    case ViewPager2.SCROLL_STATE_IDLE:
+                    case ViewPager2.SCROLL_STATE_SETTLING:
+                        autoPlay = true;
+                        break;
 
-        mBinding.wvHome.setWebViewClient(new WebViewClient());
+                    case ViewPager2.SCROLL_STATE_DRAGGING:
+                        autoPlay = false;
+                        break;
 
-        mBinding.wvHome.setWebChromeClient(new WebChromeClient() {
-            @Override public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress == 100) {
-                    mBinding.pbHome.setVisibility(View.GONE);
-                } else {
-                    mBinding.pbHome.setVisibility(View.VISIBLE);
-                    mBinding.pbHome.setProgress(newProgress);
                 }
             }
-        });
-
-        mBinding.wvHome.loadUrl("http://catface.cc");
-
-
-        /* WebView返回上一页 */
-        mBinding.wvHome.setOnKeyListener((v, keyCode, event) -> {
-            if ((keyCode == KeyEvent.KEYCODE_BACK) && mBinding.wvHome.canGoBack()) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    mBinding.wvHome.goBack();
-                }
-                return true;
-            }
-            return false;
         });
     }
 
 
-    /* 防止WebView内存泄漏 */
-    @Override public void onDestroyView() {
-        if (mBinding.wvHome != null) {
-            ViewParent parent = mBinding.wvHome.getParent();
-            if (parent != null) {
-                ((ViewGroup) parent).removeView(mBinding.wvHome);
+    /** View's */
+    @Override public void requestBannerSuccess(Banner banner) {
+        mBinding.vpHomeBanner.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % banner.getData().size());
+        mBinding.vpHomeBanner.setAdapter(new HomeBannerAdapter(banner.getData()));
+        new Thread(() -> {
+            while (true) {
+                SystemClock.sleep(duration);
+                if (autoPlay) mHandler.sendEmptyMessage(WHAT_PLAY_NEXT);
             }
+        }).start();
+    }
 
-            mBinding.wvHome.stopLoading();
-            mBinding.wvHome.getSettings().setJavaScriptEnabled(false);
-            mBinding.wvHome.clearHistory();
-            mBinding.wvHome.clearView();
-            mBinding.wvHome.removeAllViews();
-            mBinding.wvHome.destroy();
+    @Override public void requestBannerFailure() {
 
-        }
-        super.onDestroyView();
+    }
+
+    @Override public void requestTopArticleSuccess(TopArticle topArticle) {
+
+    }
+
+    @Override public void requestTopArticleFailure() {
+
     }
 }

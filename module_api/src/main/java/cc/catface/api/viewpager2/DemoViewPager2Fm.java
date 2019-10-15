@@ -21,7 +21,7 @@ public class DemoViewPager2Fm extends NormalFragment<ApiFragmentViewPager2Bindin
     private TWeakHandler<DemoViewPager2Fm> mHandler;
 
     @Override public void handleMessage(Message msg) {
-        if (msg.what == 0) {
+        if (msg.what == WHAT_PLAY) {
             mBinding.vp21.setCurrentItem(mBinding.vp21.getCurrentItem() + 1);
         }
     }
@@ -43,8 +43,9 @@ public class DemoViewPager2Fm extends NormalFragment<ApiFragmentViewPager2Bindin
         mHandler = new TWeakHandler<>(this);
     }
 
-    private boolean autoPlay = true;
-    private int duration = 3_000;
+    private final int WHAT_PLAY = 0x00;
+    private boolean isAutoPlay = true;
+    private int mDuration = 3_000;
 
     @Override protected void createView() {
         /** 横向ViewPager */
@@ -58,11 +59,11 @@ public class DemoViewPager2Fm extends NormalFragment<ApiFragmentViewPager2Bindin
                 switch (state) {
                     case ViewPager2.SCROLL_STATE_IDLE:
                     case ViewPager2.SCROLL_STATE_SETTLING:
-                        autoPlay = true;
+                        isAutoPlay = true;
                         break;
 
                     case ViewPager2.SCROLL_STATE_DRAGGING:
-                        autoPlay = false;
+                        isAutoPlay = false;
                         break;
 
                 }
@@ -93,8 +94,8 @@ public class DemoViewPager2Fm extends NormalFragment<ApiFragmentViewPager2Bindin
         mBinding.vp21.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % mDatas.size());
         new Thread(() -> {
             while (true) {
-                SystemClock.sleep(duration);
-                if (autoPlay) mHandler.sendEmptyMessage(0);
+                SystemClock.sleep(mDuration);
+                if (isAutoPlay) mHandler.sendEmptyMessage(WHAT_PLAY);
             }
         }).start();
 

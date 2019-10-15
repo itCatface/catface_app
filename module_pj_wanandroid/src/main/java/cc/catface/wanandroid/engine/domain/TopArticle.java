@@ -57,7 +57,7 @@ public class TopArticle {
         private String shareUser;
         private int superChapterId;
         private String superChapterName;
-        private List<String> tags;
+        private List<Object> tags;
         private String title;
         private int type;
         private int userId;
@@ -248,11 +248,11 @@ public class TopArticle {
             return superChapterName;
         }
 
-        public void setTags(List<String> tags) {
+        public void setTags(List<Object> tags) {
             this.tags = tags;
         }
 
-        public List<String> getTags() {
+        public List<Object> getTags() {
             return tags;
         }
 

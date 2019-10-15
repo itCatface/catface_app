@@ -23,7 +23,6 @@ public class HomeBannerAdapter extends ListBindingAdapter<Banner.Data, Wanandroi
     @Override public void onBindHolder(WanandroidItemHomeBannerBinding binding, int position) {
         Banner.Data data = getDatas().get(position % getDatas().size());
         GlideApp.with(binding.getRoot()).load(data.getImagePath()).into(binding.iv);
-        binding.tvTitle.setText(data.getTitle());
     }
 
     @Override public int getItemCount() {

@@ -21,6 +21,7 @@ import cc.catface.ctool.system.TString;
 import cc.catface.ctool.system.TWeakHandler;
 import cc.catface.ctool.system.netstate.NetBroadcastReceiver;
 import cc.catface.ctool.system.netstate.NetStateUtil;
+import cc.catface.ctool.system.netstate.TNetwork;
 
 public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> implements TWeakHandler.MessageListener {
 
@@ -33,7 +34,7 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
         mBinding.tiRomAvailSpace.setContent(mRomAvailSpace);
         mBinding.tiSdAvailSpace.setContent(mAvailSDSpace);
         mBinding.tiAppNums.setContent(TString.convert2String(mApps.size()));
-        mBinding.tiIp.setContent(TAppInfo.getIp(mActivity));
+        mBinding.tiIp.setContent(TNetwork.getIp(mActivity));
         mBinding.tiStatusBarHeight.setContent(TString.convert2String(TScreen.getStatusBarHeight(mActivity)));
         mBinding.tiActionBarHeight.setContent(TString.convert2String(TScreen.getActionBarHeight(mActivity)));
         mBinding.tiScreenWidth.setContent(TString.convert2String(TScreen.getScreenWidth(mActivity)));

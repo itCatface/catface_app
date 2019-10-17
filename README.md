@@ -1,50 +1,82 @@
-2019-03-06 09:37:50.026 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190226_094010.wav
-2019-03-06 09:37:50.027 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190226_095301.wav
-2019-03-06 09:37:50.027 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190226_095448.wav
-2019-03-06 09:37:50.027 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190226_105037.wav
-2019-03-06 09:37:50.027 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/新建文件夹
-2019-03-06 09:37:50.027 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/新建文件夹/新建文件夹
-2019-03-06 09:37:50.027 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/新建文件夹/新建文件夹/新建文件夹
-2019-03-06 09:37:50.027 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/name1.wav
-2019-03-06 09:37:50.027 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/name121.wav
-2019-03-06 09:37:50.028 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/name12111.wav
-2019-03-06 09:37:50.028 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/name31.wav
-2019-03-06 09:37:50.028 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/name231.wav
-2019-03-06 09:37:50.028 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/name112.wav
-2019-03-06 09:37:50.028 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/标准/name111.wav
-2019-03-06 09:37:50.028 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/会议/20190227_210628.wav
-2019-03-06 09:37:50.029 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/会议/folder1
-2019-03-06 09:37:50.029 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/会议/folder121
-2019-03-06 09:37:50.029 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/会议/folder112
-2019-03-06 09:37:50.029 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/会议/folder21
-2019-03-06 09:37:50.030 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/备忘/20190226_204232.wav
-2019-03-06 09:37:50.030 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 当前文件遍历所有文件及文件夹：/storage/emulated/0/我的音频/hjjdioejdnxnoifj
-2019-03-06 09:37:50.080 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/name111.wav
-2019-03-06 09:37:50.080 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/name112.wav
-2019-03-06 09:37:50.080 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/name231.wav
-2019-03-06 09:37:50.080 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/name31.wav
-2019-03-06 09:37:50.081 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/name12111.wav
-2019-03-06 09:37:50.081 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/name121.wav
-2019-03-06 09:37:50.081 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/name1.wav
-2019-03-06 09:37:50.081 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/会议/20190227_210628.wav
-2019-03-06 09:37:50.081 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/备忘/20190226_204232.wav
-2019-03-06 09:37:50.081 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190226_105037.wav
-2019-03-06 09:37:50.082 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190226_095448.wav
-2019-03-06 09:37:50.082 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190226_095301.wav
-2019-03-06 09:37:50.082 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190226_094010.wav
-2019-03-06 09:37:50.082 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_164331.aac
-2019-03-06 09:37:50.082 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_162750.aac
-2019-03-06 09:37:50.082 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_162647.aac
-2019-03-06 09:37:50.082 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_161659.aac
-2019-03-06 09:37:50.083 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_161558.aac
-2019-03-06 09:37:50.083 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_161403.aac
-2019-03-06 09:37:50.083 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_160840.aac
-2019-03-06 09:37:50.083 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_160146.aac
-2019-03-06 09:37:50.083 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_153742.aac
-2019-03-06 09:37:50.083 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_150100.aac
-2019-03-06 09:37:50.083 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_150007.aac
-2019-03-06 09:37:50.083 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190223_145844.aac
-2019-03-06 09:37:50.084 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190222_175220.aac
-2019-03-06 09:37:50.084 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190221_164856.aac
-2019-03-06 09:37:50.084 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/20190221_152702.aac
-2019-03-06 09:37:50.084 31982-31982/com.iflyrec.smartrecorder D/rrrrr: 占位当前查表所有文件及文件夹：/storage/emulated/0/我的音频/标准/jdjdkdkdkdopdodk.aac
+# ctool能力描述
+
+> Java
+
+# IO
+
+> Android
+
+# System
+
+## ISystemInterface简化接口
+
+1. TextChangedWatcher
+	
+	仅监听输入框变化的TextWatcher
+
+2. AnimatorEndListener
+
+	仅监听动画结束的AnimatorListener
+
+3. PageChangeListener
+
+	仅监听页面选中的OnPageChangeListener
+
+## netstate网络相关
+
+1. NetBroadcastReceiver
+
+	监听网络状态的广播
+
+2. TNetwork
+
+	a. 获取ip：getIp()
+
+## sensor传感器
+
+1. 屏幕亮度TBrightness
+
+2. 闪光灯TFlash
+
+3. 震动TVibrator
+
+## view相关
+
+### action事件相关
+
+1. AntiShakeClickListener
+
+	防抖的OnClickListener
+
+### activity
+
+### listview
+
+1. TempItem
+
+	预置选项条目
+
+### recyclerview
+
+1. ItemClickSupport
+
+	支持recyclerview点击事件
+
+2. CustomBindingAdapter & ListBindingAdapter
+
+	RecyclerView.Adapter的简化
+
+### textview
+
+1. TTextView
+
+	a. 文本高亮：highlight()
+
+### viewpager
+
+1. NoScrollViewPager
+
+	控制viewpager切页是否支持滑动和点击是否有滑动切页效果
+
+## 其他
+

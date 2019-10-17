@@ -1,4 +1,4 @@
-package cc.catface.ctool.view.click;
+package cc.catface.ctool.view.action;
 
 import android.view.View;
 

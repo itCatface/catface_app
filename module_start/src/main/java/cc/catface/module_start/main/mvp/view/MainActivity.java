@@ -35,9 +35,7 @@ import cc.catface.module_start.main.mvp.view.navigation.view.MessFm;
 import cc.catface.module_start.main.personal.mvp.view.PersonalFm;
 import cc.catface.module_start.main.query.view.QueryFm;
 
-@Route(path = Const.ARouter.start_main)
-@CreatePresenter(MainPresenterImp.class)
-public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartActivityMainBinding> implements MainView, MessFm.FragmentListener, NavigationView.OnNavigationItemSelectedListener {
+@Route(path = Const.ARouter.start_main) @CreatePresenter(MainPresenterImp.class) public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartActivityMainBinding> implements MainView, MessFm.FragmentListener, NavigationView.OnNavigationItemSelectedListener {
     @Override public int layoutId() {
         return R.layout.start_activity_main;
     }
@@ -56,8 +54,8 @@ public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartA
 
 
         /* 调整侧边导航布局高度 */
-        int statusBarHeight = TScreen.getStatusBarHeight(this);
-        int actionBarHeight = TScreen.getActionBarHeight(this);
+        int statusBarHeight = TScreen.getStatusBarHeight();
+        int actionBarHeight = TScreen.getActionBarHeight();
         DrawerLayout.LayoutParams layoutParams = (DrawerLayout.LayoutParams) mBinding.nv.getLayoutParams();
         layoutParams.topMargin = statusBarHeight + actionBarHeight;
         mBinding.nv.setLayoutParams(layoutParams);
@@ -67,8 +65,7 @@ public class MainActivity extends MvpActivity<MainView, MainPresenterImp, StartA
     }
 
 
-    @Override
-    public void onBackPressed() {
+    @Override public void onBackPressed() {
         DrawerLayout drawer = mBinding.dl;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);

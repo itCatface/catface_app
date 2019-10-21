@@ -18,6 +18,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
 import cc.catface.api.R;
 import cc.catface.ctool.system.TScreen;
 
@@ -41,7 +42,7 @@ public class LoadingView extends View {
     private boolean isUp = true;
 
     public LoadingView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public LoadingView(Context context, @Nullable AttributeSet attrs) {
@@ -52,7 +53,7 @@ public class LoadingView extends View {
     }
 
     private void initAnimator() {
-        shapeAnimator =ValueAnimator.ofInt(distance,0);
+        shapeAnimator = ValueAnimator.ofInt(distance, 0);
         shapeAnimator.setRepeatCount(-1);
         shapeAnimator.setRepeatMode(ValueAnimator.REVERSE);
         shapeAnimator.setDuration(500);
@@ -60,28 +61,24 @@ public class LoadingView extends View {
         final TimeInterpolator downInterpolator = new AccelerateInterpolator();
         shapeAnimator.setInterpolator(upInterpolator);  //由于插值器是根据事件流失的百分比来影响值得，没办法做到快速下降，缓慢上升
         shapeAnimator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
+            @Override public void onAnimationStart(Animator animation) {
                 isUp = true;
-                Log.d("xulc","onStart");
+                Log.d("xulc", "onStart");
             }
 
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                Log.d("xulc","结束了");
+            @Override public void onAnimationEnd(Animator animation) {
+                Log.d("xulc", "结束了");
             }
 
-            @Override
-            public void onAnimationCancel(Animator animation) {
+            @Override public void onAnimationCancel(Animator animation) {
 
             }
 
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                isUp=!isUp;
-                if(isUp){       //切换图形
+            @Override public void onAnimationRepeat(Animator animation) {
+                isUp = !isUp;
+                if (isUp) {       //切换图形
                     shapeAnimator.setInterpolator(upInterpolator);
-                    switch(shape){
+                    switch (shape) {
                         case CIR:
                             shape = LoadingShape.RECT;
                             break;
@@ -92,16 +89,15 @@ public class LoadingView extends View {
                             shape = LoadingShape.CIR;
                             break;
                     }
-                }else{
+                } else {
                     shapeAnimator.setInterpolator(downInterpolator);
                 }
             }
         });
 
         shapeAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                centery = (int)animation.getAnimatedValue();
+            @Override public void onAnimationUpdate(ValueAnimator animation) {
+                centery = (int) animation.getAnimatedValue();
                 invalidate();
             }
         });
@@ -113,57 +109,54 @@ public class LoadingView extends View {
         paint.setColor(Color.BLUE);
         paint.setColor(mcontext.getResources().getColor(R.color.colorAccent));
 
-        reacWidth = TScreen.dp2px(mcontext,20);  //20dp
-        ovalHeight = TScreen.dp2px(mcontext,4);  //椭圆高度
-        ovalHeightTop = TScreen.dp2px(mcontext,10);  //椭圆距离可动区域的高度
-        distance = TScreen.dp2px(mcontext,50);  //可以滑动的位置大小
-        minOvalWidth =  reacWidth/4;
+        reacWidth = TScreen.dp2px(20);  //20dp
+        ovalHeight = TScreen.dp2px(4);  //椭圆高度
+        ovalHeightTop = TScreen.dp2px(10);  //椭圆距离可动区域的高度
+        distance = TScreen.dp2px(50);  //可以滑动的位置大小
+        minOvalWidth = reacWidth / 4;
         centery = distance;
         shape = LoadingShape.TRI;
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = reacWidth;
-        int height = reacWidth+distance+ovalHeight+ovalHeightTop;
-        setMeasuredDimension(width,height);
+        int height = reacWidth + distance + ovalHeight + ovalHeightTop;
+        setMeasuredDimension(width, height);
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         mwidth = w;
         mheight = h;
     }
 
-    @SuppressLint("ResourceType") @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) @Override
-    protected void onDraw(Canvas canvas) {
-        switch(shape){
+    @SuppressLint("ResourceType") @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) @Override protected void onDraw(Canvas canvas) {
+        switch (shape) {
             case CIR:
                 paint.setColor(getResources().getColor(R.color.colorPrimary));
-                canvas.drawCircle(mwidth/2,centery+mwidth/2,mwidth/2,paint);
+                canvas.drawCircle(mwidth / 2, centery + mwidth / 2, mwidth / 2, paint);
                 break;
             case TRI:
                 Path triPath = new Path();
                 paint.setColor(getResources().getColor(R.color.colorPrimaryDark));
-                triPath.moveTo(0,centery+reacWidth);
-                triPath.lineTo(reacWidth,centery+reacWidth);
-                triPath.lineTo(reacWidth/2,centery);
+                triPath.moveTo(0, centery + reacWidth);
+                triPath.lineTo(reacWidth, centery + reacWidth);
+                triPath.lineTo(reacWidth / 2, centery);
                 triPath.close();
-                canvas.drawPath(triPath,paint);
+                canvas.drawPath(triPath, paint);
                 break;
             case RECT:
                 paint.setColor(getResources().getColor(R.color.colorAccent));
-                canvas.drawRect(0,centery,mwidth,centery+reacWidth,paint);
+                canvas.drawRect(0, centery, mwidth, centery + reacWidth, paint);
                 break;
         }
         paint.setColor(getResources().getColor(R.color.colorAccent));
-        int startx = (int)(((mwidth - minOvalWidth)/2.0f)*((distance-centery)*1.0f/distance));
-        canvas.drawOval(startx,mheight-ovalHeight,mwidth-startx,mheight,paint);  //centery 减小 //向上的过程中缩小
-           //减去这个得到实际显示的宽度
+        int startx = (int) (((mwidth - minOvalWidth) / 2.0f) * ((distance - centery) * 1.0f / distance));
+        canvas.drawOval(startx, mheight - ovalHeight, mwidth - startx, mheight, paint);  //centery 减小 //向上的过程中缩小
+        //减去这个得到实际显示的宽度
         super.onDraw(canvas);
     }
 
-    private enum LoadingShape{
-        TRI,RECT,CIR
+    private enum LoadingShape {
+        TRI, RECT, CIR
     }
 }

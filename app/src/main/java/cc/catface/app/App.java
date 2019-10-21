@@ -12,11 +12,14 @@ import com.iflytek.cloud.SpeechUtility;
 import com.squareup.leakcanary.LeakCanary;
 
 import androidx.multidex.MultiDex;
+
+import java.lang.ref.WeakReference;
+
 import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
 import cc.catface.base.AppBase;
 import cc.catface.base.utils.android.crash.CrashHandler;
-import cc.catface.ctool.system.TContext;
+import cc.catface.ctool.context.TContext;
 import cc.catface.module_start.CrashHandlerActivity;
 
 /**
@@ -31,7 +34,7 @@ public class App extends Application {
         ARouterApp.setContext(this);
         ARouterApp.initDB();
 
-        TContext.setContext(this);
+        TContext.setContext(new WeakReference<>(this));
 
         /* 初始化ARouter */
         initARouter();
@@ -76,7 +79,7 @@ public class App extends Application {
 
 
     private void initMob() {
-//        MobSDK.init(this);
+        //        MobSDK.init(this);
     }
 
 

@@ -61,7 +61,7 @@ public class YYJoke341_2Adapter extends ListBindingAdapter<YYJoke341_2.Showapi_r
                 //                holder.iv_joke_pic.setLayoutParams(layoutParams);
 
                 ViewGroup.LayoutParams layoutParams = binding.ivJokePic.getLayoutParams();
-                int itemWidth = (TScreen.getScreenWidth(binding.ivJokePic.getContext()) - 8 * 3) / 2;
+                int itemWidth = (TScreen.getScreenWidth() - 8 * 3) / 2;
                 int itemHeight = (int) (resource.getHeight() * (itemWidth + 0.0f) / resource.getWidth());
                 layoutParams.width = (int) itemWidth;
                 layoutParams.height = (int) itemHeight;

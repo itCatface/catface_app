@@ -20,8 +20,8 @@ import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityVibratorCameraBinding;
 import cc.catface.api.hardware.qrcode.DemoScanQrcodeFm;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
-import cc.catface.ctool.system.sensor.TFlash;
-import cc.catface.ctool.system.sensor.TVibrator;
+import cc.catface.ctool.context.TFlash;
+import cc.catface.ctool.context.TVibrator;
 import cc.catface.base.utils.android.view.ImageUtil;
 
 import static android.app.Activity.RESULT_OK;
@@ -35,12 +35,12 @@ public class DemoHardwareFm extends NormalFragment<ApiActivityVibratorCameraBind
     }
 
     @Override protected void initAction() {
-        mBinding.btVibrateOnce.setOnClickListener(v -> TVibrator.play(mActivity, 2_000));
-        mBinding.btVibrateRepeat.setOnClickListener(v -> TVibrator.play(mActivity, new long[]{500, 1_000, 1_000, 500}, 2));
-        mBinding.btVibrateCancel.setOnClickListener(v -> TVibrator.cancel(mActivity));
-        mBinding.btFlashOpen.setOnClickListener(v -> TFlash.get(mActivity).open());
-        mBinding.btFlashClose.setOnClickListener(v -> TFlash.get(mActivity).close());
-        mBinding.btScan.setOnClickListener(v ->  ((ApiHolderActivity)mActivity).replace(new DemoScanQrcodeFm()));
+        mBinding.btVibrateOnce.setOnClickListener(v -> TVibrator.play(2_000));
+        mBinding.btVibrateRepeat.setOnClickListener(v -> TVibrator.play(new long[]{500, 1_000, 1_000, 500}, 2));
+        mBinding.btVibrateCancel.setOnClickListener(v -> TVibrator.cancel());
+        mBinding.btFlashOpen.setOnClickListener(v -> TFlash.get().open());
+        mBinding.btFlashClose.setOnClickListener(v -> TFlash.get().close());
+        mBinding.btScan.setOnClickListener(v -> ((ApiHolderActivity) mActivity).replace(new DemoScanQrcodeFm()));
 
         mBinding.btTakePictureJust.setOnClickListener(v -> takePictureJust());
         mBinding.btTakePictureWithCrop.setOnClickListener(v -> takePictureWithCrop());

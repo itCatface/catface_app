@@ -6,6 +6,18 @@
 
 > Android
 
+# context[强依赖上下文]
+
+## TContext
+
+1. set/get上下文
+
+2. TSP
+
+3. TToast
+
+4. TVibrator
+
 # System
 
 ## ISystemInterface简化接口

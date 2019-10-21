@@ -1,4 +1,4 @@
-package cc.catface.ctool.system.sensor;
+package cc.catface.ctool.context;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -19,11 +19,11 @@ public class TFlash {
 
     private volatile static TFlash mInstance;
 
-    public static TFlash get(Context ctx) {
+    public static TFlash get() {
         if (null == mInstance) {
             synchronized (TFlash.class) {
                 if (null == mInstance) {
-                    mInstance = new TFlash(ctx);
+                    mInstance = new TFlash();
                 }
             }
         }
@@ -31,11 +31,11 @@ public class TFlash {
         return mInstance;
     }
 
-    private TFlash(Context context) {
-        isFlashAvailable = context.getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+    private TFlash() {
+        isFlashAvailable = TContext.getContext().getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mCameraManager = (CameraManager) context.getApplicationContext().getSystemService(Context.CAMERA_SERVICE);
+            mCameraManager = (CameraManager) TContext.getContext().getApplicationContext().getSystemService(Context.CAMERA_SERVICE);
             try {
                 if (mCameraManager != null) {
                     mCameraId = mCameraManager.getCameraIdList()[0];
@@ -46,9 +46,7 @@ public class TFlash {
         }
     }
 
-    /**
-     * 开启闪光灯
-     */
+    /** 开启闪光灯 */
     public void open() {
         if (!isFlashAvailable) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -70,9 +68,7 @@ public class TFlash {
         }
     }
 
-    /**
-     * 关闭闪光灯
-     */
+    /** 关闭闪光灯 */
     public void close() {
         if (!isFlashAvailable) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

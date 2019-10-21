@@ -48,7 +48,7 @@ public class YYJoke341_3Adapter extends ListBindingAdapter<YYJoke341_3.Showapi_r
             }
 
             @Override public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
-                int ivWidth = TScreen.getScreenWidth(binding.giv.getContext());
+                int ivWidth = TScreen.getScreenWidth();
                 int ivHeight = ivWidth / resource.getMinimumWidth() * resource.getMinimumHeight();
                 mHeight.put(position, ivHeight);
 

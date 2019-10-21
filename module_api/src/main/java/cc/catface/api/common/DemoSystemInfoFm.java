@@ -35,10 +35,10 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
         mBinding.tiSdAvailSpace.setContent(mAvailSDSpace);
         mBinding.tiAppNums.setContent(TString.convert2String(mApps.size()));
         mBinding.tiIp.setContent(TNetwork.getIp(mActivity));
-        mBinding.tiStatusBarHeight.setContent(TString.convert2String(TScreen.getStatusBarHeight(mActivity)));
-        mBinding.tiActionBarHeight.setContent(TString.convert2String(TScreen.getActionBarHeight(mActivity)));
-        mBinding.tiScreenWidth.setContent(TString.convert2String(TScreen.getScreenWidth(mActivity)));
-        mBinding.tiScreenHeight.setContent(TString.convert2String(TScreen.getScreenHeight(mActivity)));
+        mBinding.tiStatusBarHeight.setContent(TString.convert2String(TScreen.getStatusBarHeight()));
+        mBinding.tiActionBarHeight.setContent(TString.convert2String(TScreen.getActionBarHeight()));
+        mBinding.tiScreenWidth.setContent(TString.convert2String(TScreen.getScreenWidth()));
+        mBinding.tiScreenHeight.setContent(TString.convert2String(TScreen.getScreenHeight()));
     }
 
 
@@ -79,11 +79,11 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
 
     @Override protected void initData() {
         new Thread(() -> {
-            mVersionName = TAppInfo.getVerName(mActivity);
-            mVersionCode = TAppInfo.getVerCode(mActivity);
-            mRomAvailSpace = TAppInfo.getRomSpace(mActivity);
-            mAvailSDSpace = TAppInfo.getSDSpace(mActivity);
-            mApps = TAppInfo.getInstalledAPP(mActivity);
+            mVersionName = TAppInfo.getVerName();
+            mVersionCode = TAppInfo.getVerCode();
+            mRomAvailSpace = TAppInfo.getRomSpace();
+            mAvailSDSpace = TAppInfo.getSDSpace();
+            mApps = TAppInfo.getInstalledAPP();
             mHandler.obtainMessage().sendToTarget();
         }).start();
     }

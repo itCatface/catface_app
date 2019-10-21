@@ -21,14 +21,13 @@ import cc.catface.module_start.databinding.ActivityStartSplashBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@CreatePresenter(SplashPresenterImp.class)
-public class SplashActivity extends MvpActivity<SplashView, SplashPresenterImp, ActivityStartSplashBinding> implements SplashView {
+@CreatePresenter(SplashPresenterImp.class) public class SplashActivity extends MvpActivity<SplashView, SplashPresenterImp, ActivityStartSplashBinding> implements SplashView {
     @Override public int layoutId() {
         return R.layout.activity_start_splash;
     }
 
     @SuppressLint("SetTextI18n") @Override public void create() {
-        mBinding.tvVerName.setText("v." + TAppInfo.getVerName(this));
+        mBinding.tvVerName.setText("v." + TAppInfo.getVerName());
         startAnim();
     }
 

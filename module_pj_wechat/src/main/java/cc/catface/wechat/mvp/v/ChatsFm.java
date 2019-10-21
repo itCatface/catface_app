@@ -1,7 +1,6 @@
 package cc.catface.wechat.mvp.v;
 
 import android.content.Intent;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import cc.catface.base.core_framework.base_normal.NormalFragment;
-import cc.catface.ctool.system.TToast;
+import cc.catface.ctool.context.TToast;
 import cc.catface.ctool.view.recyclerview.ItemClickSupport;
 import cc.catface.wechat.R;
 import cc.catface.wechat.databinding.WechatFragmentChatsBinding;

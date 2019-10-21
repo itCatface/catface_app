@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 
-import cc.catface.base.utils.android.TSP;
+import cc.catface.ctool.context.TSP;
 import cc.catface.base.utils.android.net.Utils.core.RetrofitEngine;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -145,7 +145,7 @@ public class GoOnDownloadEngine {
         mRange = 0;
         int progress = 0;
         if (file.exists()) {
-            mRange = TSP.getInstance().getlong(mUrl, 0);
+            mRange = TSP.getInstance().getLong(mUrl, 0);
             progress = (int) (mRange * 100 / file.length());
             if (mRange == file.length()) {
                 isExist = true;

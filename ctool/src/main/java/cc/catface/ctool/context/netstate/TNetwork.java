@@ -1,16 +1,18 @@
-package cc.catface.ctool.system.netstate;
+package cc.catface.ctool.context.netstate;
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+
+import cc.catface.ctool.context.TContext;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class TNetwork {
     /** ip */
-    public static String getIp(Context context) {
-        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    public static String getIp() {
+        WifiManager wifiManager = (WifiManager) TContext.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         if (null == wifiManager) return "";
         WifiInfo connectionInfo = wifiManager.getConnectionInfo();
         return convertIp(connectionInfo.getIpAddress());

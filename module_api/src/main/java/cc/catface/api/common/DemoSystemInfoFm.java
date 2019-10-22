@@ -14,14 +14,14 @@ import java.util.List;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityAppInfoBinding;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
-import cc.catface.ctool.system.AppInfo;
-import cc.catface.ctool.system.TAppInfo;
+import cc.catface.ctool.context.AppInfo;
+import cc.catface.ctool.context.TAppInfo;
 import cc.catface.ctool.system.TScreen;
 import cc.catface.ctool.system.TString;
 import cc.catface.ctool.system.TWeakHandler;
-import cc.catface.ctool.system.netstate.NetBroadcastReceiver;
-import cc.catface.ctool.system.netstate.NetStateUtil;
-import cc.catface.ctool.system.netstate.TNetwork;
+import cc.catface.ctool.context.netstate.NetBroadcastReceiver;
+import cc.catface.ctool.context.netstate.NetStateUtil;
+import cc.catface.ctool.context.netstate.TNetwork;
 
 public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> implements TWeakHandler.MessageListener {
 
@@ -34,7 +34,7 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
         mBinding.tiRomAvailSpace.setContent(mRomAvailSpace);
         mBinding.tiSdAvailSpace.setContent(mAvailSDSpace);
         mBinding.tiAppNums.setContent(TString.convert2String(mApps.size()));
-        mBinding.tiIp.setContent(TNetwork.getIp(mActivity));
+        mBinding.tiIp.setContent(TNetwork.getIp());
         mBinding.tiStatusBarHeight.setContent(TString.convert2String(TScreen.getStatusBarHeight()));
         mBinding.tiActionBarHeight.setContent(TString.convert2String(TScreen.getActionBarHeight()));
         mBinding.tiScreenWidth.setContent(TString.convert2String(TScreen.getScreenWidth()));

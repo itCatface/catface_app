@@ -1,4 +1,4 @@
-package cc.catface.ctool.system;
+package cc.catface.ctool.context;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -10,8 +10,6 @@ import android.text.format.Formatter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cc.catface.ctool.context.TContext;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925

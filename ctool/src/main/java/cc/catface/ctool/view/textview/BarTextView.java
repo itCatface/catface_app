@@ -1,4 +1,4 @@
-package cc.catface.base.utils.android.view.simple;
+package cc.catface.ctool.view.textview;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -10,8 +10,7 @@ import java.io.IOException;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
-import cc.catface.ctool.system.TAppInfo;
-import cc.catface.ctool.system.netstate.TNetwork;
+import cc.catface.ctool.context.netstate.TNetwork;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityServerBinding;
 import cc.catface.module_apis.nano_httpd.engine.NanoHTTPDServer;
@@ -31,7 +30,7 @@ public class ServerActivity extends MvpActivity<ServerView, ServerPresenterImp, 
 
     @Override public void create() {
         initToolBar();
-        if (null != mBar) mBar.setSubtitle(TNetwork.getIp(this));
+        if (null != mBar) mBar.setSubtitle(TNetwork.getIp());
     }
 
     @Override protected void onResume() {

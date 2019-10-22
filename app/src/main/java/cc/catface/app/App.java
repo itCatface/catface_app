@@ -4,23 +4,23 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.multidex.MultiDex;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
-//import com.mob.MobSDK;
 import com.squareup.leakcanary.LeakCanary;
-
-import androidx.multidex.MultiDex;
 
 import java.lang.ref.WeakReference;
 
 import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
-import cc.catface.base.AppBase;
 import cc.catface.base.utils.android.crash.CrashHandler;
 import cc.catface.ctool.context.TContext;
 import cc.catface.module_start.CrashHandlerActivity;
+
+//import com.mob.MobSDK;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -30,7 +30,6 @@ public class App extends Application {
     @Override public void onCreate() {
         super.onCreate();
         /* 各模块依赖的Application初始化操作 */
-        AppBase.setContext(this);
         ARouterApp.setContext(this);
         ARouterApp.initDB();
 

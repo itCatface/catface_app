@@ -1,6 +1,5 @@
 package cc.catface.api.view;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import cc.catface.api.view.adapter.ViewNavigationAdapter;
 import cc.catface.api.view.anim_activity_transfer.activity.TransferMainActivity;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_normal.NormalFragment;
-import cc.catface.base.utils.android.common_intent.TIntent;
+import cc.catface.ctool.view.activity.TActivity;
 import cc.catface.base.utils.android.common_print.popup.TPopup;
 import cc.catface.base.utils.android.common_recyclerview.TRV;
 
@@ -21,10 +20,7 @@ public class DemoViewNavigationFm extends NormalFragment<ApiActivityViewNavigati
         return R.layout.api_activity_view_navigation;
     }
 
-    private final String  NORMAL_astrs = "(系统)astrs", NORMAL_interpolator = "(系统)interpolator", NORMAL_value = "(系统)value", NORMAL_object = "(系统)object", NORMAL_PropertyValuesHolder_Keyframe = "(系统)" +
-            "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "PropertyValuesHolder_Keyframe", NORMAL_set = "(系统)api_set", NORMAL_paint_canvas = "(系统)paint_canvas", NORMAL_path_text
-            = "" + "(系统)" + "path_text", NORMAL_range = "(系统)" + "" + "range", NORMAL_bezier = "" + "(系统)bezier", NORMAL_loading = "(系统)loading", SPACING = "", NORMAL_ACTIVITY_TRANSFER_ANIMATION =
-            "activity切换动画";
+    private final String NORMAL_astrs = "(系统)astrs", NORMAL_interpolator = "(系统)interpolator", NORMAL_value = "(系统)value", NORMAL_object = "(系统)object", NORMAL_PropertyValuesHolder_Keyframe = "(系统)" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "PropertyValuesHolder_Keyframe", NORMAL_set = "(系统)api_set", NORMAL_paint_canvas = "(系统)paint_canvas", NORMAL_path_text = "" + "(系统)" + "path_text", NORMAL_range = "(系统)" + "" + "range", NORMAL_bezier = "" + "(系统)bezier", NORMAL_loading = "(系统)loading", SPACING = "", NORMAL_ACTIVITY_TRANSFER_ANIMATION = "activity切换动画";
     private List<String> mDatas;
     private ViewNavigationAdapter mAdapter;
 
@@ -98,7 +94,7 @@ public class DemoViewNavigationFm extends NormalFragment<ApiActivityViewNavigati
                     });
                     break;
                 case NORMAL_ACTIVITY_TRANSFER_ANIMATION:
-                    TIntent.startActivity(mActivity, TransferMainActivity.class, true);
+                    TActivity.startActivity(mActivity, TransferMainActivity.class);
                     break;
             }
         });

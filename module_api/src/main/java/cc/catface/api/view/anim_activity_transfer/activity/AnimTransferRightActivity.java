@@ -2,10 +2,9 @@ package cc.catface.api.view.anim_activity_transfer.activity;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityAnimTransfer1234Binding;
-import cc.catface.api.view.anim_activity_transfer.view.SwipeFinishActivityHelperEdit;
 import cc.catface.api.view.anim_activity_transfer.view.SwipeFinishActivityHelper;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.utils.android.common_intent.TIntent;
+import cc.catface.ctool.view.activity.TActivity;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -22,7 +21,7 @@ public class AnimTransferRightActivity extends NormalActivity<ApiActivityAnimTra
 
     @Override protected void initAction() {
         mBinding.btJump.setOnClickListener(v -> {
-            TIntent.startActivity(this, AnimTransferLeftActivity.class, true);
+            TActivity.startActivity(this, AnimTransferLeftActivity.class);
         });
     }
 

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 
-import cc.catface.base.AppBase;
+import cc.catface.ctool.context.TContext;
 import okhttp3.Interceptor;
 import okhttp3.Response;
 
@@ -18,14 +18,13 @@ import okhttp3.Response;
  */
 public class ReceivedCookiesInterceptor implements Interceptor {
 
-    @Override
-    public Response intercept(Chain chain) throws IOException {
+    @Override public Response intercept(Chain chain) throws IOException {
         Response originalResponse = chain.proceed(chain.request());
         List<String> headers = originalResponse.headers("Set-Cookie");
 
         if (!headers.isEmpty()) {
             HashSet<String> cookies = new HashSet<>(headers);
-            SharedPreferences.Editor config = AppBase.getContext().getSharedPreferences("config", Context.MODE_PRIVATE).edit();
+            SharedPreferences.Editor config = TContext.getContext().getSharedPreferences("config", Context.MODE_PRIVATE).edit();
             config.putStringSet("cookie", cookies);
             config.apply();
         }

@@ -18,7 +18,7 @@
         android:textSize="12sp"/>
 
 
-    <cc.catface.base.utils.android.view.simple.BarTextView
+    <cc.catface.ctool.view.textview.BarTextView
         android:id="@+id/tv_content"
         android:layout_width="300dp"
         android:layout_height="wrap_content"

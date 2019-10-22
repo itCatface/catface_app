@@ -1,6 +1,5 @@
 package cc.catface.module_start.splash.view;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -9,14 +8,14 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
-import cc.catface.ctool.system.IInterface.ISystemInterface;
-import cc.catface.module_start.R;
-import cc.catface.module_start.splash.presenter.SplashPresenterImp;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
-import cc.catface.ctool.system.TAppInfo;
+import cc.catface.ctool.context.TAppInfo;
+import cc.catface.ctool.system.IInterface.ISystemInterface;
+import cc.catface.module_start.R;
 import cc.catface.module_start.databinding.ActivityStartSplashBinding;
+import cc.catface.module_start.splash.presenter.SplashPresenterImp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -38,18 +37,16 @@ import cc.catface.module_start.databinding.ActivityStartSplashBinding;
         animTvTranslationY.setInterpolator(new DecelerateInterpolator());
 
         // 文字缩放
-        ObjectAnimator animTvScaleX = ObjectAnimator.ofFloat(mBinding.tvSplash, "scaleX", 1.5f, 1f);
+        ObjectAnimator animTvScaleX = ObjectAnimator.ofFloat(mBinding.tvSplash, "scaleX", 2.0f, 1f);
         animTvScaleX.setDuration(600);
 
         // logo渐变
         ObjectAnimator animIvAlpha = ObjectAnimator.ofFloat(mBinding.ivSplash, "alpha", 0f, 1f);
         animIvAlpha.setDuration(600);
         animIvAlpha.setInterpolator(new BounceInterpolator());
-        animIvAlpha.addListener(new ISystemInterface.AnimatorEndListener() {
-            @Override public void onAnimationEnd(Animator animator) {
-                ARouter.getInstance().build(Const.ARouter.start_main).navigation();
-                finish();
-            }
+        animIvAlpha.addListener((ISystemInterface.AnimatorEndListener) animator -> {
+            ARouter.getInstance().build(Const.ARouter.start_main).navigation();
+            finish();
         });
 
         // 控制动画播放

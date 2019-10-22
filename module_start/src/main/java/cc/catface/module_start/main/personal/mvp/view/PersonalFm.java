@@ -2,7 +2,7 @@ package cc.catface.module_start.main.personal.mvp.view;
 
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
-import cc.catface.base.utils.android.common_intent.TIntent;
+import cc.catface.ctool.view.activity.TActivity;
 import cc.catface.base.utils.android.coomon_listview.TListView;
 import cc.catface.module_start.R;
 import cc.catface.module_start.databinding.FmFourthPersonalBinding;
@@ -24,7 +24,7 @@ public class PersonalFm extends MvpFragment<PersonalView, PersonalPresenterImp, 
         TListView.str(mActivity, mBinding.lvSetting, mSettingItems, pos -> {
             switch (mSettingItems[pos]) {
                 case ITEM_SETTING:
-                    TIntent.startActivity(mActivity, SettingActivity.class, true);
+                    TActivity.startActivity(mActivity, SettingActivity.class);
                     break;
             }
         });

@@ -9,30 +9,29 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
+import androidx.viewpager.widget.ViewPager;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.viewpager.widget.ViewPager;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
-import cc.catface.base.utils.android.common_intent.TIntent;
 import cc.catface.base.utils.android.view.viewpager.AccordionTransformer;
 import cc.catface.base.utils.android.view.viewpager.base.TransAnim;
+import cc.catface.ctool.view.activity.TActivity;
+import cc.catface.ctool.view.viewpager.FmPagerAdapter;
 import cc.catface.module_start.R;
 import cc.catface.module_start.ad.view.AdActivity;
 import cc.catface.module_start.databinding.StartActivityWelcomeBinding;
-import cc.catface.module_start.welcome.adapter.WelcomeAdapter;
 import cc.catface.module_start.welcome.presenter.WelcomePresenterImp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.start_welcome)
-@CreatePresenter(WelcomePresenterImp.class)
-public class WelcomeActivity extends MvpActivity<WelcomeView, WelcomePresenterImp, StartActivityWelcomeBinding> implements WelcomeView, View.OnClickListener {
+@Route(path = Const.ARouter.start_welcome) @CreatePresenter(WelcomePresenterImp.class) public class WelcomeActivity extends MvpActivity<WelcomeView, WelcomePresenterImp, StartActivityWelcomeBinding> implements WelcomeView, View.OnClickListener {
     @Override public int layoutId() {
         return R.layout.start_activity_welcome;
     }
@@ -46,7 +45,7 @@ public class WelcomeActivity extends MvpActivity<WelcomeView, WelcomePresenterIm
         if (R.id.bt_vp_anim == view.getId()) {
             openPop(view);
         } else if (R.id.bt_start == view.getId()) {
-            TIntent.startActivityAndFinish(this, AdActivity.class, true);
+            TActivity.startActivityFinish(this, AdActivity.class);
         }
     }
 
@@ -85,7 +84,7 @@ public class WelcomeActivity extends MvpActivity<WelcomeView, WelcomePresenterIm
         }
 
         mBinding.vpIndicator.setPageTransformer(true, new AccordionTransformer());
-        mBinding.vpIndicator.setAdapter(new WelcomeAdapter(mImageViews));
+        mBinding.vpIndicator.setAdapter(new FmPagerAdapter<View>(mImageViews) { });
         addViewPagerListener();
     }
 

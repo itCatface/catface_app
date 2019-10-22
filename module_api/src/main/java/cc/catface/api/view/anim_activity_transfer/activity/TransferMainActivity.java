@@ -8,9 +8,7 @@ import android.view.View;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiAnimActivityTransferMainBinding;
-import cc.catface.api.view.anim_activity_transfer.test.MainActivity;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.utils.android.common_intent.TIntent;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 

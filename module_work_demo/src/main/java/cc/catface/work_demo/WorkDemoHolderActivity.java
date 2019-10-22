@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import androidx.fragment.app.Fragment;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.utils.android.common_intent.TIntent;
+import cc.catface.ctool.view.activity.TActivity;
 import cc.catface.work_demo.swipe_change_page.SwipeChangePageActivity;
 import cc.catface.work_demo.databinding.WorkActivityWorkDemoHolderBinding;
 
@@ -23,7 +23,7 @@ public class WorkDemoHolderActivity extends NormalActivity<WorkActivityWorkDemoH
         int fm_id = getIntent().getIntExtra(Const.ARouter.fm_id_key, -1);
         switch (fm_id) {
             case Const.ARouter.fm_id_work_demo_ifly_swipe_change_page:
-                TIntent.startActivity(this, SwipeChangePageActivity.class, true);
+                TActivity.startActivity(this, SwipeChangePageActivity.class);
                 break;
         }
     }

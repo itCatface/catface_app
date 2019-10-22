@@ -1,4 +1,4 @@
-package cc.catface.ctool.system.netstate;
+package cc.catface.ctool.context.netstate;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,7 +18,7 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
         }
 
         if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
-            int netWorkType = NetStateUtil.getNetWorkType(context);
+            int netWorkType = NetStateUtil.getNetWorkType();
             mListener.onNetChange(netWorkType);
         }
     }

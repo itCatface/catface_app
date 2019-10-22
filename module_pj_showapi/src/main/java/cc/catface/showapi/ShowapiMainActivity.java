@@ -4,7 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.utils.android.common_intent.TIntent;
+import cc.catface.ctool.view.activity.TActivity;
 import cc.catface.showapi.databinding.ShowapiActivityShowapiMainBinding;
 import cc.catface.showapi.joke.mvp.view.ShowAPIActivity;
 
@@ -18,7 +18,7 @@ public class ShowapiMainActivity extends NormalActivity<ShowapiActivityShowapiMa
     }
 
     @Override protected void initAction() {
-        mBinding.btToJoke.setOnClickListener(v -> TIntent.startActivity(this, ShowAPIActivity.class, true));
+        mBinding.btToJoke.setOnClickListener(v -> TActivity.startActivity(this, ShowAPIActivity.class));
     }
 
     @Override public void create() {

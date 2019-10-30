@@ -1,6 +1,8 @@
 package cc.catface.ctool.context.netstate;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
@@ -10,6 +12,15 @@ import cc.catface.ctool.context.TContext;
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class TNetwork {
+
+    /** 判断手机是否连接网络 */
+    public static boolean isNetAvail() {
+        ConnectivityManager cwjManager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cwjManager.getActiveNetworkInfo();
+        return null != info && info.isAvailable();
+    }
+
+
     /** ip */
     public static String getIp() {
         WifiManager wifiManager = (WifiManager) TContext.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);

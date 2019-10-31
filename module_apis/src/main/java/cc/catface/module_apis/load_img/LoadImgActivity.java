@@ -22,7 +22,7 @@ import cc.catface.module_apis.databinding.ApisActivityLoadImgBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.apis_loadImg) public class LoadImgActivity extends LightAct<LightPresenter, ApisActivityLoadImgBinding> implements View.OnClickListener {
+@Route(path = Const.ARouter.apis_loadImg) public class LoadImgActivity extends LightAct<LightPresenter, ApisActivityLoadImgBinding> {
 
     @Override public int layoutId() {
         return R.layout.apis_activity_load_img;

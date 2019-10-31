@@ -25,7 +25,7 @@ import cc.catface.api.databinding.ApiActivityPopupBinding;
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
-public class DemoPopupFm extends LightFm<LightPresenter, ApiActivityPopupBinding> implements View.OnClickListener {
+public class DemoPopupFm extends LightFm<LightPresenter, ApiActivityPopupBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_popup;

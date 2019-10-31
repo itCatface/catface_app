@@ -17,7 +17,7 @@ import cc.catface.start.main.media.service.ScanMusicService;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class MusicMainFm extends LightFm<MusicMainPresenterImp, FmMusicMainBinding> implements ServiceConnection, View.OnClickListener, LightView {
+public class MusicMainFm extends LightFm<MusicMainPresenterImp, FmMusicMainBinding> implements ServiceConnection, LightView {
 
 
     @Override public int layoutId() {
@@ -27,12 +27,6 @@ public class MusicMainFm extends LightFm<MusicMainPresenterImp, FmMusicMainBindi
     @Override protected void initAction() {
         mBinding.btScan.setOnClickListener(this);
         mBinding.btPlay.setOnClickListener(this);
-    }
-
-    private Intent mServiceIntent;
-
-    @Override protected void created() {
-        mServiceIntent = new Intent(mActivity, ScanMusicService.class);
     }
 
     @Override public void onClick(View view) {
@@ -53,6 +47,12 @@ public class MusicMainFm extends LightFm<MusicMainPresenterImp, FmMusicMainBindi
             String value = "" + System.currentTimeMillis();
             Toast.makeText(mActivity, "生成数据：" + value, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private Intent mServiceIntent;
+
+    @Override protected void created() {
+        mServiceIntent = new Intent(mActivity, ScanMusicService.class);
     }
 
 

@@ -21,7 +21,7 @@ import cc.catface.module_apis.databinding.BrvahFmAnimationBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_AnimationFm extends LightFm<LightPresenter, BrvahFmAnimationBinding> implements View.OnClickListener {
+public class BRVAH_AnimationFm extends LightFm<LightPresenter, BrvahFmAnimationBinding> {
 
     @Override public int layoutId() {
         return R.layout.brvah_fm_animation;

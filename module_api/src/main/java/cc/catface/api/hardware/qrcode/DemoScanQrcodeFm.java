@@ -11,7 +11,7 @@ import cn.bingoogolapple.qrcode.core.QRCodeView;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoScanQrcodeFm extends LightFm<LightPresenter, ApiActivityScanQrcodeBinding> implements View.OnClickListener, QRCodeView.Delegate {
+public class DemoScanQrcodeFm extends LightFm<LightPresenter, ApiActivityScanQrcodeBinding> implements QRCodeView.Delegate {
 
     @Override public int layoutId() {
         return R.layout.api_activity_scan_qrcode;

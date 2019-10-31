@@ -50,14 +50,10 @@ public class TDialogNormal implements TDialogNormalI {
         iconId = (0 == iconId ? R.mipmap.toast_ic_default_warning_sharp_white_96 : iconId);
         mBuilder = null;
         mBuilder = new AlertDialog.Builder(mCtx);
-        mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setPositiveButton(btPositiveText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(NotificationPositive);
-            }
-        }).setNegativeButton(btNegativeText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(NotificationNegative);
-            }
+        mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setPositiveButton(btPositiveText, (dialog, which) -> {
+            if (null != callback) callback.onClick(NotificationPositive);
+        }).setNegativeButton(btNegativeText, (dialog, which) -> {
+            if (null != callback) callback.onClick(NotificationNegative);
         }).show();
     }
 
@@ -69,18 +65,12 @@ public class TDialogNormal implements TDialogNormalI {
         iconId = (0 == iconId ? R.mipmap.toast_ic_default_warning_sharp_white_96 : iconId);
         mBuilder = null;
         mBuilder = new AlertDialog.Builder(mCtx);
-        mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setPositiveButton(btPositiveText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(NotificationPositive);
-            }
-        }).setNegativeButton(btNegativeText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(NotificationNegative);
-            }
-        }).setNeutralButton(btNeutralText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(NotificationNeutral);
-            }
+        mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setPositiveButton(btPositiveText, (dialog, which) -> {
+            if (null != callback) callback.onClick(NotificationPositive);
+        }).setNegativeButton(btNegativeText, (dialog, which) -> {
+            if (null != callback) callback.onClick(NotificationNegative);
+        }).setNeutralButton(btNeutralText, (dialog, which) -> {
+            if (null != callback) callback.onClick(NotificationNeutral);
         }).show();
     }
 
@@ -98,10 +88,8 @@ public class TDialogNormal implements TDialogNormalI {
         iconId = (0 == iconId ? R.mipmap.toast_ic_default_warning_sharp_white_96 : iconId);
         mBuilder = null;
         mBuilder = new AlertDialog.Builder(mCtx);
-        mBuilder.setIcon(iconId).setTitle(title).setItems(items, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(which);
-            }
+        mBuilder.setIcon(iconId).setTitle(title).setItems(items, (dialog, which) -> {
+            if (null != callback) callback.onClick(which);
         }).show();
     }
 
@@ -124,19 +112,13 @@ public class TDialogNormal implements TDialogNormalI {
         iconId = (0 == iconId ? R.mipmap.toast_ic_default_warning_sharp_white_96 : iconId);
         mBuilder = null;
         mBuilder = new AlertDialog.Builder(mCtx);
-        mBuilder.setIcon(iconId).setTitle(title).setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                mSingleChosenPosition = which;
-                if (null != callback) callback.onItemClick(mSingleChosenPosition);
-            }
-        }).setPositiveButton(btPositiveText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onButtonClick(mSingleChosenPosition, true);
-            }
-        }).setNegativeButton(btNegativeText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onButtonClick(mSingleChosenPosition, false);
-            }
+        mBuilder.setIcon(iconId).setTitle(title).setSingleChoiceItems(items, 0, (dialog, which) -> {
+            mSingleChosenPosition = which;
+            if (null != callback) callback.onItemClick(mSingleChosenPosition);
+        }).setPositiveButton(btPositiveText, (dialog, which) -> {
+            if (null != callback) callback.onButtonClick(mSingleChosenPosition, true);
+        }).setNegativeButton(btNegativeText, (dialog, which) -> {
+            if (null != callback) callback.onButtonClick(mSingleChosenPosition, false);
         }).show();
     }
 
@@ -158,15 +140,13 @@ public class TDialogNormal implements TDialogNormalI {
         iconId = (0 == iconId ? R.mipmap.toast_ic_default_warning_sharp_white_96 : iconId);
         mBuilder = null;
         mBuilder = new AlertDialog.Builder(mCtx);
-        mBuilder.setIcon(iconId).setTitle(title).setMultiChoiceItems(items, new boolean[items.length], new DialogInterface.OnMultiChoiceClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                if (isChecked) {
-                    chosenList.add(items[which]);
-                    if (null != callback) callback.onItemClick(which, true);
-                } else {
-                    chosenList.remove(items[which]);
-                    if (null != callback) callback.onItemClick(which, false);
-                }
+        mBuilder.setIcon(iconId).setTitle(title).setMultiChoiceItems(items, new boolean[items.length], (dialog, which, isChecked) -> {
+            if (isChecked) {
+                chosenList.add(items[which]);
+                if (null != callback) callback.onItemClick(which, true);
+            } else {
+                chosenList.remove(items[which]);
+                if (null != callback) callback.onItemClick(which, false);
             }
         }).setPositiveButton(btPositiveText, new DialogInterface.OnClickListener() {
             @Override public void onClick(DialogInterface dialog, int which) {
@@ -190,14 +170,10 @@ public class TDialogNormal implements TDialogNormalI {
 
         mBuilder = null;
         mBuilder = new AlertDialog.Builder(mCtx);
-        mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setView(et).setPositiveButton(btPositiveText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(NotificationPositive);
-            }
-        }).setNegativeButton(btNegativeText, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (null != callback) callback.onClick(NotificationNegative);
-            }
+        mBuilder.setIcon(iconId).setTitle(title).setMessage(content).setView(et).setPositiveButton(btPositiveText, (dialog, which) -> {
+            if (null != callback) callback.onClick(NotificationPositive);
+        }).setNegativeButton(btNegativeText, (dialog, which) -> {
+            if (null != callback) callback.onClick(NotificationNegative);
         }).show();
     }
 
@@ -239,27 +215,21 @@ public class TDialogNormal implements TDialogNormalI {
         etPWD1 = (EditText) dialogView.findViewById(R.id.et_pwd_1); // 记录两次密码
         etPWD2 = (EditText) dialogView.findViewById(R.id.et_pwd_2);
 
-        dialogView.findViewById(R.id.bt_YES).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                pwdStr1 = etPWD1.getText().toString();
-                pwdStr2 = etPWD2.getText().toString();
-                if (TextUtils.isEmpty(pwdStr1) || TextUtils.isEmpty(pwdStr2)) {
-                    Toast.makeText(mCtx, "密码不能为空", Toast.LENGTH_SHORT).show();
+        dialogView.findViewById(R.id.bt_YES).setOnClickListener(v -> {
+            pwdStr1 = etPWD1.getText().toString();
+            pwdStr2 = etPWD2.getText().toString();
+            if (TextUtils.isEmpty(pwdStr1) || TextUtils.isEmpty(pwdStr2)) {
+                Toast.makeText(mCtx, "密码不能为空", Toast.LENGTH_SHORT).show();
+            } else {
+                if (pwdStr1.equals(pwdStr2)) {
+                    Toast.makeText(mCtx, "密码设置成功", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 } else {
-                    if (pwdStr1.equals(pwdStr2)) {
-                        Toast.makeText(mCtx, "密码设置成功", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    } else {
-                        Toast.makeText(mCtx, "密码不一致", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(mCtx, "密码不一致", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        dialogView.findViewById(R.id.bt_NO).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        dialogView.findViewById(R.id.bt_NO).setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }

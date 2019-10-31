@@ -49,19 +49,13 @@ public class StickyListHeaderAdapter extends BaseAdapter implements se.emilsjola
             convertView = inflater.inflate(R.layout.apis_item_sticky_list_items, parent, false);
             holder.text = (TextView) convertView.findViewById(R.id.id_tv_item);
 
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(null != listener) listener.onMyItemClick(position, listStr.get(position));
-                }
+            convertView.setOnClickListener(v -> {
+                if(null != listener) listener.onMyItemClick(position, listStr.get(position));
             });
-            convertView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    if(null != listener)
-                        listener.onMyItemLongClick(position, listStr.get(position));
-                    return true;
-                }
+            convertView.setOnLongClickListener(v -> {
+                if(null != listener)
+                    listener.onMyItemLongClick(position, listStr.get(position));
+                return true;
             });
             convertView.setTag(holder);
 

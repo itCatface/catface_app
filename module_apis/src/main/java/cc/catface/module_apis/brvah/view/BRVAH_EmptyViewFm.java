@@ -18,7 +18,7 @@ import cc.catface.module_apis.databinding.BrvahFmEmptyViewBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_EmptyViewFm extends LightFm<LightPresenter, BrvahFmEmptyViewBinding> implements View.OnClickListener {
+public class BRVAH_EmptyViewFm extends LightFm<LightPresenter, BrvahFmEmptyViewBinding> {
 
     @Override public int layoutId() {
         return R.layout.brvah_fm_empty_view;

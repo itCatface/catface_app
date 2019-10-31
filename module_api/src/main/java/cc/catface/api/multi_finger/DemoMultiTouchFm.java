@@ -3,15 +3,13 @@ package cc.catface.api.multi_finger;
 import android.app.Dialog;
 import android.view.View;
 
-import com.jakewharton.rxbinding.widget.RxTextView;
-
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityMultiFingerBinding;
 import cc.catface.api.multi_finger.view.MultiTouchTextView;
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.AndroidBarUtils;
-import rx.functions.Action1;
+import cc.catface.ctool.system.IInterface.ISystemInterface;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -23,11 +21,7 @@ public class DemoMultiTouchFm extends LightFm<LightPresenter, ApiActivityMultiFi
     }
 
     @Override protected void initAction() {
-        RxTextView.textChanges(mBinding.mtetBrbc).subscribe(new Action1<CharSequence>() {
-            @Override public void call(CharSequence charSequence) {
-                mBinding.mtetBrbc.setSelection(charSequence.toString().length());
-            }
-        });
+        mBinding.mtetBrbc.addTextChangedListener((ISystemInterface.TextChangedWatcher) (s, start, before, count) -> mBinding.mtetBrbc.setSelection(s.toString().length()));
     }
 
     @Override protected void initView() {

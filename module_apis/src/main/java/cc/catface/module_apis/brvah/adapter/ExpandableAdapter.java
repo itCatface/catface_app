@@ -58,20 +58,17 @@ public class ExpandableAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity
                 holder.setText(R.id.title, lv0.title)
                         .setText(R.id.sub_title, lv0.subTitle)
                         .setImageResource(R.id.iv, lv0.isExpanded() ? R.mipmap.brvah_arrow_b : R.mipmap.brvah_arrow_r);
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int pos = holder.getAdapterPosition();
-                        Log.d(TAG, "Level 0 item pos: " + pos);
-                        if (lv0.isExpanded()) {
-                            collapse(pos);
-                        } else {
-                            //                            if (pos % 3 == 0) {
-                            //                                expandAll(pos, false);
-                            //                            } else {
-                            expand(pos);
-                            //                            }
-                        }
+                holder.itemView.setOnClickListener(v -> {
+                    int pos = holder.getAdapterPosition();
+                    Log.d(TAG, "Level 0 item pos: " + pos);
+                    if (lv0.isExpanded()) {
+                        collapse(pos);
+                    } else {
+                        //                            if (pos % 3 == 0) {
+                        //                                expandAll(pos, false);
+                        //                            } else {
+                        expand(pos);
+                        //                            }
                     }
                 });
                 break;
@@ -80,37 +77,28 @@ public class ExpandableAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity
                 holder.setText(R.id.title, lv1.title)
                         .setText(R.id.sub_title, lv1.subTitle)
                         .setImageResource(R.id.iv, lv1.isExpanded() ? R.mipmap.brvah_arrow_b : R.mipmap.brvah_arrow_r);
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int pos = holder.getAdapterPosition();
-                        Log.d(TAG, "Level 1 item pos: " + pos);
-                        if (lv1.isExpanded()) {
-                            collapse(pos, false);
-                        } else {
-                            expand(pos, false);
-                        }
+                holder.itemView.setOnClickListener(v -> {
+                    int pos = holder.getAdapterPosition();
+                    Log.d(TAG, "Level 1 item pos: " + pos);
+                    if (lv1.isExpanded()) {
+                        collapse(pos, false);
+                    } else {
+                        expand(pos, false);
                     }
                 });
 
-                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        int pos = holder.getAdapterPosition();
-                        remove(pos);
-                        return true;
-                    }
+                holder.itemView.setOnLongClickListener(v -> {
+                    int pos = holder.getAdapterPosition();
+                    remove(pos);
+                    return true;
                 });
                 break;
             case TYPE_PERSON:
                 final Person person = (Person) item;
                 holder.setText(R.id.tv, person.name + " parent pos: " + getParentPosition(person));
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        int pos = holder.getAdapterPosition();
-                        remove(pos);
-                    }
+                holder.itemView.setOnClickListener(view -> {
+                    int pos = holder.getAdapterPosition();
+                    remove(pos);
                 });
                 break;
         }

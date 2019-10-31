@@ -43,11 +43,9 @@ public class AiuiActivity extends AppCompatActivity implements AIUIServer.Recogn
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_aiui);
         mBinding.tvResult.setMovementMethod(ScrollingMovementMethod.getInstance());
-        mBinding.btStartAiui.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                startService(new Intent(AiuiActivity.this, AIUIServer.class));
-                AiuiActivity.this.bindService(new Intent(AiuiActivity.this, AIUIServer.class), conn, Context.BIND_AUTO_CREATE);
-            }
+        mBinding.btStartAiui.setOnClickListener(view -> {
+            startService(new Intent(AiuiActivity.this, AIUIServer.class));
+            AiuiActivity.this.bindService(new Intent(AiuiActivity.this, AIUIServer.class), conn, Context.BIND_AUTO_CREATE);
         });
 
         mBinding.btClear.setOnClickListener(v -> {

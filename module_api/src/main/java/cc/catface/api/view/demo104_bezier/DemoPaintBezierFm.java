@@ -17,7 +17,7 @@ import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 
-public class DemoPaintBezierFm extends LightFm<LightPresenter, ApiActivityPaintBezierBinding> implements View.OnTouchListener, View.OnClickListener, View.OnLongClickListener, SeekBar.OnSeekBarChangeListener, OnSeekColorListener {
+public class DemoPaintBezierFm extends LightFm<LightPresenter, ApiActivityPaintBezierBinding> implements View.OnTouchListener, View.OnLongClickListener, SeekBar.OnSeekBarChangeListener, OnSeekColorListener {
 
     @Override public int layoutId() {
         return R.layout.api_activity_paint_bezier;

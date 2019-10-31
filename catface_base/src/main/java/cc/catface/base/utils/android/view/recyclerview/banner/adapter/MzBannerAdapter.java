@@ -38,12 +38,10 @@ public class MzBannerAdapter extends BaseBannerAdapter<MzBannerAdapter.MzViewHol
         String url = urlList.get(position % urlList.size());
         ImageView iv = holder.iv_img;
         Glide.with(context).load(url).into(iv);
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (onBannerItemClickListener != null)
-                    onBannerItemClickListener.onItemClick(position % urlList.size());
+        iv.setOnClickListener(v -> {
+            if (onBannerItemClickListener != null)
+                onBannerItemClickListener.onItemClick(position % urlList.size());
 
-            }
         });
     }
 

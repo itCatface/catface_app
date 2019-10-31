@@ -22,7 +22,7 @@ import cc.catface.module_apis.databinding.BrvahFmMultiBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_MultiFm extends LightFm<LightPresenter, BrvahFmMultiBinding> implements View.OnClickListener {
+public class BRVAH_MultiFm extends LightFm<LightPresenter, BrvahFmMultiBinding> {
 
     @Override public int layoutId() {
         return R.layout.brvah_fm_multi;

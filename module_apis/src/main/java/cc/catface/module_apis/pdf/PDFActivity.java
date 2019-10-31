@@ -19,7 +19,7 @@ import cc.catface.module_apis.databinding.ApisActivityPdfBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.apis_pdf) public class PDFActivity extends LightAct<LightPresenter, ApisActivityPdfBinding> implements View.OnClickListener {
+@Route(path = Const.ARouter.apis_pdf) public class PDFActivity extends LightAct<LightPresenter, ApisActivityPdfBinding> {
 
     @Override public int layoutId() {
         return R.layout.apis_activity_pdf;

@@ -5,9 +5,6 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 
-import com.jakewharton.rxbinding.widget.RxCompoundButton;
-import com.jakewharton.rxbinding.widget.RxTextView;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +12,7 @@ import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityTestTextViewBinding;
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
+import cc.catface.ctool.system.IInterface.ISystemInterface;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -27,8 +25,8 @@ public class DemoTextViewFm extends LightFm<LightPresenter, ApiActivityTestTextV
 
 
     @Override protected void initAction() {
-        RxTextView.textChanges(mBinding.etKeyWords).subscribe(charSequence -> handleTextColor());
-        RxCompoundButton.checkedChanges(mBinding.cbHighlight).subscribe(isChecked -> {
+        mBinding.etKeyWords.addTextChangedListener((ISystemInterface.TextChangedWatcher) (s, start, before, count) -> handleTextColor());
+        mBinding.cbHighlight.setOnCheckedChangeListener((buttonView, isChecked) -> {
             isSensitiveCase = isChecked;
             handleTextColor();
         });

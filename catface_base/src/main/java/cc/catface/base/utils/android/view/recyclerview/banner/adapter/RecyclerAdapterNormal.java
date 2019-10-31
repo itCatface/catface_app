@@ -38,11 +38,9 @@ public class RecyclerAdapterNormal extends BaseBannerAdapter<RecyclerAdapterNorm
         String url = urlList.get(position % urlList.size());
         ImageView img = (ImageView) holder.itemView;
         Glide.with(context).load(url).into(img);
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (onBannerItemClickListener != null) {
-                    onBannerItemClickListener.onItemClick(position % urlList.size());
-                }
+        img.setOnClickListener(v -> {
+            if (onBannerItemClickListener != null) {
+                onBannerItemClickListener.onItemClick(position % urlList.size());
             }
         });
     }

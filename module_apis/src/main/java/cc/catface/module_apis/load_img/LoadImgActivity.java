@@ -13,7 +13,8 @@ import com.squareup.picasso.Picasso;
 
 import cc.catface.app_base.Const;
 import cc.catface.base.GlideApp;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.Timer.TTimer;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityLoadImgBinding;
@@ -21,8 +22,8 @@ import cc.catface.module_apis.databinding.ApisActivityLoadImgBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.apis_loadImg)
-public class LoadImgActivity extends NormalActivity<ApisActivityLoadImgBinding> implements View.OnClickListener {
+@Route(path = Const.ARouter.apis_loadImg) public class LoadImgActivity extends LightAct<LightPresenter, ApisActivityLoadImgBinding> implements View.OnClickListener {
+
     @Override public int layoutId() {
         return R.layout.apis_activity_load_img;
     }
@@ -61,7 +62,7 @@ public class LoadImgActivity extends NormalActivity<ApisActivityLoadImgBinding> 
         });
     }
 
-    @Override public void create() {
+    @Override protected void created() {
         initToolBar();
     }
 

@@ -8,27 +8,26 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import java.io.IOException;
 
 import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.MvpActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
 import cc.catface.ctool.context.netstate.TNetwork;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityServerBinding;
 import cc.catface.module_apis.nano_httpd.engine.NanoHTTPDServer;
-import cc.catface.module_apis.nano_httpd.presenter.ServerPresenterImp;
+import cc.catface.module_apis.nano_httpd.vp.ServerPresenterImp;
+import cc.catface.module_apis.nano_httpd.vp.ServerVP;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.apis_nano)
-@CreatePresenter(ServerPresenterImp.class)
-public class ServerActivity extends MvpActivity<ServerView, ServerPresenterImp, ApisActivityServerBinding> implements ServerView {
+@Route(path = Const.ARouter.apis_nano) public class ServerActivity extends LightAct<ServerPresenterImp, ApisActivityServerBinding> implements ServerVP.ServerView {
+
     @Override public int layoutId() {
         return R.layout.apis_activity_server;
     }
 
     private NanoHTTPDServer server = new NanoHTTPDServer(9093);
 
-    @Override public void create() {
+    @Override public void created() {
         initToolBar();
         if (null != mBar) mBar.setSubtitle(TNetwork.getIp());
     }

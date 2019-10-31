@@ -10,18 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.system.IInterface.ISystemInterface;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidActivityMainBinding;
 import cc.catface.wanandroid.engine.adapter.WanandroidMainAdapter;
 import cc.catface.wanandroid.module.home.HomeFm;
-import cc.catface.wanandroid.module.knowledge.mvp.knowledge.KnowledgeFm;
-import cc.catface.wanandroid.module.navigation.NavigationFm;
-import cc.catface.wanandroid.module.projects.mvp.projects.ProjectsFm;
-import cc.catface.wanandroid.module.subscriptions.mvp.SubscriptionsFm;
+import cc.catface.wanandroid.module.knowledge.view.KnowledgeFm;
+import cc.catface.wanandroid.module.navigation.view.NavigationFm;
+import cc.catface.wanandroid.module.projects.view.ProjectsFm;
+import cc.catface.wanandroid.module.subscriptions.view.SubscriptionsFm;
 
-@Route(path = Const.ARouter.pj_wanandroid_main) public class WanandroidMainActivity extends NormalActivity<WanandroidActivityMainBinding> {
+@Route(path = Const.ARouter.pj_wanandroid_main) public class WanandroidMainActivity extends LightAct<LightPresenter, WanandroidActivityMainBinding> {
 
     @Override public int layoutId() {
         return R.layout.wanandroid_activity_main;
@@ -84,7 +85,7 @@ import cc.catface.wanandroid.module.subscriptions.mvp.SubscriptionsFm;
         });
     }
 
-    @Override public void create() {
+    @Override public void created() {
         initToolBar();
 
         mBinding.vpWanandroidMain.setAdapter(new WanandroidMainAdapter(getSupportFragmentManager(), mFragments));

@@ -2,23 +2,21 @@ package cc.catface.api.view.demo06_anim_set;
 
 import android.animation.AnimatorInflater;
 import android.animation.ValueAnimator;
-import android.os.Bundle;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityAnimSetBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
-public class DemoAnimSetFm extends NormalFragment<ApiActivityAnimSetBinding> {
+public class DemoAnimSetFm extends LightFm<LightPresenter, ApiActivityAnimSetBinding> {
 
 
     @Override public int layoutId() {
         return R.layout.api_activity_anim_set;
     }
 
-    @Override public void createView() {
-        mBinding.btAnimator1.setOnClickListener(view->animator1());
+    @Override protected void initView() {
+        mBinding.btAnimator1.setOnClickListener(view -> animator1());
     }
 
 

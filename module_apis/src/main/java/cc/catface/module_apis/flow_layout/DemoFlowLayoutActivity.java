@@ -20,7 +20,8 @@ import java.util.Random;
 
 import cc.catface.app_base.Const;
 import cc.catface.app_base.TestDataSource;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.base.utils.java.TNumber;
 import cc.catface.module_apis.R;
@@ -29,8 +30,7 @@ import cc.catface.module_apis.databinding.ApisActivityDemoFlowLayoutBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.apis_flow_layout)
-public class DemoFlowLayoutActivity extends NormalActivity<ApisActivityDemoFlowLayoutBinding> {
+@Route(path = Const.ARouter.apis_flow_layout) public class DemoFlowLayoutActivity extends LightAct<LightPresenter, ApisActivityDemoFlowLayoutBinding> {
 
     @Override public int layoutId() {
         return R.layout.apis_activity_demo_flow_layout;
@@ -38,12 +38,11 @@ public class DemoFlowLayoutActivity extends NormalActivity<ApisActivityDemoFlowL
 
     private List<String> mTags = new ArrayList<>();
 
-    @Override
-    public void initData() {
+    @Override public void initData() {
         mTags = TestDataSource.get_lol_zh_names();
     }
 
-    @Override public void create() {
+    @Override public void created() {
         initToolBar();
         showData();
     }

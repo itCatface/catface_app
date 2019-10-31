@@ -4,14 +4,15 @@ import android.view.View;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityScanQrcodeBinding;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoScanQrcodeFm extends NormalFragment<ApiActivityScanQrcodeBinding> implements View.OnClickListener, QRCodeView.Delegate {
+public class DemoScanQrcodeFm extends LightFm<LightPresenter, ApiActivityScanQrcodeBinding> implements View.OnClickListener, QRCodeView.Delegate {
+
     @Override public int layoutId() {
         return R.layout.api_activity_scan_qrcode;
     }
@@ -43,7 +44,7 @@ public class DemoScanQrcodeFm extends NormalFragment<ApiActivityScanQrcodeBindin
         mBinding.zxv.startSpot();
     }
 
-    @Override public void createView() { }
+    @Override protected void initView() { }
 
     @Override public void onStop() {
         super.onStop();

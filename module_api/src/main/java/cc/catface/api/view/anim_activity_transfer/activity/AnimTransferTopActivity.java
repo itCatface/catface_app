@@ -3,12 +3,14 @@ package cc.catface.api.view.anim_activity_transfer.activity;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityAnimTransfer1234Binding;
 import cc.catface.api.view.anim_activity_transfer.view.SwipeFinishActivityHelperEdit;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class AnimTransferTopActivity extends NormalActivity<ApiActivityAnimTransfer1234Binding> {
+public class AnimTransferTopActivity extends LightAct<LightPresenter, ApiActivityAnimTransfer1234Binding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_anim_transfer_1_2_3_4;
     }
@@ -18,7 +20,7 @@ public class AnimTransferTopActivity extends NormalActivity<ApiActivityAnimTrans
         mBinding.btJump.setText(direction);
     }
 
-    @Override public void create() {
+    @Override protected void created() {
         new SwipeFinishActivityHelperEdit(this, SwipeFinishActivityHelperEdit.mode_top, TransferMainActivity.mActivity);
     }
 }

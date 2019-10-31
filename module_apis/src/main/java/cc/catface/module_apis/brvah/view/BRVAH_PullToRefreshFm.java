@@ -13,7 +13,9 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.PullToRefreshAdapter;
@@ -73,7 +75,8 @@ class Request extends Thread {
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_PullToRefreshFm extends NormalFragment<BrvahFmPullToRefreshBinding> {
+public class BRVAH_PullToRefreshFm extends LightFm<LightPresenter, BrvahFmPullToRefreshBinding> {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_pull_to_refresh;
     }
@@ -83,8 +86,9 @@ public class BRVAH_PullToRefreshFm extends NormalFragment<BrvahFmPullToRefreshBi
         mBinding.srlBrvahRefresh.setRefreshing(true);
     }
 
-    @Override public void createView() {
-        initView();
+    @Override protected void initView() {
+        mBinding.srlBrvahRefresh.setColorSchemeColors(Color.rgb(47, 223, 189));
+        mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         initAdapter();
         addHeaderView();
         refresh();
@@ -96,12 +100,6 @@ public class BRVAH_PullToRefreshFm extends NormalFragment<BrvahFmPullToRefreshBi
     private PullToRefreshAdapter mAdapter;
 
     private int mNextRequestPage = 1;
-
-
-    private void initView() {
-        mBinding.srlBrvahRefresh.setColorSchemeColors(Color.rgb(47, 223, 189));
-        mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
-    }
 
     private void initAdapter() {
         mAdapter = new PullToRefreshAdapter();

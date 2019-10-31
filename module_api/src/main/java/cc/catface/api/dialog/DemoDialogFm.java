@@ -10,7 +10,8 @@ import java.util.List;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityDialogBinding;
 import cc.catface.api.dialog.adapter.DialogAdapter;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.dialog.normal.DialogLoadingFm;
 import cc.catface.base.utils.android.common_print.dialog.normal.TDialogNormal;
 import cc.catface.base.utils.android.common_print.toast.TToast;
@@ -19,7 +20,8 @@ import cc.catface.base.utils.android.common_recyclerview.TRV;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
+public class DemoDialogFm extends LightFm<LightPresenter, ApiActivityDialogBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_dialog;
     }
@@ -41,7 +43,7 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
         mDatas.add(NORMAL_CUSTOM_LOADING);
     }
 
-    @Override public void createView() {
+    @Override protected void created() {
         initAdapter();
     }
 
@@ -150,7 +152,7 @@ public class DemoDialogFm extends NormalFragment<ApiActivityDialogBinding> {
                     break;
 
                 case NORMAL_CUSTOM_LOADING:
-                    new DialogLoadingFm().show(getFragmentManager(), TAG);
+                    new DialogLoadingFm().show(getFragmentManager(), "--");
                     break;
             }
         });

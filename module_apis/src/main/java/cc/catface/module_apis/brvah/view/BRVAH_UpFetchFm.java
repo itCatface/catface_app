@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Random;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.UpFetchAdapter;
 import cc.catface.module_apis.brvah.domain.Movie;
@@ -16,7 +18,8 @@ import cc.catface.module_apis.databinding.BrvahFmUpFetchBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_UpFetchFm extends NormalFragment<BrvahFmUpFetchBinding> {
+public class BRVAH_UpFetchFm extends LightFm<LightPresenter, BrvahFmUpFetchBinding> {
+
     private UpFetchAdapter mAdapter;
 
     @Override public int layoutId() {
@@ -24,7 +27,7 @@ public class BRVAH_UpFetchFm extends NormalFragment<BrvahFmUpFetchBinding> {
     }
 
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mAdapter = new UpFetchAdapter();
         mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.rvList.setAdapter(mAdapter);

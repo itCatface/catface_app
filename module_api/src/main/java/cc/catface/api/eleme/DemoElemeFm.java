@@ -21,18 +21,20 @@ import cc.catface.api.eleme.adapter.TextGVAdapter;
 import cc.catface.api.eleme.adapter.TextVPAdapter;
 import cc.catface.api.eleme.domain.ElemeMainBean;
 import cc.catface.api.eleme.domain.ElemeSinglePageMultiChosenPersonInfo;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoElemeFm extends NormalFragment<ApiActivityElemeBinding> {
+public class DemoElemeFm extends LightFm<LightPresenter, ApiActivityElemeBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_eleme;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         demoElemeMenu();
 
         demoTextMenu();

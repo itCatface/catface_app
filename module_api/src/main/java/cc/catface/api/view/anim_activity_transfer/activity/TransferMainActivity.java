@@ -8,14 +8,16 @@ import android.view.View;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiAnimActivityTransferMainBinding;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class TransferMainActivity extends NormalActivity<ApiAnimActivityTransferMainBinding> {
+public class TransferMainActivity extends LightAct<LightPresenter, ApiAnimActivityTransferMainBinding> {
+
     public static final String TRANS_KEY = "direction";
     public static final String TRANS_VALUE_TOP = "top";
     public static final String TRANS_VALUE_BOTTOM = "bottom";
@@ -62,7 +64,7 @@ public class TransferMainActivity extends NormalActivity<ApiAnimActivityTransfer
     }
 
 
-    @Override public void create() {
+    @Override protected void created() {
         mActivity = this;
     }
 

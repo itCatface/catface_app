@@ -1,6 +1,7 @@
 package cc.catface.api.frame.mvp;
 
-import cc.catface.base.core_framework.base_mvp.view.MvpView;
+
+import cc.catface.base.core_framework.light_mvp.LightView;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -14,7 +15,7 @@ public interface FrameMVP_VP {
     }
 
 
-    interface View extends MvpView {
+    interface View extends LightView {
         void checkAccountPass();
 
         void checkAccountNotPass(String error);

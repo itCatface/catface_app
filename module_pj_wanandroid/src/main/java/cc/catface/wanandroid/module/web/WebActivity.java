@@ -11,14 +11,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidActivityWebBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class WebActivity extends NormalActivity<WanandroidActivityWebBinding> {
+public class WebActivity extends LightAct<LightPresenter, WanandroidActivityWebBinding> {
     private String url;
 
     public static void jump(Context ctx, String url) {
@@ -32,7 +33,7 @@ public class WebActivity extends NormalActivity<WanandroidActivityWebBinding> {
         return R.layout.wanandroid_activity_web;
     }
 
-    @Override public void create() {
+    @Override protected void created() {
         url = getIntent().getStringExtra("url");
         loadHtml();
 

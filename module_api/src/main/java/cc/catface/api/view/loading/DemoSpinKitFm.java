@@ -7,7 +7,8 @@ import com.jakewharton.rxbinding.widget.RxCompoundButton;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivitySpinKitBinding;
 import cc.catface.api.view.loading.view_publish.RotatingView;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -15,7 +16,7 @@ import cc.catface.base.core_framework.base_normal.NormalFragment;
  *
  * 参考-->https://github.com/ybq/Android-SpinKit
  */
-public class DemoSpinKitFm extends NormalFragment<ApiActivitySpinKitBinding> {
+public class DemoSpinKitFm extends LightFm<LightPresenter, ApiActivitySpinKitBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_spin_kit;
@@ -33,7 +34,4 @@ public class DemoSpinKitFm extends NormalFragment<ApiActivitySpinKitBinding> {
         });
     }
 
-    @Override public void createView() {
-
-    }
 }

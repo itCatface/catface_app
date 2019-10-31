@@ -2,25 +2,28 @@ package cc.catface.work_demo.swipe_change_page;
 
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.work_demo.R;
 import cc.catface.work_demo.databinding.ActivityVercitalPagerBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class SwipeChangePageActivity extends NormalActivity<ActivityVercitalPagerBinding> {
+public class SwipeChangePageActivity extends LightAct<LightPresenter, ActivityVercitalPagerBinding> {
+
     @Override public int layoutId() {
         return R.layout.activity_vercital_pager;
     }
 
     private HorizontalVerticalPagerAdapter mAdapter;
 
-    @Override public void create() {
+    @Override protected void initView() {
         initFragments();
         mBinding.viewpager.setOffscreenPageLimit(5);
 
@@ -29,19 +32,19 @@ public class SwipeChangePageActivity extends NormalActivity<ActivityVercitalPage
         mBinding.viewpager.addOnPageChangeListener(mAdapter);
         mBinding.viewpager.setCurrentItem(2);
 
-//        mAdapter.setOnTouchListener(new HorizontalVerticalPagerAdapter.OnTouchListener() {
-//            @Override
-//            public void onVerticalFling(int offsetPosition) {
-//                mBinding.viewpager.setVertical(true);
-//                mBinding.viewpager.setCurrentItem(mAdapter.getPosition() + offsetPosition);
-//            }
-//
-//            @Override
-//            public void onHorizontalFling(int offsetPosition) {
-//                mBinding.viewpager.setVertical(false);
-//                mBinding.viewpager.setCurrentItem(mAdapter.getPosition() + offsetPosition);
-//            }
-//        });
+        //        mAdapter.setOnTouchListener(new HorizontalVerticalPagerAdapter.OnTouchListener() {
+        //            @Override
+        //            public void onVerticalFling(int offsetPosition) {
+        //                mBinding.viewpager.setVertical(true);
+        //                mBinding.viewpager.setCurrentItem(mAdapter.getPosition() + offsetPosition);
+        //            }
+        //
+        //            @Override
+        //            public void onHorizontalFling(int offsetPosition) {
+        //                mBinding.viewpager.setVertical(false);
+        //                mBinding.viewpager.setCurrentItem(mAdapter.getPosition() + offsetPosition);
+        //            }
+        //        });
 
         mBinding.buttonPanel.setOnClickListener(v -> {
             mBinding.viewpager.setVertical(!mBinding.viewpager.isVertical());

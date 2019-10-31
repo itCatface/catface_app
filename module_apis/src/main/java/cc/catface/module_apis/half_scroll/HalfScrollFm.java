@@ -7,19 +7,21 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.yinglan.scrolllayout.ScrollLayout;
 
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityHalfScrollBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class HalfScrollFm extends NormalFragment<ApisActivityHalfScrollBinding> {
+public class HalfScrollFm extends LightFm<LightPresenter, ApisActivityHalfScrollBinding> {
+
     @Override public int layoutId() {
         return R.layout.apis_activity_half_scroll;
     }
 
-    @Override protected void createView() {
+    @Override protected void initView() {
         initToolBar();
         /* 控制转写文本显示 */
         mBinding.sl.setVisibility(View.VISIBLE);

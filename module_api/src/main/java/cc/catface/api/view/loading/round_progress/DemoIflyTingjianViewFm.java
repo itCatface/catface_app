@@ -5,19 +5,19 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityRoundProgressBinding;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoIflyTingjianViewFm extends NormalFragment<ApiActivityRoundProgressBinding> {
+public class DemoIflyTingjianViewFm extends LightFm<LightPresenter, ApiActivityRoundProgressBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_round_progress;
     }
@@ -25,7 +25,7 @@ public class DemoIflyTingjianViewFm extends NormalFragment<ApiActivityRoundProgr
     private Bitmap bmpDownload;
     private Bitmap bmpPause;
 
-    @Override public void createView() {
+    @Override protected void initView() {
         initAction();
 
         mHandler = new Handler(Looper.getMainLooper());
@@ -95,12 +95,13 @@ public class DemoIflyTingjianViewFm extends NormalFragment<ApiActivityRoundProgr
     }
 
 
-    /**  */
+    /**
+     *
+     */
     private View.OnTouchListener shopCarSettleTouch = new View.OnTouchListener() {
         int lastX, lastY;
 
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
+        @Override public boolean onTouch(View v, MotionEvent event) {
             int ea = event.getAction();
             DisplayMetrics dm = getResources().getDisplayMetrics();
             int screenWidth = dm.widthPixels;

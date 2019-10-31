@@ -7,7 +7,7 @@ import cc.catface.base.core_framework.base_mvp.view.MvpView;
 /**
  * 代理接口
  */
-public interface PresenterProxyInterface<V extends MvpView, P extends MvpPresenter<V>> {
+@Deprecated public interface PresenterProxyInterface<V extends MvpView, P extends MvpPresenter<V>> {
 
 
     /** 设置创建Presenter的工厂 */

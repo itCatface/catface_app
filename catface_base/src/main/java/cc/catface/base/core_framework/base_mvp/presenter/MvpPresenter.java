@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import cc.catface.base.core_framework.base_mvp.view.MvpView;
 
+import cc.catface.base.core_framework.base_mvp.view.MvpView;
 
 /**
  * 规定View泛型
@@ -18,7 +18,7 @@ import cc.catface.base.core_framework.base_mvp.view.MvpView;
  *
  * @desc: exposed property: 1. mView[or getMvpView()] 2. mActivity
  */
-public class MvpPresenter<V extends MvpView> {
+@Deprecated public class MvpPresenter<V extends MvpView> {
 
     /** V层View(可通过get()方法向外提供) */
     protected V mView;

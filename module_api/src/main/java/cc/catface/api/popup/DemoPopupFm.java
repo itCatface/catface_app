@@ -13,23 +13,20 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityPopupBinding;
-import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
-public class DemoPopupFm extends NormalFragment<ApiActivityPopupBinding> implements View.OnClickListener {
+public class DemoPopupFm extends LightFm<LightPresenter, ApiActivityPopupBinding> implements View.OnClickListener {
+
     @Override public int layoutId() {
         return R.layout.api_activity_popup;
     }
@@ -46,9 +43,6 @@ public class DemoPopupFm extends NormalFragment<ApiActivityPopupBinding> impleme
     private PopupWindow myPop;
     private View view, picView01, picView02, picView03, picView04;
     private List<View> views;
-
-    @Override public void createView() {
-    }
 
 
     @Override public void onClick(View view) {

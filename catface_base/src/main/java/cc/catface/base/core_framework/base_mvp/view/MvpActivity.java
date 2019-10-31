@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import cc.catface.base.core_framework.BaseFunctionActivity;
+import cc.catface.base.core_framework.BaseFunAct;
 import cc.catface.base.core_framework.base_mvp.factory.PresenterMvpFactory;
 import cc.catface.base.core_framework.base_mvp.factory.PresenterMvpFactoryImpl;
 import cc.catface.base.core_framework.base_mvp.presenter.MvpPresenter;
@@ -17,7 +17,7 @@ import cc.catface.base.core_framework.base_mvp.proxy.PresenterProxyInterface;
 /**
  * exposed property: mPresenter[or getMvpPresenter()]
  */
-public abstract class MvpActivity<V extends MvpView, P extends MvpPresenter<V>, B extends ViewDataBinding> extends BaseFunctionActivity implements PresenterProxyInterface<V, P> {
+@Deprecated public abstract class MvpActivity<V extends MvpView, P extends MvpPresenter<V>, B extends ViewDataBinding> extends BaseFunAct implements PresenterProxyInterface<V, P> {
 
 
     /** 创建被代理对象[传入默认Presenter的工厂] */
@@ -34,7 +34,7 @@ public abstract class MvpActivity<V extends MvpView, P extends MvpPresenter<V>, 
         }
         mProxy.onCreate((V) this, this);
         mBinding = DataBindingUtil.setContentView(this, layoutId());
-        super.initOnCreate();
+        super.init();
     }
 
 

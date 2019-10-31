@@ -16,7 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.net.Utils.RequestUtils;
 import cc.catface.base.utils.android.net.Utils.core.CustomObserver;
@@ -34,7 +35,7 @@ import retrofit2.Response;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitBinding> {
+public class ApisTestRetrofitFm extends LightFm<LightPresenter, ApisFragmentTestRetrofitBinding> {
     private RxFragment mFm;
 
     @Override public int layoutId() {
@@ -167,18 +168,15 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
         /**  */
         mBinding.btDownloadHttp.setOnClickListener(v -> {
             cc.catface.base.utils.android.net.http.point_download.DownloadEngine.getInstance().start("http://dldir1.qq.com/qqyy/pc/QQPlayerSetup4.1.3.658.exe", "d:/sasa", "temp.exe", new cc.catface.base.utils.android.net.http.point_download.DownloadEngine.Callback() {
-                @Override
-                public void onProgress(long length, long totalLength) {
+                @Override public void onProgress(long length, long totalLength) {
                     TLog.d("正在下载： " + length / totalLength);
                 }
 
-                @Override
-                public void onFailure(String error) {
+                @Override public void onFailure(String error) {
                     TLog.d("下载失败：" + error);
                 }
 
-                @Override
-                public void onSuccess() {
+                @Override public void onSuccess() {
                     TLog.d("下载成功");
                 }
             });
@@ -229,7 +227,7 @@ public class ApisTestRetrofitFm extends NormalFragment<ApisFragmentTestRetrofitB
 
     String url = "http://dldir1.qq.com/qqmi/aphone_p2p/TencentVideo_V6.0.0.14297_848.apk";
 
-    @Override public void createView() {
+    @Override protected void created() {
         initToolBar();
         mFm = this;
 

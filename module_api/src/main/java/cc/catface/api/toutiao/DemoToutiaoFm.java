@@ -7,13 +7,15 @@ import java.util.Random;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityToutiaoBinding;
 import cc.catface.api.toutiao.adapter.ToutiaoAdapter;
 import cc.catface.api.toutiao.domain.TempDataOfToutiao;
 import cc.catface.api.toutiao.domain.ToutiaoCommonBean;
 import cc.catface.api.toutiao.toutiao_refresh.TodayNewsHeader;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.Timer.TTimer;
 
 /**
@@ -23,19 +25,15 @@ import cc.catface.base.utils.android.Timer.TTimer;
  *
  * 1.多条目的RecyclerView使用
  */
-public class DemoToutiaoFm extends NormalFragment<ApiActivityToutiaoBinding> {
+public class DemoToutiaoFm extends LightFm<LightPresenter, ApiActivityToutiaoBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_toutiao;
     }
 
     private List<ToutiaoCommonBean> mData;
 
-    @Override public void createView() {
-        initView();
-        initViewPagerOperator();
-    }
-
-    private void initView() {
+    @Override protected void initView() {
         mBinding.srl.setRefreshHeader(new TodayNewsHeader(mActivity));
         mBinding.srl.setOnRefreshListener(refreshLayout -> {
             mBinding.srl.finishRefresh(2_000);
@@ -44,6 +42,7 @@ public class DemoToutiaoFm extends NormalFragment<ApiActivityToutiaoBinding> {
                 mBinding.rv.getAdapter().notifyDataSetChanged();
             });
         });
+        initViewPagerOperator();
     }
 
 

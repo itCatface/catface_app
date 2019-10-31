@@ -10,13 +10,14 @@ import java.util.List;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiFragmentViewPager2Binding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.system.TWeakHandler;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoViewPager2Fm extends NormalFragment<ApiFragmentViewPager2Binding> implements TWeakHandler.MessageListener {
+public class DemoViewPager2Fm extends LightFm<LightPresenter, ApiFragmentViewPager2Binding> {
 
     private TWeakHandler<DemoViewPager2Fm> mHandler;
 
@@ -30,6 +31,10 @@ public class DemoViewPager2Fm extends NormalFragment<ApiFragmentViewPager2Bindin
         return R.layout.api_fragment_view_pager_2;
     }
 
+    @Override protected void initHandler() {
+        mHandler = new TWeakHandler<>(this);
+    }
+
     private List<Integer> mDatas = new ArrayList<>();
 
     {
@@ -39,15 +44,11 @@ public class DemoViewPager2Fm extends NormalFragment<ApiFragmentViewPager2Bindin
         mDatas.add(android.R.color.holo_green_light);
     }
 
-    @Override protected void initData() {
-        mHandler = new TWeakHandler<>(this);
-    }
-
     private final int WHAT_PLAY = 0x00;
     private boolean isAutoPlay = true;
     private int mDuration = 3_000;
 
-    @Override protected void createView() {
+    @Override protected void initView() {
         /** 横向ViewPager */
         /* 控制切页 */
         mBinding.vp21.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

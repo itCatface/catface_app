@@ -11,7 +11,7 @@ import cc.catface.base.core_framework.base_mvp.view.MvpView;
 /**
  * 代理实现类[用来关联Presenter和View的生命周期-->方便管理]
  */
-public class BaseMvpProxy<V extends MvpView, P extends MvpPresenter<V>> implements PresenterProxyInterface<V, P> {
+@Deprecated public class BaseMvpProxy<V extends MvpView, P extends MvpPresenter<V>> implements PresenterProxyInterface<V, P> {
 
     private static final String PRESENTER_KEY = "presenter_key";
 

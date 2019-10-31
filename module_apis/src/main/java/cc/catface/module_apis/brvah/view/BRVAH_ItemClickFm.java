@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.ItemClickAdapter;
 import cc.catface.module_apis.brvah.domain.ClickEntity;
@@ -15,14 +17,15 @@ import cc.catface.module_apis.databinding.BrvahFmItemClickBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_ItemClickFm extends NormalFragment<BrvahFmItemClickBinding> {
+public class BRVAH_ItemClickFm extends LightFm<LightPresenter, BrvahFmItemClickBinding> {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_item_click;
     }
 
     private ItemClickAdapter mAdapter;
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         initAdapter();
         initAdapterEvent();

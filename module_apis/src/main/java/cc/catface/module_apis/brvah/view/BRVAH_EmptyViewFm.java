@@ -5,7 +5,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.Timer.TTimer;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.EmptyAdapter;
@@ -16,7 +18,8 @@ import cc.catface.module_apis.databinding.BrvahFmEmptyViewBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_EmptyViewFm extends NormalFragment<BrvahFmEmptyViewBinding> implements View.OnClickListener {
+public class BRVAH_EmptyViewFm extends LightFm<LightPresenter, BrvahFmEmptyViewBinding> implements View.OnClickListener {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_empty_view;
     }
@@ -34,7 +37,7 @@ public class BRVAH_EmptyViewFm extends NormalFragment<BrvahFmEmptyViewBinding> i
         }
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.btnReset.setOnClickListener(this);
 
         mBinding.rvList.setHasFixedSize(true);

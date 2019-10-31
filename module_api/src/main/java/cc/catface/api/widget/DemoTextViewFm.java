@@ -5,7 +5,6 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
@@ -14,14 +13,14 @@ import java.util.regex.Pattern;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityTestTextViewBinding;
-import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoTextViewFm extends NormalFragment<ApiActivityTestTextViewBinding> {
+public class DemoTextViewFm extends LightFm<LightPresenter, ApiActivityTestTextViewBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_test_text_view;
     }
@@ -33,9 +32,6 @@ public class DemoTextViewFm extends NormalFragment<ApiActivityTestTextViewBindin
             isSensitiveCase = isChecked;
             handleTextColor();
         });
-    }
-
-    @Override public void createView() {
     }
 
 
@@ -55,7 +51,7 @@ public class DemoTextViewFm extends NormalFragment<ApiActivityTestTextViewBindin
         Matcher matcher = pattern.matcher(string);
 
         SpannableString ss = new SpannableString(content);
-        while(matcher.find()) {
+        while (matcher.find()) {
             int start = matcher.start();
             int end = matcher.end();
             ss.setSpan(new ForegroundColorSpan(color), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

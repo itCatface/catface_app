@@ -9,22 +9,21 @@ import java.util.Random;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiFmToastBinding;
 import cc.catface.api.toast.adapter.ToastAdapter;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.base.utils.android.common_recyclerview.TRV;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoToastFm extends NormalFragment<ApiFmToastBinding> {
+public class DemoToastFm extends LightFm<LightPresenter, ApiFmToastBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_fm_toast;
     }
 
-    private final String NORMAL_SHORT = "系统普通Toast[短]", NORMAL_LONG = "系统普通Toast[长]", CONTENT_SHORT = "立即更新Toast显示内容[短]", CONTENT_LONG = "立即更新Toast显示内容[长]", IMMEDIATELY_SHORT = "立即弹出Toast[短]",
-            IMMEDIATELY_LONG = "立即弹出Toast[长]", CUSTOM_GRAVITY_SHORT = "自定义gravity[短]", CUSTOM_GRAVITY_LONG = "自定义gravity[长]", CUSTOM_LOCATION_SHORT = "自定义位置[短]", CUSTOM_LOCATION_LONG = "自定义位置[长]",
-            B_TOAST_NORMAL_SHORT = "定制Toast[短normal]", B_TOAST_INFO_SHORT = "定制Toast[短info]", B_TOAST_SUCCESS_SHORT = "定制Toast[短success]", B_TOAST_CANCEL_SHORT = "定制Toast[短cancel]",
-            B_TOAST_WARNING_SHORT = "定制Toast[短warning]", B_TOAST_ERROR_SHORT = "定制Toast[短error]", B_TOAST_ANIM_SHORT = "定制Toast动画[短]", B_TOAST_ANIM_LONG = "定制Toast动画[长]";
+    private final String NORMAL_SHORT = "系统普通Toast[短]", NORMAL_LONG = "系统普通Toast[长]", CONTENT_SHORT = "立即更新Toast显示内容[短]", CONTENT_LONG = "立即更新Toast显示内容[长]", IMMEDIATELY_SHORT = "立即弹出Toast[短]", IMMEDIATELY_LONG = "立即弹出Toast[长]", CUSTOM_GRAVITY_SHORT = "自定义gravity[短]", CUSTOM_GRAVITY_LONG = "自定义gravity[长]", CUSTOM_LOCATION_SHORT = "自定义位置[短]", CUSTOM_LOCATION_LONG = "自定义位置[长]", B_TOAST_NORMAL_SHORT = "定制Toast[短normal]", B_TOAST_INFO_SHORT = "定制Toast[短info]", B_TOAST_SUCCESS_SHORT = "定制Toast[短success]", B_TOAST_CANCEL_SHORT = "定制Toast[短cancel]", B_TOAST_WARNING_SHORT = "定制Toast[短warning]", B_TOAST_ERROR_SHORT = "定制Toast[短error]", B_TOAST_ANIM_SHORT = "定制Toast动画[短]", B_TOAST_ANIM_LONG = "定制Toast动画[长]";
     private List<String> mDatas;
     private ToastAdapter mAdapter;
 
@@ -51,7 +50,7 @@ public class DemoToastFm extends NormalFragment<ApiFmToastBinding> {
     }
 
 
-    @Override public void createView() {
+    @Override protected void created() {
         initAdapter();
     }
 

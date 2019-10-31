@@ -5,24 +5,21 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
-import android.os.Bundle;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityKeyframeBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
-public class DemoKeyframeFm extends NormalFragment<ApiActivityKeyframeBinding> {
-
+public class DemoKeyframeFm extends LightFm<LightPresenter, ApiActivityKeyframeBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_keyframe;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.btOfFloatOfInt.setOnClickListener(view -> ofFloat_ofInt());
         mBinding.btOfObject.setOnClickListener(view -> ofObject());
         mBinding.btKeyframe.setOnClickListener(view -> keyframe());

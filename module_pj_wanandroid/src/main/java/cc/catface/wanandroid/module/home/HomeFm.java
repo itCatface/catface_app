@@ -9,8 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.ctool.system.TWeakHandler;
 import cc.catface.ctool.view.recyclerview.ItemClickSupport;
 import cc.catface.wanandroid.R;
@@ -27,10 +26,14 @@ import cc.catface.wanandroid.module.web.WebActivity;
  * -
  * desc 支持滑动隐藏顶部ToolBar
  */
-@CreatePresenter(HomePresenterImpl.class) public class HomeFm extends MvpFragment<HomeVP.HomeView, HomePresenterImpl, WanandroidFragmentHomeBinding> implements HomeVP.HomeView, TWeakHandler.MessageListener {
+public class HomeFm extends LightFm<HomePresenterImpl, WanandroidFragmentHomeBinding> implements HomeVP.HomeView {
 
     @Override public int layoutId() {
         return R.layout.wanandroid_fragment_home;
+    }
+
+    @Override protected void initPresenter() {
+        mPresenter = new HomePresenterImpl(this, mActivity);
     }
 
     private TWeakHandler<HomeFm> mHandler;

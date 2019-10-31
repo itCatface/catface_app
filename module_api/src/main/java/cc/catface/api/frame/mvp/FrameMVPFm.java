@@ -2,25 +2,28 @@ package cc.catface.api.frame.mvp;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiFragmentFrameBinding;
-import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@CreatePresenter(FrameMVPPresenterImp.class)
-public class FrameMVPFm extends MvpFragment<FrameMVP_VP.View, FrameMVPPresenterImp, ApiFragmentFrameBinding> implements FrameMVP_VP.View {
+public class FrameMVPFm extends LightFm<FrameMVPPresenterImp, ApiFragmentFrameBinding> implements FrameMVP_VP.View {
+
     @Override public int layoutId() {
         return R.layout.api_fragment_frame;
     }
 
-    @Override protected void initAction() {
-        mBinding.btLogin.setOnClickListener(v -> checkAccount());
+    @Override protected void initPresenter() {
+        mPresenter = new FrameMVPPresenterImp(this, mActivity);
     }
 
-    @Override protected void viewCreated() {
+    @Override protected void initView() {
         mBinding.btLogin.setText("SIGN IN(by mvp...)");
+    }
+
+    @Override protected void initAction() {
+        mBinding.btLogin.setOnClickListener(v -> checkAccount());
     }
 
 

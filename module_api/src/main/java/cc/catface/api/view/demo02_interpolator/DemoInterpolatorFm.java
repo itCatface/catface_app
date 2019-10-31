@@ -18,7 +18,8 @@ import android.widget.ArrayAdapter;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityInterpolatorBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 
 /**
@@ -32,16 +33,16 @@ import cc.catface.base.core_framework.base_normal.NormalFragment;
  * LinearInterpolator                           以常量速率改变
  * OvershootInterpolator                        向前甩一定值后再回到原来位置
  */
-public class DemoInterpolatorFm extends NormalFragment<ApiActivityInterpolatorBinding> {
+public class DemoInterpolatorFm extends LightFm<LightPresenter, ApiActivityInterpolatorBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_interpolator;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mAdapter = ArrayAdapter.createFromResource(mActivity, R.array.api_view_interpolator, android.R.layout.simple_spinner_item);
         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       mBinding. spinner.setAdapter(mAdapter);
+        mBinding.spinner.setAdapter(mAdapter);
         mBinding.spinner.setOnItemSelectedListener(new SpinnerItemClickListener());
 
 
@@ -62,30 +63,29 @@ public class DemoInterpolatorFm extends NormalFragment<ApiActivityInterpolatorBi
         mBinding.btScale.setOnClickListener(v -> {
             Animation animation = AnimationUtils.loadAnimation(mActivity, R.anim.api_scale);
             animation.setInterpolator(mInterpolator);
-            mBinding. bt.startAnimation(animation);
+            mBinding.bt.startAnimation(animation);
         });
 
         mBinding.btTranslate.setOnClickListener(v -> {
             Animation animation = AnimationUtils.loadAnimation(mActivity, R.anim.api_translate);
             animation.setInterpolator(mInterpolator);
-            mBinding.  bt.startAnimation(animation);
+            mBinding.bt.startAnimation(animation);
         });
 
         mBinding.btRotate.setOnClickListener(v -> {
             Animation animation = AnimationUtils.loadAnimation(mActivity, R.anim.api_rotate);
             animation.setInterpolator(mInterpolator);
-            mBinding.  bt.startAnimation(animation);
+            mBinding.bt.startAnimation(animation);
         });
 
         mBinding.btSet.setOnClickListener(v -> {
             Animation animation = AnimationUtils.loadAnimation(mActivity, R.anim.api_set);
             animation.setInterpolator(mInterpolator);
-            mBinding.  bt.startAnimation(animation);
+            mBinding.bt.startAnimation(animation);
         });
     }
 
     Interpolator mInterpolator = new OvershootInterpolator();
-
 
 
     private class SpinnerItemClickListener implements AdapterView.OnItemSelectedListener {

@@ -4,7 +4,7 @@
     <application>
         <activity android:name=".module.WanandroidMainActivity" />
         <activity android:name=".module.web.WebActivity" />
-        <activity android:name=".module.knowledge.mvp.knowledge_column.KnowledgeColumnActivity" />
+        <activity android:name=".module.knowledge.view.KnowledgeColumnActivity" />
     </application>
 
 </manifest>

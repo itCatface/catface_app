@@ -4,12 +4,12 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
 
 import cc.catface.api.banner.DemoBannerFm;
 import cc.catface.api.common.DemoSystemInfoFm;
@@ -37,12 +37,14 @@ import cc.catface.api.widget.DemoConstraintLayoutFm;
 import cc.catface.api.widget.DemoIVScaleTypeFm;
 import cc.catface.api.widget.DemoTextViewFm;
 import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_holder) public class ApiHolderActivity extends NormalActivity<ApiActivityApiHolderBinding> {
+@Route(path = Const.ARouter.api_holder) public class ApiHolderActivity extends LightAct<LightPresenter, ApiActivityApiHolderBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_api_holder;
     }
@@ -73,7 +75,7 @@ import cc.catface.base.core_framework.base_normal.NormalActivity;
     private DemoIflyTingjianViewFm fmTingjian = new DemoIflyTingjianViewFm();
     private DemoViewPager2Fm fmViewPager2 = new DemoViewPager2Fm();
 
-    @Override public void create() {
+    @Override public void created() {
         initToolBar();
 
         /* fragment替换 */

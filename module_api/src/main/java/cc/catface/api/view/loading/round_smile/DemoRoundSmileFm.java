@@ -3,18 +3,17 @@ package cc.catface.api.view.loading.round_smile;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.view.View;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityRoundSmileBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 /**
  * https://blog.csdn.net/qq_26331127/article/details/50587914
  */
 
-public class DemoRoundSmileFm extends NormalFragment<ApiActivityRoundSmileBinding> {
-
+public class DemoRoundSmileFm extends LightFm<LightPresenter, ApiActivityRoundSmileBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_round_smile;
@@ -37,7 +36,7 @@ public class DemoRoundSmileFm extends NormalFragment<ApiActivityRoundSmileBindin
         }.start());
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
 
         mBinding.startFail.setOnClickListener(v -> {
 

@@ -1,18 +1,18 @@
 package cc.catface.api.view.demo104_bezier;
 
-import android.content.Intent;
-
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityBezierMainBinding;
 import cc.catface.api.view.DemoViewHolderActivity;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
-public class DemoBezierMainFm extends NormalFragment<ApiActivityBezierMainBinding> {
+public class DemoBezierMainFm extends LightFm<LightPresenter, ApiActivityBezierMainBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_bezier_main;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
 
 
         mBinding.btReset.setOnClickListener(view -> mBinding.pv.reset());

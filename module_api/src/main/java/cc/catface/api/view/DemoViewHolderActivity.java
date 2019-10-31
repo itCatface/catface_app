@@ -3,6 +3,7 @@ package cc.catface.api.view;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import androidx.fragment.app.Fragment;
+
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityDemoViewHolderBinding;
 import cc.catface.api.view.demo01_astrs.DemoASTRSFm;
@@ -16,18 +17,19 @@ import cc.catface.api.view.demo102_path_text.DemoTextFm;
 import cc.catface.api.view.demo103_range.DemoRangeFm;
 import cc.catface.api.view.demo104_bezier.DemoBezierMainFm;
 import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.api_demo_view_holder)
-public class DemoViewHolderActivity extends NormalActivity<ApiActivityDemoViewHolderBinding> {
+@Route(path = Const.ARouter.api_demo_view_holder) public class DemoViewHolderActivity extends LightAct<LightPresenter, ApiActivityDemoViewHolderBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_demo_view_holder;
     }
 
-    @Override public void create() {
+    @Override protected void created() {
         int fm_id = getIntent().getIntExtra(Const.ARouter.fm_id_key, -1);
         switch (fm_id) {
             case Const.ARouter.fm_id_view_astr:

@@ -7,20 +7,20 @@ import java.util.Random;
 
 import cc.catface.api.R;
 import cc.catface.app_base.TestDataSource;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
-import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoDataBindingFm extends NormalFragment<cc.catface.api.databinding.ApiActivityDataBindingBinding> {
+public class DemoDataBindingFm extends LightFm<LightPresenter, ApiActivityDataBindingBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_data_binding;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         /* 测试基本的DataBinding数据绑定效果 */
         testChangeUser();
     }

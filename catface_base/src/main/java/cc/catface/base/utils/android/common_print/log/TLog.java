@@ -17,7 +17,7 @@ public class TLog {
 
     /**  */
     private static boolean MODE_DEBUG = true;
-    private static String DEFAULT_TAG = "root";
+    private static String DEFAULT_TAG = "root_tag";
 
     /** 仅供调试使用 */
     private static boolean SAVE_LOGS = false;

@@ -19,7 +19,8 @@ import cc.catface.api.ApiHolderActivity;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityVibratorCameraBinding;
 import cc.catface.api.hardware.qrcode.DemoScanQrcodeFm;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.context.TFlash;
 import cc.catface.ctool.context.TVibrator;
 import cc.catface.base.utils.android.view.ImageUtil;
@@ -29,7 +30,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoHardwareFm extends NormalFragment<ApiActivityVibratorCameraBinding> {
+public class DemoHardwareFm extends LightFm<LightPresenter, ApiActivityVibratorCameraBinding> {
     @Override public int layoutId() {
         return R.layout.api_activity_vibrator_camera;
     }
@@ -53,8 +54,6 @@ public class DemoHardwareFm extends NormalFragment<ApiActivityVibratorCameraBind
     public static final int CROP_PICTURE = 2;
     private Uri imageUri; // 完整的file路径: ///图片地址
 
-    @Override public void createView() {
-    }
 
     private final String picPath = Environment.getExternalStorageDirectory() + "/pic_take_" + System.currentTimeMillis() + ".jpg";
 

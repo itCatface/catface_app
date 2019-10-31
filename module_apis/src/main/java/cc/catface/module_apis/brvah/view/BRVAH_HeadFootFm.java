@@ -6,7 +6,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.HeadFootAdapter;
 import cc.catface.module_apis.brvah.engine.DataServer;
@@ -15,14 +17,15 @@ import cc.catface.module_apis.databinding.BrvahFmHeadFootBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_HeadFootFm extends NormalFragment<BrvahFmHeadFootBinding> {
+public class BRVAH_HeadFootFm extends LightFm<LightPresenter, BrvahFmHeadFootBinding> {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_head_foot;
     }
 
     private HeadFootAdapter mAdapter;
 
-    @Override public void createView() {
+    @Override protected void initView() {
         initAdapter();
 
         View headerView = getHeaderView(0, v -> mAdapter.addHeaderView(getHeaderView(1, getRemoveHeaderListener()), 0));

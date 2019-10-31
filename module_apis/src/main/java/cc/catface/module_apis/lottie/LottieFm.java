@@ -5,19 +5,21 @@ import android.animation.Animator;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisFragmentLottieBinding;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class LottieFm extends NormalFragment<ApisFragmentLottieBinding> {
+public class LottieFm extends LightFm<LightPresenter, ApisFragmentLottieBinding> {
+
     @Override public int layoutId() {
         return R.layout.apis_fragment_lottie;
     }
 
-    @Override protected void createView() {
+    @Override protected void initView() {
         initToolBar();
         mBinding.lav5.addAnimatorUpdateListener(animation -> {
 

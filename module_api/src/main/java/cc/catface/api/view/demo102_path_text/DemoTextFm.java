@@ -1,20 +1,17 @@
 package cc.catface.api.view.demo102_path_text;
 
-import android.os.Bundle;
-import android.widget.FrameLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityTextBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
-public class DemoTextFm extends NormalFragment<ApiActivityTextBinding> {
+public class DemoTextFm extends LightFm<LightPresenter, ApiActivityTextBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_text;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.fl.addView(new CustomView(mActivity, null));
     }
 }

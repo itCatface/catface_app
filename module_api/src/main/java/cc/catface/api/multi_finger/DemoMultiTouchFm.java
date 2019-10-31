@@ -3,22 +3,21 @@ package cc.catface.api.multi_finger;
 import android.app.Dialog;
 import android.view.View;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityMultiFingerBinding;
 import cc.catface.api.multi_finger.view.MultiTouchTextView;
-import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.AndroidBarUtils;
 import rx.functions.Action1;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoMultiTouchFm extends NormalFragment<ApiActivityMultiFingerBinding> {
+public class DemoMultiTouchFm extends LightFm<LightPresenter, ApiActivityMultiFingerBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_multi_finger;
     }
@@ -31,7 +30,7 @@ public class DemoMultiTouchFm extends NormalFragment<ApiActivityMultiFingerBindi
         });
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         AndroidBarUtils.setBarDarkMode(mActivity, false);
 
         mBinding.mtetBrbc.setCallback(isZoomLarge -> {
@@ -48,11 +47,9 @@ public class DemoMultiTouchFm extends NormalFragment<ApiActivityMultiFingerBindi
         View view = View.inflate(mActivity, R.layout.api_dialog_fullscreen_text_view, null);
         MultiTouchTextView mttv_fullscreen = ((MultiTouchTextView) view.findViewById(R.id.mttv_fullscreen));
         mttv_fullscreen.setText("当前是全屏文本[TextView]\r\n" + getResources().getString(R.string.text_default_long));
-        mttv_fullscreen.setCallback(
-                isZoomLarge -> {
-                    if (!isZoomLarge && null != mDialog && mDialog.isShowing())
-                        mDialog.dismiss();
-                });
+        mttv_fullscreen.setCallback(isZoomLarge -> {
+            if (!isZoomLarge && null != mDialog && mDialog.isShowing()) mDialog.dismiss();
+        });
 
         mDialog.setContentView(view);
         return mDialog;

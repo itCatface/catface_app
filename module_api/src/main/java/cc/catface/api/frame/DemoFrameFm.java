@@ -11,18 +11,20 @@ import cc.catface.api.databinding.ApiActivityDemoFrameBinding;
 import cc.catface.api.frame.mvc.FrameMVCFm;
 import cc.catface.api.frame.mvp.FrameMVPFm;
 import cc.catface.api.frame.mvvm.FrameMVVMFm;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.dialog.normal.TDialogNormal;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoFrameFm extends NormalFragment<ApiActivityDemoFrameBinding> {
+public class DemoFrameFm extends LightFm<LightPresenter, ApiActivityDemoFrameBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_demo_frame;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
 
         initFragment();
         ((ApiHolderActivity) mActivity).replaceFragment(R.id.fl_frame, fragments.get("mvc"));

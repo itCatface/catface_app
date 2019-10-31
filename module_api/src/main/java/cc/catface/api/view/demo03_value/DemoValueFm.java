@@ -6,20 +6,20 @@ import android.animation.ValueAnimator;
 import android.util.Log;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.widget.TextView;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityValueBinding;
 import cc.catface.api.view.demo03_value.ofObject_circle.PointView;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
-public class DemoValueFm extends NormalFragment<ApiActivityValueBinding> {
+public class DemoValueFm extends LightFm<LightPresenter, ApiActivityValueBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_value;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.btStartEasy.setOnClickListener(v -> anim());
         mBinding.btStartEasyInterpolator.setOnClickListener(v -> animWithInterpolator());
         mBinding.btStartEasyEvaluator1.setOnClickListener(v -> animWithEvaluator1());
@@ -28,7 +28,6 @@ public class DemoValueFm extends NormalFragment<ApiActivityValueBinding> {
         mBinding.btStartEasyOfObject.setOnClickListener(v -> animWithOfObject());
         mBinding.pv.setOnClickListener(v -> animPointView());
     }
-
 
 
     private float[] points = {200f, 600f, 350f};
@@ -157,7 +156,9 @@ public class DemoValueFm extends NormalFragment<ApiActivityValueBinding> {
     }
 
 
-    /**  */
+    /**
+     *
+     */
     private void animPointView() {
         ((PointView) mBinding.pv).startAnim();
     }

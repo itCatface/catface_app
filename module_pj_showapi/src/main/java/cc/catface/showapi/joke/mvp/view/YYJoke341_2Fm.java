@@ -14,8 +14,8 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.utils.android.Timer.TTimer;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.net.retrofit.RetrofitCallback;
@@ -25,13 +25,14 @@ import cc.catface.showapi.databinding.ShowapiFmYyJoke3412Binding;
 import cc.catface.showapi.joke.adapter.YYJoke341_2Adapter;
 import cc.catface.showapi.joke.domain.YYJoke341_2;
 import cc.catface.showapi.joke.global.Const;
-import cc.catface.showapi.joke.mvp.presenter.YYJoke341_2PresenterImp;
+import cc.catface.showapi.joke.mvp.vp.YYJoke341_2PresenterImp;
+import cc.catface.showapi.joke.mvp.vp.YYJoke341_2VP;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@CreatePresenter(YYJoke341_2PresenterImp.class)
-public class YYJoke341_2Fm extends MvpFragment<YYJoke341_2View, YYJoke341_2PresenterImp, ShowapiFmYyJoke3412Binding> implements YYJoke341_2View {
+public class YYJoke341_2Fm extends LightFm<YYJoke341_2PresenterImp, ShowapiFmYyJoke3412Binding> implements YYJoke341_2VP.YYJoke341_2View {
+
     @Override public int layoutId() {
         return R.layout.showapi_fm_yy_joke_341_2;
     }
@@ -150,11 +151,7 @@ public class YYJoke341_2Fm extends MvpFragment<YYJoke341_2View, YYJoke341_2Prese
     private int mPage = 1;
     private List<YYJoke341_2.Showapi_res_body.Contentlist> mDatas = new ArrayList<>();
 
-    @Override public void viewCreated() {
-        initView();
-    }
-
-    private void initView() {
+    @Override protected void initView() {
         mBinding.srlJokePic.setColorSchemeColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY);
         mBinding.rvJokePic.setHasFixedSize(true);
         mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

@@ -37,13 +37,13 @@ public class FileT {
     }
 
 
-    /*** create file or dir ***/
-    // create dir and keep src dir
+    /*** created file or dir ***/
+    // created dir and keep src dir
     public static boolean create(String path) {
         return create(path, false, false);
     }
 
-    // create dir/file and keep src dir/file
+    // created dir/file and keep src dir/file
     public static boolean create(String path, boolean isFile) {
         return create(path, isFile, false);
     }
@@ -142,7 +142,7 @@ public class FileT {
 
         InputStream is = null;
 
-        // FileOutputStream: will create file when it does not exist
+        // FileOutputStream: will created file when it does not exist
         FileOutputStream fis = null;
 
         try {
@@ -193,7 +193,7 @@ public class FileT {
 
         try {
 
-            // create dir if does not exist
+            // created dir if does not exist
             if (!(new File(newDir)).mkdirs()) return;
 
             String[] files = new File(oldDir).list();

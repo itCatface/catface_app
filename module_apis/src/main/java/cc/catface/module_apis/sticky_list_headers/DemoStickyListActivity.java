@@ -11,7 +11,8 @@ import java.util.List;
 
 import cc.catface.app_base.Const;
 import cc.catface.app_base.TestDataSource;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityDemoStickyListBinding;
@@ -20,14 +21,13 @@ import cc.catface.module_apis.sticky_list_headers.adapter.StickyListHeaderAdapte
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.apis_sticky_list)
-public class DemoStickyListActivity extends NormalActivity<ApisActivityDemoStickyListBinding> {
+@Route(path = Const.ARouter.apis_sticky_list) public class DemoStickyListActivity extends LightAct<LightPresenter, ApisActivityDemoStickyListBinding> {
 
     @Override public int layoutId() {
         return R.layout.apis_activity_demo_sticky_list;
     }
 
-    @Override public void create() {
+    @Override public void created() {
         initToolBar();
 
         /* 类似通讯录头部的粘性控件 */

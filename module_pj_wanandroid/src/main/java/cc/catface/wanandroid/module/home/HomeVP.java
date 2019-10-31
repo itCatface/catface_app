@@ -1,6 +1,6 @@
 package cc.catface.wanandroid.module.home;
 
-import cc.catface.base.core_framework.base_mvp.view.MvpView;
+import cc.catface.base.core_framework.light_mvp.LightView;
 import cc.catface.wanandroid.engine.domain.Banner;
 import cc.catface.wanandroid.engine.domain.TopArticle;
 
@@ -15,7 +15,7 @@ public interface HomeVP {
         void requestTopArticle();
     }
 
-    interface HomeView extends MvpView {
+    interface HomeView extends LightView {
         void requestBannerSuccess(Banner banner);
 
         void requestBannerFailure();

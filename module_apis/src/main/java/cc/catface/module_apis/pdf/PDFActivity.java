@@ -10,7 +10,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.github.barteksc.pdfviewer.PDFView;
 
 import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityPdfBinding;
@@ -18,8 +19,8 @@ import cc.catface.module_apis.databinding.ApisActivityPdfBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.apis_pdf)
-public class PDFActivity extends NormalActivity<ApisActivityPdfBinding> implements View.OnClickListener {
+@Route(path = Const.ARouter.apis_pdf) public class PDFActivity extends LightAct<LightPresenter, ApisActivityPdfBinding> implements View.OnClickListener {
+
     @Override public int layoutId() {
         return R.layout.apis_activity_pdf;
     }
@@ -57,7 +58,7 @@ public class PDFActivity extends NormalActivity<ApisActivityPdfBinding> implemen
     private PDFView.Configurator mPDFConfigure;
     private int mTotalPDFPages, mCurrentPDFPage;
 
-    @Override public void create() {
+    @Override public void created() {
         initToolBar();
         loadInitPDF();
         loadInitView();

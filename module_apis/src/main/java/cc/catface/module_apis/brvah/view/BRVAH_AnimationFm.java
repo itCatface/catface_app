@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.animation.BaseAnimation;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.AnimationAdapter;
 import cc.catface.module_apis.brvah.domain.Status;
@@ -19,7 +21,8 @@ import cc.catface.module_apis.databinding.BrvahFmAnimationBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_AnimationFm extends NormalFragment<BrvahFmAnimationBinding> implements View.OnClickListener {
+public class BRVAH_AnimationFm extends LightFm<LightPresenter, BrvahFmAnimationBinding> implements View.OnClickListener {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_animation;
     }
@@ -54,7 +57,13 @@ public class BRVAH_AnimationFm extends NormalFragment<BrvahFmAnimationBinding> i
         }
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
+        mBinding.rvAnimation.setHasFixedSize(true);
+        mBinding.rvAnimation.setLayoutManager(new LinearLayoutManager(mActivity));
+        initAdapter();
+    }
+
+    @Override protected void initAction() {
         mBinding.cb.setOnClickListener(this);
         mBinding.btAlphaIn.setOnClickListener(this);
         mBinding.btScaleIn.setOnClickListener(this);
@@ -62,14 +71,6 @@ public class BRVAH_AnimationFm extends NormalFragment<BrvahFmAnimationBinding> i
         mBinding.btSlideInLeft.setOnClickListener(this);
         mBinding.btSlideInRight.setOnClickListener(this);
         mBinding.btCustom.setOnClickListener(this);
-
-        initView();
-        initAdapter();
-    }
-
-    private void initView() {
-        mBinding.rvAnimation.setHasFixedSize(true);
-        mBinding.rvAnimation.setLayoutManager(new LinearLayoutManager(mActivity));
     }
 
     private void initAdapter() {

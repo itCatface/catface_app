@@ -5,7 +5,8 @@ import android.view.View;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiFragmentFrameBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.Timer.TTimer;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.base.utils.java.TNumber;
@@ -13,7 +14,8 @@ import cc.catface.base.utils.java.TNumber;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class FrameMVCFm extends NormalFragment<ApiFragmentFrameBinding> {
+public class FrameMVCFm extends LightFm<LightPresenter, ApiFragmentFrameBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_fragment_frame;
     }
@@ -28,7 +30,7 @@ public class FrameMVCFm extends NormalFragment<ApiFragmentFrameBinding> {
         });
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.btLogin.setText("SIGN IN(by mvc...)");
     }
 

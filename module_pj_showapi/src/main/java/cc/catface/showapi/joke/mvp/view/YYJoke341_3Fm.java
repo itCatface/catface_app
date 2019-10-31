@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.utils.android.net.retrofit.RetrofitCallback;
 import cc.catface.base.utils.android.net.retrofit.RetrofitT;
 import cc.catface.showapi.R;
@@ -21,13 +21,13 @@ import cc.catface.showapi.databinding.ShowapiFmYyJoke3413Binding;
 import cc.catface.showapi.joke.adapter.YYJoke341_3Adapter;
 import cc.catface.showapi.joke.domain.YYJoke341_3;
 import cc.catface.showapi.joke.global.Const;
-import cc.catface.showapi.joke.mvp.presenter.YYJoke341_3PresenterImp;
+import cc.catface.showapi.joke.mvp.vp.YYJoke341_3PresenterImp;
+import cc.catface.showapi.joke.mvp.vp.YYJoke341_3VP;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@CreatePresenter(YYJoke341_3PresenterImp.class)
-public class YYJoke341_3Fm extends MvpFragment<YYJoke341_3View, YYJoke341_3PresenterImp, ShowapiFmYyJoke3413Binding> implements YYJoke341_3View {
+public class YYJoke341_3Fm extends LightFm<YYJoke341_3PresenterImp, ShowapiFmYyJoke3413Binding> implements YYJoke341_3VP.YYJoke341_3View {
     @Override public int layoutId() {
         return R.layout.showapi_fm_yy_joke_341_3;
     }
@@ -62,6 +62,15 @@ public class YYJoke341_3Fm extends MvpFragment<YYJoke341_3View, YYJoke341_3Prese
         });
     }
 
+    private int mPage = 1;
+    private List<YYJoke341_3.Showapi_res_body.Contentlist> mDatas = new ArrayList<>();
+
+    @Override protected void initView() {
+        mBinding.srlGif.setColorSchemeColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY);
+        mBinding.rvGif.setHasFixedSize(true);
+        mBinding.rvGif.setLayoutManager(new LinearLayoutManager(mActivity));
+    }
+
     @SuppressLint("ClickableViewAccessibility") @Override protected void initAction() {
         mBinding.srlGif.setOnRefreshListener(() -> {
             mBinding.srlGif.setRefreshing(true);
@@ -79,16 +88,5 @@ public class YYJoke341_3Fm extends MvpFragment<YYJoke341_3View, YYJoke341_3Prese
         });
     }
 
-    @Override public void viewCreated() {
-        initView();
-    }
 
-    private int mPage = 1;
-    private List<YYJoke341_3.Showapi_res_body.Contentlist> mDatas = new ArrayList<>();
-
-    private void initView() {
-        mBinding.srlGif.setColorSchemeColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY);
-        mBinding.rvGif.setHasFixedSize(true);
-        mBinding.rvGif.setLayoutManager(new LinearLayoutManager(mActivity));
-    }
 }

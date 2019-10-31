@@ -10,12 +10,14 @@ import cc.catface.api.databinding.ApiActivityViewNavigationBinding;
 import cc.catface.api.view.adapter.ViewNavigationAdapter;
 import cc.catface.api.view.anim_activity_transfer.activity.TransferMainActivity;
 import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.view.activity.TActivity;
 import cc.catface.base.utils.android.common_print.popup.TPopup;
 import cc.catface.base.utils.android.common_recyclerview.TRV;
 
-public class DemoViewNavigationFm extends NormalFragment<ApiActivityViewNavigationBinding> {
+public class DemoViewNavigationFm extends LightFm<LightPresenter, ApiActivityViewNavigationBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_view_navigation;
     }
@@ -41,7 +43,7 @@ public class DemoViewNavigationFm extends NormalFragment<ApiActivityViewNavigati
         mDatas.add(NORMAL_ACTIVITY_TRANSFER_ANIMATION);
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         initAdapter();
     }
 

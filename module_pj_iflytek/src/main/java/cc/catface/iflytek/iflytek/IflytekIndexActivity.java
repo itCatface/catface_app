@@ -24,13 +24,13 @@ import androidx.core.app.ActivityCompat;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
+import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.iflytek.AiuiActivity;
 import cc.catface.iflytek.R;
 import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
 
-@Route(path = Const.ARouter.pj_iflytek_main)
-public class IflytekIndexActivity extends NormalActivity<ApisIflytekActivityIndexBinding> implements OnClickListener {
+@Route(path = Const.ARouter.pj_iflytek_main) public class IflytekIndexActivity extends LightAct<LightPresenter, ApisIflytekActivityIndexBinding> implements OnClickListener {
 
     private Toast mToast;
 
@@ -38,7 +38,7 @@ public class IflytekIndexActivity extends NormalActivity<ApisIflytekActivityInde
         return R.layout.apis_iflytek_activity_index;
     }
 
-    @Override public void create() {
+    @Override public void created() {
         initToolBar();
 
         requestPermissions();
@@ -130,8 +130,7 @@ public class IflytekIndexActivity extends NormalActivity<ApisIflytekActivityInde
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 if (permission != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_PHONE_STATE,
-                            Manifest.permission.WRITE_SETTINGS, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_CONTACTS}, 0x0010);
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_SETTINGS, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_CONTACTS}, 0x0010);
                 }
             }
         } catch (Exception e) {

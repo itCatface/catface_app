@@ -3,7 +3,7 @@ package cc.catface.base.core_framework.base_mvp.factory;
 import cc.catface.base.core_framework.base_mvp.presenter.MvpPresenter;
 import cc.catface.base.core_framework.base_mvp.view.MvpView;
 
-public class PresenterMvpFactoryImpl<V extends MvpView, P extends MvpPresenter<V>> implements PresenterMvpFactory<V, P> {
+@Deprecated public class PresenterMvpFactoryImpl<V extends MvpView, P extends MvpPresenter<V>> implements PresenterMvpFactory<V, P> {
 
     private final Class<P> mPresenterClass;
 

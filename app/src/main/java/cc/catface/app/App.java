@@ -18,7 +18,7 @@ import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
 import cc.catface.base.utils.android.crash.CrashHandler;
 import cc.catface.ctool.context.TContext;
-import cc.catface.module_start.CrashHandlerActivity;
+import cc.catface.start.CrashHandlerActivity;
 
 //import com.mob.MobSDK;
 

@@ -3,7 +3,9 @@ package cc.catface.module_apis.brvah.view;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
 import androidx.core.content.ContextCompat;
+
 import android.util.Log;
 import android.view.View;
 
@@ -19,7 +21,9 @@ import java.util.List;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.DragSwipeAdapter;
@@ -28,7 +32,7 @@ import cc.catface.module_apis.databinding.BrvahFmDragSwipeBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_DragSwipeFm extends NormalFragment<BrvahFmDragSwipeBinding> {
+public class BRVAH_DragSwipeFm extends LightFm<LightPresenter, BrvahFmDragSwipeBinding> {
 
     private static final String TAG = BRVAH_DragSwipeFm.class.getSimpleName();
     private List<String> mData;
@@ -40,7 +44,7 @@ public class BRVAH_DragSwipeFm extends NormalFragment<BrvahFmDragSwipeBinding> {
         return R.layout.brvah_fm_drag_swipe;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         mData = generateData(50);
         OnItemDragListener listener = new OnItemDragListener() {

@@ -1,21 +1,16 @@
 package cc.catface.api.widget;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityTestConstraintLayoutBinding;
-import cc.catface.app_base.Const;
-import cc.catface.base.core_framework.base_normal.NormalActivity;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoConstraintLayoutFm extends NormalFragment<ApiActivityTestConstraintLayoutBinding> {
+public class DemoConstraintLayoutFm extends LightFm<LightPresenter, ApiActivityTestConstraintLayoutBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_test_constraint_layout;
-    }
-
-    @Override public void createView() {
     }
 }

@@ -1,12 +1,14 @@
 package cc.catface.module_apis.brvah.view;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.ExpandableAdapter;
 import cc.catface.module_apis.brvah.domain.Level0Item;
@@ -17,7 +19,8 @@ import cc.catface.module_apis.databinding.BrvahFmExpandableBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_ExpandableFm extends NormalFragment<BrvahFmExpandableBinding> {
+public class BRVAH_ExpandableFm extends LightFm<LightPresenter, BrvahFmExpandableBinding> {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_expandable;
     }
@@ -25,7 +28,7 @@ public class BRVAH_ExpandableFm extends NormalFragment<BrvahFmExpandableBinding>
     ArrayList<MultiItemEntity> mDatas;
     ExpandableAdapter mAdapter;
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mDatas = generateData();
         mAdapter = new ExpandableAdapter(mDatas);
 

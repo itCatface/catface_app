@@ -5,7 +5,9 @@ import android.widget.Toast;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.SectionMultiAdapter;
 import cc.catface.module_apis.brvah.domain.SectionMultipleItem;
@@ -15,7 +17,8 @@ import cc.catface.module_apis.databinding.BrvahFmSectionMultiBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_SectionMultiFm extends NormalFragment<BrvahFmSectionMultiBinding> {
+public class BRVAH_SectionMultiFm extends LightFm<LightPresenter, BrvahFmSectionMultiBinding> {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_section_multi;
     }
@@ -23,7 +26,7 @@ public class BRVAH_SectionMultiFm extends NormalFragment<BrvahFmSectionMultiBind
     private List<SectionMultipleItem> mDatas;
     private SectionMultiAdapter mAdapter;
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         mDatas = DataServer.getSectionMultiData();
         initAdapter();

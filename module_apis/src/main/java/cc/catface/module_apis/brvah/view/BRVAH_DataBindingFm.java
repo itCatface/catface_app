@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.DataBindingAdapter;
@@ -15,14 +17,15 @@ import cc.catface.module_apis.databinding.BrvahFmDataBindingBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_DataBindingFm extends NormalFragment<BrvahFmDataBindingBinding> {
+public class BRVAH_DataBindingFm extends LightFm<LightPresenter, BrvahFmDataBindingBinding> {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_data_binding;
     }
 
     private DataBindingAdapter mAdapter;
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
 
         initAdapter();

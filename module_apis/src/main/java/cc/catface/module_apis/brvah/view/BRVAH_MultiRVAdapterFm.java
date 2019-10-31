@@ -3,7 +3,9 @@ package cc.catface.module_apis.brvah.view;
 import java.util.List;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.brvah.adapter.MultiRVAdapter;
 import cc.catface.module_apis.brvah.domain.MultipleItem;
@@ -14,7 +16,8 @@ import cc.catface.module_apis.databinding.BrvahFmMultiRvAdapterBinding;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class BRVAH_MultiRVAdapterFm extends NormalFragment<BrvahFmMultiRvAdapterBinding> {
+public class BRVAH_MultiRVAdapterFm extends LightFm<LightPresenter, BrvahFmMultiRvAdapterBinding> {
+
     @Override public int layoutId() {
         return R.layout.brvah_fm_multi_rv_adapter;
     }
@@ -22,7 +25,7 @@ public class BRVAH_MultiRVAdapterFm extends NormalFragment<BrvahFmMultiRvAdapter
     private List<NormalMultipleEntity> mDatas;
     private MultiRVAdapter mAdapter;
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.rvList.setLayoutManager(new GridLayoutManager(mActivity, 4));
         mDatas = DataServer.getNormalMultipleEntities();
         mAdapter = new MultiRVAdapter(mDatas);

@@ -11,11 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
 
 import com.gyf.immersionbar.ImmersionBar;
 
-import cc.catface.base.core_framework.BaseFunctionFm;
+import cc.catface.base.core_framework.BaseFunFm;
 import cc.catface.base.core_framework.base_mvp.factory.PresenterMvpFactory;
 import cc.catface.base.core_framework.base_mvp.factory.PresenterMvpFactoryImpl;
 import cc.catface.base.core_framework.base_mvp.presenter.MvpPresenter;
@@ -25,7 +24,8 @@ import cc.catface.base.core_framework.base_mvp.proxy.PresenterProxyInterface;
 /**
  * 所有子类共有的实例：mActivity、mBinding、mPresenter
  */
-public abstract class MvpFragment<V extends MvpView, P extends MvpPresenter<V>, B extends ViewDataBinding> extends BaseFunctionFm implements PresenterProxyInterface<V, P> {
+
+@Deprecated public abstract class MvpFragment<V extends MvpView, P extends MvpPresenter<V>, B extends ViewDataBinding> extends BaseFunFm implements PresenterProxyInterface<V, P> {
     protected AppCompatActivity mActivity;       // 当前fragment依附的activity
     protected B mBinding;               // 当前fragment对应的databinding
 

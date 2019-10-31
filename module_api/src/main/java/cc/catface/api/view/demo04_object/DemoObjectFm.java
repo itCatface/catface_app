@@ -5,15 +5,16 @@ import android.animation.ObjectAnimator;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityObjectBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
-public class DemoObjectFm extends NormalFragment<ApiActivityObjectBinding> {
+public class DemoObjectFm extends LightFm<LightPresenter, ApiActivityObjectBinding> {
 
     @Override public int layoutId() {
         return R.layout.api_activity_object;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         mBinding.btAlpha.setOnClickListener(view -> alpha());
         mBinding.btTranslate.setOnClickListener(view -> translate());
         mBinding.btScale.setOnClickListener(view -> scale());

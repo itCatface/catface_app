@@ -4,19 +4,21 @@ import android.widget.Toast;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityDemoFontBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.utils.android.common_print.dialog.normal.TDialogNormal;
 import cc.catface.base.utils.android.view.TFontType;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class DemoFontFm extends NormalFragment<ApiActivityDemoFontBinding> {
+public class DemoFontFm extends LightFm<LightPresenter, ApiActivityDemoFontBinding> {
+
     @Override public int layoutId() {
         return R.layout.api_activity_demo_font;
     }
 
-    @Override public void createView() {
+    @Override protected void initView() {
         initEachText();
     }
 

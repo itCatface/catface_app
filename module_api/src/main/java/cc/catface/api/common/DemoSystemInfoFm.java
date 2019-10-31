@@ -13,7 +13,8 @@ import java.util.List;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityAppInfoBinding;
-import cc.catface.base.core_framework.base_normal.NormalFragment;
+import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.context.AppInfo;
 import cc.catface.ctool.context.TAppInfo;
 import cc.catface.ctool.system.TScreen;
@@ -23,9 +24,8 @@ import cc.catface.ctool.context.netstate.NetBroadcastReceiver;
 import cc.catface.ctool.context.netstate.NetStateUtil;
 import cc.catface.ctool.context.netstate.TNetwork;
 
-public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> implements TWeakHandler.MessageListener {
+public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfoBinding> {
 
-    private TWeakHandler<DemoSystemInfoFm> mHandler;
 
     @Override public void handleMessage(Message msg) {
         mBinding.rlLoading.setVisibility(View.GONE);
@@ -41,6 +41,32 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
         mBinding.tiScreenHeight.setContent(TString.convert2String(TScreen.getScreenHeight()));
     }
 
+    @Override public int layoutId() {
+        return R.layout.api_activity_app_info;
+    }
+
+    @Override protected void initView() {
+        mBinding.rlLoading.setVisibility(View.VISIBLE);
+    }
+
+    @Override protected void initHandler() {
+        mHandler = new TWeakHandler<>(this);
+    }
+
+    private String mVersionName, mRomAvailSpace, mAvailSDSpace;
+    private int mVersionCode;
+    private List<AppInfo> mApps = new ArrayList<>();
+
+    @Override protected void initData() {
+        new Thread(() -> {
+            mVersionName = TAppInfo.getVerName();
+            mVersionCode = TAppInfo.getVerCode();
+            mRomAvailSpace = TAppInfo.getRomSpace();
+            mAvailSDSpace = TAppInfo.getSDSpace();
+            mApps = TAppInfo.getInstalledAPP();
+            mHandler.obtainMessage().sendToTarget();
+        }).start();
+    }
 
     private NetBroadcastReceiver mReceiver;
 
@@ -66,30 +92,5 @@ public class DemoSystemInfoFm extends NormalFragment<ApiActivityAppInfoBinding> 
     @Override public void onDestroy() {
         super.onDestroy();
         if (null != mReceiver) mActivity.unregisterReceiver(mReceiver);
-    }
-
-    @Override public int layoutId() {
-        return R.layout.api_activity_app_info;
-    }
-
-
-    private String mVersionName, mRomAvailSpace, mAvailSDSpace;
-    private int mVersionCode;
-    private List<AppInfo> mApps = new ArrayList<>();
-
-    @Override protected void initData() {
-        new Thread(() -> {
-            mVersionName = TAppInfo.getVerName();
-            mVersionCode = TAppInfo.getVerCode();
-            mRomAvailSpace = TAppInfo.getRomSpace();
-            mAvailSDSpace = TAppInfo.getSDSpace();
-            mApps = TAppInfo.getInstalledAPP();
-            mHandler.obtainMessage().sendToTarget();
-        }).start();
-    }
-
-    @Override public void createView() {
-        mBinding.rlLoading.setVisibility(View.VISIBLE);
-        mHandler = new TWeakHandler<>(this);
     }
 }

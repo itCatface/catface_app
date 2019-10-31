@@ -106,7 +106,7 @@ public class ColorPicker extends View {
     }
 
     /**
-     * create color wheel
+     * created color wheel
      */
     private void createColorWheel() {
         int colorCount = 12;

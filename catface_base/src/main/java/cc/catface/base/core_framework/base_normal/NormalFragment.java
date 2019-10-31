@@ -14,13 +14,13 @@ import androidx.databinding.ViewDataBinding;
 import com.gyf.immersionbar.ImmersionBar;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
-import cc.catface.base.core_framework.BaseFunctionFm;
+import cc.catface.base.core_framework.BaseFunFm;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public abstract class NormalFragment<B extends ViewDataBinding> extends BaseFunctionFm {
-    private RxFragment mRxFragment;
+@Deprecated public abstract class NormalFragment<B extends ViewDataBinding> extends BaseFunFm {
+    private RxFragment mFm;
 
     public AppCompatActivity mActivity;
     protected View mRootView;
@@ -35,7 +35,7 @@ public abstract class NormalFragment<B extends ViewDataBinding> extends BaseFunc
         /*--->沉浸式*/
         ImmersionBar.with(this).init();
         /*<---*/
-        mRxFragment = this;
+        mFm = this;
         mBinding = DataBindingUtil.inflate(inflater, layoutId(), container, false);
 
         initAction();

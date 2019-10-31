@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import cc.catface.base.core_framework.base_mvp.factory.CreatePresenter;
-import cc.catface.base.core_framework.base_mvp.view.MvpFragment;
+
+import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.utils.android.Timer.TTimer;
 import cc.catface.base.utils.android.net.retrofit.RetrofitCallback;
 import cc.catface.base.utils.android.net.retrofit.RetrofitT;
@@ -22,13 +22,14 @@ import cc.catface.showapi.databinding.ShowapiFmYyJoke3411Binding;
 import cc.catface.showapi.joke.adapter.YYJoke341_1Adapter;
 import cc.catface.showapi.joke.domain.YYJoke341_1;
 import cc.catface.showapi.joke.global.Const;
-import cc.catface.showapi.joke.mvp.presenter.YYJoke341_1PresenterImp;
+import cc.catface.showapi.joke.mvp.vp.YYJoke341_1PresenterImp;
+import cc.catface.showapi.joke.mvp.vp.YYJoke341_1VP;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@CreatePresenter(YYJoke341_1PresenterImp.class)
-public class YYJoke341_1Fm extends MvpFragment<YYJoke341_1View, YYJoke341_1PresenterImp, ShowapiFmYyJoke3411Binding> implements YYJoke341_1View {
+public class YYJoke341_1Fm extends LightFm<YYJoke341_1PresenterImp, ShowapiFmYyJoke3411Binding> implements YYJoke341_1VP.YYJoke341_1View {
+
     @Override public int layoutId() {
         return R.layout.showapi_fm_yy_joke_341_1;
     }
@@ -81,14 +82,10 @@ public class YYJoke341_1Fm extends MvpFragment<YYJoke341_1View, YYJoke341_1Prese
         });
     }
 
-    @Override public void viewCreated() {
-        initView();
-    }
-
     private int mPage = 1;
     private List<YYJoke341_1.Showapi_res_body.Contentlist> mDatas = new ArrayList<>();
 
-    private void initView() {
+    @Override protected void initView() {
         mBinding.srlJoke.setColorSchemeColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY);
         mBinding.rvJoke.setHasFixedSize(true);
         mBinding.rvJoke.setLayoutManager(new LinearLayoutManager(mActivity));

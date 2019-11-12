@@ -4,7 +4,7 @@ import android.view.View;
 
 import java.util.List;
 
-import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
+import cc.catface.ctool.view.recyclerview.AdapterList;
 import cc.catface.wechat.R;
 import cc.catface.wechat.databinding.WechatItemChatsBinding;
 import cc.catface.wechat.engine.domain.ChatsBean;
@@ -12,7 +12,7 @@ import cc.catface.wechat.engine.domain.ChatsBean;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class ChatsAdapter extends ListBindingAdapter<ChatsBean, WechatItemChatsBinding> {
+public class ChatsAdapter extends AdapterList<ChatsBean, WechatItemChatsBinding> {
 
     public ChatsAdapter(List<ChatsBean> datas) {
         super(datas);

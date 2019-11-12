@@ -33,7 +33,7 @@ public class Banner {
     }
 
 
-    public class Data {
+    static public class Data {
 
         private String desc;
         private int id;

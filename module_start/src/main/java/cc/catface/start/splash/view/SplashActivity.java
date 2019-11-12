@@ -45,7 +45,7 @@ public class SplashActivity extends LightAct<SplashPresenterImp, ActivityStartSp
         animIvAlpha.setDuration(600);
         animIvAlpha.setInterpolator(new BounceInterpolator());
         animIvAlpha.addListener((ISystemInterface.AnimatorEndListener) animator -> {
-            ARouter.getInstance().build(Const.ARouter.start_welcome).navigation();
+            ARouter.getInstance().build(Const.ARouter.start_main).navigation();
             finish();
         });
 

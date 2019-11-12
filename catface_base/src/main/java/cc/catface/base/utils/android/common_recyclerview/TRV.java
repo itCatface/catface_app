@@ -20,6 +20,7 @@ public class TRV {
     public static void initDefaultRV(Context ctx, RecyclerView... rvs) {
         for (RecyclerView rv : rvs) {
             if (null == rv) return;
+            rv.setHasFixedSize(true);   // 除了瀑布流设置为true
             rv.setLayoutManager(new LinearLayoutManager(ctx));
             DividerItemDecoration decoration = new DividerItemDecoration(ctx, DividerItemDecoration.VERTICAL);
             decoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(ctx, R.drawable.shape_rv_devider_colors)));

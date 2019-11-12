@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import cc.catface.ctool.system.TScreen;
-import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
+import cc.catface.ctool.view.recyclerview.AdapterList;
 import cc.catface.showapi.R;
 import cc.catface.showapi.databinding.ShowapiItemYyJoke3413Binding;
 import cc.catface.showapi.joke.domain.YYJoke341_3;
@@ -28,7 +28,7 @@ import cc.catface.showapi.joke.domain.YYJoke341_3;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class YYJoke341_3Adapter extends ListBindingAdapter<YYJoke341_3.Showapi_res_body.Contentlist, ShowapiItemYyJoke3413Binding> {
+public class YYJoke341_3Adapter extends AdapterList<YYJoke341_3.Showapi_res_body.Contentlist, ShowapiItemYyJoke3413Binding> {
 
     public YYJoke341_3Adapter(List<YYJoke341_3.Showapi_res_body.Contentlist> datas) {
         super(datas);

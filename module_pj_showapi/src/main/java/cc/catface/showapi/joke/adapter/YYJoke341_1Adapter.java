@@ -2,7 +2,7 @@ package cc.catface.showapi.joke.adapter;
 
 import java.util.List;
 
-import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
+import cc.catface.ctool.view.recyclerview.AdapterList;
 import cc.catface.showapi.R;
 import cc.catface.showapi.databinding.ShowapiItemYyJoke3411Binding;
 import cc.catface.showapi.joke.domain.YYJoke341_1;
@@ -10,7 +10,7 @@ import cc.catface.showapi.joke.domain.YYJoke341_1;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class YYJoke341_1Adapter extends ListBindingAdapter<YYJoke341_1.Showapi_res_body.Contentlist, ShowapiItemYyJoke3411Binding> {
+public class YYJoke341_1Adapter extends AdapterList<YYJoke341_1.Showapi_res_body.Contentlist, ShowapiItemYyJoke3411Binding> {
 
     public YYJoke341_1Adapter(List<YYJoke341_1.Showapi_res_body.Contentlist> datas) {
         super(datas);

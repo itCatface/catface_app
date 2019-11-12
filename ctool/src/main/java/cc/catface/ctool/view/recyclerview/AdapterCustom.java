@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public abstract class CustomBindingAdapter<B extends ViewDataBinding> extends RecyclerView.Adapter<CustomBindingAdapter.ViewHolder<B>> {
+public abstract class AdapterCustom<B extends ViewDataBinding> extends RecyclerView.Adapter<AdapterCustom.ViewHolder<B>> {
 
     @NonNull @Override public ViewHolder<B> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         B binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), layoutId(), parent, false);

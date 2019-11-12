@@ -17,7 +17,7 @@ import com.bumptech.glide.request.target.Target;
 import java.util.List;
 
 import cc.catface.ctool.system.TScreen;
-import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
+import cc.catface.ctool.view.recyclerview.AdapterList;
 import cc.catface.showapi.R;
 import cc.catface.showapi.databinding.ShowapiItemYyJoke3412Binding;
 import cc.catface.showapi.joke.domain.YYJoke341_2;
@@ -25,7 +25,7 @@ import cc.catface.showapi.joke.domain.YYJoke341_2;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class YYJoke341_2Adapter extends ListBindingAdapter<YYJoke341_2.Showapi_res_body.Contentlist, ShowapiItemYyJoke3412Binding> {
+public class YYJoke341_2Adapter extends AdapterList<YYJoke341_2.Showapi_res_body.Contentlist, ShowapiItemYyJoke3412Binding> {
 
     public YYJoke341_2Adapter(List<YYJoke341_2.Showapi_res_body.Contentlist> datas) {
         super(datas);

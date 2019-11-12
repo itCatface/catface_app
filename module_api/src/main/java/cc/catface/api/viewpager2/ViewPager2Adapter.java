@@ -4,9 +4,9 @@ import java.util.List;
 
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiItemViewPager2Binding;
-import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
+import cc.catface.ctool.view.recyclerview.AdapterList;
 
-public class ViewPager2Adapter extends ListBindingAdapter<Integer, ApiItemViewPager2Binding> {
+public class ViewPager2Adapter extends AdapterList<Integer, ApiItemViewPager2Binding> {
     public ViewPager2Adapter(List<Integer> datas) {
         super(datas);
     }

@@ -40,6 +40,7 @@ import cc.catface.app_base.greendao.domain.greendao_gen.MemoDao;
 import cc.catface.base.core_framework.light_mvp.LightAct;
 import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.common_print.toast.TToast;
+import cc.catface.base.utils.android.common_recyclerview.TRV;
 import cc.catface.base.utils.android.common_title.TitleFontAwesome;
 import cc.catface.base.utils.android.view.recyclerview.divider.ItemDecorationDivider;
 import cc.catface.base.utils.android.view.recyclerview.swipe.SwipeItemListener;
@@ -297,7 +298,7 @@ import cc.catface.module_apis.memo.vp.MemoVP;
         toolbar.setNavigationOnClickListener(v -> finish());
     }
 
-    private String mTitle = "PDF组件使用", mNormalTitle = "";
+    private String mTitle = "memo", mNormalTitle = "";
 
     private void updateToolBar() {
         if (null != mBar) {

@@ -2,7 +2,7 @@ package cc.catface.wanandroid.engine.adapter;
 
 import java.util.List;
 
-import cc.catface.ctool.view.recyclerview.ListBindingAdapter;
+import cc.catface.ctool.view.recyclerview.AdapterList;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidItemHomeTopArticleBinding;
 import cc.catface.wanandroid.engine.domain.TopArticle;
@@ -10,7 +10,7 @@ import cc.catface.wanandroid.engine.domain.TopArticle;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class HomeTopArticleAdapter extends ListBindingAdapter<TopArticle.Data, WanandroidItemHomeTopArticleBinding> {
+public class HomeTopArticleAdapter extends AdapterList<TopArticle.Data, WanandroidItemHomeTopArticleBinding> {
     public HomeTopArticleAdapter(List<TopArticle.Data> datas) {
         super(datas);
     }

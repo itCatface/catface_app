@@ -12,9 +12,10 @@ import cc.catface.api.view.anim_activity_transfer.activity.TransferMainActivity;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
-import cc.catface.ctool.view.activity.TActivity;
 import cc.catface.base.utils.android.common_print.popup.TPopup;
 import cc.catface.base.utils.android.common_recyclerview.TRV;
+import cc.catface.ctool.view.activity.TActivity;
+import cc.catface.ctool.view.recyclerview.ItemClickSupport;
 
 public class DemoViewNavigationFm extends LightFm<LightPresenter, ApiActivityViewNavigationBinding> {
 
@@ -43,7 +44,7 @@ public class DemoViewNavigationFm extends LightFm<LightPresenter, ApiActivityVie
         mDatas.add(NORMAL_ACTIVITY_TRANSFER_ANIMATION);
     }
 
-    @Override protected void initView() {
+    @Override protected void created() {
         initAdapter();
     }
 
@@ -51,7 +52,7 @@ public class DemoViewNavigationFm extends LightFm<LightPresenter, ApiActivityVie
         TRV.initDefaultRV(mActivity, mBinding.rvView);
 
         mAdapter = new ViewNavigationAdapter(mDatas);
-        mAdapter.setOnItemClickListener((adapter, view, position) -> {
+        ItemClickSupport.addTo(mBinding.rvView).setOnItemClickListener((recyclerView, position, view) -> {
             switch (mDatas.get(position)) {
                 case NORMAL_astrs:
                     ARouter.getInstance().build(Const.ARouter.api_demo_view_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_view_astr).navigation();

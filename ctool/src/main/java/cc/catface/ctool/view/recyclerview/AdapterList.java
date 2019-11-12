@@ -15,11 +15,11 @@ import java.util.List;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public abstract class ListBindingAdapter<M, B extends ViewDataBinding> extends RecyclerView.Adapter<ListBindingAdapter.ViewHolder<B>> {
+public abstract class AdapterList<M, B extends ViewDataBinding> extends RecyclerView.Adapter<AdapterList.ViewHolder<B>> {
 
     private List<M> mDatas = new ArrayList<>();
 
-    public ListBindingAdapter(List<M> datas) {
+    public AdapterList(List<M> datas) {
         if (null != datas) {
             this.mDatas = datas;
         }

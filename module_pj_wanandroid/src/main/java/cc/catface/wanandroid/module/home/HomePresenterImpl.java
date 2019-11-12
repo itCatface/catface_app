@@ -24,6 +24,11 @@ public class HomePresenterImpl extends LightPresenter<HomeVP.HomeView> implement
         OkHttpUtil.get(WanandroidConst.url_home_banner, new OkHttpRequestCallback() {
             @Override public void onSuccess(String result) {
                 Banner data = new Gson().fromJson(result, Banner.class);
+                Banner.Data myBlogBanner = new Banner.Data();
+                myBlogBanner.setImagePath("http://catface.cc/img/favicon.ico");
+                myBlogBanner.setUrl("http://catface.cc");
+                myBlogBanner.setTitle("catface's blog");
+                data.getData().add(0, myBlogBanner);
                 mView.requestBannerSuccess(data);
             }
 

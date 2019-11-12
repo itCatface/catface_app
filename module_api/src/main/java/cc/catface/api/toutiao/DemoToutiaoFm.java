@@ -42,7 +42,6 @@ public class DemoToutiaoFm extends LightFm<LightPresenter, ApiActivityToutiaoBin
                 mBinding.rv.getAdapter().notifyDataSetChanged();
             });
         });
-        initViewPagerOperator();
     }
 
 
@@ -59,6 +58,7 @@ public class DemoToutiaoFm extends LightFm<LightPresenter, ApiActivityToutiaoBin
         handleAdImage1();
         handleAdImage1Download();
         handleMoreSplendid();
+        initViewPagerOperator();
     }
 
     ToutiaoCommonBean bean = new ToutiaoCommonBean();

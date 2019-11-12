@@ -18,7 +18,6 @@ import cc.catface.wanandroid.engine.adapter.HomeBannerAdapter;
 import cc.catface.wanandroid.engine.adapter.HomeTopArticleAdapter;
 import cc.catface.wanandroid.engine.domain.Banner;
 import cc.catface.wanandroid.engine.domain.TopArticle;
-import cc.catface.wanandroid.engine.domain.WanandroidConst;
 import cc.catface.wanandroid.module.web.WebActivity;
 
 /**
@@ -49,7 +48,6 @@ public class HomeFm extends LightFm<HomePresenterImpl, WanandroidFragmentHomeBin
     }
 
     @Override protected void initAction() {
-        mBinding.btJump2Blog.setOnClickListener(v -> WebActivity.jump(mActivity, WanandroidConst.url_blog));
         ItemClickSupport.addTo(mBinding.rvTopArticle).setOnItemClickListener((recyclerView, position, view) -> WebActivity.jump(mActivity, mTopArticleDatas.get(position).getLink()));
     }
 

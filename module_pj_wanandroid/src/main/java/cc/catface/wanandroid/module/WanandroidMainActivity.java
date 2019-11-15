@@ -13,9 +13,9 @@ import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.light_mvp.LightAct;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.system.IInterface.ISystemInterface;
+import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidActivityMainBinding;
-import cc.catface.wanandroid.engine.adapter.WanandroidMainAdapter;
 import cc.catface.wanandroid.module.home.HomeFm;
 import cc.catface.wanandroid.module.knowledge.view.KnowledgeFm;
 import cc.catface.wanandroid.module.navigation.view.NavigationFm;
@@ -88,7 +88,7 @@ import cc.catface.wanandroid.module.subscriptions.view.SubscriptionsFm;
     @Override public void created() {
         initToolBar();
 
-        mBinding.vpWanandroidMain.setAdapter(new WanandroidMainAdapter(getSupportFragmentManager(), mFragments));
+        mBinding.vpWanandroidMain.setAdapter(new PagerAdapterFm(getSupportFragmentManager(), mFragments));
     }
 
 

@@ -51,15 +51,11 @@ public class KnowledgeColumnListFm extends LightFm<KnowledgeColumnListPresenterI
         }).setOnItemLongClickListener((recyclerView, position, v) -> {return false;});
     }
 
-    private KnowledgeColumnListAdapter mAdapter;
-
     @Override protected void created() {
         mBinding.srlKnowledgeColumnList.setColorSchemeColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY);
 
         mBinding.rvKnowledgeColumnList.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.rvKnowledgeColumnList.setHasFixedSize(true);
-        mAdapter = new KnowledgeColumnListAdapter();
-        mBinding.rvKnowledgeColumnList.setAdapter(mAdapter);
     }
 
 
@@ -72,10 +68,9 @@ public class KnowledgeColumnListFm extends LightFm<KnowledgeColumnListPresenterI
     private KnowledgeColumnListData mData;
 
     @Override public void requestSuccess(KnowledgeColumnListData data) {
-        mBinding.srlKnowledgeColumnList.setRefreshing(false);
         mData = data;
-        mAdapter.setData(mData);
-        mAdapter.notifyDataSetChanged();
+        mBinding.srlKnowledgeColumnList.setRefreshing(false);
+        mBinding.rvKnowledgeColumnList.setAdapter(new KnowledgeColumnListAdapter(mData.getData().getDatas()));
     }
 
     @Override public void requestFailure(String error) {

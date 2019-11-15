@@ -1,8 +1,6 @@
 package cc.catface.wanandroid.module.knowledge.view;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -34,25 +32,13 @@ public class KnowledgeFm extends LightFm<KnowledgePresenterImpl, WanandroidFragm
 
     @Override protected void initAction() {
         mBinding.srlKnowledge.setOnRefreshListener(this::request);
-        ItemClickSupport.addTo(mBinding.rvKnowledge).setOnItemClickListener((recyclerView, position, v) -> {
-            Intent intent = new Intent(mActivity, KnowledgeColumnActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putInt("index", position);
-            bundle.putSerializable("aa", mData);
-            intent.putExtra("bundle", bundle);
-            mActivity.startActivity(intent);
-        });
+        ItemClickSupport.addTo(mBinding.rvKnowledge).setOnItemClickListener((recyclerView, position, v) -> KnowledgeColumnActivity.jump(mActivity, position, mData));
     }
-
-    private KnowledgeAdapter mAdapter;
 
     @Override protected void created() {
         mBinding.srlKnowledge.setColorSchemeColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY);
-
         mBinding.rvKnowledge.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.rvKnowledge.setHasFixedSize(true);
-        mAdapter = new KnowledgeAdapter();
-        mBinding.rvKnowledge.setAdapter(mAdapter);
     }
 
 
@@ -65,10 +51,9 @@ public class KnowledgeFm extends LightFm<KnowledgePresenterImpl, WanandroidFragm
     private KnowledgeData mData;
 
     @Override public void requestSuccess(KnowledgeData data) {
-        mBinding.srlKnowledge.setRefreshing(false);
         mData = data;
-        mAdapter.setData(mData);
-        mAdapter.notifyDataSetChanged();
+        mBinding.srlKnowledge.setRefreshing(false);
+        mBinding.rvKnowledge.setAdapter(new KnowledgeAdapter(mData.getData()));
     }
 
     @Override public void requestFailure() {

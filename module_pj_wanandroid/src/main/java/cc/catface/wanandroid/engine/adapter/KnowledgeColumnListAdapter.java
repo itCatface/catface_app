@@ -1,53 +1,32 @@
 package cc.catface.wanandroid.engine.adapter;
 
 import android.annotation.SuppressLint;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import java.util.List;
+
+import cc.catface.ctool.view.recyclerview.AdapterList;
 import cc.catface.wanandroid.R;
+import cc.catface.wanandroid.databinding.WanandroidAdapterItemKnoledgeColumnListBinding;
 import cc.catface.wanandroid.engine.domain.KnowledgeColumnListData;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class KnowledgeColumnListAdapter extends RecyclerView.Adapter<KnowledgeColumnListAdapter.Holder> {
+public class KnowledgeColumnListAdapter extends AdapterList<KnowledgeColumnListData.Data.Datas, WanandroidAdapterItemKnoledgeColumnListBinding> {
 
-    private KnowledgeColumnListData mData = new KnowledgeColumnListData();
-
-    public void setData(KnowledgeColumnListData data) {
-        this.mData = data;
+    public KnowledgeColumnListAdapter(List<KnowledgeColumnListData.Data.Datas> datas) {
+        super(datas);
     }
 
-    @NonNull @Override public KnowledgeColumnListAdapter.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.wanandroid_adapter_item_knoledge_column_list, parent, false));
+    @Override public int layoutId() {
+        return R.layout.wanandroid_adapter_item_knoledge_column_list;
     }
 
-    @SuppressLint("SetTextI18n") @Override public void onBindViewHolder(@NonNull KnowledgeColumnListAdapter.Holder holder, int position) {
-        KnowledgeColumnListData.Data.Datas articleInfo = mData.getData().getDatas().get(position);
-        holder.tvAuthor.setText(articleInfo.getAuthor());
-        holder.tvChapter.setText(articleInfo.getSuperChapterName() + "/" + articleInfo.getChapterName());
-        holder.tvDesc.setText(articleInfo.getTitle());
-        holder.tvDate.setText(articleInfo.getNiceDate());
-    }
-
-    @Override public int getItemCount() {
-        return mData.getData().getDatas().size();
-    }
-
-    static class Holder extends RecyclerView.ViewHolder {
-
-        private TextView tvAuthor, tvChapter, tvDesc, tvDate;
-
-        Holder(@NonNull View itemView) {
-            super(itemView);
-            tvAuthor = (TextView) itemView.findViewById(R.id.tv_author);
-            tvChapter = (TextView) itemView.findViewById(R.id.tv_chapter);
-            tvDesc = (TextView) itemView.findViewById(R.id.tv_desc);
-            tvDate = (TextView) itemView.findViewById(R.id.tv_date);
-        }
+    @SuppressLint("SetTextI18n") @Override public void onBindHolder(WanandroidAdapterItemKnoledgeColumnListBinding binding, int position) {
+        KnowledgeColumnListData.Data.Datas articleInfo = getDatas().get(position);
+        binding.tvAuthor.setText(articleInfo.getAuthor());
+        binding.tvChapter.setText(articleInfo.getSuperChapterName() + "/" + articleInfo.getChapterName());
+        binding.tvDesc.setText(articleInfo.getTitle());
+        binding.tvDate.setText(articleInfo.getNiceDate());
     }
 }

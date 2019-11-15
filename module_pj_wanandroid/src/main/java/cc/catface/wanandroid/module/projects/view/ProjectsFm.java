@@ -1,14 +1,14 @@
 package cc.catface.wanandroid.module.projects.view;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
-
 import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidFragmentProjectsBinding;
-import cc.catface.wanandroid.engine.adapter.ProjectsAdapter;
 import cc.catface.wanandroid.engine.domain.ProjectsData;
 import cc.catface.wanandroid.module.projects.vp.ProjectsPresenterImpl;
 import cc.catface.wanandroid.module.projects.vp.ProjectsVP;
@@ -49,7 +49,7 @@ public class ProjectsFm extends LightFm<ProjectsPresenterImpl, WanandroidFragmen
 
 
         mBinding.vpProjects.setOffscreenPageLimit(mTitles.size());
-        mBinding.vpProjects.setAdapter(new ProjectsAdapter(getChildFragmentManager(), mTitles, mFms));
+        mBinding.vpProjects.setAdapter(new PagerAdapterFm(getChildFragmentManager(), mTitles, mFms));
         mBinding.tlProjects.setupWithViewPager(mBinding.vpProjects);
     }
 

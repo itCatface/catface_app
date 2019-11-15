@@ -1,14 +1,14 @@
 package cc.catface.wanandroid.module.navigation.view;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
-
 import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidFragmentNavigationBinding;
-import cc.catface.wanandroid.engine.adapter.NavigationAdapter;
 import cc.catface.wanandroid.engine.domain.NavigationData;
 import cc.catface.wanandroid.module.navigation.vp.NavigationPresenterImpl;
 import cc.catface.wanandroid.module.navigation.vp.NavigationVP;
@@ -49,7 +49,7 @@ public class NavigationFm extends LightFm<NavigationPresenterImpl, WanandroidFra
         }
 
         mBinding.vpNavigation.setOffscreenPageLimit(mTitles.size());
-        mBinding.vpNavigation.setAdapter(new NavigationAdapter(getChildFragmentManager(), mTitles, mFragments));
+        mBinding.vpNavigation.setAdapter(new PagerAdapterFm(getChildFragmentManager(), mTitles, mFragments));
         mBinding.tlNavigation.setupWithViewPager(mBinding.vpNavigation);
     }
 

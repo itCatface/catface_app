@@ -11,11 +11,11 @@ import java.util.List;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public abstract class FmPagerAdapter<T extends View> extends PagerAdapter {
+public abstract class PagerAdapterView<T extends View> extends PagerAdapter {
 
     private List<T> mViews;
 
-    protected FmPagerAdapter(List<T> views) {
+    protected PagerAdapterView(List<T> views) {
         this.mViews = views;
     }
 

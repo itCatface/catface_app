@@ -51,9 +51,6 @@ public class HomeFm extends LightFm<HomePresenterImpl, WanandroidFragmentHomeBin
         ItemClickSupport.addTo(mBinding.rvTopArticle).setOnItemClickListener((recyclerView, position, view) -> WebActivity.jump(mActivity, mTopArticleDatas.get(position).getLink()));
     }
 
-
-    private HomeTopArticleAdapter mTopArticleAdapter;
-
     @Override protected void initData() {
         mHandler = new TWeakHandler<>(this);
         mPresenter.requestBanner();
@@ -105,8 +102,7 @@ public class HomeFm extends LightFm<HomePresenterImpl, WanandroidFragmentHomeBin
         mTopArticleDatas = topArticle.getData();
         mBinding.rvTopArticle.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.rvTopArticle.setHasFixedSize(true);
-        mTopArticleAdapter = new HomeTopArticleAdapter(topArticle.getData());
-        mBinding.rvTopArticle.setAdapter(mTopArticleAdapter);
+        mBinding.rvTopArticle.setAdapter(new HomeTopArticleAdapter(mTopArticleDatas));
     }
 
     @Override public void requestTopArticleFailure() {

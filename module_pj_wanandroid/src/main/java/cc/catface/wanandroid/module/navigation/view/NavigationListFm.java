@@ -33,7 +33,6 @@ public class NavigationListFm extends LightFm<LightPresenter, WanandroidFragment
         return R.layout.wanandroid_fragment_navigation_list;
     }
 
-    private NavigationListAdapter mAdapter;
     private NavigationData.Data mData;
     private int mId;
 
@@ -45,8 +44,7 @@ public class NavigationListFm extends LightFm<LightPresenter, WanandroidFragment
     @Override protected void created() {
         mBinding.rvNavigationList.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.rvNavigationList.setHasFixedSize(true);
-        mAdapter = new NavigationListAdapter(mData, mId);
-        mBinding.rvNavigationList.setAdapter(mAdapter);
+        mBinding.rvNavigationList.setAdapter(new NavigationListAdapter(mData.getArticles()));
     }
 
     @Override protected void initAction() {

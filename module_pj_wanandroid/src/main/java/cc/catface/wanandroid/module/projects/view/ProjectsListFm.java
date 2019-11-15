@@ -55,15 +55,11 @@ public class ProjectsListFm extends LightFm<ProjectsListPresenterImpl, Wanandroi
         });
     }
 
-    private ProjectsListAdapter mAdapter;
-
     @Override protected void created() {
         mBinding.srlProjectsList.setColorSchemeColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY);
 
         mBinding.rvProjectsList.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.rvProjectsList.setHasFixedSize(true);
-        mAdapter = new ProjectsListAdapter(mActivity);
-        mBinding.rvProjectsList.setAdapter(mAdapter);
     }
 
 
@@ -76,10 +72,9 @@ public class ProjectsListFm extends LightFm<ProjectsListPresenterImpl, Wanandroi
     private ProjectsListData mData;
 
     @Override public void requestSuccess(ProjectsListData data) {
-        mBinding.srlProjectsList.setRefreshing(false);
         mData = data;
-        mAdapter.setData(mData);
-        mAdapter.notifyDataSetChanged();
+        mBinding.srlProjectsList.setRefreshing(false);
+        mBinding.rvProjectsList.setAdapter(new ProjectsListAdapter(mData.getData().getDatas()));
     }
 
     @Override public void requestFailure(String error) {

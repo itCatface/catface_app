@@ -11,6 +11,7 @@ import cc.catface.wanandroid.engine.domain.TopArticle;
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class HomeTopArticleAdapter extends AdapterList<TopArticle.Data, WanandroidItemHomeTopArticleBinding> {
+
     public HomeTopArticleAdapter(List<TopArticle.Data> datas) {
         super(datas);
     }

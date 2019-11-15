@@ -1,5 +1,9 @@
 package cc.catface.wanandroid.module.knowledge.view;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -8,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidFragmentKnowledgeColumnBinding;
-import cc.catface.wanandroid.engine.adapter.KnowledgeColumnAdapter;
 import cc.catface.wanandroid.engine.domain.KnowledgeData;
 import cc.catface.wanandroid.module.knowledge.vp.KnowledgeColumnPresenterImpl;
 import cc.catface.wanandroid.module.knowledge.vp.KnowledgeColumnVP;
@@ -31,6 +35,15 @@ public class KnowledgeColumnActivity extends LightAct<KnowledgeColumnPresenterIm
         return R.layout.wanandroid_fragment_knowledge_column;
     }
 
+    public static void jump(Context context, int position, KnowledgeData data) {
+        Intent intent = new Intent(context, KnowledgeColumnActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("index", position);
+        bundle.putSerializable("aa", data);
+        intent.putExtra("bundle", bundle);
+        context.startActivity(intent);
+    }
+
     @Override protected void initData() {
         KnowledgeData data = (KnowledgeData) getIntent().getBundleExtra("bundle").getSerializable("aa");
         int index = getIntent().getBundleExtra("bundle").getInt("index");
@@ -43,7 +56,7 @@ public class KnowledgeColumnActivity extends LightAct<KnowledgeColumnPresenterIm
         }
 
         mBinding.vpKnowledgeColumn.setOffscreenPageLimit(mColumnTitles.size());
-        mBinding.vpKnowledgeColumn.setAdapter(new KnowledgeColumnAdapter(getSupportFragmentManager(), mColumnTitles, mFms));
+        mBinding.vpKnowledgeColumn.setAdapter(new PagerAdapterFm(getSupportFragmentManager(), mColumnTitles, mFms) { });
         mBinding.tlKnowledgeColumn.setupWithViewPager(mBinding.vpKnowledgeColumn);
 
         initToolBar(data.getData().get(index).getName());

@@ -55,15 +55,12 @@ public class SubscriptionsListFm extends LightFm<SubscriptionsListPresenterImpl,
         });
     }
 
-    private SubscriptionsListAdapter mAdapter;
 
     @Override protected void created() {
         mBinding.srlSubscriptionsList.setColorSchemeColors(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY);
 
         mBinding.rvSubscriptionsList.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.rvSubscriptionsList.setHasFixedSize(true);
-        mAdapter = new SubscriptionsListAdapter(mActivity);
-        mBinding.rvSubscriptionsList.setAdapter(mAdapter);
     }
 
 
@@ -76,10 +73,9 @@ public class SubscriptionsListFm extends LightFm<SubscriptionsListPresenterImpl,
     private SubscriptionsListData mData;
 
     @Override public void requestSuccess(SubscriptionsListData data) {
-        mBinding.srlSubscriptionsList.setRefreshing(false);
         mData = data;
-        mAdapter.setData(mData);
-        mAdapter.notifyDataSetChanged();
+        mBinding.srlSubscriptionsList.setRefreshing(false);
+        mBinding.rvSubscriptionsList.setAdapter(new SubscriptionsListAdapter(data.getData().getDatas()));
     }
 
     @Override public void requestFailure(String error) {

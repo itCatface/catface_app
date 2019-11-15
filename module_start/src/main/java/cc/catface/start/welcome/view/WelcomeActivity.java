@@ -22,7 +22,7 @@ import cc.catface.base.utils.android.view.bg.TBG;
 import cc.catface.base.utils.android.view.viewpager.AccordionTransformer;
 import cc.catface.base.utils.android.view.viewpager.base.TransAnim;
 import cc.catface.ctool.view.activity.TActivity;
-import cc.catface.ctool.view.viewpager.FmPagerAdapter;
+import cc.catface.ctool.view.viewpager.PagerAdapterView;
 import cc.catface.start.R;
 import cc.catface.start.ad.view.AdActivity;
 import cc.catface.start.databinding.StartActivityWelcomeBinding;
@@ -87,7 +87,7 @@ import cc.catface.start.welcome.vp.WelcomeVP;
         }
 
         mBinding.vpIndicator.setPageTransformer(true, new AccordionTransformer());
-        mBinding.vpIndicator.setAdapter(new FmPagerAdapter<View>(mImageViews) { });
+        mBinding.vpIndicator.setAdapter(new PagerAdapterView<View>(mImageViews) { });
         addViewPagerListener();
     }
 

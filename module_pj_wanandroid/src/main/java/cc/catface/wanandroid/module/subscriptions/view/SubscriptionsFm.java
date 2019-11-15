@@ -1,14 +1,14 @@
 package cc.catface.wanandroid.module.subscriptions.view;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
-
 import cc.catface.base.core_framework.light_mvp.LightFm;
+import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.wanandroid.R;
 import cc.catface.wanandroid.databinding.WanandroidFragmentSubscriptiosBinding;
-import cc.catface.wanandroid.engine.adapter.ProjectsAdapter;
 import cc.catface.wanandroid.engine.domain.SubscriptionsData;
 import cc.catface.wanandroid.module.subscriptions.vp.SubscriptionsPresenterImpl;
 import cc.catface.wanandroid.module.subscriptions.vp.SubscriptionsVP;
@@ -48,7 +48,7 @@ public class SubscriptionsFm extends LightFm<SubscriptionsPresenterImpl, Wanandr
 
 
         mBinding.vpSubscriptions.setOffscreenPageLimit(mTitles.size());
-        mBinding.vpSubscriptions.setAdapter(new ProjectsAdapter(getChildFragmentManager(), mTitles, mFms));
+        mBinding.vpSubscriptions.setAdapter(new PagerAdapterFm(getChildFragmentManager(), mTitles, mFms));
         mBinding.tlSubscriptions.setupWithViewPager(mBinding.vpSubscriptions);
     }
 

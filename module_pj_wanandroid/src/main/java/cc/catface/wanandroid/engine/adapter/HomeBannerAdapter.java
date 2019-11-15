@@ -13,6 +13,7 @@ import cc.catface.wanandroid.module.web.WebActivity;
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class HomeBannerAdapter extends AdapterList<Banner.Data, WanandroidItemHomeBannerBinding> {
+
     public HomeBannerAdapter(List<Banner.Data> datas) {
         super(datas);
     }

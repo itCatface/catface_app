@@ -1,13 +1,21 @@
 package cc.catface.ctool.context;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.os.StatFs;
+import android.text.TextUtils;
 import android.text.format.Formatter;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +45,56 @@ public class TAppInfo {
     }
 
 
-    /* 获取手机ROM剩余空间 */
-    public static String getRomSpace() {
+    /* 获取设备剩余ROM */
+    public static String getROMRemain() {
         return getAvailSpace(Environment.getDataDirectory().getAbsolutePath());
     }
 
-    /* 获取手机SD卡剩余空间 */
-    public static String getSDSpace() {
+    /* 获取设备剩余SD */
+    public static String getSDRemain() {
         return getAvailSpace(Environment.getExternalStorageDirectory().getAbsolutePath());
+    }
+
+    /* 获取设备剩余RAM[byte] */
+    public static String getRAMRemain() {
+        ActivityManager am = (ActivityManager) TContext.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();
+        if (null == am) return "";
+        am.getMemoryInfo(outInfo);
+        return Formatter.formatFileSize(TContext.getContext(), outInfo.availMem);
+    }
+
+    /* 获取设备总RAM[byte] */
+    public static String getTotalRAM() {
+        //		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        //		MemoryInfo outInfo = new MemoryInfo();
+        //		am.getMemoryInfo(outInfo);
+        //		return outInfo.totalMem;
+        FileInputStream fis = null;
+        try {
+            File file = new File("/proc/meminfo");
+            fis = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            String line = br.readLine();
+            StringBuffer stringBuffer = new StringBuffer();
+            for (char c : line.toCharArray()) {
+                if (c >= '0' && c <= '9') {
+                    stringBuffer.append(c);
+                }
+            }
+            return Formatter.formatFileSize(TContext.getContext(), Long.parseLong(stringBuffer.toString()) * 1024);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+
+        } finally {
+            try {
+                if (fis != null) fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -56,6 +106,30 @@ public class TAppInfo {
         long blockSize = sf.getBlockSize();
 
         return Formatter.formatFileSize(TContext.getContext(), availableBlocks * blockSize);
+    }
+
+
+    /* 获取设备运行中的进程数量 */
+    public static int getRunningProcessCount() {
+        ActivityManager am = (ActivityManager) TContext.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        if (null == am) return 0;
+        List<ActivityManager.RunningAppProcessInfo> infos = am.getRunningAppProcesses();
+        return infos.size();
+    }
+
+    /* 判断服务是否正在运行 */
+    public static boolean isServiceRunning(String classname) {
+        if (TextUtils.isEmpty(classname)) return false;
+        ActivityManager am = (ActivityManager) TContext.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        if (null == am) return false;
+        List<ActivityManager.RunningServiceInfo> infos = am.getRunningServices(1000);
+        for (ActivityManager.RunningServiceInfo info : infos) {
+            String clzName = info.service.getClassName();
+            if (classname.equals(clzName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

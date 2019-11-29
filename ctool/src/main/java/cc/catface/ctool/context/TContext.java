@@ -16,7 +16,7 @@ public class TContext {
     }
 
     public static Context getContext() {
-        if (null == mWeakContext) throw new NullPointerException("CTool的context为空");
+        if (null == mWeakContext) throw new RuntimeException("CTool的context为空");
         return mWeakContext.get();
     }
 }

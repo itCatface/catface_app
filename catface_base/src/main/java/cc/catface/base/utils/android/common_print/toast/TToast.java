@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cc.catface.base.R;
 
@@ -251,5 +253,21 @@ public class TToast implements TToastI {
             mToast.cancel();
             mToast = null;
         }
+    }
+
+    /** 自定义显示时长 */
+    public void showPeriodToast(final Toast toast, final int cnt) {
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override public void run() {
+                toast.show();
+            }
+        }, 0, 3000);
+        new Timer().schedule(new TimerTask() {
+            @Override public void run() {
+                toast.cancel();
+                timer.cancel();
+            }
+        }, cnt);
     }
 }

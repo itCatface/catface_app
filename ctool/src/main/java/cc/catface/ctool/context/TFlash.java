@@ -17,18 +17,12 @@ public class TFlash {
     private String mCameraId;
 
 
-    private volatile static TFlash mInstance;
+    private static class Holder {
+        private static TFlash instance = new TFlash();
+    }
 
     public static TFlash get() {
-        if (null == mInstance) {
-            synchronized (TFlash.class) {
-                if (null == mInstance) {
-                    mInstance = new TFlash();
-                }
-            }
-        }
-
-        return mInstance;
+        return Holder.instance;
     }
 
     private TFlash() {

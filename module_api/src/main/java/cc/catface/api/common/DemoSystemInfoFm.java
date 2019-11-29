@@ -17,6 +17,7 @@ import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.context.AppInfo;
 import cc.catface.ctool.context.TAppInfo;
+import cc.catface.ctool.context.TSystemAction;
 import cc.catface.ctool.system.TScreen;
 import cc.catface.ctool.system.TString;
 import cc.catface.ctool.system.TWeakHandler;
@@ -39,6 +40,9 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
         mBinding.tiActionBarHeight.setContent(TString.convert2String(TScreen.getActionBarHeight()));
         mBinding.tiScreenWidth.setContent(TString.convert2String(TScreen.getScreenWidth()));
         mBinding.tiScreenHeight.setContent(TString.convert2String(TScreen.getScreenHeight()));
+        mBinding.tiRamRemain.setContent(mRAMRemain);
+        mBinding.tiRamTotal.setContent(mRAMTotal);
+        mBinding.tiRunningProcessCount.setContent(TString.convert2String(mRunningProcessCount));
     }
 
     @Override public int layoutId() {
@@ -53,7 +57,8 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
         mHandler = new TWeakHandler<>(this);
     }
 
-    private String mVersionName, mRomAvailSpace, mAvailSDSpace;
+    private String mVersionName, mRomAvailSpace, mAvailSDSpace, mRAMRemain, mRAMTotal;
+    private long mRunningProcessCount;
     private int mVersionCode;
     private List<AppInfo> mApps = new ArrayList<>();
 
@@ -61,11 +66,18 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
         new Thread(() -> {
             mVersionName = TAppInfo.getVerName();
             mVersionCode = TAppInfo.getVerCode();
-            mRomAvailSpace = TAppInfo.getRomSpace();
-            mAvailSDSpace = TAppInfo.getSDSpace();
+            mRomAvailSpace = TAppInfo.getROMRemain();
+            mAvailSDSpace = TAppInfo.getSDRemain();
             mApps = TAppInfo.getInstalledAPP();
+            mRAMRemain = TAppInfo.getRAMRemain();
+            mRAMTotal = TAppInfo.getTotalRAM();
+            mRunningProcessCount = TAppInfo.getRunningProcessCount();
             mHandler.obtainMessage().sendToTarget();
         }).start();
+    }
+
+    @Override protected void initAction() {
+        mBinding.tiOpenNetSettings.setOnClickListener(v -> TSystemAction.openAction(TSystemAction.ACTION_WIRELESS_SETTINGS));
     }
 
     private NetBroadcastReceiver mReceiver;

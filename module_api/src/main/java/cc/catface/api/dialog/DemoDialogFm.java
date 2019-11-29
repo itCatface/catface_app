@@ -1,8 +1,17 @@
 package cc.catface.api.dialog;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
+import android.view.Display;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.GridView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +35,7 @@ public class DemoDialogFm extends LightFm<LightPresenter, ApiActivityDialogBindi
         return R.layout.api_activity_dialog;
     }
 
-    private final String NORMAL_NOTIFICATION_TWO = "(系统)[通知对话框-两个选项]", NORMAL_NOTIFICATION_THREE = "(系统)[通知对话框-三个选项]", NORMAL_LIST = "(系统)[列表对话框]", NORMAL_SINGLE_CHOICE = "(系统)[单选对话框]", NORMAL_MULTI_CHOICE = "(系统)[复选对话框]", NORMAL_SINGLE_EDITTEXT = "(系统)[单输入框对话框]", NORMAL_PROGRESS = "(系统)" + "[进度对话框]", NORMAL_CUSTOM_SIMPLE = "(定制)[简单的自定义样式的弹框]", NORMAL_CUSTOM_LOADING = "(定制)[自定义loading fragment弹窗]";
+    private final String NORMAL_NOTIFICATION_TWO = "(系统)[通知对话框-两个选项]", NORMAL_NOTIFICATION_THREE = "(系统)[通知对话框-三个选项]", NORMAL_LIST = "(系统)[列表对话框]", NORMAL_SINGLE_CHOICE = "(系统)[单选对话框]", NORMAL_MULTI_CHOICE = "(系统)[复选对话框]", NORMAL_SINGLE_EDITTEXT = "(系统)[单输入框对话框]", NORMAL_PROGRESS = "(系统)" + "[进度对话框]", NORMAL_CUSTOM_SIMPLE = "(定制)[简单的自定义样式的弹框]", NORMAL_CUSTOM_LOADING = "(定制)[自定义loading fragment弹窗]", ii = "ii";
     private List<String> mDatas;
     private DialogAdapter mAdapter;
 
@@ -41,6 +50,7 @@ public class DemoDialogFm extends LightFm<LightPresenter, ApiActivityDialogBindi
         mDatas.add(NORMAL_PROGRESS);
         mDatas.add(NORMAL_CUSTOM_SIMPLE);
         mDatas.add(NORMAL_CUSTOM_LOADING);
+        mDatas.add(ii);
     }
 
     @Override protected void created() {
@@ -154,8 +164,30 @@ public class DemoDialogFm extends LightFm<LightPresenter, ApiActivityDialogBindi
                 case NORMAL_CUSTOM_LOADING:
                     new DialogLoadingFm().show(getFragmentManager(), "--");
                     break;
+
+                case ii:
+                    initDialog(R.layout.activity_main_test);
+                    break;
             }
         });
         mBinding.rvDialog.setAdapter(mAdapter);
+    }
+
+    AlertDialog mDialog;
+    void initDialog(int layoutId) {
+
+        View view = View.inflate(mActivity, layoutId, null);
+        mDialog = new AlertDialog.Builder(mActivity).setView(view).setCancelable(true).create();
+        Window window = mDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+       mDialog.show();
+
+
+        Display display = mActivity.getWindowManager().getDefaultDisplay();
+        WindowManager.LayoutParams params = mDialog.getWindow().getAttributes();
+        params.height = (int) (display.getHeight() * 0.88f);
+        params.width = (int) (display.getWidth() * 0.88f);
+        params.y = 6;
+        mDialog.getWindow().setAttributes(params);
     }
 }

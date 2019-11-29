@@ -15,9 +15,34 @@ public class TNetwork {
 
     /** 判断手机是否连接网络 */
     public static boolean isNetAvail() {
-        ConnectivityManager cwjManager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info = cwjManager.getActiveNetworkInfo();
+        ConnectivityManager manager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (null == manager) return false;
+        NetworkInfo info = manager.getActiveNetworkInfo();
         return null != info && info.isAvailable();
+    }
+
+    /* 判断设备是否wifi连接 */
+    public static boolean isWIFI() {
+        ConnectivityManager manager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (null == manager) return false;
+        NetworkInfo networkInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return null != networkInfo && networkInfo.isConnected();
+    }
+
+    /* 判断设备是否数据连接 */
+    public static boolean isMobile() {
+        ConnectivityManager manager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (null == manager) return false;
+        NetworkInfo networkInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE_DUN);
+        return null != networkInfo && networkInfo.isConnected();
+    }
+
+    /* 判断是否以太网连接 */
+    public static boolean isEthernet() {
+        ConnectivityManager manager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (null == manager) return false;
+        NetworkInfo networkInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET);
+        return null != networkInfo && networkInfo.isConnected();
     }
 
 

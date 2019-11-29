@@ -1,6 +1,7 @@
 package cc.catface.api.toast;
 
 import android.view.Gravity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class DemoToastFm extends LightFm<LightPresenter, ApiFmToastBinding> {
         return R.layout.api_fm_toast;
     }
 
-    private final String NORMAL_SHORT = "系统普通Toast[短]", NORMAL_LONG = "系统普通Toast[长]", CONTENT_SHORT = "立即更新Toast显示内容[短]", CONTENT_LONG = "立即更新Toast显示内容[长]", IMMEDIATELY_SHORT = "立即弹出Toast[短]", IMMEDIATELY_LONG = "立即弹出Toast[长]", CUSTOM_GRAVITY_SHORT = "自定义gravity[短]", CUSTOM_GRAVITY_LONG = "自定义gravity[长]", CUSTOM_LOCATION_SHORT = "自定义位置[短]", CUSTOM_LOCATION_LONG = "自定义位置[长]", B_TOAST_NORMAL_SHORT = "定制Toast[短normal]", B_TOAST_INFO_SHORT = "定制Toast[短info]", B_TOAST_SUCCESS_SHORT = "定制Toast[短success]", B_TOAST_CANCEL_SHORT = "定制Toast[短cancel]", B_TOAST_WARNING_SHORT = "定制Toast[短warning]", B_TOAST_ERROR_SHORT = "定制Toast[短error]", B_TOAST_ANIM_SHORT = "定制Toast动画[短]", B_TOAST_ANIM_LONG = "定制Toast动画[长]";
+    private final String NORMAL_SHORT = "系统普通Toast[短]", NORMAL_LONG = "系统普通Toast[长]", CONTENT_SHORT = "立即更新Toast显示内容[短]", CONTENT_LONG = "立即更新Toast显示内容[长]", IMMEDIATELY_SHORT = "立即弹出Toast[短]", IMMEDIATELY_LONG = "立即弹出Toast[长]", CUSTOM_GRAVITY_SHORT = "自定义gravity[短]", CUSTOM_GRAVITY_LONG = "自定义gravity[长]", CUSTOM_LOCATION_SHORT = "自定义位置[短]", CUSTOM_LOCATION_LONG = "自定义位置[长]", B_TOAST_NORMAL_SHORT = "定制Toast[短normal]", B_TOAST_INFO_SHORT = "定制Toast[短info]", B_TOAST_SUCCESS_SHORT = "定制Toast[短success]", B_TOAST_CANCEL_SHORT = "定制Toast[短cancel]", B_TOAST_WARNING_SHORT = "定制Toast[短warning]", B_TOAST_ERROR_SHORT = "定制Toast[短error]", B_TOAST_ANIM_SHORT = "定制Toast动画[短]", B_TOAST_ANIM_LONG = "定制Toast动画[长]", TOAST_PERIOD = "自定义Toast显示时长";
     private List<String> mDatas;
     private ToastAdapter mAdapter;
 
@@ -47,6 +48,7 @@ public class DemoToastFm extends LightFm<LightPresenter, ApiFmToastBinding> {
         mDatas.add(B_TOAST_ERROR_SHORT);
         mDatas.add(B_TOAST_ANIM_SHORT);
         mDatas.add(B_TOAST_ANIM_LONG);
+        mDatas.add(TOAST_PERIOD);
     }
 
 
@@ -117,6 +119,10 @@ public class DemoToastFm extends LightFm<LightPresenter, ApiFmToastBinding> {
                     break;
                 case B_TOAST_ANIM_LONG:
                     TToast.get(mActivity).showLongAnim(B_TOAST_ANIM_LONG + System.currentTimeMillis(), R.style.toast_default_anim_view);
+                    break;
+                case TOAST_PERIOD:
+                    Toast toast = Toast.makeText(mActivity, "测试文本", Toast.LENGTH_LONG);
+                    TToast.get(mActivity).showPeriodToast(toast, Integer.parseInt(mBinding.etPeriod.getText().toString().trim()));
                     break;
             }
         });

@@ -8,6 +8,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.util.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -21,6 +22,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 
 import androidx.annotation.RequiresApi;
 
@@ -377,6 +381,16 @@ public class FileT {
         return buffer;
     }
 
+    /* 获取当前文件或者文件夹大小 */
+    public static long getTotalSizeOfFilesInDir(final File file) {
+        if (file.isFile()) return file.length();
+        final File[] children = file.listFiles();
+        long total = 0;
+        if (children != null) for (final File child : children)
+            total += getTotalSizeOfFilesInDir(child);
+        return total;
+    }
+
     /**
      * 根据byte数组，生成文件
      */
@@ -409,83 +423,217 @@ public class FileT {
         }
     }
 
-    /**
-     * 保存照片
-     */
-    public static boolean saveBitmap(Bitmap bitmap, String savePath) {
 
-        File file = new File(savePath);
+    /* 读取txt文本内容 */
+    public static String getTxtContent(File file) {
+        String content = "";
+        if (!file.exists() || !file.isFile()) return content;
+        InputStream is = null;
+        if (file.getName().endsWith(".txt")) {
+            try {
+                is = new FileInputStream(file);
+                InputStreamReader inputStreamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    content += line + "\n";
+                }
 
-        if (!file.getParentFile().exists()) {
-            file.getParentFile().mkdirs();
-        }
-
-        try {
-            if (file.exists()) {
-                file.delete();
-            } else {
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        BufferedOutputStream bos = null;
-        try {
-            bos = new BufferedOutputStream(new FileOutputStream(file));
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos); // 向缓冲区之中压缩图片
-            bos.flush();
-            bos.close();
-
-        } catch (Exception e) {
-            return false;
-
-        } finally {
-            if (null != bos) {
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
                 try {
-                    bos.close();
+                    if (is != null) is.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-
-            if (null != bitmap && !bitmap.isRecycled()) {
-                bitmap.recycle();
-                bitmap = null;
-            }
-
-            System.gc();
         }
 
-        return true;
+        return content;
     }
 
 
-    /* 高斯模糊 */
-    // 图片缩放比例(即模糊度)
-    private static final float BITMAP_SCALE = 1.0f;
+    /* 保存字符串内容 */
+    public static void saveString2File(String filePath, String content) {
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static Bitmap blurBitmap(Context context, Bitmap image, float blurRadius) {
-        int width = Math.round(image.getWidth() * BITMAP_SCALE);
-        int height = Math.round(image.getHeight() * BITMAP_SCALE);
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter(new FileWriter(filePath));
+            bw.write(content);
 
-        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
-        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
 
-        RenderScript rs = RenderScript.create(context);
-        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+        } finally {
+            try {
+                if (bw != null) bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
-        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
 
-        blurScript.setRadius(blurRadius);
-        blurScript.setInput(tmpIn);
-        blurScript.forEach(tmpOut);
+    /* 流转成字符串 */
+    public static String stream2String(InputStream is) {
+        String result = "";
+        if (null == is || "".equals(is.toString())) return result;
+        ByteArrayOutputStream baos = null;
+        try {
+            baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = is.read(buffer)) != -1) {
+                baos.write(buffer, 0, len);
+            }
+            is.close();
 
-        tmpOut.copyTo(outputBitmap);
+            result = baos.toString();
 
-        return outputBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                is.close();
+                if (null != baos) baos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return result;
+    }
+
+
+    /**
+     * 读取res/raw中的json文件
+     */
+    public static String get(Context context, int id) {
+        InputStream stream = context.getResources().openRawResource(id);
+        return read(stream);
+    }
+
+    public static String read(InputStream stream) {
+        return read(stream, "utf-8");
+    }
+
+    public static String read(InputStream is, String encode) {
+        if (is != null) {
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, encode));
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                is.close();
+                return sb.toString();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
+    }
+
+
+    /*------*/
+    //@Android计算文件的MD5和SHA1
+    //项目需要，计算文件的MD5和SHA1值，找了一些代码效率比较低，有的还晦涩难懂，这里给出测试后通过，速度也相对较快的代码。
+    //从StackOverflow上找到的，为了提高速度，可以将buffer开的大一点，还有的使用JNI编写的，可以参考。
+    /**
+     * Get the md5 value of the filepath specified file
+     *
+     * @param filePath
+     *            The filepath of the file
+     * @return The md5 value
+     */
+    public static String fileToMD5(String filePath) {
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filePath); // Create an
+            // FileInputStream
+            // instance according
+            // to the filepath
+            byte[] buffer = new byte[1024]; // The buffer to read the file
+            MessageDigest digest = MessageDigest.getInstance("MD5"); // Get a
+            // MD5
+            // instance
+            int numRead = 0; // Record how many bytes have been read
+            while (numRead != -1) {
+                numRead = inputStream.read(buffer);
+                if (numRead > 0)
+                    digest.update(buffer, 0, numRead); // Update the digest
+            }
+            byte[] md5Bytes = digest.digest(); // Complete the hash computing
+            return convertHashToString(md5Bytes); // Call the function to
+            // convert to hex digits
+        } catch (Exception e) {
+            return null;
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close(); // Close the InputStream
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    /**
+     * Get the sha1 value of the filepath specified file
+     *
+     * @param filePath
+     *            The filepath of the file
+     * @return The sha1 value
+     */
+    public static String fileToSHA1(String filePath) {
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filePath); // Create an
+            // FileInputStream
+            // instance according
+            // to the filepath
+            byte[] buffer = new byte[1024]; // The buffer to read the file
+            MessageDigest digest = MessageDigest.getInstance("SHA-1"); // Get a
+            // SHA-1
+            // instance
+            int numRead = 0; // Record how many bytes have been read
+            while (numRead != -1) {
+                numRead = inputStream.read(buffer);
+                if (numRead > 0)
+                    digest.update(buffer, 0, numRead); // Update the digest
+            }
+            byte[] sha1Bytes = digest.digest(); // Complete the hash computing
+            return convertHashToString(sha1Bytes); // Call the function to
+            // convert to hex digits
+        } catch (Exception e) {
+            return null;
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close(); // Close the InputStream
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    /**
+     * Convert the hash bytes to hex digits string
+     *
+     * @param hashBytes
+     * @return The converted hex digits string
+     */
+    private static String convertHashToString(byte[] hashBytes) {
+        String returnVal = "";
+        for (int i = 0; i < hashBytes.length; i++) {
+            returnVal += Integer.toString((hashBytes[i] & 0xff) + 0x100, 16)
+                    .substring(1);
+        }
+        return returnVal.toLowerCase();
     }
 }

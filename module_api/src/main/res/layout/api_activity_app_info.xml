@@ -26,6 +26,13 @@
             </RelativeLayout>
 
             <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiOpenNetSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="打开系统网络设置" />
+
+            <cc.catface.ctool.view.listview.TempItem
                 android:id="@+id/ti_netState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,6 +52,24 @@
                 android:layout_height="wrap_content"
                 app:item_line="true"
                 app:item_title="verCode" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiRamRemain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_title="RAM remain" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiRamTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_title="RAM total" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiRunningProcessCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_title="running process count" />
 
             <cc.catface.ctool.view.listview.TempItem
                 android:id="@+id/ti_romAvailSpace"

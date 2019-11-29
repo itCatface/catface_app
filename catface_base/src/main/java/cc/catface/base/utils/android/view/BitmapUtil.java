@@ -11,11 +11,21 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.util.LruCache;
+import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.RequiresApi;
+
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -512,5 +522,282 @@ public class BitmapUtil {
      * xlarge 400dpi 192MB 
      * xlarge xxhdpi 256MB
      */
+
+    /*---------------------*/
+    /**
+     * 保存照片quality[0-100]
+     */
+    public static boolean saveBitmap(Bitmap bitmap, String savePath, int quality) {
+
+        File file = new File(savePath);
+
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+
+        try {
+            if (file.exists()) {
+                file.delete();
+            } else {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        BufferedOutputStream bos = null;
+        try {
+            bos = new BufferedOutputStream(new FileOutputStream(file));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, bos); // 向缓冲区之中压缩图片
+            bos.flush();
+            bos.close();
+
+        } catch (Exception e) {
+            return false;
+
+        } finally {
+            if (null != bos) {
+                try {
+                    bos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (null != bitmap && !bitmap.isRecycled()) {
+                bitmap.recycle();
+                bitmap = null;
+            }
+
+            System.gc();
+        }
+
+        return true;
+    }
+
+
+    /* 高斯模糊 */
+    // 图片缩放比例(即模糊度)
+    private static final float BITMAP_SCALE = 1.0f;
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1) public static Bitmap blurBitmap(Context context, Bitmap image, float blurRadius) {
+        int width = Math.round(image.getWidth() * BITMAP_SCALE);
+        int height = Math.round(image.getHeight() * BITMAP_SCALE);
+
+        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
+        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
+
+        RenderScript rs = RenderScript.create(context);
+        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+
+        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
+        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
+
+        blurScript.setRadius(blurRadius);
+        blurScript.setInput(tmpIn);
+        blurScript.forEach(tmpOut);
+
+        tmpOut.copyTo(outputBitmap);
+
+        return outputBitmap;
+    }
+
+
+
+    /**
+     * 根据给定的宽和高进行拉伸
+     *
+     * @param origin    原图
+     * @param newWidth  新图的宽
+     * @param newHeight 新图的高
+     * @return new Bitmap
+     */
+    public static Bitmap scale(Bitmap origin, int newWidth, int newHeight) {
+        if (origin == null) {
+            return null;
+        }
+        int height = origin.getHeight();
+        int width = origin.getWidth();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);// 使用后乘
+        Bitmap newBM = Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false);
+        if (!origin.isRecycled()) {
+            origin.recycle();
+        }
+        return newBM;
+    }
+
+    /**
+     * 按比例缩放图片
+     *
+     * @param origin 原图
+     * @param ratio  比例
+     * @return 新的bitmap
+     */
+    public static Bitmap scale(Bitmap origin, float ratio) {
+        if (origin == null) {
+            return null;
+        }
+        int width = origin.getWidth();
+        int height = origin.getHeight();
+        Matrix matrix = new Matrix();
+        matrix.postScale(ratio, ratio);
+        Bitmap newBM = Bitmap.createBitmap(origin, 0, 0, width, height, matrix, true);
+        if (newBM.equals(origin)) {
+            return newBM;
+        }
+        //        origin.recycle();
+        return newBM;
+    }
+
+    /**
+     * 裁剪
+     *
+     * @param bitmap 原图
+     * @return 裁剪后的图像
+     */
+    public static Bitmap crop(Bitmap bitmap) {
+
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+
+        int startX = (int) (bitmapWidth * 0.1);
+        int startY = (int) (bitmapHeight * 0.1);
+        int widthScope = (int) (bitmapWidth * 0.8);
+        int heightScope = (int) (bitmapHeight * 0.8);
+
+
+        // 原图 | 起始X坐标 | 起始Y坐标 | 要截的宽度 | 要截的高度 | 矩阵变换像素 | 过滤原图(matrix包含翻转才有效)
+        return Bitmap.createBitmap(bitmap, startX, startY, widthScope, heightScope, null, false);
+    }
+
+
+    public static Bitmap crop(Bitmap bitmap, float startX, float startY, float widthScope, float heightScope) {
+
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+
+        int startXFinal = (int) (bitmapWidth * startX);
+        int startYFinal = (int) (bitmapHeight * startY);
+        int widthScopeFinal = (int) (bitmapWidth * widthScope);
+        int heightScopeFinal = (int) (bitmapHeight * heightScope);
+
+        // 原图 | 起始X坐标 | 起始Y坐标 | 要截的宽度 | 要截的高度 | 矩阵变换像素 | 过滤原图(matrix包含翻转才有效)
+
+        return Bitmap.createBitmap(bitmap, startXFinal, startYFinal, widthScopeFinal, heightScopeFinal, null, false);
+    }
+
+    /**
+     * 选择变换
+     *
+     * @param origin 原图
+     * @param angle  旋转角度，可正可负
+     * @return 旋转后的图片
+     */
+    public static Bitmap rotate(Bitmap origin, float angle) {
+        if (origin == null) {
+            return null;
+        }
+        int width = origin.getWidth();
+        int height = origin.getHeight();
+        Matrix matrix = new Matrix();
+        matrix.setRotate(angle);
+        // 围绕原地进行旋转
+        Bitmap newBM = Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false);
+        if (newBM.equals(origin)) {
+            return newBM;
+        }
+        origin.recycle();
+        return newBM;
+    }
+
+    /**
+     * 偏移效果
+     *
+     * @param origin 原图
+     * @return 偏移后的bitmap
+     */
+    public static Bitmap skew(Bitmap origin) {
+        if (origin == null) {
+            return null;
+        }
+        int width = origin.getWidth();
+        int height = origin.getHeight();
+        Matrix matrix = new Matrix();
+        matrix.postSkew(-0.6f, -0.3f);
+        Bitmap newBM = Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false);
+        if (newBM.equals(origin)) {
+            return newBM;
+        }
+        origin.recycle();
+        return newBM;
+    }
+
+
+    /**
+     * 图片镜像翻转
+     *
+     * @param origin
+     * @return
+     */
+    public static Bitmap convert(Bitmap origin) {
+        if (origin == null) {
+            return null;
+        }
+        int height = origin.getHeight();
+        int width = origin.getWidth();
+        Matrix matrix = new Matrix();
+        matrix.postScale(-1, 1);
+        Bitmap newBM = Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false);
+        if (!origin.isRecycled()) {
+            origin.recycle();
+        }
+        return newBM;
+    }
+
+    //     * 质量压缩图片，图片占用内存减小，像素数不变，常用于上传
+    //     * @param image
+    //     * @param size 期望图片的大小，单位为kb
+    //     * @param options 图片压缩的质量，取值1-100，越小表示压缩的越厉害,如输入30，表示压缩70%
+
+    public static Bitmap compressBitmap(Bitmap bitmap, int size, int options) {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        // 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+
+        // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
+        while (baos.toByteArray().length / 1024 > size) {
+            options -= 5;// 每次都减少10
+            baos.reset();// 重置baos即清空baos
+            // 这里压缩options%，把压缩后的数据存放到baos中
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);
+        }
+        // 把压缩后的数据baos存放到ByteArrayInputStream中
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+        // 把ByteArrayInputStream数据生成图片
+        bitmap = BitmapFactory.decodeStream(isBm, null, null);
+        return bitmap;
+    }
+
+
+    /**
+     * 将当前 View 转成 Bitmap 图片
+     */
+    public static Bitmap getBitmap(View view) {
+        Bitmap bitmap;
+
+        view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view.buildDrawingCache(); // 启动 DrawingCache 并创建位图
+        bitmap = view.getDrawingCache();
+        view.setDrawingCacheEnabled(false); // 避免影响性能
+
+        return bitmap;
+    }
+
 
 }

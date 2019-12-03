@@ -5,11 +5,11 @@ if (rootProject.ext.debug_module_apis) {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -71,7 +71,7 @@ dependencies {
     /*  */
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
     /*  */
-    implementation 'com.yinglan.scrolllayout:scrolllayout:1.0.2'
+    api project(':lib_hover_scroll')
     /* dagger案例 */
     implementation 'com.google.dagger:dagger:2.24'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.24'

@@ -30,7 +30,7 @@
             app:layout_constraintTop_toBottomOf="@+id/v_top" />
 
         <!-- ViewGroup-转写文本 -->
-        <com.yinglan.scrolllayout.ScrollLayout
+        <cc.catface.scroll.ScrollLayout
             android:id="@+id/sl"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -45,7 +45,7 @@
             app:minOffset="0dp"
             app:mode="open">
 
-            <com.yinglan.scrolllayout.content.ContentScrollView
+            <cc.catface.scroll.ContentScrollView
                 android:id="@+id/csv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -66,8 +66,8 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.yinglan.scrolllayout.content.ContentScrollView>
-        </com.yinglan.scrolllayout.ScrollLayout>
+            </cc.catface.scroll.ContentScrollView>
+        </cc.catface.scroll.ScrollLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

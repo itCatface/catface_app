@@ -1,1 +1,1 @@
-include ':catface_base', ':app', ':app_base', ':module_apis', ':module_start', ':module_work_demo', ':module_api', ':module_pj_wanandroid', ':module_pj_showapi', ':module_pj_iflytek', ':ctool', ':module_pj_wechat'
+include ':catface_base', ':app', ':app_base', ':module_apis', ':module_start', ':module_work_demo', ':module_api', ':module_pj_wanandroid', ':module_pj_showapi', ':module_pj_iflytek', ':ctool', ':module_pj_wechat', ':lib_hover_scroll'

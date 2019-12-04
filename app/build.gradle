@@ -17,11 +17,30 @@ android {
             }
         }
     }
-
-    buildTypes {
+    signingConfigs {
+        debug {
+            keyAlias 'catface'
+            keyPassword 'yan7758258'
+            storeFile file('../catface_app.jks')
+            storePassword "yan7758258"
+        }
         release {
+            keyAlias 'catface'
+            keyPassword 'yan7758258'
+            storeFile file('../catface_app.jks')
+            storePassword "yan7758258"
+        }
+    }
+    buildTypes {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 

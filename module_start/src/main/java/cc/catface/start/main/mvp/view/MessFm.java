@@ -37,7 +37,7 @@ public class MessFm extends LightFm<MessPresenterImp, StartFmMessBinding> implem
         LinearLayout ll = (LinearLayout) mBinding.tlMess.getChildAt(0);
         ll.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         ll.setDividerPadding(40);
-        ll.setDividerDrawable(ContextCompat.getDrawable(mActivity, R.drawable.showapi_shape_top_bar_line));
+        ll.setDividerDrawable(ContextCompat.getDrawable(mActivity, R.drawable.shape_vertical_line));
 
         mFms = new ArrayList<>();
         mFms.add(new ApiFm());

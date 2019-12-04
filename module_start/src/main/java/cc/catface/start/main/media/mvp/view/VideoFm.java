@@ -32,7 +32,7 @@ public class VideoFm extends LightFm<VideoPresenterImp, FmSecondVideoBinding> im
         LinearLayout ll = (LinearLayout) mBinding.tlMedia.getChildAt(0);
         ll.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         ll.setDividerPadding(40);
-        ll.setDividerDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.showapi_shape_top_bar_line));
+        ll.setDividerDrawable(ContextCompat.getDrawable(mActivity, R.drawable.shape_vertical_line));
 
         mFms = new ArrayList<>();
         mFms.add(new MusicMainFm());

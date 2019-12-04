@@ -2,6 +2,7 @@ package cc.catface.start.main.mvp.view;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -164,5 +165,23 @@ import cc.catface.start.main.query.view.QueryFm;
 
         mBinding.dl.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    /** 连按两次退出应用 */
+    private long mPeriod = 0;
+
+    @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - mPeriod) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                mPeriod = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }

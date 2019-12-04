@@ -10,6 +10,7 @@ import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.base.utils.android.net.okhttp.OkHttpRequestCallback;
 import cc.catface.base.utils.android.net.okhttp.OkHttpUtil;
 import cc.catface.wanandroid.engine.domain.KnowledgeData;
+import cc.catface.wanandroid.engine.domain.WanandroidConst;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -21,7 +22,7 @@ public class KnowledgePresenterImpl extends LightPresenter<KnowledgeVP.Knowledge
     }
 
     @Override public void request() {
-        OkHttpUtil.get("http://www.wanandroid.com/tree/json", new OkHttpRequestCallback() {
+        OkHttpUtil.get(WanandroidConst.url_knowledge_tree, new OkHttpRequestCallback() {
             @Override public void onSuccess(String result) {
                 TLog.d("result: " + result);
                 KnowledgeData data = new Gson().fromJson(result, KnowledgeData.class);

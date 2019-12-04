@@ -26,7 +26,7 @@ public class HomePresenterImpl extends LightPresenter<HomeVP.HomeView> implement
                 Banner data = new Gson().fromJson(result, Banner.class);
                 Banner.Data myBlogBanner = new Banner.Data();
                 myBlogBanner.setImagePath("http://catface.cc/img/favicon.ico");
-                myBlogBanner.setUrl("http://catface.cc");
+                myBlogBanner.setUrl(WanandroidConst.url_blog);
                 myBlogBanner.setTitle("catface's blog");
                 data.getData().add(0, myBlogBanner);
                 mView.requestBannerSuccess(data);

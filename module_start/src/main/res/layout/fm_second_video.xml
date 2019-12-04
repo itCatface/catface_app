@@ -13,15 +13,15 @@
             android:id="@+id/tl_media"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:background="#df00"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabGravity="fill"
-            app:tabIndicatorColor="#fff"
+            app:tabIndicatorColor="@color/blue_title_bg"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="#fff"
-            app:tabTextColor="#6fff" />
+            app:tabSelectedTextColor="@color/blue_title_bg"
+            app:tabTextColor="@color/black" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_media"

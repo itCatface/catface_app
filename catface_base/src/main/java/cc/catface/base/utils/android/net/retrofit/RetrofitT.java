@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.base.utils.android.net.okhttp.LogInterceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -49,7 +50,7 @@ public class RetrofitT implements RetrofitI {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
-                .addInterceptor(new LoggingInterceptor())
+                .addInterceptor(new LogInterceptor())
 //                .sslSocketFactory(SSLSocketFactoryUtils.createSSLSocketFactory(CtxT.getCtx()), SSLSocketFactoryUtils.createTrustAllManager())
 //                .hostnameVerifier(new SSLSocketFactoryUtils.TrustAllHostnameVerifier())
                 .build();

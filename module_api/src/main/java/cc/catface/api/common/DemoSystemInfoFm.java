@@ -4,6 +4,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Pair;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -30,6 +31,11 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
 
     @Override public void handleMessage(Message msg) {
         mBinding.rlLoading.setVisibility(View.GONE);
+        mBinding.tiModel.setContent(mModel);
+        mBinding.tiSN.setContent(mSn);
+        mBinding.tiMEID.setContent(mMeid);
+        mBinding.tiIMEI.setContent(mImei);
+        mBinding.tiMultiIMEI.setContent(mImeis.first + " / " + mImeis.second);
         mBinding.tiVerName.setContent(mVersionName);
         mBinding.tiVerCode.setContent(TString.convert2String(mVersionCode));
         mBinding.tiRomAvailSpace.setContent(mRomAvailSpace);
@@ -57,13 +63,20 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
         mHandler = new TWeakHandler<>(this);
     }
 
-    private String mVersionName, mRomAvailSpace, mAvailSDSpace, mRAMRemain, mRAMTotal;
+    private String mModel, mSn, mMeid, mImei, mVersionName, mRomAvailSpace, mAvailSDSpace, mRAMRemain, mRAMTotal;
+    private Pair<String, String> mImeis;
     private long mRunningProcessCount;
     private int mVersionCode;
     private List<AppInfo> mApps = new ArrayList<>();
 
     @Override protected void initData() {
         new Thread(() -> {
+            mModel = TAppInfo.getModel();
+            mSn = TAppInfo.getSN();
+            mMeid = TAppInfo.getMEID();
+            mImei = TAppInfo.getIMEI();
+            mImeis = TAppInfo.getMultiIMEI();
+            TAppInfo.JudgeSIM();
             mVersionName = TAppInfo.getVerName();
             mVersionCode = TAppInfo.getVerCode();
             mRomAvailSpace = TAppInfo.getROMRemain();

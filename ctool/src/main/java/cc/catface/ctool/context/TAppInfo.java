@@ -1,28 +1,130 @@
 package cc.catface.ctool.context;
 
+import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.Formatter;
+import android.util.Log;
+import android.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.TELEPHONY_SERVICE;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class TAppInfo {
+
+
+    /* 获取设备sn */
+    public static String getSN() {
+        String serial = "";
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                serial = Build.getSerial();
+            } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+                serial = Build.SERIAL;
+            } else {
+                Class<?> c = Class.forName("android.os.SystemProperties");
+                Method get = c.getMethod("get", String.class);
+                serial = (String) get.invoke(c, "ro.serialno");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return serial;
+    }
+
+    /* 获取model */
+    public static String getModel() {
+        return android.os.Build.MODEL;
+    }
+
+    /* 获取meid[X] */
+    public static String getMEID() {
+        return "";
+    }
+
+    /* 获取imei */
+    public static String getIMEI() {
+        String imei = "";
+        try {
+            TelephonyManager tm = (TelephonyManager) TContext.getContext().getSystemService(TELEPHONY_SERVICE);
+            if (null == tm) return imei;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                imei = tm.getDeviceId();
+            } else {
+                Method method = tm.getClass().getMethod("getImei");
+                imei = (String) method.invoke(tm);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return imei;
+    }
+
+    /* 获取多个imei */
+    public static Pair<String, String> getMultiIMEI() {
+        try {
+            TelephonyManager tm = (TelephonyManager) TContext.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            if (null == tm) return null;
+            Method method = tm.getClass().getMethod("getDeviceId", int.class);
+            Pair<String, String> imeis = new Pair<>(tm.getDeviceId(), (String) method.invoke(tm, 1));
+            return imeis;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M) public static void JudgeSIM() {
+        TelephonyManager tm = (TelephonyManager) TContext.getContext().getSystemService(TELEPHONY_SERVICE);
+        //获取当前SIM卡槽数量
+        int phoneCount = tm.getPhoneCount();
+        //获取当前SIM卡数量
+        int activeSubscriptionInfoCount = SubscriptionManager.from(TContext.getContext()).getActiveSubscriptionInfoCount();
+        List<SubscriptionInfo> activeSubscriptionInfoList = SubscriptionManager.from(TContext.getContext()).getActiveSubscriptionInfoList();
+        if (activeSubscriptionInfoList == null) {
+            return;
+        }
+        for (SubscriptionInfo subInfo : activeSubscriptionInfoList) {
+            Log.d("tappinfo", "sim卡槽位置：" + subInfo.getSimSlotIndex());
+            try {
+                Method method = tm.getClass().getMethod("getImei", int.class);
+                String imei = (String) method.invoke(tm, subInfo.getSimSlotIndex());
+                Log.d("tappinfo", "sim卡imei：" + imei);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
+        }
+        Log.d("tappinfo", "卡槽数量：" + phoneCount);
+        Log.d("tappinfo", "当前SIM卡数量：" + activeSubscriptionInfoCount);
+    }
+
 
     /* 获取版本名 */
     public static String getVerName() {

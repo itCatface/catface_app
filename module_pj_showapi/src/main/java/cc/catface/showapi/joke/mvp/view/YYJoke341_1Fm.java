@@ -21,7 +21,7 @@ import cc.catface.showapi.R;
 import cc.catface.showapi.databinding.ShowapiFmYyJoke3411Binding;
 import cc.catface.showapi.joke.adapter.YYJoke341_1Adapter;
 import cc.catface.showapi.joke.domain.YYJoke341_1;
-import cc.catface.showapi.joke.global.Const;
+import cc.catface.showapi.joke.global.ShowapiConst;
 import cc.catface.showapi.joke.mvp.vp.YYJoke341_1PresenterImp;
 import cc.catface.showapi.joke.mvp.vp.YYJoke341_1VP;
 
@@ -56,7 +56,7 @@ public class YYJoke341_1Fm extends LightFm<YYJoke341_1PresenterImp, ShowapiFmYyJ
 
     @Override public void initData() {
         map.put("page", String.valueOf(mPage));
-        RetrofitT.getInstance().post(Const.url_yy_joke_341_1, map, new RetrofitCallback() {
+        RetrofitT.getInstance().post(ShowapiConst.url_yy_joke_341_1, map, new RetrofitCallback() {
             @Override public void onSuccess(String result) {
                 mBinding.srlJoke.setRefreshing(false);
                 mBinding.pb.setVisibility(View.GONE);

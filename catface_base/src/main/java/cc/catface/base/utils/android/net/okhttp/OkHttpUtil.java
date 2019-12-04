@@ -25,6 +25,7 @@ public class OkHttpUtil {
     private static OkHttpClient mOkHttpClient = new OkHttpClient.Builder()
             .connectTimeout(6, TimeUnit.SECONDS)
             .readTimeout(6, TimeUnit.SECONDS)
+            .addInterceptor(new LogInterceptor())
             .build();
 
     private static OkHttpHandler mOkHttpHandler = new OkHttpHandler();

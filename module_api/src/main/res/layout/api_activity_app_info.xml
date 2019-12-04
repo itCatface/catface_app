@@ -26,6 +26,39 @@
             </RelativeLayout>
 
             <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="设备model" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiSN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="设备sn" />
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiMEID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="设备meid" />
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiIMEI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="设备imei" />
+
+            <cc.catface.ctool.view.listview.TempItem
+                android:id="@+id/tiMultiIMEI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:item_line="true"
+                app:item_title="双卡imei" />
+
+            <cc.catface.ctool.view.listview.TempItem
                 android:id="@+id/tiOpenNetSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

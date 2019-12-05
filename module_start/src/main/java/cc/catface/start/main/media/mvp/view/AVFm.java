@@ -12,17 +12,17 @@ import androidx.fragment.app.Fragment;
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightView;
 import cc.catface.start.R;
-import cc.catface.start.databinding.FmSecondVideoBinding;
+import cc.catface.start.databinding.FmAvBinding;
 import cc.catface.start.main.media.mvp.vp.VideoPresenterImp;
 import cc.catface.start.main.mvp.adapter.ImageTextAdapter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class VideoFm extends LightFm<VideoPresenterImp, FmSecondVideoBinding> implements LightView {
+public class AVFm extends LightFm<VideoPresenterImp, FmAvBinding> implements LightView {
 
     @Override public int layoutId() {
-        return R.layout.fm_second_video;
+        return R.layout.fm_av;
     }
 
     private String[] mTabTitles = {"音乐", "视频"};

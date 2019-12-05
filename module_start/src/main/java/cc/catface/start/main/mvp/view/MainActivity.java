@@ -28,7 +28,7 @@ import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.start.R;
 import cc.catface.start.databinding.StartActivityMainBinding;
 import cc.catface.start.main.domain.Tab;
-import cc.catface.start.main.media.mvp.view.VideoFm;
+import cc.catface.start.main.media.mvp.view.AVFm;
 import cc.catface.start.main.mvp.vp.MainPresenterImp;
 import cc.catface.start.main.mvp.vp.MainVP;
 import cc.catface.start.main.personal.view.PersonalFm;
@@ -94,7 +94,7 @@ import cc.catface.start.main.query.view.QueryFm;
         mFmTabs = new ArrayList<>();
         mFmTabs.add(new Tab(FunctionFm.class, "功能", Color.argb(255, 26, 125, 235), R.drawable.icon_start_main_function_default, R.drawable.icon_start_main_function_focus));
         mFmTabs.add(new Tab(MessFm.class, "普通", Color.argb(255, 26, 125, 235), R.drawable.icon_start_main_text_image_default, R.drawable.icon_start_main_text_image_focus));
-        mFmTabs.add(new Tab(VideoFm.class, "影音", Color.argb(255, 26, 125, 235), R.drawable.icon_start_main_video_default, R.drawable.icon_start_main_video_focus));
+        mFmTabs.add(new Tab(AVFm.class, "影音", Color.argb(255, 26, 125, 235), R.drawable.icon_start_main_video_default, R.drawable.icon_start_main_video_focus));
         mFmTabs.add(new Tab(QueryFm.class, "查询", Color.argb(255, 26, 125, 235), R.drawable.icon_start_main_query_default, R.drawable.icon_start_main_query_focus));
         mFmTabs.add(new Tab(PersonalFm.class, "我", Color.argb(255, 26, 125, 235), R.drawable.icon_start_main_myself_default, R.drawable.icon_start_main_myself_focus));
 

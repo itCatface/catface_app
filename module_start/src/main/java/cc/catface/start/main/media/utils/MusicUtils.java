@@ -3,13 +3,41 @@ package cc.catface.start.main.media.utils;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.util.Log;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import cc.catface.start.main.media.domain.Song;
 
 public class MusicUtils {
+
+
+    /* 通过扫描文件收集文件 */
+    private static List<String> mSongs = new ArrayList<>();
+
+    public static List<String> getMatchSongs(File file, String[] ext) {
+        if (file != null) {
+            if (file.isDirectory()) {
+                File[] listFile = file.listFiles();
+                if (listFile != null) {
+                    for (int i = 0; i < listFile.length; i++) {
+                        getMatchSongs(listFile[i], ext);
+                    }
+                }
+            } else {
+                String filename = file.getAbsolutePath();
+                for (int i = 0; i < ext.length; i++) {
+                    if (filename.endsWith(ext[i])) {
+                        mSongs.add(filename);
+                        break;
+                    }
+                }
+            }
+        }
+        return mSongs;
+    }
 
 
     public interface Callback {
@@ -41,6 +69,7 @@ public class MusicUtils {
                         song.song = str[1];
                     }
                     list.add(song);
+                    Log.d("root", "song: " + song.toString());
                     if (null != callback) callback.findSong(song.song);
                 }
             }

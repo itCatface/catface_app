@@ -1,69 +1,46 @@
 package cc.catface.start.main.media.mvp.view;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.view.View;
-import android.widget.Toast;
+import android.os.Environment;
+
+import java.util.Arrays;
+import java.util.List;
 
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightView;
+import cc.catface.base.utils.android.common_print.toast.TToast;
+import cc.catface.base.utils.android.coomon_listview.TListView;
 import cc.catface.start.R;
 import cc.catface.start.databinding.FmMusicMainBinding;
 import cc.catface.start.main.media.mvp.vp.MusicMainPresenterImp;
-import cc.catface.start.main.media.service.ScanMusicService;
+import cc.catface.start.main.media.utils.MusicUtils;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class MusicMainFm extends LightFm<MusicMainPresenterImp, FmMusicMainBinding> implements ServiceConnection, LightView {
+public class MusicMainFm extends LightFm<MusicMainPresenterImp, FmMusicMainBinding> implements LightView {
 
 
     @Override public int layoutId() {
         return R.layout.fm_music_main;
     }
 
+    @Override protected void initView() {
+    }
+
+    private List<String> mSongs;
+
     @Override protected void initAction() {
-        mBinding.btScan.setOnClickListener(this);
-        mBinding.btPlay.setOnClickListener(this);
-    }
-
-    @Override public void onClick(View view) {
-
-        if (R.id.bt_scan == view.getId()) {
-            if (mBinding.btScan.getText().toString().trim().equals("加载本地歌曲")) {
-                mBinding.btScan.setText("停止加载本地歌曲");
-                if (null != mBinder) {
-                    mBinder.setData("开始任务-->搜索本机所有歌曲");
-                    mActivity.startService(mServiceIntent);
-                }
-            } else {
-                mBinding.btScan.setText("加载本地歌曲");
-                mActivity.stopService(mServiceIntent);
+//        mBinding.btScan.setOnClickListener(v -> {
+            mSongs = MusicUtils.getMatchSongs(Environment.getExternalStorageDirectory(), new String[]{".mp3"});
+//        });
+        TListView.str(mActivity, mBinding.lvSongs, mSongs.toArray(new String[mSongs.size()]), new TListView.Callback() {
+            @Override public void onClick(int pos) {
+                TToast.get(mActivity).showShortNormal(mSongs.get(pos));
             }
-        } else if (R.id.bt_play == view.getId()) {
-            // TODO ARouter
-            String value = "" + System.currentTimeMillis();
-            Toast.makeText(mActivity, "生成数据：" + value, Toast.LENGTH_SHORT).show();
-        }
+        });
     }
 
-    private Intent mServiceIntent;
-
-    @Override protected void created() {
-        mServiceIntent = new Intent(mActivity, ScanMusicService.class);
-    }
-
-
-    /** 使用ServiceConnection与activity通信 */
-    private ScanMusicService.Binder mBinder = null;
-
-    @Override public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        mBinder = (ScanMusicService.Binder) iBinder;
-    }
-
-    @Override public void onServiceDisconnected(ComponentName componentName) {
+    @Override protected void initData() {
 
     }
 }

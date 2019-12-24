@@ -3,6 +3,7 @@ package cc.catface.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.StrictMode;
 
 import androidx.multidex.MultiDex;
 
@@ -29,6 +30,11 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
+        /* android 7.0系统解决拍照的问题 */
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
+
         /* 各模块依赖的Application初始化操作 */
         ARouterApp.setContext(this);
         ARouterApp.initDB();

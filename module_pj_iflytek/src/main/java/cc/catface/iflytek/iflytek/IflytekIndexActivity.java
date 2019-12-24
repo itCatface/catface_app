@@ -75,6 +75,10 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
                 // 声纹
                 showTip("请登录：http://www.xfyun.cn/ 下载体验吧！");
                 break;
+            case 6:
+                // 印刷体在线OCR识别
+                intent = new Intent(this, OCRPrintWebActivity.class);
+                break;
             default:
                 showTip("此功能将于近期开放，敬请期待。");
                 break;
@@ -86,7 +90,7 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
 
 
     //Menu 列表
-    String items[] = {"立刻体验语音听写", "立刻体验语法识别(X)", "立刻体验语义理解", "立刻体验语音合成", "立刻体验语音唤醒(X)", "立刻体验声纹密码(X)"};
+    String items[] = {"立刻体验语音听写", "立刻体验语法识别(X)", "立刻体验语义理解", "立刻体验语音合成", "立刻体验语音唤醒(X)", "立刻体验声纹密码(X)", "印刷体在线OCR"};
 
     private class SimpleAdapter extends BaseAdapter {
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -128,9 +132,9 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
     private void requestPermissions() {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
                 if (permission != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_SETTINGS, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_CONTACTS}, 0x0010);
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_SETTINGS, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_CONTACTS}, 0x0010);
                 }
             }
         } catch (Exception e) {

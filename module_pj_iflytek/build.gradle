@@ -59,7 +59,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor "com.alibaba:arouter-compiler:1.2.2"
     implementation project(':app_base')
@@ -68,4 +68,5 @@ dependencies {
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')
     api files('libs/Msc.jar')
+    implementation files('libs/commons-codec-1.13.jar')
 }

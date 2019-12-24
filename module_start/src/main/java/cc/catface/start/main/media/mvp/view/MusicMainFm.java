@@ -30,13 +30,14 @@ public class MusicMainFm extends LightFm<MusicMainPresenterImp, FmMusicMainBindi
     private List<String> mSongs;
 
     @Override protected void initAction() {
-//        mBinding.btScan.setOnClickListener(v -> {
+        mBinding.btScan.setOnClickListener(v -> {
             mSongs = MusicUtils.getMatchSongs(Environment.getExternalStorageDirectory(), new String[]{".mp3"});
-//        });
-        TListView.str(mActivity, mBinding.lvSongs, mSongs.toArray(new String[mSongs.size()]), new TListView.Callback() {
-            @Override public void onClick(int pos) {
-                TToast.get(mActivity).showShortNormal(mSongs.get(pos));
-            }
+
+            TListView.str(mActivity, mBinding.lvSongs, mSongs.toArray(new String[mSongs.size()]), new TListView.Callback() {
+                @Override public void onClick(int pos) {
+                    TToast.get(mActivity).showShortNormal(mSongs.get(pos));
+                }
+            });
         });
     }
 

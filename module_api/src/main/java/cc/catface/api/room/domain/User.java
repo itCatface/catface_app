@@ -3,13 +3,23 @@ package cc.catface.api.room.domain;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "user")
-public class User {
+/**
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ */
+@Entity(tableName = "user") public class User {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey(autoGenerate = true) private int id;
     private String name;
     private int age;
+    private int sex;
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
 
     public int getId() {
         return id;
@@ -41,6 +51,6 @@ public class User {
 
 
     @Override public String toString() {
-        return "User{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';
+        return "User{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + ", sex=" + sex + '}';
     }
 }

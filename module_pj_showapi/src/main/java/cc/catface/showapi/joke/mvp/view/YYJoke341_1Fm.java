@@ -19,9 +19,9 @@ import cc.catface.base.utils.android.net.retrofit.RetrofitCallback;
 import cc.catface.base.utils.android.net.retrofit.RetrofitT;
 import cc.catface.showapi.R;
 import cc.catface.showapi.databinding.ShowapiFmYyJoke3411Binding;
-import cc.catface.showapi.joke.adapter.YYJoke341_1Adapter;
-import cc.catface.showapi.joke.domain.YYJoke341_1;
-import cc.catface.showapi.joke.global.ShowapiConst;
+import cc.catface.showapi.joke.engine.adapter.YYJoke341_1Adapter;
+import cc.catface.showapi.joke.engine.domain.YYJoke341_1;
+import cc.catface.showapi.joke.engine.ShowapiConst;
 import cc.catface.showapi.joke.mvp.vp.YYJoke341_1PresenterImp;
 import cc.catface.showapi.joke.mvp.vp.YYJoke341_1VP;
 

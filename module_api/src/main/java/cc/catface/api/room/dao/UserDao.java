@@ -1,16 +1,23 @@
 package cc.catface.api.room.dao;
 
-import java.util.List;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
+
+import java.util.List;
+
 import cc.catface.api.room.domain.User;
 
 @Dao
 public interface UserDao {
+
+    @Query("select count(*) from user")
+    long count();
+
+    @Query("SELECT * FROM user ORDER BY CASE WHEN NAME='--公正' THEN 0 ELSE 1 END, id DESC")
+    List<User> sort();
+
     @Query("SELECT * FROM user")
     List<User> getAllUsers();
 
@@ -23,8 +30,8 @@ public interface UserDao {
     @Insert
     void insert(User... users);
 
-    @Update
-    void update(User... users);
+    @Query("update user set name=:name where id=:id")
+    void update(String name, int id);
 
 //    @Query("UPDATE user set user WHERE id = (:id)")
 //    void update(User user, int id);

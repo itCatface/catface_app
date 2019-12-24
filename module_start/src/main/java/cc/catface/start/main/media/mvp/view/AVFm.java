@@ -1,20 +1,20 @@
 package cc.catface.start.main.media.mvp.view;
 
-import androidx.core.content.ContextCompat;
-
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightView;
+import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.start.R;
 import cc.catface.start.databinding.FmAvBinding;
 import cc.catface.start.main.media.mvp.vp.VideoPresenterImp;
-import cc.catface.start.main.mvp.adapter.ImageTextAdapter;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -39,7 +39,7 @@ public class AVFm extends LightFm<VideoPresenterImp, FmAvBinding> implements Lig
         mFms.add(new MusicMainFm());
 
         mBinding.vpMedia.setOffscreenPageLimit(mTabTitles.length);
-        mBinding.vpMedia.setAdapter(new ImageTextAdapter(getChildFragmentManager(), mTabTitles, mFms));
+        mBinding.vpMedia.setAdapter(new PagerAdapterFm(getChildFragmentManager(), Arrays.asList(mTabTitles), mFms));
         mBinding.tlMedia.setupWithViewPager(mBinding.vpMedia);
     }
 }

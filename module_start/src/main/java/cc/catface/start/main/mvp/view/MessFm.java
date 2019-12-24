@@ -1,24 +1,23 @@
 package cc.catface.start.main.mvp.view;
 
 import android.app.Activity;
-
-import androidx.core.content.ContextCompat;
-
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightView;
+import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.start.R;
 import cc.catface.start.databinding.StartFmMessBinding;
 import cc.catface.start.main.mess.ApiFm;
 import cc.catface.start.main.mess.ApisFm;
 import cc.catface.start.main.mess.PjsFm;
-import cc.catface.start.main.mvp.adapter.ImageTextAdapter;
 import cc.catface.start.main.mvp.vp.MessPresenterImp;
 
 /**
@@ -45,7 +44,7 @@ public class MessFm extends LightFm<MessPresenterImp, StartFmMessBinding> implem
         mFms.add(new PjsFm());
 
         mBinding.vpMess.setOffscreenPageLimit(mTabTitles.length);
-        mBinding.vpMess.setAdapter(new ImageTextAdapter(getChildFragmentManager(), mTabTitles, mFms));
+        mBinding.vpMess.setAdapter(new PagerAdapterFm(getChildFragmentManager(), Arrays.asList(mTabTitles), mFms));
         mBinding.tlMess.setupWithViewPager(mBinding.vpMess);
 
         mListener.process("fragment处理结束");

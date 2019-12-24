@@ -66,25 +66,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_insert" />
 
-        <Button
-            android:id="@+id/bt_update"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="改"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_delete" />
 
-
-        <ListView
-            android:id="@+id/lv_room"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRoom"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.4"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHeight_percent="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,6 +3,6 @@
 
     <application>
         <activity android:name=".ShowapiMainActivity" />
-        <activity android:name=".joke.mvp.view.ShowAPIActivity" />
+        <activity android:name=".joke.mvp.view.JokeActivity" />
     </application>
 </manifest>

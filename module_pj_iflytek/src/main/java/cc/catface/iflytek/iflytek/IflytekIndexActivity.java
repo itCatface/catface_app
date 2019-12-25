@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.light_mvp.LightAct;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
+import cc.catface.base.utils.android.common_print.log.TLog;
 import cc.catface.iflytek.AiuiActivity;
 import cc.catface.iflytek.R;
 import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
@@ -42,10 +44,37 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
         initToolBar();
 
         requestPermissions();
+
         mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         SimpleAdapter listitemAdapter = new SimpleAdapter();
         ((ListView) findViewById(R.id.listview_main)).setAdapter(listitemAdapter);
     }
+
+    private void requestPermissions() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+                if (permission != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_SETTINGS, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_CONTACTS}, 0x0010);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        TLog.d("requestcode: " + requestCode);
+        for (String permission : permissions) {
+            TLog.d(permission);
+        }
+
+        for (int result : grantResults) {
+            TLog.d(result);
+        }
+    }
+
 
     @Override public void onClick(View view) {
         int tag = Integer.parseInt(view.getTag().toString());
@@ -126,24 +155,6 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
                 mToast.show();
             }
         });
-    }
-
-
-    private void requestPermissions() {
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-                if (permission != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_SETTINGS, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_CONTACTS}, 0x0010);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 

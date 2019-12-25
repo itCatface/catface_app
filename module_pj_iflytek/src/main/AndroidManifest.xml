@@ -2,7 +2,10 @@
     package="cc.catface.iflytek">
 
     <application>
-        <activity android:name=".iflytek.IflytekIndexActivity" />
+        <activity android:name=".iflytek.IflytekIndexActivity" >     <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
         <activity android:name=".iflytek.IflytekIatActivity" />
         <activity android:name=".iflytek.IflytekTtsActivity" />
         <activity android:name=".AiuiActivity" />

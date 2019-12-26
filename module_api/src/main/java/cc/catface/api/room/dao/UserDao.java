@@ -9,32 +9,40 @@ import java.util.List;
 
 import cc.catface.api.room.domain.User;
 
+/**
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ */
 @Dao
 public interface UserDao {
 
-    @Query("select count(*) from user")
-    long count();
-
-    @Query("SELECT * FROM user ORDER BY CASE WHEN NAME='--公正' THEN 0 ELSE 1 END, id DESC")
-    List<User> sort();
-
+    /** 查 */
     @Query("SELECT * FROM user")
-    List<User> getAllUsers();
+    List<User> allUsers();
 
     @Query("SELECT * FROM user WHERE id % 2 != 0")
-    List<User> getOddUsers();
+    List<User> oddUsers();
 
     @Query("SELECT * FROM user ORDER BY id DESC")
-    List<User> getAllUsersDesc();
+    List<User> descUsers();
 
+    @Query("SELECT * FROM user ORDER BY CASE WHEN NAME like '%和谐%' THEN 0 ELSE 1 END, age DESC")
+    List<User> sortUsers();
+
+    @Query("select count(*) from user")
+    long totalCount();
+
+
+    /** 增 */
     @Insert
     void insert(User... users);
 
-    @Query("update user set name=:name where id=:id")
-    void update(String name, int id);
+    /** 改 */
+    @Query("update user set age=:age where id=:id")
+    void update(int age, int id);
 
-//    @Query("UPDATE user set user WHERE id = (:id)")
-//    void update(User user, int id);
+    /** 删 */
+    @Query("DELETE FROM user")
+    void deleteAll();
 
     @Delete
     void delete(User... users);
@@ -42,6 +50,8 @@ public interface UserDao {
     @Query("DELETE FROM user WHERE id = (:id)")
     void delete(int id);
 
-    @Query("DELETE FROM user")
-    void deleteAll();
+
+//    @Query("select ca.name ")
+//    List<User> q();
+
 }

@@ -6,7 +6,11 @@
         <activity
             android:name="cc.catface.start.splash.view.SplashActivity"
             android:theme="@style/common_full_screen_no_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="cc.catface.start.CrashHandlerActivity" />
         <activity

@@ -1,5 +1,6 @@
 package cc.catface.api.room;
 
+import android.annotation.SuppressLint;
 import android.os.Message;
 import android.view.View;
 
@@ -50,70 +51,64 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
     private RoomAdapter mAdapter;
 
     @Override protected void initAction() {
-        mBinding.btInsert.setOnClickListener(this);
-        mBinding.btDelete.setOnClickListener(this);
         mBinding.btQueryAll.setOnClickListener(this);
         mBinding.btQueryOdd.setOnClickListener(this);
         mBinding.btQueryDesc.setOnClickListener(this);
+        mBinding.btQueryXxFirst.setOnClickListener(this);
+        mBinding.btInsert.setOnClickListener(this);
+        mBinding.btDelete.setOnClickListener(this);
+
         ItemClickSupport.addTo(mBinding.rvRoom).setOnItemLongClickListener((recyclerView, position, view) -> {
             TDialogNormal.get(mActivity).notification("确认删除？", "您将删除记录：\n" + mAllUsers.get(position).toString() + "\n删除后不可恢复！", "取消", "删除", notificationType -> {
-                new Thread(() -> {
-                    DBHelper.getInstance(mActivity).getUserDao().delete(mAllUsers.get(position));
-                    TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().getAllUsers());
-                    //                    mHandler.obtainMessage().sendToTarget();
-                    mAdapter.notifyItemRemoved(position);
-                }).start();
+                DBHelper.getInstance(mActivity).getUserDao().delete(mAllUsers.get(position));
+                TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().allUsers());
+                mAdapter.notifyItemRemoved(position);
             });
             return true;
         });
-
-        ItemClickSupport.addTo(mBinding.rvRoom).setOnItemClickListener((recyclerView, position, view) -> new Thread(() -> {
-            DBHelper.getInstance(mActivity).getUserDao().update("++" + mAllUsers.get(position).getName(), mAllUsers.get(position).getId());
-            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().getAllUsers());
-            mHandler.obtainMessage().sendToTarget();
-
-
-            long count = DBHelper.getInstance(mActivity).getUserDao().count();
-            TLog.d("count is: " + count);
-
-
-            List<User> sort = DBHelper.getInstance(mActivity).getUserDao().sort();
-            for (User user : sort) {
-                TLog.d(user.toString());
-            }
-
+        ItemClickSupport.addTo(mBinding.rvRoom).setOnItemClickListener((recyclerView, position, view) -> {
+            int age = new Random().nextInt(100);
+            mAllUsers.get(position).setAge(age);
+            mAllUsers.set(position, mAllUsers.get(position));
+            DBHelper.getInstance(mActivity).getUserDao().update(age, mAllUsers.get(position).getId());
+            mAdapter.notifyItemChanged(position);
 
             List<Book> books = DBHelper.getInstance(mActivity).getBookDao().allBook();
             TLog.d("books: " + books.size());
 
             List<Cat> cats = DBHelper.getInstance(mActivity).getCatDao().allCat();
-            TLog.d("cats: " + books.size());
-
-        }).start());
+            TLog.d("cats: " + cats.size());
+        });
     }
 
+    @SuppressLint("SetTextI18n") @Override public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.bt_query_all) {
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().allUsers());
+            mBinding.btQueryAll.setText(DBHelper.getInstance(mActivity).getUserDao().totalCount() + "查all");
+        } else if (id == R.id.bt_query_odd) {
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().oddUsers());
+        } else if (id == R.id.bt_query_desc) {
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().descUsers());
+        } else if (id == R.id.bt_query_xx_first) {
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().sortUsers());
 
-    @Override public void onClick(View view) {
-        new Thread(() -> {
-            int id = view.getId();
-            if (id == R.id.bt_insert) {
-                User user = new User();
-                user.setName("--" + TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
-                user.setAge(new Random().nextInt(100));
-                DBHelper.getInstance(mActivity).getUserDao().insert(user);
-                TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().getAllUsers());
-            } else if (id == R.id.bt_delete) {
-                DBHelper.getInstance(mActivity).getUserDao().deleteAll();
-                mAllUsers.clear();
-            } else if (id == R.id.bt_query_all) {
-                TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().getAllUsers());
-            } else if (id == R.id.bt_query_odd) {
-                TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().getOddUsers());
-            } else if (id == R.id.bt_query_desc) {
-                TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().getAllUsersDesc());
-            }
-
+        } else if (id == R.id.bt_insert) {
+            User user = new User();
+            user.setName(TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
+            user.setAge(new Random().nextInt(100));
+            DBHelper.getInstance(mActivity).getUserDao().insert(user);
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().allUsers());
+            mBinding.rvRoom.scrollToPosition(mAllUsers.size() - 1);
+            mAdapter.notifyItemInserted(mAllUsers.size());
             mHandler.obtainMessage().sendToTarget();
-        }).start();
+            return;
+
+        } else if (id == R.id.bt_delete) {
+            DBHelper.getInstance(mActivity).getUserDao().deleteAll();
+            mAllUsers.clear();
+        }
+        mBinding.rvRoom.scrollToPosition(0);
+        mHandler.obtainMessage().sendToTarget();
     }
 }

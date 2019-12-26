@@ -1,6 +1,5 @@
 package cc.catface.api.room;
 
-import android.content.Context;
 import android.os.Environment;
 
 import androidx.annotation.NonNull;
@@ -16,6 +15,7 @@ import cc.catface.api.room.dao.UserDao;
 import cc.catface.api.room.domain.Book;
 import cc.catface.api.room.domain.Cat;
 import cc.catface.api.room.domain.User;
+import cc.catface.ctool.context.TContext;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -35,23 +35,13 @@ import cc.catface.api.room.domain.User;
     private static final String DB_DIR = Environment.getExternalStorageDirectory().getPath() + "/db_catface/";
     private static final String DB_NAME = "db_catface";
 
-
-    private static volatile DBHelper instance;
-
-    static synchronized DBHelper getInstance(Context context) {
-        if (null == instance) {
-            synchronized (DBHelper.class) {
-                if (null == instance) {
-                    instance = create(context);
-                }
-            }
-        }
-        return instance;
+    static synchronized DBHelper getInstance() {
+        return Holder.instance;
     }
 
-    private static DBHelper create(final Context context) {
-        // return Room.databaseBuilder(context, DBHelper.class, DB_DIR + "/" + DB_NAME).
-        return Room.databaseBuilder(context, DBHelper.class, DB_NAME).
+    private static class Holder {
+        // return Room.databaseBuilder(TContext.getContext(), DBHelper.class, DB_DIR + "/" + DB_NAME).
+        private static DBHelper instance = Room.databaseBuilder(TContext.getContext(), DBHelper.class, DB_NAME).
                 // fallbackToDestructiveMigration().   // 找不到迁移规则时销毁重建数据库
                 // fallbackToDestructiveMigrationFrom(1, 4).   // 从1到4版本升级销毁重建数据库
                         allowMainThreadQueries().   // 允许在主线程中执行操作(影响流畅性)

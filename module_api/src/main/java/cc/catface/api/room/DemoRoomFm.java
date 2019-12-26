@@ -60,8 +60,8 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
 
         ItemClickSupport.addTo(mBinding.rvRoom).setOnItemLongClickListener((recyclerView, position, view) -> {
             TDialogNormal.get(mActivity).notification("确认删除？", "您将删除记录：\n" + mAllUsers.get(position).toString() + "\n删除后不可恢复！", "取消", "删除", notificationType -> {
-                DBHelper.getInstance(mActivity).getUserDao().delete(mAllUsers.get(position));
-                TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().allUsers());
+                DBHelper.getInstance().getUserDao().delete(mAllUsers.get(position));
+                TList.clearAddAll(mAllUsers, DBHelper.getInstance().getUserDao().allUsers());
                 mAdapter.notifyItemRemoved(position);
             });
             return true;
@@ -70,13 +70,13 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
             int age = new Random().nextInt(100);
             mAllUsers.get(position).setAge(age);
             mAllUsers.set(position, mAllUsers.get(position));
-            DBHelper.getInstance(mActivity).getUserDao().update(age, mAllUsers.get(position).getId());
+            DBHelper.getInstance().getUserDao().update(age, mAllUsers.get(position).getId());
             mAdapter.notifyItemChanged(position);
 
-            List<Book> books = DBHelper.getInstance(mActivity).getBookDao().allBook();
+            List<Book> books = DBHelper.getInstance().getBookDao().allBook();
             TLog.d("books: " + books.size());
 
-            List<Cat> cats = DBHelper.getInstance(mActivity).getCatDao().allCat();
+            List<Cat> cats = DBHelper.getInstance().getCatDao().allCat();
             TLog.d("cats: " + cats.size());
         });
     }
@@ -84,28 +84,28 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
     @SuppressLint("SetTextI18n") @Override public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.bt_query_all) {
-            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().allUsers());
-            mBinding.btQueryAll.setText(DBHelper.getInstance(mActivity).getUserDao().totalCount() + "查all");
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance().getUserDao().allUsers());
+            mBinding.btQueryAll.setText(DBHelper.getInstance().getUserDao().totalCount() + "查all");
         } else if (id == R.id.bt_query_odd) {
-            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().oddUsers());
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance().getUserDao().oddUsers());
         } else if (id == R.id.bt_query_desc) {
-            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().descUsers());
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance().getUserDao().descUsers());
         } else if (id == R.id.bt_query_xx_first) {
-            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().sortUsers());
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance().getUserDao().sortUsers());
 
         } else if (id == R.id.bt_insert) {
             User user = new User();
             user.setName(TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
             user.setAge(new Random().nextInt(100));
-            DBHelper.getInstance(mActivity).getUserDao().insert(user);
-            TList.clearAddAll(mAllUsers, DBHelper.getInstance(mActivity).getUserDao().allUsers());
+            DBHelper.getInstance().getUserDao().insert(user);
+            TList.clearAddAll(mAllUsers, DBHelper.getInstance().getUserDao().allUsers());
             mBinding.rvRoom.scrollToPosition(mAllUsers.size() - 1);
             mAdapter.notifyItemInserted(mAllUsers.size());
             mHandler.obtainMessage().sendToTarget();
             return;
 
         } else if (id == R.id.bt_delete) {
-            DBHelper.getInstance(mActivity).getUserDao().deleteAll();
+            DBHelper.getInstance().getUserDao().deleteAll();
             mAllUsers.clear();
         }
         mBinding.rvRoom.scrollToPosition(0);

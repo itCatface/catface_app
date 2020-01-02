@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import cc.catface.api.banner.DemoBannerFm;
+import cc.catface.api.clipboard.ClipboardFm;
 import cc.catface.api.common.DemoSystemInfoFm;
 import cc.catface.api.crash.DemoCrashFm;
 import cc.catface.api.databinding.ApiActivityApiHolderBinding;
@@ -74,6 +75,7 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
     private DemoRoundSmileFm fmRoundSmile = new DemoRoundSmileFm();
     private DemoIflyTingjianViewFm fmTingjian = new DemoIflyTingjianViewFm();
     private DemoViewPager2Fm fmViewPager2 = new DemoViewPager2Fm();
+    private ClipboardFm clipboardFm = new ClipboardFm();
 
     @Override public void created() {
         initToolBar();
@@ -182,6 +184,10 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
             case Const.ARouter.fm_id_viewpager2:
                 mTitle = "viewpager2";
                 replace(fmViewPager2);
+                break;
+            case Const.ARouter.fm_id_clipboard:
+                mTitle = "clipboard";
+                replace(clipboardFm);
                 break;
         }
 

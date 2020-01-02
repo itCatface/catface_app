@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/etLabel1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="label1" />
+
+        <EditText
+            android:id="@+id/etContent1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="content1" />
+
+        <EditText
+            android:id="@+id/etLabel2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="label2" />
+
+        <EditText
+            android:id="@+id/etContent2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="content2" />
+
+        <Button
+            android:id="@+id/btCopy1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="复制1" />
+
+        <Button
+            android:id="@+id/btCopy2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="复制2" />
+
+        <Button
+            android:id="@+id/btShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="弹出" />
+
+
+    </LinearLayout>
+</layout>

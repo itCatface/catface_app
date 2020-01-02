@@ -2,8 +2,6 @@ package cc.catface.ctool.view.action;
 
 import android.view.View;
 
-import java.util.Calendar;
-
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
@@ -21,7 +19,7 @@ public abstract class AntiShakeClickListener implements View.OnClickListener {
     }
 
     @Override public void onClick(View view) {
-        long currentTime = Calendar.getInstance().getTimeInMillis();
+        long currentTime = System.currentTimeMillis();
         if (currentTime - mLastClickTime > mInterval) {
             mLastClickTime = currentTime;
             onAntiShakeClick(view);

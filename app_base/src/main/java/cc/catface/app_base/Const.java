@@ -70,9 +70,9 @@ public class Const {
         public static final int fm_id_popup = -0x95;
         public static final int fm_id_view_anim = -0x94;
         public static final int fm_id_hardware = -0x93;
-        public static final int fm_id_rv_toutiao = -0x9301;
-        public static final int fm_id_rv_banner = -0x9302;
         public static final int fm_id_eleme = -0x92;
+        public static final int fm_id_rv_toutiao = -0x9101;
+        public static final int fm_id_rv_banner = -0x9102;
         public static final int fm_id_load_large_image = -0x90;
         public static final int fm_id_system_info = -0x89;
         public static final int fm_id_multi_touch = -0x88;
@@ -82,8 +82,10 @@ public class Const {
         public static final int fm_id_data_binding = -0x84;
         public static final int fm_id_room = -0x83;
         public static final int fm_id_crash = -0x82;
-        public static final int fm_id_toolbar = -0x82001;
-        public static final int fm_id_viewpager2 = -0x82002;
+        public static final int fm_id_toolbar = -0x81;
+        public static final int fm_id_viewpager2 = -0x80;
+        public static final int fm_id_clipboard = -0x79;
+
         public static final int fm_id_view_astr = -0x100001;
         public static final int fm_id_view_interpolator = -0x100002;
         public static final int fm_id_view_value = -0x100003;

@@ -1,6 +1,8 @@
 package cc.catface.ctool.context;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -15,6 +17,13 @@ public class TSystemAction {
 
     public static void openAction(String action) {
         TContext.getContext().startActivity(new Intent(action).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+
+    public static void call(Context context, String phone) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + phone));
+        context.startActivity(intent);
     }
 
 }

@@ -1,8 +1,17 @@
 package cc.catface.ctool.view.textview;
 
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -67,5 +76,48 @@ public class TTextView {
         }
 
         return spannableString;
+    }
+
+
+    /** 响应部分区域文本点击事件 */
+    public interface Listener {
+        void click();
+    }
+
+    public static void clickSub(String full, String sub, int color, TextView tv, final Listener listener) {
+
+
+        final SpannableStringBuilder style = new SpannableStringBuilder();
+
+        // 设置文字
+        style.append(full);
+
+        // 设置部分文字点击事件
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override public void onClick(@NonNull View widget) {
+                if (null != listener) {
+                    listener.click();
+                }
+            }
+
+            @Override public void updateDrawState(TextPaint ds) {
+                ds.setUnderlineText(false);
+                // super.updateDrawState(ds);
+            }
+        };
+
+        int iStart = full.indexOf(sub);
+        int iEnd = iStart + sub.length();
+
+        style.setSpan(clickableSpan, iStart, iEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv.setText(style);
+
+        // 设置部分文字颜色
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(color);
+        style.setSpan(foregroundColorSpan, iStart, iEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // 配置给TextView
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
+        tv.setText(style);
     }
 }

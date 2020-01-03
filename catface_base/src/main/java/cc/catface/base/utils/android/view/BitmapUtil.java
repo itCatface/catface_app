@@ -306,6 +306,28 @@ public class BitmapUtil {
      * @return
      */
     public static byte[] bitmap2Byte(Bitmap bm) {
+        Bitmap outBitmap = Bitmap.createScaledBitmap(bm, 960, bm.getHeight() * 960 / bm.getWidth(), true);
+        if (bm != outBitmap) {
+            bm.recycle();
+            bm = null;
+        }
+        byte[] compressData = null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            try {
+                outBitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            compressData = baos.toByteArray();
+            baos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return compressData;
+    }
+
+    public static byte[] bitmap2Byte2(Bitmap bm) {
         Bitmap outBitmap = Bitmap.createScaledBitmap(bm, 150, bm.getHeight() * 150 / bm.getWidth(), true);
         if (bm != outBitmap) {
             bm.recycle();
@@ -524,6 +546,7 @@ public class BitmapUtil {
      */
 
     /*---------------------*/
+
     /**
      * 保存照片quality[0-100]
      */
@@ -602,7 +625,6 @@ public class BitmapUtil {
 
         return outputBitmap;
     }
-
 
 
     /**

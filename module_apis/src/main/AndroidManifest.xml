@@ -7,8 +7,6 @@
     <application>
         <activity android:name=".pdf.PDFActivity" />
         <activity android:name=".nano_httpd.view.ServerActivity" />
-        <!-- 讯飞相关 -->
-
         <activity android:name=".load_img.LoadImgActivity" />
         <activity android:name=".brvah.view.BRVAH_Activity" />
         <activity android:name=".memo.view.MemoActivity" />

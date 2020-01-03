@@ -3,42 +3,80 @@
 
     <data />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="40dp">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnCamera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="camera" />
 
-        <Button
-            android:id="@+id/btnGallery"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="gallery" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnRequest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="在线印刷OCR" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="结果在此展示"
-            android:padding="10dp"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btCamera"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="拍照" />
 
-        <ImageView
-            android:id="@+id/iv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btGallery"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="相册" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btOCR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ocr" />
+
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/tvOCR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btGson"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="gson解析" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvParse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="解析结果"
+                android:padding="10dp"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
 </layout>

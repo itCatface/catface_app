@@ -3,7 +3,6 @@ package cc.catface.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.os.StrictMode;
 
 import androidx.multidex.MultiDex;
 
@@ -19,6 +18,7 @@ import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
 import cc.catface.base.utils.android.crash.CrashHandler;
 import cc.catface.ctool.context.TContext;
+import cc.catface.ctool.system.sensor.camera.TPhoto;
 import cc.catface.start.CrashHandlerActivity;
 
 //import com.mob.MobSDK;
@@ -30,10 +30,7 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        /* android 7.0系统解决拍照的问题 */
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
-        builder.detectFileUriExposure();
+        TPhoto.handle7Camera();
 
         /* 各模块依赖的Application初始化操作 */
         ARouterApp.setContext(this);

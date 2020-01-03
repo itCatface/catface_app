@@ -12,6 +12,8 @@ import cc.catface.ctool.system.TClipboard;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ * -
+ * textview中加入属性android:textIsSelectable="true"即可选择复制
  */
 public class ClipboardFm extends LightFm<LightPresenter, ApiFmClipboardBinding> {
     @Override public int layoutId() {

@@ -34,6 +34,16 @@
             android:layout_height="wrap_content"
             android:hint="content2" />
 
+        <TextView
+            android:id="@+id/tvWaitCopy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="这是一段等待复制的测试文本，应该可以选择复制，路漫漫其修远兮，吾将上下而求索"
+            android:textColor="#000"
+            android:textIsSelectable="true"
+            android:textSize="18sp" />
+
         <Button
             android:id="@+id/btCopy1"
             android:layout_width="match_parent"

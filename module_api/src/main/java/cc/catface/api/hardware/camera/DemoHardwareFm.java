@@ -18,12 +18,14 @@ import java.io.IOException;
 import cc.catface.api.ApiHolderActivity;
 import cc.catface.api.R;
 import cc.catface.api.databinding.ApiActivityVibratorCameraBinding;
+import cc.catface.api.hardware.camerax.CameraXActivity;
 import cc.catface.api.hardware.qrcode.DemoScanQrcodeFm;
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.context.TFlash;
 import cc.catface.ctool.context.TVibrator;
 import cc.catface.base.utils.android.view.ImageUtil;
+import cc.catface.ctool.view.activity.TActivity;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -47,6 +49,7 @@ public class DemoHardwareFm extends LightFm<LightPresenter, ApiActivityVibratorC
         mBinding.btTakePictureWithCrop.setOnClickListener(v -> takePictureWithCrop());
         mBinding.btChoosePicture.setOnClickListener(v -> chosePicture());
         mBinding.btWater.setOnClickListener(v -> addWaterMask2Picture());
+        mBinding.bt2camerax.setOnClickListener(v -> TActivity.startActivity(mActivity, CameraXActivity.class));
     }
 
     public static final int TAKE_PICTURE_JUST = 0;

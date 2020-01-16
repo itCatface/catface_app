@@ -20,6 +20,7 @@
 
         <activity android:name=".view.anim_activity_transfer.test.MainActivity" />
         <activity android:name=".view.anim_activity_transfer.test.Num2Activity" />
+        <activity android:name=".hardware.camerax.CameraXActivity" />
         <activity
             android:name=".ApiHolderActivity"
             android:windowSoftInputMode="adjustPan" />

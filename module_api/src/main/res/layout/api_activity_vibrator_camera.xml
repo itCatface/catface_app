@@ -103,6 +103,13 @@
             android:text="camerax"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/bt2camera2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="camera2"
+            android:textAllCaps="false" />
+
         <ImageView
             android:id="@+id/iv_picture"
             android:layout_width="match_parent"

@@ -89,4 +89,21 @@ public class WebOCREngine {
         }
         return result;
     }
+
+
+    // OCR结果解析示例
+    /*result = "";
+
+
+    OcrResult ocrResult = new Gson().fromJson(json, OcrResult.class);
+    List<OcrResult.Data.Block> blocks = ocrResult.getData().getBlock();
+    for (OcrResult.Data.Block block : blocks) {
+        List<OcrResult.Data.Block.Line> lines = block.getLine();
+        for (OcrResult.Data.Block.Line line : lines) {
+            List<OcrResult.Data.Block.Line.Word> words = line.getWord();
+            for (OcrResult.Data.Block.Line.Word word : words) {
+                result += word.getContent();
+            }
+        }
+    }*/
 }

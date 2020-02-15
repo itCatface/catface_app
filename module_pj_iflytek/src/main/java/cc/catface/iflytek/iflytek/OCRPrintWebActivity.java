@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -30,7 +32,7 @@ import cc.catface.ctool.system.sensor.camera.TPhoto;
 import cc.catface.iflytek.R;
 import cc.catface.iflytek.databinding.ApisIflytekOcrPrintWebBinding;
 import cc.catface.iflytek.domain.OcrResult;
-import cc.catface.iflytek.tools.ocr.WebOCR;
+import cc.catface.iflytek.tools.ocr.WebOCREngine;
 
 public class OCRPrintWebActivity extends AppCompatActivity {
     private ApisIflytekOcrPrintWebBinding mBinding;
@@ -38,7 +40,8 @@ public class OCRPrintWebActivity extends AppCompatActivity {
     String result = "";
     String json = "";
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.apis_iflytek_ocr_print_web);
 
@@ -55,7 +58,7 @@ public class OCRPrintWebActivity extends AppCompatActivity {
         }
 
 
-        /* 拍照&相册 */
+        /* 拍照(+系统裁剪)&相册 */
         mBinding.btCamera.setOnClickListener(v -> {
             mPath = TPhoto.take(this);
         });
@@ -72,7 +75,8 @@ public class OCRPrintWebActivity extends AppCompatActivity {
                 result = "";
                 try {
                     byte[] bytes = BitmapUtil.bitmap2Byte(bitmap);
-                    json = WebOCR.request(bytes);
+                    json = WebOCREngine.request(bytes);
+                    Log.d("root", "json is: " + json);
                     runOnUiThread(() -> {
                         mBinding.btOCR.setText("OCR[识别完成]");
                         mBinding.tvOCR.setText(json);
@@ -109,15 +113,19 @@ public class OCRPrintWebActivity extends AppCompatActivity {
 
     private String mPath;
 
-    @Override protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
             case TPhoto.RC_TAKE_PHOTO:
-                RequestOptions requestOptions = new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE);
-                Glide.with(this).load(mPath).apply(requestOptions).into(mBinding.iv);
+                mPath = TPhoto.crop(Uri.fromFile(new File(mPath)), this);
+                // RequestOptions requestOptions = new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE);
+                // Glide.with(this).load(mPath).apply(requestOptions).into(mBinding.iv);
                 break;
             case TPhoto.RC_CHOOSE_PHOTO:
+                if (null == data) return;
+                ;
                 Uri uri = data.getData();
                 String filePath = TFile4Photo.getFilePathByUri(this, uri);
                 mPath = filePath;
@@ -125,6 +133,9 @@ public class OCRPrintWebActivity extends AppCompatActivity {
                     RequestOptions requestOptions1 = new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE);
                     Glide.with(this).load(filePath).apply(requestOptions1).into(mBinding.iv);
                 }
+                break;
+            case TPhoto.RC_CROP_PHOTO:
+                Glide.with(this).load(mPath).into(mBinding.iv);
                 break;
         }
     }

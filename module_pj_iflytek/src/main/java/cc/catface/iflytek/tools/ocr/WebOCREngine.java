@@ -8,16 +8,22 @@ package cc.catface.iflytek.tools.ocr;
  * @author iflytek
  */
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class WebOCR {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+
+public class WebOCREngine {
     // OCR webapi 接口地址
     private static final String WEBOCR_URL = "https://webapi.xfyun.cn/v1/service/v1/ocr/general";
     // 应用ID (必须为webapi类型应用，并印刷文字识别服务，参考帖子如何创建一个webapi应用：http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=36481)
@@ -28,51 +34,59 @@ public class WebOCR {
     private static final String LOCATION = "false";
     // 语种(可选值：en（英文），cn|en（中文或中英混合)
     private static final String LANGUAGE = "cn|en";
-    // 图片地址,图片最短边至少15px，最长边最大4096px，格式jpg、png、bmp
-    private static final String PIC_PATH = "C:\\Users\\Administrator\\Desktop\\20150614132448_WsTUu.jpeg";
-
-    /**
-     * OCR WebAPI 调用示例程序
-     *
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
-        Map<String, String> header = buildHttpHeader();
-        byte[] imageByteArray = FileUtil.read(PIC_PATH);
-        String imageBase64 = new String(Base64.encodeBase64(imageByteArray), "UTF-8");
-        String result = HttpUtil.doPost1(WEBOCR_URL, header, "image=" + URLEncoder.encode(imageBase64, "UTF-8"));
-        System.out.println("OCR WebAPI 接口调用结果：" + result);
-        //  错误码链接：https://www.xfyun.cn/document/error-code (code返回错误码时必看)
-    }
-
-    public static String request(String path) throws IOException {
-        Map<String, String> header = buildHttpHeader();
-        byte[] imageByteArray = FileUtil.read(path);
-        String imageBase64 = new String(Base64.encodeBase64(imageByteArray), "UTF-8");
-        return HttpUtil.doPost1(WEBOCR_URL, header, "image=" + URLEncoder.encode(imageBase64, "UTF-8"));
-    }
 
     public static String request(byte[] bytes) throws IOException {
         Map<String, String> header = buildHttpHeader();
-        String imageBase64 = new String(Base64.encodeBase64(bytes), "UTF-8");
-        return HttpUtil.doPost1(WEBOCR_URL, header, "image=" + URLEncoder.encode(imageBase64, "UTF-8"));
+        String imageBase64 = new String(Base64.encodeBase64(bytes), StandardCharsets.UTF_8);
+        return post(WEBOCR_URL, header, "image=" + URLEncoder.encode(imageBase64, "UTF-8"));
     }
 
     /**
      * 组装http请求头
      */
-    private static Map<String, String> buildHttpHeader() throws UnsupportedEncodingException {
+    private static Map<String, String> buildHttpHeader() {
         String curTime = System.currentTimeMillis() / 1000L + "";
         String param = "{\"location\":\"" + LOCATION + "\",\"language\":\"" + LANGUAGE + "\"}";
-        String paramBase64 = new String(Base64.encodeBase64(param.getBytes("UTF-8")));
+        String paramBase64 = new String(Base64.encodeBase64(param.getBytes(StandardCharsets.UTF_8)));
         String checkSum = DigestUtils.md5Hex(API_KEY + curTime + paramBase64);
-        Map<String, String> header = new HashMap<String, String>();
+        Map<String, String> header = new HashMap<>();
         header.put("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
         header.put("X-Param", paramBase64);
         header.put("X-CurTime", curTime);
         header.put("X-CheckSum", checkSum);
         header.put("X-Appid", APPID);
         return header;
+    }
+
+
+    public static String post(String url, Map<String, String> header, String body) {
+        String result = "";
+        BufferedReader in = null;
+        PrintWriter out = null;
+        try {
+            URL realUrl = new URL(url);
+            URLConnection connection = realUrl.openConnection();
+            HttpURLConnection httpURLConnection = (HttpURLConnection) connection;
+            for (String key : header.keySet()) {
+                httpURLConnection.setRequestProperty(key, header.get(key));
+            }
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+            out = new PrintWriter(httpURLConnection.getOutputStream());
+            out.print(body);
+            out.flush();
+            if (HttpURLConnection.HTTP_OK != httpURLConnection.getResponseCode()) {
+                System.out.println("Http 请求失败，状态码：" + httpURLConnection.getResponseCode());
+                return null;
+            }
+            in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return result;
     }
 }

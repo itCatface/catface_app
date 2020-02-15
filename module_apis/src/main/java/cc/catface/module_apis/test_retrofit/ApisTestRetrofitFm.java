@@ -167,19 +167,19 @@ public class ApisTestRetrofitFm extends LightFm<LightPresenter, ApisFragmentTest
 
         /**  */
         mBinding.btDownloadHttp.setOnClickListener(v -> {
-            cc.catface.base.utils.android.net.http.point_download.DownloadEngine.getInstance().start("http://dldir1.qq.com/qqyy/pc/QQPlayerSetup4.1.3.658.exe", "d:/sasa", "temp.exe", new cc.catface.base.utils.android.net.http.point_download.DownloadEngine.Callback() {
-                @Override public void onProgress(long length, long totalLength) {
-                    TLog.d("正在下载： " + length / totalLength);
-                }
-
-                @Override public void onFailure(String error) {
-                    TLog.d("下载失败：" + error);
-                }
-
-                @Override public void onSuccess() {
-                    TLog.d("下载成功");
-                }
-            });
+//            cc.catface.base.utils.android.net.http.point_download.DownloadEngine.getInstance().start("http://dldir1.qq.com/qqyy/pc/QQPlayerSetup4.1.3.658.exe", "d:/sasa", "temp.exe", new cc.catface.base.utils.android.net.http.point_download.DownloadEngine.Callback() {
+//                @Override public void onProgress(long length, long totalLength) {
+//                    TLog.d("正在下载： " + length / totalLength);
+//                }
+//
+//                @Override public void onFailure(String error) {
+//                    TLog.d("下载失败：" + error);
+//                }
+//
+//                @Override public void onSuccess() {
+//                    TLog.d("下载成功");
+//                }
+//            });
         });
 
 

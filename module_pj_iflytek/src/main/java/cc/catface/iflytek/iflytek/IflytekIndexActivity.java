@@ -107,6 +107,10 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
                 // 印刷体在线OCR识别
                 intent = new Intent(this, OCRPrintWebActivity.class);
                 break;
+            case 7:
+                // 高德地图测试
+                intent = new Intent(this, AmapActivity.class);
+                break;
             default:
                 showTip("此功能将于近期开放，敬请期待。");
                 break;
@@ -118,7 +122,7 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
 
 
     //Menu 列表
-    String items[] = {"立刻体验语音听写", "立刻体验语法识别(X)", "立刻体验语义理解", "立刻体验语音合成", "立刻体验语音唤醒(X)", "立刻体验声纹密码(X)", "印刷体在线OCR"};
+    String items[] = {"立刻体验语音听写", "立刻体验语法识别(X)", "立刻体验语义理解", "立刻体验语音合成", "立刻体验语音唤醒(X)", "立刻体验声纹密码(X)", "印刷体在线OCR", "amap定位demo"};
 
     private class SimpleAdapter extends BaseAdapter {
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -157,7 +161,9 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
     }
 
 
-    /** tool bar */
+    /**
+     * tool bar
+     */
     private ActionBar mBar;
 
     private void initToolBar() {

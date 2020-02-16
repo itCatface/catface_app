@@ -7,7 +7,17 @@
         <activity android:name=".iflytek.IflytekTtsActivity" />
         <activity android:name=".AiuiActivity" />
         <activity android:name=".iflytek.OCRPrintWebActivity" />
+        <activity android:name=".iflytek.AmapActivity" />
 
         <service android:name=".service.AIUIServer" />
+
+
+        <!-- for amap -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="f95c324f7f380e54613a638ba45ec253" />
+        <service
+            android:name="com.amap.api.location.APSService"
+            android:foregroundServiceType="location" />
     </application>
 </manifest>

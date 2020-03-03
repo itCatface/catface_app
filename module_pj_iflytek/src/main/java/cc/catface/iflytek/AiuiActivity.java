@@ -7,13 +7,12 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.method.ScrollingMovementMethod;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.ctool.system.TLog;
 import cc.catface.iflytek.databinding.ActivityAiuiBinding;
 import cc.catface.iflytek.domain.AiuiIntentData;
 import cc.catface.iflytek.mail.MailTest;

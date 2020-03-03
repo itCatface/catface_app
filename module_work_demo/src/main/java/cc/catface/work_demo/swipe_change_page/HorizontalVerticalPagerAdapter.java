@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.ctool.system.TLog;
 
 /**
  * Created by Administrator on 2016/8/29 0029.

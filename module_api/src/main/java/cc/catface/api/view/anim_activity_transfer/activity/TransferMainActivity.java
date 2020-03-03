@@ -10,7 +10,7 @@ import cc.catface.api.R;
 import cc.catface.api.databinding.ApiAnimActivityTransferMainBinding;
 import cc.catface.base.core_framework.light_mvp.LightAct;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
-import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.ctool.system.TLog;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 
 /**

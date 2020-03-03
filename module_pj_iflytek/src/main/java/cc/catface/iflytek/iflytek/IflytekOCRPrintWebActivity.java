@@ -30,12 +30,12 @@ import cc.catface.base.utils.android.view.BitmapUtil;
 import cc.catface.ctool.system.sensor.camera.TFile4Photo;
 import cc.catface.ctool.system.sensor.camera.TPhoto;
 import cc.catface.iflytek.R;
-import cc.catface.iflytek.databinding.ApisIflytekOcrPrintWebBinding;
+import cc.catface.iflytek.databinding.ApisIflytekActivityOcrPrintWebBinding;
 import cc.catface.iflytek.domain.OcrResult;
 import cc.catface.iflytek.tools.ocr.WebOCREngine;
 
-public class OCRPrintWebActivity extends AppCompatActivity {
-    private ApisIflytekOcrPrintWebBinding mBinding;
+public class IflytekOCRPrintWebActivity extends AppCompatActivity {
+    private ApisIflytekActivityOcrPrintWebBinding mBinding;
 
     String result = "";
     String json = "";
@@ -43,7 +43,7 @@ public class OCRPrintWebActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.apis_iflytek_ocr_print_web);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.apis_iflytek_activity_ocr_print_web);
 
         /* 权限申请 */
         try {

@@ -26,7 +26,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.light_mvp.LightAct;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
-import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.ctool.system.TLog;
 import cc.catface.iflytek.AiuiActivity;
 import cc.catface.iflytek.R;
 import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
@@ -105,11 +105,11 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
                 break;
             case 6:
                 // 印刷体在线OCR识别
-                intent = new Intent(this, OCRPrintWebActivity.class);
+                intent = new Intent(this, IflytekOCRPrintWebActivity.class);
                 break;
             case 7:
                 // 高德地图测试
-                intent = new Intent(this, AmapActivity.class);
+                intent = new Intent(this, IflytekAmapActivity.class);
                 break;
             default:
                 showTip("此功能将于近期开放，敬请期待。");

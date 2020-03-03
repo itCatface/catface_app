@@ -5,7 +5,7 @@ import android.view.View;
 
 import java.util.Date;
 
-import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.ctool.system.TLog;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 
 /**

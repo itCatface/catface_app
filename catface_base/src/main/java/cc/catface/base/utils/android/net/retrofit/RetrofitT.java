@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
-import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.ctool.system.TLog;
 import cc.catface.base.utils.android.net.okhttp.LogInterceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

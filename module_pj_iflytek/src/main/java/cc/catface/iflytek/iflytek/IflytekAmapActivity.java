@@ -3,7 +3,6 @@ package cc.catface.iflytek.iflytek;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
 
 import cc.catface.iflytek.R;
 
-public class AmapActivity extends AppCompatActivity implements AMapLocationListener, PoiSearch.OnPoiSearchListener {
+public class IflytekAmapActivity extends AppCompatActivity implements AMapLocationListener, PoiSearch.OnPoiSearchListener {
 
     private TextView tvResult, tvPoiResult;
     private EditText etLocation;
@@ -233,7 +232,7 @@ public class AmapActivity extends AppCompatActivity implements AMapLocationListe
                 String poiResult = "";
                 for (PoiItem poi : pois) {
                     poiResult += poi.getSnippet() + "\n";
-                    Toast.makeText(AmapActivity.this, poiResult, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IflytekAmapActivity.this, poiResult, Toast.LENGTH_SHORT).show();
                 }
             }
 

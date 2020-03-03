@@ -5,7 +5,7 @@ import android.view.View;
 
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
-import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.ctool.system.TLog;
 import cc.catface.work_demo.R;
 import cc.catface.work_demo.databinding.WorkDemoFmSwipeChangePageTempBinding;
 

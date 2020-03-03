@@ -25,7 +25,7 @@
         <activity android:name=".iflytek.IflytekIatActivity" />
         <activity android:name=".AiuiActivity" />
         <activity android:name=".iflytek.IflytekTtsActivity" />
-        <activity android:name=".iflytek.OCRPrintWebActivity" />
+        <activity android:name=".iflytek.IflytekOCRPrintWebActivity" />
 
         <service android:name=".service.AIUIServer" />
     </application>

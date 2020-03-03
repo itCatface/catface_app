@@ -35,7 +35,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import cc.catface.base.utils.android.common_print.log.TLog;
+import cc.catface.ctool.system.TLog;
 
 /**
  * 图片加载及转化工具 ----------------------------------------------------------------------- 延伸：一个Bitmap到底占用多大内存？系统给每个应用程序分配多大内存？ Bitmap占用的内存为：像素总数

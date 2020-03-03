@@ -18,10 +18,9 @@ import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
 import cc.catface.base.utils.android.crash.CrashHandler;
 import cc.catface.ctool.context.TContext;
+import cc.catface.ctool.system.TLog;
 import cc.catface.ctool.system.sensor.camera.TPhoto;
 import cc.catface.start.CrashHandlerActivity;
-
-//import com.mob.MobSDK;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -31,6 +30,9 @@ public class App extends Application {
     @Override public void onCreate() {
         super.onCreate();
         TPhoto.handle7Camera();
+
+        /* 初始化日志打印 */
+        TLog.init("catface", true, false, "");
 
         /* 各模块依赖的Application初始化操作 */
         ARouterApp.setContext(this);
@@ -43,9 +45,6 @@ public class App extends Application {
 
         /* 初始化讯飞能力 */
         initIflytek();
-
-        /* 初始化MOB能力[分享] */
-        initMob();
 
         /* 初始化内存泄漏检查工具 */
         initLeakCanary();
@@ -77,11 +76,6 @@ public class App extends Application {
     private void initIflytek() {
         String param = ("appid=" + getString(R.string.app_id)) + "," + SpeechConstant.ENGINE_MODE + "=" + SpeechConstant.MODE_MSC;
         SpeechUtility.createUtility(App.this, param);
-    }
-
-
-    private void initMob() {
-        //        MobSDK.init(this);
     }
 
 

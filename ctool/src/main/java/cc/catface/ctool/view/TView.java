@@ -7,18 +7,33 @@ import android.view.View;
  */
 public class TView {
 
+    /**
+     * 设置所有控件显示属性为View.GONE
+     *
+     * @param views 控件列表
+     */
     public static void gone(View... views) {
         for (View view : views) {
             view.setVisibility(View.GONE);
         }
     }
 
+    /**
+     * 设置所有控件显示属性为View.INVISIBLE
+     *
+     * @param views 控件列表
+     */
     public static void invisible(View... views) {
         for (View view : views) {
             view.setVisibility(View.INVISIBLE);
         }
     }
 
+    /**
+     * 设置所有控件显示属性为View.VISIBLE
+     *
+     * @param views 控件列表
+     */
     public static void visible(View... views) {
         for (View view : views) {
             view.setVisibility(View.VISIBLE);

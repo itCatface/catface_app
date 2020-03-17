@@ -22,11 +22,11 @@ public class SubscriptionsPresenterImpl extends LightPresenter<SubscriptionsVP.S
         OkHttpUtil.get("https://wanandroid.com/wxarticle/chapters/json", new OkHttpRequestCallback() {
             @Override public void onSuccess(String result) {
                 SubscriptionsData data = new Gson().fromJson(result, SubscriptionsData.class);
-                mView.requestSuccess(data);
+                getView().requestSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestFailure(error);
+                getView().requestFailure(error);
             }
         });
     }

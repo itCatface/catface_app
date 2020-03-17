@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="D:/softwares/gradle-5.1.1" />
@@ -15,12 +14,16 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app_base" />
             <option value="$PROJECT_DIR$/catface_base" />
+            <option value="$PROJECT_DIR$/ctool" />
+            <option value="$PROJECT_DIR$/lib_hover_scroll" />
             <option value="$PROJECT_DIR$/module_api" />
             <option value="$PROJECT_DIR$/module_apis" />
             <option value="$PROJECT_DIR$/module_pj_iflytek" />
             <option value="$PROJECT_DIR$/module_pj_showapi" />
             <option value="$PROJECT_DIR$/module_pj_wanandroid" />
+            <option value="$PROJECT_DIR$/module_pj_wechat" />
             <option value="$PROJECT_DIR$/module_start" />
+            <option value="$PROJECT_DIR$/module_view" />
             <option value="$PROJECT_DIR$/module_work_demo" />
           </set>
         </option>

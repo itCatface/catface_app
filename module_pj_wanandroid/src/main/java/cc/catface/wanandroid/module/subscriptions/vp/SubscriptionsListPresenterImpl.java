@@ -25,11 +25,11 @@ public class SubscriptionsListPresenterImpl extends LightPresenter<Subscriptions
             @Override public void onSuccess(String result) {
                 TLog.d("SubscriptionsListPresenterImpl", "SubscriptionsListPresenterImpl：" + result);
                 SubscriptionsListData data = new Gson().fromJson(result, SubscriptionsListData.class);
-                mView.requestSuccess(data);
+                getView().requestSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestFailure(error);
+                getView().requestFailure(error);
             }
         });
     }

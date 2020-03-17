@@ -26,11 +26,11 @@ public class KnowledgePresenterImpl extends LightPresenter<KnowledgeVP.Knowledge
             @Override public void onSuccess(String result) {
                 TLog.d("result: " + result);
                 KnowledgeData data = new Gson().fromJson(result, KnowledgeData.class);
-                mView.requestSuccess(data);
+                getView().requestSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestFailure();
+                getView().requestFailure();
             }
         });
     }

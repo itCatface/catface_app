@@ -26,11 +26,11 @@ public class KnowledgeColumnListPresenterImpl extends LightPresenter<KnowledgeCo
             @Override public void onSuccess(String result) {
                 TLog.d("SubscriptionsListPresenterImpl", "SubscriptionsListPresenterImpl：" + result);
                 KnowledgeColumnListData data = new Gson().fromJson(result, KnowledgeColumnListData.class);
-                mView.requestSuccess(data);
+                getView().requestSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestFailure(error);
+                getView().requestFailure(error);
             }
         });
     }

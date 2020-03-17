@@ -24,11 +24,11 @@ public class ProjectsPresenterImpl extends LightPresenter<ProjectsVP.ProjectsVie
             @Override public void onSuccess(String result) {
                 TLog.d("result: " + result);
                 ProjectsData data = new Gson().fromJson(result, ProjectsData.class);
-                mView.requestSuccess(data);
+                getView().requestSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestFailure(error);
+                getView().requestFailure(error);
             }
         });
     }

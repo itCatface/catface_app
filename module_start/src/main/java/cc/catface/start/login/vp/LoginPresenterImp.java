@@ -20,16 +20,16 @@ public class LoginPresenterImp extends LightPresenter<LoginVP.LoginView> impleme
     private final LoginModelImp mModel = new LoginModelImp();
 
     @Override public void startRequest() {
-        mView.requesting();
+        getView().requesting();
 
 
         TTimer.timeFinished(TNumber.getRandom(1, 2) * 1_000, () -> mModel.request(new LoginModel.Callback() {
             @Override public void onSuccess(String result) {
-                mView.requestSuccess(result);
+                getView().requestSuccess(result);
             }
 
             @Override public void onError(String error) {
-                mView.requestError(error);
+                getView().requestError(error);
             }
         }));
     }

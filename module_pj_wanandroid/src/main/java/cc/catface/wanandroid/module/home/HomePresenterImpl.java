@@ -29,11 +29,11 @@ public class HomePresenterImpl extends LightPresenter<HomeVP.HomeView> implement
                 myBlogBanner.setUrl(WanandroidConst.url_blog);
                 myBlogBanner.setTitle("catface's blog");
                 data.getData().add(0, myBlogBanner);
-                mView.requestBannerSuccess(data);
+                getView().requestBannerSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestBannerFailure();
+                getView().requestBannerFailure();
             }
         });
     }
@@ -42,11 +42,11 @@ public class HomePresenterImpl extends LightPresenter<HomeVP.HomeView> implement
         OkHttpUtil.get(WanandroidConst.url_home_top_article, new OkHttpRequestCallback() {
             @Override public void onSuccess(String result) {
                 TopArticle data = new Gson().fromJson(result, TopArticle.class);
-                mView.requestTopArticleSuccess(data);
+                getView().requestTopArticleSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestTopArticleFailure();
+                getView().requestTopArticleFailure();
             }
         });
     }

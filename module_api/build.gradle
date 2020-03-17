@@ -23,8 +23,6 @@ android {
             applicationId "cc.catface.api"
         }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
 //        javaCompileOptions {
 //            annotationProcessorOptions {
 //                //room的数据库概要、记录
@@ -68,10 +66,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor "com.alibaba:arouter-compiler:1.2.2"

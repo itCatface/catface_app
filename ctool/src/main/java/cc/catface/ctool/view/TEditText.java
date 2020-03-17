@@ -12,7 +12,12 @@ import androidx.annotation.NonNull;
 public class TEditText {
 
 
-    /* 数字和大小写字母[isShowNumberKeyboard显示数字/字母键盘] */
+    /**
+     * 控制只能输入数字和英文大小写
+     *
+     * @param isShowNumberKeyboard 显示数字/字字母键盘
+     * @param editTexts            所有控件
+     */
     public static void filterNumberEnChar(boolean isShowNumberKeyboard, EditText... editTexts) {
         if (isShowNumberKeyboard) {
             for (EditText editText : editTexts) {

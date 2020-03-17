@@ -23,22 +23,22 @@ public class FrameMVPPresenterImp extends LightPresenter<FrameMVP_VP.View> imple
         mPassword = password;
 
         if (!TextUtils.isEmpty(mUsername) && mUsername.equals(mPassword)) {
-            mView.checkAccountPass();
+            getView().checkAccountPass();
             return;
         }
         if (TextUtils.isEmpty(mUsername) || TextUtils.isEmpty(mPassword)) {
-            mView.checkAccountNotPass("账号或密码不能为空~");
+            getView().checkAccountNotPass("账号或密码不能为空~");
         } else {
-            mView.checkAccountNotPass("账号或密码错误");
+            getView().checkAccountNotPass("账号或密码错误");
         }
     }
 
     @Override public void login() {
         TTimer.timeFinished(TNumber.getRandom(1_000, 4_000), () -> {
             if (1 == TNumber.getRandom(0, 2)) {
-                mView.loginSuccess("恭喜~登陆成功-->" + mUsername + " - " + mPassword);
+                getView().loginSuccess("恭喜~登陆成功-->" + mUsername + " - " + mPassword);
             } else {
-                mView.loginFailure("糟糕~登录超时...");
+                getView().loginFailure("糟糕~登录超时...");
             }
         });
     }

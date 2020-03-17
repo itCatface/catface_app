@@ -26,7 +26,7 @@ public class MainPresenterImp extends LightPresenter<MainVP.MainView> implements
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.ACCESS_FINE_LOCATION*/).subscribe(granted -> {
             if (!granted) {
-                mView.requestPermissionFailure();
+                getView().requestPermissionFailure();
             }
             //所有权限通过，初始化界面
             onPermissionChecked();
@@ -34,6 +34,6 @@ public class MainPresenterImp extends LightPresenter<MainVP.MainView> implements
     }
 
     @CallSuper private void onPermissionChecked() {
-        mView.requestPermissionSuccess();
+        getView().requestPermissionSuccess();
     }
 }

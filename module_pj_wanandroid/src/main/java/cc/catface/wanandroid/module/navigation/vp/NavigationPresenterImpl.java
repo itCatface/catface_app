@@ -22,11 +22,11 @@ public class NavigationPresenterImpl extends LightPresenter<NavigationVP.Navigat
         OkHttpUtil.get("https://www.wanandroid.com/navi/json", new OkHttpRequestCallback() {
             @Override public void onSuccess(String result) {
                 NavigationData data = new Gson().fromJson(result, NavigationData.class);
-                mView.requestSuccess(data);
+                getView().requestSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestFailure(error);
+                getView().requestFailure(error);
             }
         });
     }

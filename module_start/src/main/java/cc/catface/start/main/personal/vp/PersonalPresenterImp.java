@@ -11,7 +11,7 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
 public class PersonalPresenterImp extends LightPresenter<PersonalVP.PersonalView> implements PersonalVP.PersonalPresenter {
 
     public void t() {
-        mView.loadBaiduSuc(new Date().toLocaleString());
+        getView().loadBaiduSuc(new Date().toLocaleString());
     }
 
 

@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import com.gyf.immersionbar.ImmersionBar;
-
 import java.util.Objects;
 
 import cc.catface.base.core_framework.BaseFunFm;
@@ -45,8 +43,14 @@ public abstract class LightFm<P extends LightPresenter, B extends ViewDataBindin
     }
 
     @Override public void onDestroy() {
-        if (null != mPresenter) mPresenter.onDetachView();
-        if (null != mBinding) mBinding.unbind();
+        if (null != mPresenter) {
+            mPresenter.onDetachView();
+            mPresenter = null;
+        }
+        if (null != mBinding) {
+            mBinding.unbind();
+            mBinding = null;
+        }
         super.onDestroy();
     }
 

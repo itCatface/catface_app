@@ -25,11 +25,11 @@ public class ProjectsListPresenterImpl extends LightPresenter<ProjectsListVP.Pro
             @Override public void onSuccess(String result) {
                 TLog.d("SubscriptionsListPresenterImpl", "SubscriptionsListPresenterImpl：" + result);
                 ProjectsListData data = new Gson().fromJson(result, ProjectsListData.class);
-                mView.requestSuccess(data);
+                getView().requestSuccess(data);
             }
 
             @Override public void onFailure(String error) {
-                mView.requestFailure(error);
+                getView().requestFailure(error);
             }
         });
     }

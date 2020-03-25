@@ -30,6 +30,11 @@ public class SplashActivity extends LightAct<SplashPresenterImp, ActivityStartSp
         startAnim();
     }
 
+    @Override protected void initPresenter() {
+        mPresenter = new SplashPresenterImp(this, this);
+        mPresenter.initCrashHandler();
+    }
+
     private void startAnim() {
         // 文字平移
         ObjectAnimator animTvTranslationY = ObjectAnimator.ofFloat(mBinding.tvSplash, "translationY", -50f, 0f);

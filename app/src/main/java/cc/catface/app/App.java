@@ -2,25 +2,20 @@ package cc.catface.app;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 
 import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.iflytek.cloud.SpeechConstant;
-import com.iflytek.cloud.SpeechUtility;
 import com.squareup.leakcanary.LeakCanary;
 
 import java.lang.ref.WeakReference;
 
 import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
-import cc.catface.base.utils.android.crash.CrashHandler;
 import cc.catface.ctool.context.TContext;
 import cc.catface.ctool.system.TLog;
 import cc.catface.ctool.system.sensor.camera.TPhoto;
-import cc.catface.start.CrashHandlerActivity;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -43,21 +38,17 @@ public class App extends Application {
         /* 初始化ARouter */
         initARouter();
 
-        /* 初始化讯飞能力 */
-        initIflytek();
-
         /* 初始化内存泄漏检查工具 */
         initLeakCanary();
-
-        /* 初始化全局崩溃拦截器 */
-        initCrashHandler();
 
         /* 初始化Fresco[图片加载] */
         Fresco.initialize(this);
     }
 
 
-    /** 64k */
+    /**
+     * 64k
+     */
     @Override protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
@@ -73,23 +64,8 @@ public class App extends Application {
     }
 
 
-    private void initIflytek() {
-        String param = ("appid=" + getString(R.string.app_id)) + "," + SpeechConstant.ENGINE_MODE + "=" + SpeechConstant.MODE_MSC;
-        SpeechUtility.createUtility(App.this, param);
-    }
-
-
     private void initLeakCanary() {
         if (Const.IS_DEBUG) LeakCanary.install(this);
     }
 
-    private void initCrashHandler() {
-        CrashHandler.getInstance().setCrashListener(info -> {
-            Intent intent = new Intent(this, CrashHandlerActivity.class);
-            intent.putExtra("info", info);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            android.os.Process.killProcess(android.os.Process.myPid());
-        }).init(this);
-    }
 }

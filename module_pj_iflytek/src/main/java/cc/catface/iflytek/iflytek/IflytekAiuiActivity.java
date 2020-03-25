@@ -1,4 +1,4 @@
-package cc.catface.iflytek;
+package cc.catface.iflytek.iflytek;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -13,7 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import cc.catface.ctool.system.TLog;
-import cc.catface.iflytek.databinding.ActivityAiuiBinding;
+import cc.catface.iflytek.R;
+import cc.catface.iflytek.databinding.ApisIflytekActivityAiuiBinding;
 import cc.catface.iflytek.domain.AiuiIntentData;
 import cc.catface.iflytek.mail.MailTest;
 import cc.catface.iflytek.service.AIUIServer;
@@ -21,18 +22,16 @@ import cc.catface.iflytek.service.AIUIServer;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class AiuiActivity extends AppCompatActivity implements AIUIServer.RecognizeCallback {
-    private ActivityAiuiBinding mBinding;
+public class IflytekAiuiActivity extends AppCompatActivity implements AIUIServer.RecognizeCallback {
+    private ApisIflytekActivityAiuiBinding mBinding;
 
     private ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
+        @Override public void onServiceConnected(ComponentName name, IBinder service) {
             AIUIServer.Binder binder = (AIUIServer.Binder) service;
-            binder.getServer().setCallback(AiuiActivity.this);
+            binder.getServer().setCallback(IflytekAiuiActivity.this);
         }
 
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
+        @Override public void onServiceDisconnected(ComponentName name) {
 
         }
     };
@@ -40,11 +39,11 @@ public class AiuiActivity extends AppCompatActivity implements AIUIServer.Recogn
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_aiui);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.apis_iflytek_activity_aiui);
         mBinding.tvResult.setMovementMethod(ScrollingMovementMethod.getInstance());
         mBinding.btStartAiui.setOnClickListener(view -> {
-            startService(new Intent(AiuiActivity.this, AIUIServer.class));
-            AiuiActivity.this.bindService(new Intent(AiuiActivity.this, AIUIServer.class), conn, Context.BIND_AUTO_CREATE);
+            startService(new Intent(IflytekAiuiActivity.this, AIUIServer.class));
+            IflytekAiuiActivity.this.bindService(new Intent(IflytekAiuiActivity.this, AIUIServer.class), conn, Context.BIND_AUTO_CREATE);
         });
 
         mBinding.btClear.setOnClickListener(v -> {
@@ -52,7 +51,7 @@ public class AiuiActivity extends AppCompatActivity implements AIUIServer.Recogn
         });
 
 
-        mBinding.btSendMail.setOnClickListener(v->{
+        mBinding.btSendMail.setOnClickListener(v -> {
             MailTest.sendMailByJavaMail("客户端发来日志", "测试客户端发来日志...");
         });
 
@@ -63,7 +62,9 @@ public class AiuiActivity extends AppCompatActivity implements AIUIServer.Recogn
         mBinding.btClear.setText("当前aiui状态：" + isOn);
     }
 
-    /** server's callback */
+    /**
+     * server's callback
+     */
 
 
     @Override public void onState(String state) {

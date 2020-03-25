@@ -5,7 +5,7 @@
         <activity android:name=".iflytek.IflytekIndexActivity" />
         <activity android:name=".iflytek.IflytekIatActivity" />
         <activity android:name=".iflytek.IflytekTtsActivity" />
-        <activity android:name=".AiuiActivity" />
+        <activity android:name=".iflytek.IflytekAiuiActivity" />
         <activity android:name=".iflytek.IflytekOCRPrintWebActivity" />
         <activity android:name=".iflytek.IflytekAmapActivity" />
 

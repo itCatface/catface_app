@@ -27,7 +27,7 @@ import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.light_mvp.LightAct;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.system.TLog;
-import cc.catface.iflytek.AiuiActivity;
+import cc.catface.iflytek.BaseIflytek;
 import cc.catface.iflytek.R;
 import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
 
@@ -36,6 +36,8 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
     private Toast mToast;
 
     @Override public int layoutId() {
+        BaseIflytek.init(this);
+
         return R.layout.apis_iflytek_activity_index;
     }
 
@@ -89,7 +91,7 @@ import cc.catface.iflytek.databinding.ApisIflytekActivityIndexBinding;
                 break;
             case 2:
                 // 语义理解
-                intent = new Intent(this, AiuiActivity.class);
+                intent = new Intent(this, IflytekAiuiActivity.class);
                 break;
             case 3:
                 // 合成

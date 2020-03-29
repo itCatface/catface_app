@@ -32,16 +32,14 @@ import cc.catface.ctool.context.TContext;
  */
 @Database(entities = {User.class, Book.class, Cat.class}, version = 4, exportSchema = true) public abstract class DBHelper extends RoomDatabase {
 
-    private static final String DB_DIR = Environment.getExternalStorageDirectory().getPath() + "/db_catface/";
-    private static final String DB_NAME = "db_catface";
+    private static final String DB_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + "/db_catface/db_catface.db";
 
     static synchronized DBHelper getInstance() {
         return Holder.instance;
     }
 
     private static class Holder {
-        // return Room.databaseBuilder(TContext.getContext(), DBHelper.class, DB_DIR + "/" + DB_NAME).
-        private static DBHelper instance = Room.databaseBuilder(TContext.getContext(), DBHelper.class, DB_NAME).
+        private static DBHelper instance = Room.databaseBuilder(TContext.getContext(), DBHelper.class, DB_FILE_PATH).
                 // fallbackToDestructiveMigration().   // 找不到迁移规则时销毁重建数据库
                 // fallbackToDestructiveMigrationFrom(1, 4).   // 从1到4版本升级销毁重建数据库
                         allowMainThreadQueries().   // 允许在主线程中执行操作(影响流畅性)

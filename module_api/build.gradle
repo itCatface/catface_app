@@ -76,8 +76,8 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 
     // room
-    implementation "androidx.room:room-runtime:2.2.4"
-    annotationProcessor "androidx.room:room-compiler:2.2.4" // use kapt for Kotlin
+    implementation "androidx.room:room-runtime:2.2.5"
+    annotationProcessor "androidx.room:room-compiler:2.2.5" // use kapt for Kotlin
 
     // camerax
     implementation "androidx.camera:camera-core:1.0.0-alpha01"

@@ -9,7 +9,7 @@
         <activity android:name=".iflytek.IflytekOCRPrintWebActivity" />
         <activity android:name=".iflytek.IflytekAmapActivity" />
 
-        <service android:name=".service.AIUIServer" />
+        <service android:name=".service.AIUIService" />
 
 
         <!-- for amap -->

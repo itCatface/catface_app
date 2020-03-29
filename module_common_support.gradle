@@ -1,58 +1,58 @@
-//android {
-//    compileSdkVersion 29
-//
-//    defaultConfig {
-//        minSdkVersion 21
-//        targetSdkVersion 29
-//        versionCode 1
-//        versionName "0.0.1"
-//
-//        /* 64k */
-//        multiDexEnabled true
-//
-//        /* ARouter支持 */
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "0.0.1"
+
+        /* 64k */
+        multiDexEnabled true
+
+        /* ARouter支持 */
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        /* 约束资源前缀 */
+        // resourcePrefix "${project.name}_"
+    }
+
+//    sourceSets {
+//        main {
+//            if (rootProject.ext.isBuildModule) {
+//                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+//            } else {
+//                manifest.srcFile 'src/main/AndroidManifest.xml'
+//                java {
+//                    exclude '**/debug/**'
+//                }
 //            }
 //        }
-//
-//        /* 约束资源前缀 */
-//        // resourcePrefix "${project.name}_"
 //    }
-//
-////    sourceSets {
-////        main {
-////            if (rootProject.ext.isBuildModule) {
-////                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-////            } else {
-////                manifest.srcFile 'src/main/AndroidManifest.xml'
-////                java {
-////                    exclude '**/debug/**'
-////                }
-////            }
-////        }
-////    }
-//
-//    /* data binding支持 */
-//    dataBinding {
-//        enabled = true
-//    }
-//
-//    /* java8特性支持[lambda|stream等] */
-//    compileOptions {
-//        sourceCompatibility = '1.8'
-//        targetCompatibility = '1.8'
-//    }
-//
-//    /* 构建 */
-//    buildTypes {
-//        release {
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//        }
-//    }
-//}
+
+    /* data binding支持 */
+    dataBinding {
+        enabled = true
+    }
+
+    /* java8特性支持[lambda|stream等] */
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    /* 构建 */
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')

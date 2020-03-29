@@ -17,17 +17,17 @@ import cc.catface.iflytek.R;
 import cc.catface.iflytek.databinding.ApisIflytekActivityAiuiBinding;
 import cc.catface.iflytek.domain.AiuiIntentData;
 import cc.catface.iflytek.mail.MailTest;
-import cc.catface.iflytek.service.AIUIServer;
+import cc.catface.iflytek.service.AIUIService;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class IflytekAiuiActivity extends AppCompatActivity implements AIUIServer.RecognizeCallback {
+public class IflytekAiuiActivity extends AppCompatActivity implements AIUIService.RecognizeCallback {
     private ApisIflytekActivityAiuiBinding mBinding;
 
     private ServiceConnection conn = new ServiceConnection() {
         @Override public void onServiceConnected(ComponentName name, IBinder service) {
-            AIUIServer.Binder binder = (AIUIServer.Binder) service;
+            AIUIService.Binder binder = (AIUIService.Binder) service;
             binder.getServer().setCallback(IflytekAiuiActivity.this);
         }
 
@@ -42,8 +42,8 @@ public class IflytekAiuiActivity extends AppCompatActivity implements AIUIServer
         mBinding = DataBindingUtil.setContentView(this, R.layout.apis_iflytek_activity_aiui);
         mBinding.tvResult.setMovementMethod(ScrollingMovementMethod.getInstance());
         mBinding.btStartAiui.setOnClickListener(view -> {
-            startService(new Intent(IflytekAiuiActivity.this, AIUIServer.class));
-            IflytekAiuiActivity.this.bindService(new Intent(IflytekAiuiActivity.this, AIUIServer.class), conn, Context.BIND_AUTO_CREATE);
+            startService(new Intent(IflytekAiuiActivity.this, AIUIService.class));
+            IflytekAiuiActivity.this.bindService(new Intent(IflytekAiuiActivity.this, AIUIService.class), conn, Context.BIND_AUTO_CREATE);
         });
 
         mBinding.btClear.setOnClickListener(v -> {

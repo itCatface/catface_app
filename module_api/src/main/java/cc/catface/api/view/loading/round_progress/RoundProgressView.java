@@ -87,7 +87,7 @@ public class RoundProgressView extends View {
     public void updateProgress(float value) {
         if (value < 0 || value > 100) throw new IllegalStateException(value + " is invalid progress!");
         mCurrentAngle = value * (mEndAngle - mStartAngle) / 100;
-        if (value >= 100) setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_lu_transmission_img));
+        if (value >= 100) setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.api_icon_lu_transmission_img));
         postInvalidateDelayed(0);
     }
 

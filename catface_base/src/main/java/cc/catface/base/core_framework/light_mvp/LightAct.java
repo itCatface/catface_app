@@ -26,6 +26,9 @@ public abstract class LightAct<P extends LightPresenter, B extends ViewDataBindi
     }
 
     @Override protected void onDestroy() {
+        if (null != mHandler) {
+            mHandler.clear();
+        }
         if (null != mPresenter) {
             mPresenter.onDetachView();
             mPresenter = null;

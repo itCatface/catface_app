@@ -4,42 +4,40 @@
 
     <data />
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!-- 轮播图 -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_home_banner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="200dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_home_banner"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_banner_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/vp_home_banner"
+            app:layout_constraintStart_toStartOf="@+id/vp_home_banner" />
 
-            <TextView
-                android:id="@+id/tv_banner_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:layout_constraintBottom_toBottomOf="@id/vp_home_banner"
-                app:layout_constraintStart_toStartOf="@+id/vp_home_banner" />
+        <TextView
+            android:id="@+id/tv_top_article"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#10f0"
+            android:padding="12dp"
+            android:text="置顶文章"
+            app:layout_constraintTop_toBottomOf="@+id/vp_home_banner" />
 
-            <TextView
-                android:id="@+id/tv_top_article"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="置顶文章"
-                app:layout_constraintTop_toBottomOf="@+id/vp_home_banner" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_top_article"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_top_article" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_top_article"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tv_top_article" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

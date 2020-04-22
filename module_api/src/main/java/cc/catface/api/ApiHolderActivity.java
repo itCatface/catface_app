@@ -26,6 +26,7 @@ import cc.catface.api.huge_img.DemoLoadLargeImgFm;
 import cc.catface.api.multi_finger.DemoMultiTouchFm;
 import cc.catface.api.popup.DemoPopupFm;
 import cc.catface.api.room.DemoRoomFm;
+import cc.catface.api.smallfunc.DemoSmallFuncFm;
 import cc.catface.api.toast.DemoToastFm;
 import cc.catface.api.toolbar.DemoToolBarFm;
 import cc.catface.api.toutiao.DemoToutiaoFm;
@@ -50,7 +51,8 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
         return R.layout.api_activity_api_holder;
     }
 
-    private int mFmId = -1;
+    private String mFmId;
+    private DemoSmallFuncFm fmSmallFunc = new DemoSmallFuncFm();
     private DemoFrameFm fmFrame = new DemoFrameFm();
     private DemoFontFm fmFont = new DemoFontFm();
     private DemoToastFm fmToast = new DemoToastFm();
@@ -81,89 +83,93 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
         initToolBar();
 
         /* fragment替换 */
-        mFmId = getIntent().getIntExtra(Const.ARouter.fm_id_key, -1);
+        mFmId = getIntent().getStringExtra(Const.ARouter.fm_id_key);
         switch (mFmId) {
-            case Const.ARouter.fm_id_frame:
+            case Const.ARouter.fm_id_api_small_func:
+                mTitle = "小功能";
+                replace(fmSmallFunc);
+                break;
+            case Const.ARouter.fm_id_api_frame:
                 mTitle = "开发框架";
                 mNormalTitle = "模式";
                 replace(fmFrame);
                 break;
-            case Const.ARouter.fm_id_font_type:
+            case Const.ARouter.fm_id_api_font_type:
                 mTitle = "字体";
                 mNormalTitle = "系统";
                 replace(fmFont);
                 break;
-            case Const.ARouter.fm_id_toast:
+            case Const.ARouter.fm_id_api_toast:
                 mTitle = "Toast";
                 mNormalTitle = "清除";
                 replace(fmToast);
                 break;
-            case Const.ARouter.fm_id_dialog:
+            case Const.ARouter.fm_id_api_dialog:
                 mTitle = "Dialog";
                 replace(fmDialog);
                 break;
-            case Const.ARouter.fm_id_popup:
+            case Const.ARouter.fm_id_api_popup:
                 mTitle = "Popup";
                 replace(fmPopup);
                 break;
-            case Const.ARouter.fm_id_view_anim:
+            case Const.ARouter.fm_id_api_view_anim:
                 mTitle = "View + Anim";
                 replace(fmView);
                 break;
-            case Const.ARouter.fm_id_hardware:
+            case Const.ARouter.fm_id_api_hardware:
                 mTitle = "硬件";
                 replace(fmHardware);
                 break;
-            case Const.ARouter.fm_id_rv_toutiao:
+            case Const.ARouter.fm_id_rv_api_toutiao:
                 mTitle = "今日头条";
                 replace(fmToutiao);
                 break;
-            case Const.ARouter.fm_id_rv_banner:
+            case Const.ARouter.fm_id_rv_api_banner:
                 mTitle = "Banner";
                 replace(fmBanner);
                 break;
-            case Const.ARouter.fm_id_eleme:
+            case Const.ARouter.fm_id_api_eleme:
                 mTitle = "菜单";
                 replace(fmEleme);
                 break;
-            case Const.ARouter.fm_id_load_large_image:
+            case Const.ARouter.fm_id_api_load_large_image:
                 mTitle = "加载大图片";
                 replace(fmLargeImg);
                 break;
-            case Const.ARouter.fm_id_system_info:
+            case Const.ARouter.fm_id_api_system_info:
                 mTitle = "系统信息";
                 replace(fmSystemInfo);
                 break;
-            case Const.ARouter.fm_id_multi_touch:
+            case Const.ARouter.fm_id_api_multi_touch:
                 mTitle = "多点触控";
                 replace(fmMultiTouch);
                 break;
-            case Const.ARouter.fm_id_textview_serial:
+            case Const.ARouter.fm_id_api_textview_serial:
                 mTitle = "文字高亮";
                 replace(fmTextView);
                 break;
-            case Const.ARouter.fm_id_imageview_serial:
+            case Const.ARouter.fm_id_api_imageview_serial:
                 mTitle = "scaleType";
                 replace(fmScaleType);
                 break;
-            case Const.ARouter.fm_id_constraintlayout:
+            case Const.ARouter.fm_id_api_constraintlayout:
                 mTitle = "ConstraintLayout";
                 replace(fmConstrainLayout);
                 break;
-            case Const.ARouter.fm_id_data_binding:
+            case Const.ARouter.fm_id_api_data_binding:
                 mTitle = "DataBinding";
                 mNormalTitle = "更新";
                 replace(fmDataBinding);
                 break;
-            case Const.ARouter.fm_id_room:
+            case Const.ARouter.fm_id_api_room:
                 mTitle = "Room";
                 replace(fmRoom);
                 break;
-            case Const.ARouter.fm_id_crash:
+            case Const.ARouter.fm_id_api_crash:
                 mTitle = "Crash";
                 replace(fmCrash);
                 break;
-            case Const.ARouter.fm_id_toolbar:
+            case Const.ARouter.fm_id_api_toolbar:
                 mTitle = "ToolBar";
                 replace(fmToolBar);
                 break;
@@ -181,11 +187,11 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
                 replace(fmTingjian);
                 break;
 
-            case Const.ARouter.fm_id_viewpager2:
+            case Const.ARouter.fm_id_api_viewpager2:
                 mTitle = "viewpager2";
                 replace(fmViewPager2);
                 break;
-            case Const.ARouter.fm_id_clipboard:
+            case Const.ARouter.fm_id_api_clipboard:
                 mTitle = "clipboard";
                 replace(clipboardFm);
                 break;
@@ -231,19 +237,19 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
         int id = item.getItemId();
         if (R.id.menu_normal == id) {
             switch (mFmId) {
-                case Const.ARouter.fm_id_frame:
+                case Const.ARouter.fm_id_api_frame:
                     fmFrame.tbShowChoseDialog();
                     break;
-                case Const.ARouter.fm_id_font_type:
+                case Const.ARouter.fm_id_api_font_type:
                     fmFont.tbShowChoseDialog();
                     break;
-                case Const.ARouter.fm_id_toast:
+                case Const.ARouter.fm_id_api_toast:
                     fmToast.tbClear();
                     break;
-                case Const.ARouter.fm_id_rv_banner:
+                case Const.ARouter.fm_id_rv_api_banner:
                     fmBanner.tbShowChoseDialog();
                     break;
-                case Const.ARouter.fm_id_data_binding:
+                case Const.ARouter.fm_id_api_data_binding:
                     fmDataBinding.tbUpdateData();
                     break;
             }
@@ -251,41 +257,41 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
 
 
         switch (mFmId) {
-            case Const.ARouter.fm_id_toast:
+            case Const.ARouter.fm_id_api_toast:
                 break;
-            case Const.ARouter.fm_id_dialog:
+            case Const.ARouter.fm_id_api_dialog:
                 break;
-            case Const.ARouter.fm_id_popup:
+            case Const.ARouter.fm_id_api_popup:
                 break;
-            case Const.ARouter.fm_id_view_anim:
+            case Const.ARouter.fm_id_api_view_anim:
                 break;
-            case Const.ARouter.fm_id_hardware:
+            case Const.ARouter.fm_id_api_hardware:
                 break;
-            case Const.ARouter.fm_id_rv_toutiao:
+            case Const.ARouter.fm_id_rv_api_toutiao:
                 break;
-            case Const.ARouter.fm_id_rv_banner:
+            case Const.ARouter.fm_id_rv_api_banner:
                 break;
-            case Const.ARouter.fm_id_eleme:
+            case Const.ARouter.fm_id_api_eleme:
                 break;
-            case Const.ARouter.fm_id_load_large_image:
+            case Const.ARouter.fm_id_api_load_large_image:
                 break;
-            case Const.ARouter.fm_id_system_info:
+            case Const.ARouter.fm_id_api_system_info:
                 break;
-            case Const.ARouter.fm_id_multi_touch:
+            case Const.ARouter.fm_id_api_multi_touch:
                 break;
-            case Const.ARouter.fm_id_textview_serial:
+            case Const.ARouter.fm_id_api_textview_serial:
                 break;
-            case Const.ARouter.fm_id_imageview_serial:
+            case Const.ARouter.fm_id_api_imageview_serial:
                 break;
-            case Const.ARouter.fm_id_constraintlayout:
+            case Const.ARouter.fm_id_api_constraintlayout:
                 break;
-            case Const.ARouter.fm_id_data_binding:
+            case Const.ARouter.fm_id_api_data_binding:
                 break;
-            case Const.ARouter.fm_id_room:
+            case Const.ARouter.fm_id_api_room:
                 break;
-            case Const.ARouter.fm_id_crash:
+            case Const.ARouter.fm_id_api_crash:
                 break;
-            case Const.ARouter.fm_id_toolbar:
+            case Const.ARouter.fm_id_api_toolbar:
                 break;
 
             case Const.ARouter.fm_id_view_loading_spinkit:

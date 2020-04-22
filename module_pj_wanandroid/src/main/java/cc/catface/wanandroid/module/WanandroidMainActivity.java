@@ -45,7 +45,7 @@ import cc.catface.wanandroid.module.subscriptions.view.SubscriptionsFm;
 
     @Override protected void initAction() {
         mBinding.vpWanandroidMain.setOffscreenPageLimit(5);
-        mBinding.vpWanandroidMain.setOnPageChangeListener((ISystemInterface.PageChangeListener) position -> {
+        mBinding.vpWanandroidMain.addOnPageChangeListener((ISystemInterface.PageChangeListener) position -> {
             switch (position) {
                 case 0:
                     mBinding.bottomNav.setSelectedItemId(R.id.bottom_nav_home);
@@ -92,7 +92,9 @@ import cc.catface.wanandroid.module.subscriptions.view.SubscriptionsFm;
     }
 
 
-    /** tool bar */
+    /**
+     * tool bar
+     */
     private ActionBar mBar;
 
     private void initToolBar() {

@@ -3,8 +3,6 @@ package cc.catface.api.view.anim_activity_transfer.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import cc.catface.api.R;
 
@@ -16,7 +14,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_test);
+        setContentView(R.layout.api_activity_main_test);
 
         sildingFinishLayout = (SildingFinishLayout) findViewById(R.id.num1);
         sildingFinishLayout

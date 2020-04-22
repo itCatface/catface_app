@@ -71,7 +71,7 @@
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:src="@{user.male ? @drawable/iconfont_sex_male : @drawable/iconfont_sex_female}" />
+                    android:src="@{user.male ? @drawable/api_iconfont_sex_male : @drawable/api_iconfont_sex_female}" />
 
             </LinearLayout>
 

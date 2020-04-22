@@ -1,7 +1,6 @@
 package cc.catface.wanandroid.module.home;
 
 import android.os.Message;
-import android.os.SystemClock;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -37,13 +36,12 @@ public class HomeFm extends LightFm<HomePresenterImpl, WanandroidFragmentHomeBin
 
     private TWeakHandler<HomeFm> mHandler;
     private final int WHAT_PLAY_NEXT = 0x00;
-    private boolean autoPlay = true;
-    private int duration = 3_000;
 
     @Override public void handleMessage(Message msg) {
         int what = msg.what;
-        if (what == WHAT_PLAY_NEXT) {
+        if (what == WHAT_PLAY_NEXT && isPlaying) {
             mBinding.vpHomeBanner.setCurrentItem(mBinding.vpHomeBanner.getCurrentItem() + 1);
+            ctrlPlay(true);
         }
     }
 
@@ -57,32 +55,26 @@ public class HomeFm extends LightFm<HomePresenterImpl, WanandroidFragmentHomeBin
         mPresenter.requestTopArticle();
     }
 
-
-    /** View's */
+    /**
+     * View's
+     */
     private List<Banner.Data> mBannerDatas = new ArrayList<>();
 
     @Override public void requestBannerSuccess(Banner banner) {
         mBannerDatas = banner.getData();
         mBinding.vpHomeBanner.setAdapter(new HomeBannerAdapter(mBannerDatas));
         mBinding.vpHomeBanner.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % mBannerDatas.size());
-        new Thread(() -> {
-            while (true) {
-                SystemClock.sleep(duration);
-                if (autoPlay) mHandler.sendEmptyMessage(WHAT_PLAY_NEXT);
-            }
-        }).start();
         mBinding.vpHomeBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override public void onPageScrollStateChanged(int state) {
                 switch (state) {
                     case ViewPager2.SCROLL_STATE_IDLE:
                     case ViewPager2.SCROLL_STATE_SETTLING:
-                        autoPlay = true;
+                        if (!isPlaying) ctrlPlay(true);
                         break;
 
                     case ViewPager2.SCROLL_STATE_DRAGGING:
-                        autoPlay = false;
+                        ctrlPlay(false);
                         break;
-
                 }
             }
 
@@ -90,6 +82,8 @@ public class HomeFm extends LightFm<HomePresenterImpl, WanandroidFragmentHomeBin
                 mBinding.tvBannerTitle.setText(mBannerDatas.get(position % mBannerDatas.size()).getTitle());
             }
         });
+
+        ctrlPlay(true);
     }
 
     @Override public void requestBannerFailure() {
@@ -108,4 +102,28 @@ public class HomeFm extends LightFm<HomePresenterImpl, WanandroidFragmentHomeBin
     @Override public void requestTopArticleFailure() {
 
     }
+
+    @Override public void onPause() {
+        ctrlPlay(false);
+        super.onPause();
+    }
+
+    /**
+     * 轮播控制
+     */
+    private boolean isPlaying = true;
+    private int mPlayingDuration = 3_000;
+
+    private void ctrlPlay(boolean startPlaying) {
+        if (null == mHandler) return;
+        isPlaying = startPlaying;
+        if (isPlaying) mHandler.sendEmptyMessageDelayed(WHAT_PLAY_NEXT, mPlayingDuration);
+        else mHandler.removeCallbacksAndMessages(null);
+    }
+
+    @Override public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        ctrlPlay(isVisibleToUser);
+    }
+
 }

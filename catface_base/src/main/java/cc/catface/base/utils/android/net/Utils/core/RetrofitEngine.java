@@ -48,7 +48,7 @@ public class RetrofitEngine {
                 .connectTimeout(RetrofitConstant.timeout, TimeUnit.SECONDS)
                 .writeTimeout(RetrofitConstant.timeout, TimeUnit.SECONDS)
                 .addInterceptor(new ReceivedCookiesInterceptor()).addInterceptor(new AddCookiesInterceptor())   // cookie
-                .addInterceptor(new cc.catface.base.utils.android.net.Utils.core.HttpLoggingInterceptor().setLevel(cc.catface.base.utils.android.net.Utils.core.HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 //                .addInterceptor(new CommonInterceptor())    // interceptor of common params.
                 .addInterceptor(new LoggingInterceptor())   // interceptor of logging.
                 .retryOnConnectionFailure(true)

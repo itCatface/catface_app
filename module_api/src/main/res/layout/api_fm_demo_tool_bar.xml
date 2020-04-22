@@ -15,7 +15,7 @@
             android:background="@color/colorAccent"
             android:fitsSystemWindows="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/iconfont_close_32"
+            app:navigationIcon="@drawable/api_iconfont_close_32"
             app:title="标题"
             app:titleTextColor="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>

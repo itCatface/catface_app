@@ -2,6 +2,7 @@ package cc.catface.ctool.system;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -21,6 +22,7 @@ public class TWeakHandler<T extends TWeakHandler.MessageListener> extends Handle
     @Override public void handleMessage(@NonNull Message message) {
         final T owner = getOwner();
         if (null != owner) {
+            TLog.d("TWeakHandler-->handleMessage-->receive message: " + message.what);
             owner.handleMessage(message);
         }
     }
@@ -29,11 +31,12 @@ public class TWeakHandler<T extends TWeakHandler.MessageListener> extends Handle
         void handleMessage(Message msg);
     }
 
-    public T getOwner() {
+    private T getOwner() {
         return this.mHandlerReference.get();
     }
 
     public void clear() {
+        removeCallbacksAndMessages(null);
         mHandlerReference.clear();
     }
 }

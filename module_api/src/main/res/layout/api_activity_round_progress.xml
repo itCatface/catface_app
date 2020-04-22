@@ -44,7 +44,7 @@
             app:background_color="#ECF3FD"
             app:border_color="#4285F4"
             app:border_width="6"
-            app:icon_resource="@drawable/icon_lu_transmission_img"
+            app:icon_resource="@drawable/api_icon_lu_transmission_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_resume" />
@@ -64,7 +64,7 @@
             android:id="@+id/iv"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:src="@drawable/icon_lu_transmission_img"
+            android:src="@drawable/api_icon_lu_transmission_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/v" />
@@ -75,7 +75,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/icon_lu_transmission_img"
+            android:background="@drawable/api_icon_lu_transmission_img"
             app:ex_ring_width="5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

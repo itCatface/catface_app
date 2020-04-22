@@ -15,7 +15,6 @@ import cc.catface.base.core_framework.light_mvp.LightView;
 import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.start.R;
 import cc.catface.start.databinding.StartFmMessBinding;
-import cc.catface.start.main.mess.ApiFm;
 import cc.catface.start.main.mess.ApisFm;
 import cc.catface.start.main.mess.PjsFm;
 import cc.catface.start.main.mvp.vp.MessPresenterImp;
@@ -51,7 +50,9 @@ public class MessFm extends LightFm<MessPresenterImp, StartFmMessBinding> implem
     }
 
 
-    /** fragment传参至activity */
+    /**
+     * fragment传参至activity
+     */
     private FragmentListener mListener;
 
     public interface FragmentListener {

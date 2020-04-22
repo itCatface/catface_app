@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.GridView;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -166,7 +165,7 @@ public class DemoDialogFm extends LightFm<LightPresenter, ApiActivityDialogBindi
                     break;
 
                 case ii:
-                    initDialog(R.layout.activity_main_test);
+                    initDialog(R.layout.api_activity_main_test);
                     break;
             }
         });

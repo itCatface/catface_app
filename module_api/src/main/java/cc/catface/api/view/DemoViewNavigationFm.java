@@ -88,11 +88,11 @@ public class DemoViewNavigationFm extends LightFm<LightPresenter, ApiActivityVie
                     String[] items_rv = getResources().getStringArray(R.array.api_view_anim_list_loading);
                     TPopup.get(mActivity).show(mBinding.rvView, "loading", items_rv, pos -> {
                         if (items_rv[pos].equals(getResources().getString(R.string.api_view_anim_list_loading_spinkit))) {
-                            ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_view_loading_spinkit).navigation();
+                            ARouter.getInstance().build(Const.ARouter.api_holder).withString(Const.ARouter.fm_id_key, Const.ARouter.fm_id_view_loading_spinkit).navigation();
                         } else if (items_rv[pos].equals(getResources().getString(R.string.api_view_anim_list_loading_smile))) {
-                            ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_view_loading_smile).navigation();
+                            ARouter.getInstance().build(Const.ARouter.api_holder).withString(Const.ARouter.fm_id_key, Const.ARouter.fm_id_view_loading_smile).navigation();
                         } else if (items_rv[pos].equals(getResources().getString(R.string.api_view_anim_list_loading_round_progress))) {
-                            ARouter.getInstance().build(Const.ARouter.api_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_view_loading_round_progress).navigation();
+                            ARouter.getInstance().build(Const.ARouter.api_holder).withString(Const.ARouter.fm_id_key, Const.ARouter.fm_id_view_loading_round_progress).navigation();
                         }
                     });
                     break;

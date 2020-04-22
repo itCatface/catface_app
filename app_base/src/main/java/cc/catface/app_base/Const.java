@@ -8,7 +8,9 @@ public class Const {
     public static final boolean IS_DEBUG = true;
 
 
-    /** 统一管理ARouter的所有路径url */
+    /**
+     * 统一管理ARouter的所有路径url
+     */
     public static class ARouter {
         /*  */
         public static final String DEFAULT_STRING_KEY = "DEFAULT_STRING_KEY";
@@ -29,6 +31,7 @@ public class Const {
         public static final String start_main = "/start/main";
 
         /* module_api */
+        public static final String path_api_fm_api = "path_api_api";
         public static final String api_holder = "/api/api";
         public static final String api_demo_view_holder = "/api/demo_view_holder";
 
@@ -61,30 +64,33 @@ public class Const {
         /* module_pj_wechat */
         public static final String pj_wechat_main = "/pj_wechat/main";
 
-        /** fragment's id */
+        /**
+         * fragment's id
+         */
         public static final String fm_id_key = "fm_id_key";
-        public static final int fm_id_frame = -0x99;
-        public static final int fm_id_font_type = -0x98;
-        public static final int fm_id_toast = -0x97;
-        public static final int fm_id_dialog = -0x96;
-        public static final int fm_id_popup = -0x95;
-        public static final int fm_id_view_anim = -0x94;
-        public static final int fm_id_hardware = -0x93;
-        public static final int fm_id_eleme = -0x92;
-        public static final int fm_id_rv_toutiao = -0x9101;
-        public static final int fm_id_rv_banner = -0x9102;
-        public static final int fm_id_load_large_image = -0x90;
-        public static final int fm_id_system_info = -0x89;
-        public static final int fm_id_multi_touch = -0x88;
-        public static final int fm_id_textview_serial = -0x87;
-        public static final int fm_id_imageview_serial = -0x86;
-        public static final int fm_id_constraintlayout = -0x85;
-        public static final int fm_id_data_binding = -0x84;
-        public static final int fm_id_room = -0x83;
-        public static final int fm_id_crash = -0x82;
-        public static final int fm_id_toolbar = -0x81;
-        public static final int fm_id_viewpager2 = -0x80;
-        public static final int fm_id_clipboard = -0x79;
+        public static final String fm_id_api_small_func = "fm_id_api_small_func";
+        public static final String fm_id_api_frame = "fm_id_api_frame";
+        public static final String fm_id_api_font_type = "fm_id_api_font_type";
+        public static final String fm_id_api_toast = "fm_id_api_toast";
+        public static final String fm_id_api_dialog = "fm_id_api_dialog";
+        public static final String fm_id_api_popup = "fm_id_api_popup";
+        public static final String fm_id_api_view_anim = "fm_id_api_view_anim";
+        public static final String fm_id_api_hardware = "fm_id_api_hardware";
+        public static final String fm_id_api_eleme = "fm_id_api_eleme";
+        public static final String fm_id_rv_api_toutiao = "fm_id_rv_api_toutiao";
+        public static final String fm_id_rv_api_banner = "fm_id_rv_api_banner";
+        public static final String fm_id_api_load_large_image = "fm_id_api_load_large_image";
+        public static final String fm_id_api_system_info = "fm_id_api_system_info";
+        public static final String fm_id_api_multi_touch = "fm_id_api_multi_touch";
+        public static final String fm_id_api_textview_serial = "fm_id_api_textview_serial";
+        public static final String fm_id_api_imageview_serial = "fm_id_api_imageview_serial";
+        public static final String fm_id_api_constraintlayout = "fm_id_api_constraintlayout";
+        public static final String fm_id_api_data_binding = "fm_id_api_data_binding";
+        public static final String fm_id_api_room = "fm_id_api_room";
+        public static final String fm_id_api_crash = "fm_id_api_crash";
+        public static final String fm_id_api_toolbar = "fm_id_api_toolbar";
+        public static final String fm_id_api_viewpager2 = "fm_id_api_viewpager2";
+        public static final String fm_id_api_clipboard = "fm_id_api_clipboard";
 
         public static final int fm_id_view_astr = -0x100001;
         public static final int fm_id_view_interpolator = -0x100002;
@@ -99,9 +105,9 @@ public class Const {
         public static final int fm_id_view_bezier_paint = -0x1000101;
         public static final int fm_id_view_bezier_wave = -0x1000102;
 
-        public static final int fm_id_view_loading_spinkit = -0x110001;
-        public static final int fm_id_view_loading_smile = -0x110002;
-        public static final int fm_id_view_loading_round_progress = -0x110003;
+        public static final String fm_id_view_loading_spinkit = "fm_id_view_loading_spinkit";
+        public static final String fm_id_view_loading_smile = "fm_id_view_loading_smile";
+        public static final String fm_id_view_loading_round_progress = "fm_id_view_loading_round_progress";
 
         public static final int fm_id_apis_test_retrofit = -0x190001;
         public static final int fm_id_apis_half_scroll = -0x190002;

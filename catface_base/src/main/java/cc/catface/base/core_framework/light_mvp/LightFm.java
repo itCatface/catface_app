@@ -43,6 +43,9 @@ public abstract class LightFm<P extends LightPresenter, B extends ViewDataBindin
     }
 
     @Override public void onDestroy() {
+        if (null != mHandler) {
+            mHandler.clear();
+        }
         if (null != mPresenter) {
             mPresenter.onDetachView();
             mPresenter = null;

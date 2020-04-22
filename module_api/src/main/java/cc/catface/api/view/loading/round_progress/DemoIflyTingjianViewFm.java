@@ -29,8 +29,8 @@ public class DemoIflyTingjianViewFm extends LightFm<LightPresenter, ApiActivityR
         initAction();
 
         mHandler = new Handler(Looper.getMainLooper());
-        bmpDownload = BitmapFactory.decodeResource(getResources(), R.drawable.icon_lu_transmission_img);
-        bmpPause = BitmapFactory.decodeResource(getResources(), R.drawable.icon_lu_transmission_img);
+        bmpDownload = BitmapFactory.decodeResource(getResources(), R.drawable.api_icon_lu_transmission_img);
+        bmpPause = BitmapFactory.decodeResource(getResources(), R.drawable.api_icon_lu_transmission_img);
 
         postRoundProgressView(0);
         postRoundProgressImageView(0);
@@ -55,9 +55,9 @@ public class DemoIflyTingjianViewFm extends LightFm<LightPresenter, ApiActivityR
     @Override protected void initAction() {
         mBinding.rpiv.setOnClickListener(v -> {
             if (isDownloading) {
-                mBinding.rpiv.setBackgroundResource(R.drawable.icon_lu_transmission_pause);
+                mBinding.rpiv.setBackgroundResource(R.drawable.api_icon_lu_transmission_pause);
             } else {
-                mBinding.rpiv.setBackgroundResource(R.drawable.icon_lu_transmission_img);
+                mBinding.rpiv.setBackgroundResource(R.drawable.api_icon_lu_transmission_img);
             }
             isDownloading = !isDownloading;
         });

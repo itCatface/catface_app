@@ -23,6 +23,7 @@ public class ApiFm extends LightFm<LightPresenter, PagePureListviewBinding> {
     private final String DEMO_FRAME = "demo-框架-基础框架示例";
     private final String DEMO_FONT = "demo-系统-字体示例";
     private final String DEMO_TOAST = "demo-系统-toast示例";
+    private final String DEMO_PROP = "demo-系统-properties示例";
     private final String DEMO_DIALOG = "demo-系统-dialog示例";
     private final String DEMO_POP = "demo-系统-popup示例";
     private final String DEMO_VIEW = "demo-系统-view&animator示例";
@@ -42,7 +43,7 @@ public class ApiFm extends LightFm<LightPresenter, PagePureListviewBinding> {
     private final String DEMO_VIEWPAGER2 = "demo-viewpager2示例";
     private final String DEMO_CLIPBOARD = "demo-clipboard示例";
 
-    private String[] mItems = {DEMO_SMALL_FUNC, DEMO_FRAME, DEMO_FONT, DEMO_TOAST, DEMO_DIALOG, DEMO_POP, DEMO_VIEW, DEMO_HARDWARE, DEMO_RECYCLERVIEW, DEMO_MENU_OF_ELEME, DEMO_LOAD_BIG_IMG, DEMO_APP_INFO, DEMO_MULTI_FINGER, DEMO_TEXT_VIEW, DEMO_IV_SCALETYPE, DEMO_CONSTRAINT_LAYOUT, DEMO_DATA_BINDING, DEMO_ROOM, DEMO_CRASH, DEMO_TOOLBAR, DEMO_VIEWPAGER2, DEMO_CLIPBOARD};
+    private String[] mItems = {DEMO_SMALL_FUNC, DEMO_FRAME, DEMO_FONT, DEMO_TOAST, DEMO_PROP, DEMO_DIALOG, DEMO_POP, DEMO_VIEW, DEMO_HARDWARE, DEMO_RECYCLERVIEW, DEMO_MENU_OF_ELEME, DEMO_LOAD_BIG_IMG, DEMO_APP_INFO, DEMO_MULTI_FINGER, DEMO_TEXT_VIEW, DEMO_IV_SCALETYPE, DEMO_CONSTRAINT_LAYOUT, DEMO_DATA_BINDING, DEMO_ROOM, DEMO_CRASH, DEMO_TOOLBAR, DEMO_VIEWPAGER2, DEMO_CLIPBOARD};
 
 
     @Override protected void initView() {
@@ -59,6 +60,9 @@ public class ApiFm extends LightFm<LightPresenter, PagePureListviewBinding> {
                     break;
                 case DEMO_TOAST:
                     ARouter.getInstance().build(Const.ARouter.api_holder).withString(Const.ARouter.fm_id_key, Const.ARouter.fm_id_api_toast).navigation();
+                    break;
+                case DEMO_PROP:
+                    ARouter.getInstance().build(Const.ARouter.api_holder).withString(Const.ARouter.fm_id_key, Const.ARouter.fm_id_api_prop).navigation();
                     break;
                 case DEMO_DIALOG:
                     ARouter.getInstance().build(Const.ARouter.api_holder).withString(Const.ARouter.fm_id_key, Const.ARouter.fm_id_api_dialog).navigation();

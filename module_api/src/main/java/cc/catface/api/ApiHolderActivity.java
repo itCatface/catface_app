@@ -25,6 +25,7 @@ import cc.catface.api.hardware.camera.DemoHardwareFm;
 import cc.catface.api.huge_img.DemoLoadLargeImgFm;
 import cc.catface.api.multi_finger.DemoMultiTouchFm;
 import cc.catface.api.popup.DemoPopupFm;
+import cc.catface.api.properties.DemoPropFm;
 import cc.catface.api.room.DemoRoomFm;
 import cc.catface.api.smallfunc.DemoSmallFuncFm;
 import cc.catface.api.toast.DemoToastFm;
@@ -56,6 +57,7 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
     private DemoFrameFm fmFrame = new DemoFrameFm();
     private DemoFontFm fmFont = new DemoFontFm();
     private DemoToastFm fmToast = new DemoToastFm();
+    private DemoPropFm fmProp = new DemoPropFm();
     private DemoDialogFm fmDialog = new DemoDialogFm();
     private DemoPopupFm fmPopup = new DemoPopupFm();
     private DemoViewNavigationFm fmView = new DemoViewNavigationFm();
@@ -103,6 +105,10 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
                 mTitle = "Toast";
                 mNormalTitle = "清除";
                 replace(fmToast);
+                break;
+            case Const.ARouter.fm_id_api_prop:
+                mTitle = "properties";
+                replace(fmProp);
                 break;
             case Const.ARouter.fm_id_api_dialog:
                 mTitle = "Dialog";

@@ -72,6 +72,7 @@ public class Const {
         public static final String fm_id_api_frame = "fm_id_api_frame";
         public static final String fm_id_api_font_type = "fm_id_api_font_type";
         public static final String fm_id_api_toast = "fm_id_api_toast";
+        public static final String fm_id_api_prop = "fm_id_api_prop";
         public static final String fm_id_api_dialog = "fm_id_api_dialog";
         public static final String fm_id_api_popup = "fm_id_api_popup";
         public static final String fm_id_api_view_anim = "fm_id_api_view_anim";

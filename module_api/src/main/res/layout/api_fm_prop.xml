@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etSetKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="set key" />
+
+        <EditText
+            android:id="@+id/etSetValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="set value" />
+
+        <Button
+            android:id="@+id/btSet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="set" />
+
+        <EditText
+            android:id="@+id/etGetKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="get key" />
+
+        <Button
+            android:id="@+id/btGet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="get" />
+
+        <Button
+            android:id="@+id/btGetAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="get all" />
+
+    </LinearLayout>
+</layout>

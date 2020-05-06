@@ -2,6 +2,7 @@ package cc.catface.ctool.system;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,7 +17,26 @@ import java.util.Set;
  */
 public class TProperties {
 
-    public static String getValue(String filePath, String key) {
+    public static boolean set(String filePath, String key, String value) {
+        Properties props = new Properties();
+        props.setProperty(key, value);
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(filePath);
+            props.store(fos, null);
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            try {
+                if (fos != null) fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static String get(String filePath, String key) {
         File file;
         InputStream is = null;
         Properties properties;
@@ -32,7 +52,8 @@ public class TProperties {
             properties = new Properties();
             properties.load(is);
 
-            return new String(properties.getProperty(key).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8); // 处理中文乱码
+            return new String(properties.getProperty(key)); // 处理中文乱码
+            //            return new String(properties.getProperty(key).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8); // 处理中文乱码
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -15,8 +15,10 @@ import android.view.View;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 
 import cc.catface.view.databinding.ActivityMainBinding;
+import viewmodel.AccountLiveData;
 
 
 /**
@@ -64,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBinding.sharedElements1.setOnClickListener(this);
         mBinding.sharedElements2.setOnClickListener(this);
         mBinding.sharedElements4.setOnClickListener(this);
+
+        AccountLiveData.getInstance().observe(this, new Observer<String>() {
+            @Override public void onChanged(String s) {
+                Log.d("catface", "main activity-->onChanged: " + s);
+            }
+        });
     }
 
     @Override public void onClick(View view) {

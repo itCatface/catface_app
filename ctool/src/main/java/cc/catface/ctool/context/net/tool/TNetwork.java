@@ -1,4 +1,4 @@
-package cc.catface.ctool.context.netstate;
+package cc.catface.ctool.context.net.tool;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

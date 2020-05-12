@@ -33,6 +33,7 @@ import cc.catface.ctool.context.TContext;
 @Database(entities = {User.class, Book.class, Cat.class}, version = 4, exportSchema = true) public abstract class DBHelper extends RoomDatabase {
 
     private static final String DB_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + "/db_catface/db_catface.db";
+//    private static final String DB_FILE_PATH = "db_catface.db";
 
     static synchronized DBHelper getInstance() {
         return Holder.instance;

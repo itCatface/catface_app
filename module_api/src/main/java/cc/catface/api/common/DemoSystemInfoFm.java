@@ -2,13 +2,16 @@ package cc.catface.api.common;
 
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Pair;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +22,14 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.ctool.context.AppInfo;
 import cc.catface.ctool.context.TAppInfo;
 import cc.catface.ctool.context.TSystemAction;
+import cc.catface.ctool.context.net.livedata.NetworkLiveData;
+import cc.catface.ctool.system.TLog;
 import cc.catface.ctool.system.TScreen;
 import cc.catface.ctool.system.TString;
 import cc.catface.ctool.system.TWeakHandler;
-import cc.catface.ctool.context.netstate.NetBroadcastReceiver;
-import cc.catface.ctool.context.netstate.NetStateUtil;
-import cc.catface.ctool.context.netstate.TNetwork;
+import cc.catface.ctool.context.net.tool.NetBroadcastReceiver;
+import cc.catface.ctool.context.net.tool.NetStateUtil;
+import cc.catface.ctool.context.net.tool.TNetwork;
 
 public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfoBinding> {
 
@@ -35,7 +40,9 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
         mBinding.tiSN.setContent(mSn);
         mBinding.tiMEID.setContent(mMeid);
         mBinding.tiIMEI.setContent(mImei);
-        mBinding.tiMultiIMEI.setContent(mImeis.first + " / " + mImeis.second);
+        if (null != mImeis) {
+            mBinding.tiMultiIMEI.setContent(mImeis.first + " / " + mImeis.second);
+        }
         mBinding.tiVerName.setContent(mVersionName);
         mBinding.tiVerCode.setContent(TString.convert2String(mVersionCode));
         mBinding.tiRomAvailSpace.setContent(mRomAvailSpace);
@@ -112,6 +119,12 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
                 mBinding.tiNetState.setContent("当前网络状态：" + netState);
             });
         }
+
+        NetworkLiveData.getInstance(new WeakReference<>(mActivity)).observe(mActivity, new Observer<NetworkInfo>() {
+            @Override public void onChanged(NetworkInfo networkInfo) {
+                TLog.d(getClass().getName() + "-->networkInfo: " + networkInfo);
+            }
+        });
     }
 
     @Override public void onDestroy() {

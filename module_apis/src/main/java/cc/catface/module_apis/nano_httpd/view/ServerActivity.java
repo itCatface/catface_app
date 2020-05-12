@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.light_mvp.LightAct;
-import cc.catface.ctool.context.netstate.TNetwork;
+import cc.catface.ctool.context.net.tool.TNetwork;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityServerBinding;
 import cc.catface.module_apis.nano_httpd.engine.NanoHTTPDServer;

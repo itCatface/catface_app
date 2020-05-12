@@ -4,7 +4,12 @@ import android.annotation.SuppressLint;
 import android.os.Message;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -79,6 +84,8 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
             List<Cat> cats = DBHelper.getInstance().getCatDao().allCat();
             TLog.d("cats: " + cats.size());
         });
+
+        dragAndSwipeRV();
     }
 
     @SuppressLint("SetTextI18n") @Override public void onClick(View view) {
@@ -111,4 +118,33 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
         mBinding.rvRoom.scrollToPosition(0);
         mHandler.obtainMessage().sendToTarget();
     }
+
+    private void dragAndSwipeRV() {
+        ItemTouchHelper.Callback callback = new ItemTouchHelper.Callback() {
+            /// 返回允许滑动的方向
+            @Override public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                int drag = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+                int swipe = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+                return makeMovementFlags(drag, swipe);
+            }
+
+            @Override public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                int from = viewHolder.getAdapterPosition();
+                int to = target.getAdapterPosition();
+                Collections.swap(mAllUsers, from, to);
+                mAdapter.notifyItemMoved(from, to);
+                return true;
+            }
+
+            @Override public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                mAllUsers.remove(position);
+                mAdapter.notifyItemRemoved(position);
+            }
+        };
+
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(mBinding.rvRoom);
+    }
+
 }

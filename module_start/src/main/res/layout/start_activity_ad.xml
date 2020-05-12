@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="从简·听从你心"
-            android:textSize="@dimen/tv_size_14"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintLeft_toRightOf="@+id/imageView"
             app:layout_constraintRight_toRightOf="parent"

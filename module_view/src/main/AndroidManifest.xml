@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cc.catface.view">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
@@ -14,17 +15,23 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".SharedElementsActivity" />
         <activity android:name=".ExplodeActivity" />
         <activity android:name=".SlideActivity" />
         <activity android:name=".FadeActivity" />
         <activity android:name=".ChangeBoundsActivity" />
+        <activity android:name="viewmodel.TestVMActivity" >
+
+        </activity>
+        <activity android:name=".IndexActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
-package cc.catface.ctool.context.netstate;
+package cc.catface.ctool.context.net.tool;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,8 +17,9 @@ public class NetStateUtil {
     public static int getNetWorkType() {
         int result = NETWORK_NONE;
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        @SuppressLint("MissingPermission") NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        ConnectivityManager manager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (null == manager) return NETWORK_NONE;
+        NetworkInfo activeNetworkInfo = manager.getActiveNetworkInfo();
         if (null == activeNetworkInfo || !activeNetworkInfo.isConnected()) return result;
         if (activeNetworkInfo.getType() == (ConnectivityManager.TYPE_WIFI)) result = NETWORK_WIFI;
         if (activeNetworkInfo.getType() == (ConnectivityManager.TYPE_MOBILE))

@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -37,6 +38,10 @@ public interface UserDao {
     void insert(User... users);
 
     /** 改 */
+    /* 主键相同时更新数据 */
+    @Update
+    void update(User... user);
+
     @Query("update user set age=:age where id=:id")
     void update(int age, int id);
 
@@ -44,6 +49,7 @@ public interface UserDao {
     @Query("DELETE FROM user")
     void deleteAll();
 
+    /* 主键相同时更新数据 */
     @Delete
     void delete(User... users);
 

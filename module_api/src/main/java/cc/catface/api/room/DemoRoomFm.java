@@ -1,7 +1,13 @@
 package cc.catface.api.room;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -33,21 +39,25 @@ import cc.catface.ctool.view.recyclerview.ItemClickSupport;
  */
 public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> {
 
-    @Override public void handleMessage(Message msg) {
+    @Override
+    public void handleMessage(Message msg) {
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override public int layoutId() {
+    @Override
+    public int layoutId() {
         return R.layout.api_activity_room;
     }
 
-    @Override protected void initView() {
+    @Override
+    protected void initView() {
         mAdapter = new RoomAdapter(mAllUsers);
         TRV.initDefaultRV(mActivity, mBinding.rvRoom);
         mBinding.rvRoom.setAdapter(mAdapter);
     }
 
-    @Override protected void initHandler() {
+    @Override
+    protected void initHandler() {
         mHandler = new TWeakHandler<>(this);
     }
 
@@ -55,7 +65,77 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
 
     private RoomAdapter mAdapter;
 
-    @Override protected void initAction() {
+
+    class CustomObserver extends ContentObserver {
+        public CustomObserver(Handler handler) {
+            super(handler);
+        }
+
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            Uri uri1 = Uri.parse("content://com.iflyrec.sdk.lib_app.dadb.provider/table_video");
+            Cursor cursor = mActivity.getContentResolver().query(uri1, new String[]{"p1", "p2"}, "selection-", new String[]{"s1", "s2"}, "sortOrder-");
+            cursor.moveToFirst();
+            do {
+                String uuid = cursor.getString(cursor.getColumnIndex("uuid"));
+                String text = cursor.getString(cursor.getColumnIndex("text"));
+                String createTime = cursor.getString(cursor.getColumnIndex("create_time"));
+                Log.d("catface", "onChange中查到数据：" + uuid + " || " + text + " || " + createTime);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mActivity.getContentResolver().unregisterContentObserver(mObserver);
+    }
+
+    CustomObserver mObserver;
+
+    @Override
+    protected void initAction() {
+        mObserver = new CustomObserver(new Handler());
+        mActivity.getContentResolver().registerContentObserver(Uri.parse("content://com.iflyrec.sdk.lib_app.dadb.provider/table_audio"), true, mObserver);
+        /** content provider增删改差案例 */
+        mBinding.btCPInsert.setOnClickListener(v -> {
+            Uri uri = Uri.parse("content://com.iflyrec.sdk.lib_app.dadb.provider/table_audio");
+            ContentValues values = new ContentValues();
+            values.put("i_arg1", "v1");
+            values.put("i_arg2", "v2");
+            values.put("i_arg3", "v3");
+            values.put("i_arg4", "v4");
+            mActivity.getContentResolver().insert(uri, values);
+        });
+        mBinding.btCPDelete.setOnClickListener(v -> {
+            Uri uri = Uri.parse("content://com.iflyrec.sdk.lib_app.dadb.provider/table_audio");
+            mActivity.getContentResolver().delete(uri, "where-", new String[]{"s1", "s2"});
+        });
+        mBinding.btCPUpdate.setOnClickListener(v -> {
+            Uri uri = Uri.parse("content://com.iflyrec.sdk.lib_app.dadb.provider/table_audio");
+            ContentValues values = new ContentValues();
+            values.put("u_arg1", "v1");
+            values.put("u_arg2", "v2");
+            values.put("u_arg3", "v3");
+            values.put("u_arg4", "v4");
+            mActivity.getContentResolver().update(uri, values, "where--", new String[]{"s1", "s2"});
+        });
+        mBinding.btCPQuery.setOnClickListener(v -> {
+            Uri uri = Uri.parse("content://com.iflyrec.sdk.lib_app.dadb.provider/table_video");
+            Cursor cursor = mActivity.getContentResolver().query(uri, new String[]{"p1", "p2"}, "selection-", new String[]{"s1", "s2"}, "sortOrder-");
+            cursor.moveToFirst();
+            do {
+                String uuid = cursor.getString(cursor.getColumnIndex("uuid"));
+                String text = cursor.getString(cursor.getColumnIndex("text"));
+                String createTime = cursor.getString(cursor.getColumnIndex("create_time"));
+                Log.d("catface", "查到数据：" + uuid + " || " + text + " || " + createTime);
+            } while (cursor.moveToNext());
+            cursor.close();
+        });
+
         mBinding.btQueryAll.setOnClickListener(this);
         mBinding.btQueryOdd.setOnClickListener(this);
         mBinding.btQueryDesc.setOnClickListener(this);
@@ -65,7 +145,11 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
 
         ItemClickSupport.addTo(mBinding.rvRoom).setOnItemLongClickListener((recyclerView, position, view) -> {
             TDialogNormal.get(mActivity).notification("确认删除？", "您将删除记录：\n" + mAllUsers.get(position).toString() + "\n删除后不可恢复！", "取消", "删除", notificationType -> {
-                DBHelper.getInstance().getUserDao().delete(mAllUsers.get(position));
+                User user = mAllUsers.get(position);
+                Log.d("catface", "delete user: " + user.toString());
+                user.setName("new name");
+                Log.d("catface", "delete user after set name: " + user.toString());
+                DBHelper.getInstance().getUserDao().delete(user);
                 TList.clearAddAll(mAllUsers, DBHelper.getInstance().getUserDao().allUsers());
                 mAdapter.notifyItemRemoved(position);
             });
@@ -74,8 +158,10 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
         ItemClickSupport.addTo(mBinding.rvRoom).setOnItemClickListener((recyclerView, position, view) -> {
             int age = new Random().nextInt(100);
             mAllUsers.get(position).setAge(age);
+            mAllUsers.get(position).setName(TestDataSource.words[new Random().nextInt(TestDataSource.words.length)]);
             mAllUsers.set(position, mAllUsers.get(position));
-            DBHelper.getInstance().getUserDao().update(age, mAllUsers.get(position).getId());
+            // DBHelper.getInstance().getUserDao().update(age, mAllUsers.get(position).getId());
+            DBHelper.getInstance().getUserDao().update(mAllUsers.get(position));
             mAdapter.notifyItemChanged(position);
 
             List<Book> books = DBHelper.getInstance().getBookDao().allBook();
@@ -88,7 +174,9 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
         dragAndSwipeRV();
     }
 
-    @SuppressLint("SetTextI18n") @Override public void onClick(View view) {
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.bt_query_all) {
             TList.clearAddAll(mAllUsers, DBHelper.getInstance().getUserDao().allUsers());
@@ -122,13 +210,15 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
     private void dragAndSwipeRV() {
         ItemTouchHelper.Callback callback = new ItemTouchHelper.Callback() {
             /// 返回允许滑动的方向
-            @Override public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
                 int drag = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
                 int swipe = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
                 return makeMovementFlags(drag, swipe);
             }
 
-            @Override public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 int from = viewHolder.getAdapterPosition();
                 int to = target.getAdapterPosition();
                 Collections.swap(mAllUsers, from, to);
@@ -136,7 +226,8 @@ public class DemoRoomFm extends LightFm<LightPresenter, ApiActivityRoomBinding> 
                 return true;
             }
 
-            @Override public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 mAllUsers.remove(position);
                 mAdapter.notifyItemRemoved(position);

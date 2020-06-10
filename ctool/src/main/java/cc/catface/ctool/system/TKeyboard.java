@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import cc.catface.ctool.context.TContext;
+import cc.catface.ctool.context.TApp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -14,7 +14,7 @@ import cc.catface.ctool.context.TContext;
 public class TKeyboard {
 
     public static void open(EditText et) {
-        InputMethodManager manager = (InputMethodManager) TContext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager manager = (InputMethodManager) TApp.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (null == manager) return;
         manager.showSoftInput(et, InputMethodManager.RESULT_SHOWN);
         manager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -22,7 +22,7 @@ public class TKeyboard {
 
 
     public static void close(EditText et) {
-        InputMethodManager manager = (InputMethodManager) TContext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager manager = (InputMethodManager) TApp.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (null == manager) return;
         manager.hideSoftInputFromWindow(et.getWindowToken(), 0);
     }
@@ -31,7 +31,7 @@ public class TKeyboard {
     /*xxx*/
     public static boolean isOpen(Activity activity) {
         View view = activity.getWindow().peekDecorView();
-        InputMethodManager manager = (InputMethodManager) TContext.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager manager = (InputMethodManager) TApp.getInstance().getSystemService(Activity.INPUT_METHOD_SERVICE);
         if (null == view || null == manager) return false;
         return manager.isActive() && activity.getWindow().getCurrentFocus() != null;
     }

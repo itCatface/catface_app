@@ -11,7 +11,7 @@ public class TVibrator {
     private static Vibrator mVibrator;
 
     private static boolean isVibratorEnabled() {
-        mVibrator = (Vibrator) TContext.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+        mVibrator = (Vibrator) TApp.getInstance().getSystemService(Context.VIBRATOR_SERVICE);
         return null != mVibrator;
     }
 

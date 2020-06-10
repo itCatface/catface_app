@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import cc.catface.ctool.context.TContext;
+import cc.catface.ctool.context.TApp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -17,7 +17,7 @@ public class NetStateUtil {
     public static int getNetWorkType() {
         int result = NETWORK_NONE;
 
-        ConnectivityManager manager = (ConnectivityManager) TContext.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager = (ConnectivityManager) TApp.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null == manager) return NETWORK_NONE;
         NetworkInfo activeNetworkInfo = manager.getActiveNetworkInfo();
         if (null == activeNetworkInfo || !activeNetworkInfo.isConnected()) return result;

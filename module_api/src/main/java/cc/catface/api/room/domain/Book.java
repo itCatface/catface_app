@@ -1,5 +1,6 @@
 package cc.catface.api.room.domain;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,7 +9,7 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "book") public class Book {
     @PrimaryKey(autoGenerate = true) private int id;
-    private String name;
+    @ColumnInfo(defaultValue = "book_name") private String name;
     private int price;
 
     @Override public String toString() {

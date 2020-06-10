@@ -28,7 +28,7 @@ public class TSP {
 
     private TSP() {
         if (null != mSP) return;
-        mSP = TContext.getContext().getSharedPreferences(SP_FILE_NAME, Context.MODE_PRIVATE);
+        mSP = TApp.getInstance().getSharedPreferences(SP_FILE_NAME, Context.MODE_PRIVATE);
     }
 
 

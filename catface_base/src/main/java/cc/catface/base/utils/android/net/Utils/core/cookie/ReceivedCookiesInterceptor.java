@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 
-import cc.catface.ctool.context.TContext;
+import cc.catface.ctool.context.TApp;
 import okhttp3.Interceptor;
 import okhttp3.Response;
 
@@ -24,7 +24,7 @@ public class ReceivedCookiesInterceptor implements Interceptor {
 
         if (!headers.isEmpty()) {
             HashSet<String> cookies = new HashSet<>(headers);
-            SharedPreferences.Editor config = TContext.getContext().getSharedPreferences("config", Context.MODE_PRIVATE).edit();
+            SharedPreferences.Editor config = TApp.getInstance().getSharedPreferences("config", Context.MODE_PRIVATE).edit();
             config.putStringSet("cookie", cookies);
             config.apply();
         }

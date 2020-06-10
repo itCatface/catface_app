@@ -23,6 +23,7 @@ import java.util.List;
 
 import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.light_mvp.LightAct;
+import cc.catface.ctool.system.TLog;
 import cc.catface.ctool.system.TScreen;
 import cc.catface.base.utils.android.common_print.toast.TToast;
 import cc.catface.start.R;
@@ -34,20 +35,26 @@ import cc.catface.start.main.mvp.vp.MainVP;
 import cc.catface.start.main.personal.view.PersonalFm;
 import cc.catface.start.main.query.view.QueryFm;
 
-@Route(path = Const.ARouter.start_main) public class MainActivity extends LightAct<MainPresenterImp, StartActivityMainBinding> implements MainVP.MainView, MessFm.FragmentListener, NavigationView.OnNavigationItemSelectedListener {
+@Route(path = Const.ARouter.start_main)
+public class MainActivity extends LightAct<MainPresenterImp, StartActivityMainBinding> implements MainVP.MainView, MessFm.FragmentListener, NavigationView.OnNavigationItemSelectedListener {
 
-    @Override public int layoutId() {
+    @Override
+    public int layoutId() {
+        setTheme(R.style.AppTheme);
         return R.layout.start_activity_main;
     }
 
-    @Override protected void initPresenter() {
+    @Override
+    protected void initPresenter() {
         mPresenter = new MainPresenterImp(this, this);
     }
 
     private FragmentTabHost tab_host;
     private List<Tab> mFmTabs;
 
-    @SuppressLint("CheckResult") @Override protected void created() {
+    @SuppressLint("CheckResult")
+    @Override
+    protected void created() {
         initToolBar();
 
         /*  */
@@ -69,7 +76,8 @@ import cc.catface.start.main.query.view.QueryFm;
     }
 
 
-    @Override public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
         DrawerLayout drawer = mBinding.dl;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -80,12 +88,14 @@ import cc.catface.start.main.query.view.QueryFm;
 
 
     /* View's */
-    @Override public void requestPermissionSuccess() {
+    @Override
+    public void requestPermissionSuccess() {
         tab_host = (FragmentTabHost) findViewById(android.R.id.tabhost);
         initTab();
     }
 
-    @Override public void requestPermissionFailure() {
+    @Override
+    public void requestPermissionFailure() {
         Toast.makeText(this, "请重启应用允许请求的权限", Toast.LENGTH_SHORT).show();
     }
 
@@ -124,13 +134,18 @@ import cc.catface.start.main.query.view.QueryFm;
     }
 
 
-    /** 接收fragment参数 */
-    @Override public void process(String process) {
+    /**
+     * 接收fragment参数
+     */
+    @Override
+    public void process(String process) {
         TToast.get(this).showShortNormal("接受到fragment信息：" + process);
     }
 
 
-    /** tool bar */
+    /**
+     * tool bar
+     */
     private ActionBar mBar;
 
     private void initToolBar() {
@@ -154,8 +169,11 @@ import cc.catface.start.main.query.view.QueryFm;
     }
 
 
-    /** 侧边导航 */
-    @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    /**
+     * 侧边导航
+     */
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.nav_home) {
             Toast.makeText(this, "回到主页", Toast.LENGTH_SHORT).show();
@@ -168,10 +186,13 @@ import cc.catface.start.main.query.view.QueryFm;
     }
 
 
-    /** 连按两次退出应用 */
+    /**
+     * 连按两次退出应用
+     */
     private long mPeriod = 0;
 
-    @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((System.currentTimeMillis() - mPeriod) > 2000) {
                 Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();

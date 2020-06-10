@@ -16,7 +16,7 @@ import cc.catface.api.toutiao.domain.ToutiaoCommonBean;
 import cc.catface.api.toutiao.toutiao_refresh.TodayNewsHeader;
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
-import cc.catface.base.utils.android.Timer.TTimer;
+import cc.catface.ctool.system.Timer.TTimer;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925

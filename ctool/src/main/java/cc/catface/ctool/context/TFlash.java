@@ -26,10 +26,10 @@ public class TFlash {
     }
 
     private TFlash() {
-        isFlashAvailable = TContext.getContext().getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        isFlashAvailable = TApp.getInstance().getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mCameraManager = (CameraManager) TContext.getContext().getApplicationContext().getSystemService(Context.CAMERA_SERVICE);
+            mCameraManager = (CameraManager) TApp.getInstance().getApplicationContext().getSystemService(Context.CAMERA_SERVICE);
             try {
                 if (mCameraManager != null) {
                     mCameraId = mCameraManager.getCameraIdList()[0];

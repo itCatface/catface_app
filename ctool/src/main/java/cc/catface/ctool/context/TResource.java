@@ -8,18 +8,18 @@ import android.graphics.drawable.Drawable;
 public class TResource {
 
     public static String getString(int id) {
-        return TContext.getContext().getResources().getString(id);
+        return TApp.getInstance().getResources().getString(id);
     }
 
     public static Drawable getDrawable(int id) {
-        return TContext.getContext().getResources().getDrawable(id);
+        return TApp.getInstance().getResources().getDrawable(id);
     }
 
     public static int getColor(int id) {
-        return TContext.getContext().getResources().getColor(id);
+        return TApp.getInstance().getResources().getColor(id);
     }
 
     public static int getDimen(int id) {
-        return TContext.getContext().getResources().getDimensionPixelSize(id);
+        return TApp.getInstance().getResources().getDimensionPixelSize(id);
     }
 }

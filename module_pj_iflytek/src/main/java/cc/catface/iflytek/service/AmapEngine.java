@@ -9,7 +9,7 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 
-import cc.catface.ctool.context.TContext;
+import cc.catface.ctool.context.TApp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -100,7 +100,7 @@ public class AmapEngine implements AMapLocationListener, PoiSearch.OnPoiSearchLi
         PoiSearch.Query query = new PoiSearch.Query("", "", "");
         query.setPageSize(20);  // 每页多少条结果
         query.setPageNum(1);    // 查询页码
-        PoiSearch search = new PoiSearch(TContext.getContext(), query);
+        PoiSearch search = new PoiSearch(TApp.getInstance(), query);
         search.setBound(new PoiSearch.SearchBound(new LatLonPoint(location.getLatitude(), location.getLongitude()), 10000));
         search.setOnPoiSearchListener(this);
         search.searchPOIAsyn();
@@ -117,7 +117,7 @@ public class AmapEngine implements AMapLocationListener, PoiSearch.OnPoiSearchLi
      * 开始定位
      */
     public void startLocation() {
-        locationClient = new AMapLocationClient(TContext.getContext());
+        locationClient = new AMapLocationClient(TApp.getInstance());
         locationOption = getDefaultOption();
         locationClient.setLocationOption(locationOption);
         locationClient.setLocationListener(this);

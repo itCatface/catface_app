@@ -92,3 +92,6 @@
 
 ## 其他
 
+1.
+为什么启动时会出现短暂黑屏或白屏的现象？当用户点击你的app那一刻到系统调用Activity.onCreate()之间的这个时间段内，WindowManager会先加载app主题样式中的windowBackground做为app的预览元素，然后再真正去加载activity的layout布局。
+

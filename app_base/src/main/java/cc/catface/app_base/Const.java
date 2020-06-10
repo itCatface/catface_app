@@ -1,5 +1,7 @@
 package cc.catface.app_base;
 
+import java.util.Random;
+
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
@@ -7,6 +9,30 @@ public class Const {
 
     public static final boolean IS_DEBUG = true;
 
+
+    /**
+     * 用于测试使用的网络图片的地址
+     */
+    public static class TestNetImageUrls {
+        public static final String url1 = "http://img1.imgtn.bdimg.com/it/u=1297261984,49161429&fm=15&gp=0.jpg";
+        public static final String url2 = "http://f.hiphotos.baidu.com/zhidao/pic/item/b17eca8065380cd734a92e71aa44ad34588281f3.jpg";
+        public static final String url3 = "http://dimg01.c-ctrip.com/images/fd/tg/g5/M0B/40/34/CggYr1b7SouAM3GtAAChIW1NNkA494_R_1024_10000.jpg";
+        public static final String url4 = "http://2d.zol-img.com.cn/product/3_800x600/619/ce1sAtzKyhJ.jpg";
+
+        public static String getRandomOneUrl() {
+            int i = new Random().nextInt(4);
+            switch (i) {
+                case 0:
+                    return url1;
+                case 1:
+                    return url2;
+                case 2:
+                    return url3;
+                default:
+                    return url4;
+            }
+        }
+    }
 
     /**
      * 统一管理ARouter的所有路径url

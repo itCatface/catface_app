@@ -8,11 +8,11 @@ import android.widget.Toast;
 public class TToast {
 
     public static void showNormal(String msg) {
-        Toast.makeText(TContext.getContext(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(TApp.getInstance(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public static void showNormal(String msg, boolean isLong) {
-        Toast.makeText(TContext.getContext(), msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(TApp.getInstance(), msg, Toast.LENGTH_LONG).show();
     }
 
 }

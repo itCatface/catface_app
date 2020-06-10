@@ -1,5 +1,7 @@
 package cc.catface.api.common;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -34,7 +36,8 @@ import cc.catface.ctool.context.net.tool.TNetwork;
 public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfoBinding> {
 
 
-    @Override public void handleMessage(Message msg) {
+    @Override
+    public void handleMessage(Message msg) {
         mBinding.rlLoading.setVisibility(View.GONE);
         mBinding.tiModel.setContent(mModel);
         mBinding.tiSN.setContent(mSn);
@@ -56,17 +59,21 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
         mBinding.tiRamRemain.setContent(mRAMRemain);
         mBinding.tiRamTotal.setContent(mRAMTotal);
         mBinding.tiRunningProcessCount.setContent(TString.convert2String(mRunningProcessCount));
+        mBinding.tiHeapSize.setContent(mHeapSize + "mb");
     }
 
-    @Override public int layoutId() {
+    @Override
+    public int layoutId() {
         return R.layout.api_activity_app_info;
     }
 
-    @Override protected void initView() {
+    @Override
+    protected void initView() {
         mBinding.rlLoading.setVisibility(View.VISIBLE);
     }
 
-    @Override protected void initHandler() {
+    @Override
+    protected void initHandler() {
         mHandler = new TWeakHandler<>(this);
     }
 
@@ -76,7 +83,10 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
     private int mVersionCode;
     private List<AppInfo> mApps = new ArrayList<>();
 
-    @Override protected void initData() {
+    private int mHeapSize;
+
+    @Override
+    protected void initData() {
         new Thread(() -> {
             mModel = TAppInfo.getModel();
             mSn = TAppInfo.getSN();
@@ -93,16 +103,23 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
             mRAMTotal = TAppInfo.getTotalRAM();
             mRunningProcessCount = TAppInfo.getRunningProcessCount();
             mHandler.obtainMessage().sendToTarget();
+
+            /* heap size */
+            ActivityManager manager = (ActivityManager) mActivity.getSystemService(Context.ACTIVITY_SERVICE);
+            if (null == manager) return;
+            mHeapSize = manager.getMemoryClass();
         }).start();
     }
 
-    @Override protected void initAction() {
+    @Override
+    protected void initAction() {
         mBinding.tiOpenNetSettings.setOnClickListener(v -> TSystemAction.openAction(TSystemAction.ACTION_WIRELESS_SETTINGS));
     }
 
     private NetBroadcastReceiver mReceiver;
 
-    @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (mReceiver == null) {
             mReceiver = new NetBroadcastReceiver();
@@ -121,13 +138,15 @@ public class DemoSystemInfoFm extends LightFm<LightPresenter, ApiActivityAppInfo
         }
 
         NetworkLiveData.getInstance(new WeakReference<>(mActivity)).observe(mActivity, new Observer<NetworkInfo>() {
-            @Override public void onChanged(NetworkInfo networkInfo) {
+            @Override
+            public void onChanged(NetworkInfo networkInfo) {
                 TLog.d(getClass().getName() + "-->networkInfo: " + networkInfo);
             }
         });
     }
 
-    @Override public void onDestroy() {
+    @Override
+    public void onDestroy() {
         super.onDestroy();
         if (null != mReceiver) mActivity.unregisterReceiver(mReceiver);
     }

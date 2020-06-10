@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import cc.catface.base.core_framework.light_mvp.LightFm;
-import cc.catface.base.utils.android.Timer.TTimer;
+import cc.catface.ctool.system.Timer.TTimer;
 import cc.catface.ctool.system.TLog;
 import cc.catface.base.utils.android.net.retrofit.RetrofitCallback;
 import cc.catface.base.utils.android.net.retrofit.RetrofitT;

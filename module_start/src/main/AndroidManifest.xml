@@ -5,18 +5,26 @@
     <application>
         <activity
             android:name="cc.catface.start.splash.view.SplashActivity"
-            android:theme="@style/common_full_screen_no_title">
+            android:theme="@style/common_full_screen_no_title"></activity>
+        <activity android:name="cc.catface.start.CrashHandlerActivity" />
+        <activity
+            android:name="cc.catface.start.welcome.view.WelcomeActivity"
+            android:theme="@style/common_full_screen_no_title" />
+        <activity
+            android:name="cc.catface.start.ad.view.AdActivity"
+            android:theme="@style/AppTheme.Launcher">
+
+            <!-- 在华为手机启动时顶部刘海栏会黒一下-fix -->
+            <meta-data
+                android:name="android.notch_support"
+                android:value="true" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="cc.catface.start.CrashHandlerActivity" />
-        <activity
-            android:name="cc.catface.start.welcome.view.WelcomeActivity"
-            android:theme="@style/common_full_screen_no_title" />
-        <activity android:name="cc.catface.start.ad.view.AdActivity" />
+
         <activity android:name="cc.catface.start.login.view.LoginActivity" />
         <activity
             android:name="cc.catface.start.main.mvp.view.MainActivity"

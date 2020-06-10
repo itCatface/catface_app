@@ -69,7 +69,7 @@ public class TAppInfo {
     public static String getIMEI() {
         String imei = "";
         try {
-            TelephonyManager tm = (TelephonyManager) TContext.getContext().getSystemService(TELEPHONY_SERVICE);
+            TelephonyManager tm = (TelephonyManager) TApp.getInstance().getSystemService(TELEPHONY_SERVICE);
             if (null == tm) return imei;
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 imei = tm.getDeviceId();
@@ -86,7 +86,7 @@ public class TAppInfo {
     /* 获取多个imei */
     public static Pair<String, String> getMultiIMEI() {
         try {
-            TelephonyManager tm = (TelephonyManager) TContext.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager tm = (TelephonyManager) TApp.getInstance().getSystemService(Context.TELEPHONY_SERVICE);
             if (null == tm) return null;
             Method method = tm.getClass().getMethod("getDeviceId", int.class);
             Pair<String, String> imeis = new Pair<>(tm.getDeviceId(), (String) method.invoke(tm, 1));
@@ -97,12 +97,12 @@ public class TAppInfo {
     }
 
     @TargetApi(Build.VERSION_CODES.M) public static void JudgeSIM() {
-        TelephonyManager tm = (TelephonyManager) TContext.getContext().getSystemService(TELEPHONY_SERVICE);
+        TelephonyManager tm = (TelephonyManager) TApp.getInstance().getSystemService(TELEPHONY_SERVICE);
         //获取当前SIM卡槽数量
         int phoneCount = tm.getPhoneCount();
         //获取当前SIM卡数量
-        int activeSubscriptionInfoCount = SubscriptionManager.from(TContext.getContext()).getActiveSubscriptionInfoCount();
-        List<SubscriptionInfo> activeSubscriptionInfoList = SubscriptionManager.from(TContext.getContext()).getActiveSubscriptionInfoList();
+        int activeSubscriptionInfoCount = SubscriptionManager.from(TApp.getInstance()).getActiveSubscriptionInfoCount();
+        List<SubscriptionInfo> activeSubscriptionInfoList = SubscriptionManager.from(TApp.getInstance()).getActiveSubscriptionInfoList();
         if (activeSubscriptionInfoList == null) {
             return;
         }
@@ -129,7 +129,7 @@ public class TAppInfo {
     /* 获取版本名 */
     public static String getVerName() {
         try {
-            return TContext.getContext().getPackageManager().getPackageInfo(TContext.getContext().getPackageName(), 0).versionName;
+            return TApp.getInstance().getPackageManager().getPackageInfo(TApp.getInstance().getPackageName(), 0).versionName;
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -139,7 +139,7 @@ public class TAppInfo {
     /* 获取版本号 */
     public static int getVerCode() {
         try {
-            return TContext.getContext().getPackageManager().getPackageInfo(TContext.getContext().getPackageName(), 0).versionCode;
+            return TApp.getInstance().getPackageManager().getPackageInfo(TApp.getInstance().getPackageName(), 0).versionCode;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -159,11 +159,11 @@ public class TAppInfo {
 
     /* 获取设备剩余RAM[byte] */
     public static String getRAMRemain() {
-        ActivityManager am = (ActivityManager) TContext.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) TApp.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();
         if (null == am) return "";
         am.getMemoryInfo(outInfo);
-        return Formatter.formatFileSize(TContext.getContext(), outInfo.availMem);
+        return Formatter.formatFileSize(TApp.getInstance(), outInfo.availMem);
     }
 
     /* 获取设备总RAM[byte] */
@@ -184,7 +184,7 @@ public class TAppInfo {
                     stringBuffer.append(c);
                 }
             }
-            return Formatter.formatFileSize(TContext.getContext(), Long.parseLong(stringBuffer.toString()) * 1024);
+            return Formatter.formatFileSize(TApp.getInstance(), Long.parseLong(stringBuffer.toString()) * 1024);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -207,13 +207,13 @@ public class TAppInfo {
         long availableBlocks = sf.getAvailableBlocks();
         long blockSize = sf.getBlockSize();
 
-        return Formatter.formatFileSize(TContext.getContext(), availableBlocks * blockSize);
+        return Formatter.formatFileSize(TApp.getInstance(), availableBlocks * blockSize);
     }
 
 
     /* 获取设备运行中的进程数量 */
     public static int getRunningProcessCount() {
-        ActivityManager am = (ActivityManager) TContext.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) TApp.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
         if (null == am) return 0;
         List<ActivityManager.RunningAppProcessInfo> infos = am.getRunningAppProcesses();
         return infos.size();
@@ -222,7 +222,7 @@ public class TAppInfo {
     /* 判断服务是否正在运行 */
     public static boolean isServiceRunning(String classname) {
         if (TextUtils.isEmpty(classname)) return false;
-        ActivityManager am = (ActivityManager) TContext.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) TApp.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
         if (null == am) return false;
         List<ActivityManager.RunningServiceInfo> infos = am.getRunningServices(1000);
         for (ActivityManager.RunningServiceInfo info : infos) {
@@ -240,7 +240,7 @@ public class TAppInfo {
 
         ArrayList<AppInfo> datas = new ArrayList<>();
 
-        PackageManager pm = TContext.getContext().getPackageManager();
+        PackageManager pm = TApp.getInstance().getPackageManager();
         List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
 
         for (PackageInfo packageInfo : installedPackages) {

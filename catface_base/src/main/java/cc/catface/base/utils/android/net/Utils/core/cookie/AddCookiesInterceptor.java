@@ -5,7 +5,7 @@ import android.content.Context;
 import java.io.IOException;
 import java.util.HashSet;
 
-import cc.catface.ctool.context.TContext;
+import cc.catface.ctool.context.TApp;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -19,7 +19,7 @@ public class AddCookiesInterceptor implements Interceptor {
 
     @Override public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
-        HashSet<String> preferences = (HashSet<String>) TContext.getContext().getSharedPreferences("config", Context.MODE_PRIVATE).getStringSet("cookie", null);
+        HashSet<String> preferences = (HashSet<String>) TApp.getInstance().getSharedPreferences("config", Context.MODE_PRIVATE).getStringSet("cookie", null);
         if (null != preferences) {
             for (String cookie : preferences) {
                 builder.addHeader("Cookie", cookie);

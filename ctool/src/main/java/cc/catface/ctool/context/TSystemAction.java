@@ -16,7 +16,7 @@ public class TSystemAction {
     public static final String ACTION_WIRELESS_SETTINGS = android.provider.Settings.ACTION_WIRELESS_SETTINGS;
 
     public static void openAction(String action) {
-        TContext.getContext().startActivity(new Intent(action).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        TApp.getInstance().startActivity(new Intent(action).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public static void call(Context context, String phone) {

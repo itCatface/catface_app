@@ -15,7 +15,7 @@ import cc.catface.api.room.dao.UserDao;
 import cc.catface.api.room.domain.Book;
 import cc.catface.api.room.domain.Cat;
 import cc.catface.api.room.domain.User;
-import cc.catface.ctool.context.TContext;
+import cc.catface.ctool.context.TApp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -40,7 +40,7 @@ import cc.catface.ctool.context.TContext;
     }
 
     private static class Holder {
-        private static DBHelper instance = Room.databaseBuilder(TContext.getContext(), DBHelper.class, DB_FILE_PATH).
+        private static DBHelper instance = Room.databaseBuilder(TApp.getInstance(), DBHelper.class, DB_FILE_PATH).
                 // fallbackToDestructiveMigration().   // 找不到迁移规则时销毁重建数据库
                 // fallbackToDestructiveMigrationFrom(1, 4).   // 从1到4版本升级销毁重建数据库
                         allowMainThreadQueries().   // 允许在主线程中执行操作(影响流畅性)

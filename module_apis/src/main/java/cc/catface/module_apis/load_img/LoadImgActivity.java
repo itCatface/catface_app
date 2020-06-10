@@ -15,7 +15,7 @@ import cc.catface.app_base.Const;
 import cc.catface.base.GlideApp;
 import cc.catface.base.core_framework.light_mvp.LightAct;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
-import cc.catface.base.utils.android.Timer.TTimer;
+import cc.catface.ctool.system.Timer.TTimer;
 import cc.catface.module_apis.R;
 import cc.catface.module_apis.databinding.ApisActivityLoadImgBinding;
 

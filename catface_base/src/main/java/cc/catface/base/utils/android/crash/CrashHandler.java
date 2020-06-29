@@ -1,13 +1,13 @@
 package cc.catface.base.utils.android.crash;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cc.catface.base.utils.java.file.base.FileT;
+import cc.catface.ctool.context.TApp;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -29,25 +30,26 @@ public class CrashHandler implements UncaughtExceptionHandler {
     private static final boolean DEBUG = true;
 
     // 崩溃日志存储位置及文件
-    private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/mobileSD/CrashHandler/";
+    private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/catface_app/CrashHandler/";
     private static final String FILE_NAME = "crash";
     private static final String FILE_NAME_SUFFIX = ".trace";
 
-    @SuppressLint("StaticFieldLeak") private static CrashHandler sInstance = new CrashHandler();
     private UncaughtExceptionHandler mDefaultCrashHandler;
-    private Context mCtx;
 
     private CrashHandler() {
     }
 
-    public static CrashHandler getInstance() {
-        return sInstance;
+    private static class Holder {
+        private static final CrashHandler instance = new CrashHandler();
     }
 
-    public void init(Context context) {
+    public static CrashHandler getInstance() {
+        return Holder.instance;
+    }
+
+    public void init() {
         mDefaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
-        mCtx = context.getApplicationContext();
     }
 
     /**
@@ -55,7 +57,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
      * thread为出现未捕获异常的线程，ex为未捕获的异常，有了这个ex，我们就可以得到异常信息
      */
     @Override
-    public void uncaughtException(Thread thread, Throwable ex) {
+    public void uncaughtException(@NonNull Thread thread, @NonNull Throwable ex) {
 
         try {
             //导出异常信息到SD卡中
@@ -106,16 +108,15 @@ public class CrashHandler implements UncaughtExceptionHandler {
             pw.close();
 
 
-            if (null != mOnCrashListener)
-                mOnCrashListener.onCrash(FileT.read(file.getAbsolutePath()));
+            if (null != mOnCrashListener) mOnCrashListener.onCrash(FileT.read(file.getAbsolutePath()));
         } catch (Exception e) {
             Log.w(TAG, "dump crash info failed");
         }
     }
 
     private void dumpPhoneInfo(PrintWriter pw) throws NameNotFoundException {
-        PackageManager pm = mCtx.getPackageManager();
-        PackageInfo pi = pm.getPackageInfo(mCtx.getPackageName(), PackageManager.GET_ACTIVITIES);
+        PackageManager pm = TApp.getInstance().getPackageManager();
+        PackageInfo pi = pm.getPackageInfo(TApp.getInstance().getPackageName(), PackageManager.GET_ACTIVITIES);
         pw.print("App Version: ");
         pw.print(pi.versionName);
         pw.print('_');
@@ -148,7 +149,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
     public CrashHandler setCrashListener(OnCrashListener listener) {
         this.mOnCrashListener = listener;
-        return sInstance;
+        return getInstance();
 
     }
 

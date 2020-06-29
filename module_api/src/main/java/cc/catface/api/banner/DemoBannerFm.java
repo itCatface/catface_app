@@ -24,7 +24,7 @@ public class DemoBannerFm extends LightFm<LightPresenter, ApiFragmentBannerBindi
         return R.layout.api_fragment_banner;
     }
 
-    private String[] mImgUrls = {"http://wallpapersqq.net/wp-content/uploads/2015/11/allen-iverson-wallpapers-wide-desktop-wallpapers.jpg", "http://img.dianying.fm/media/backdrops/7a/7ax1vTwU5MpkRojxqejkX9fqlHq.jpg", "http://pic1.win4000.com/wallpaper/7/50921fa77c258.jpg", "http://n.sinaimg.cn/sinacn/20161226/5fca-fxyxute3388729.jpg", "http://t1.huanqiu.cn/6b6e291d95d20583c238613337c48d70.jpeg"};
+    private String[] mImgUrls = {"http://wallpapersqq.net/wp-content/uploads/2015/11/allen-iverson-wallpapers-wide-desktop-wallpapers.jpg", "http://pic1.win4000.com/wallpaper/7/50921fa77c258.jpg", "http://n.sinaimg.cn/sinacn/20161226/5fca-fxyxute3388729.jpg", "http://t1.huanqiu.cn/6b6e291d95d20583c238613337c48d70.jpeg"};
 
     @Override protected void initView() {
         mBinding.rvdbv.setVisibility(View.VISIBLE);

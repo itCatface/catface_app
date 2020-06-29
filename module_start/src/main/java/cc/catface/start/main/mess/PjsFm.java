@@ -22,10 +22,9 @@ public class PjsFm extends LightFm<LightPresenter, PagePureListviewBinding> {
     private final String PJS_SHOWAPI = "易源接口测试";
     private final String PJS_WANANDROID = "wanandroid复刻";
     private final String PJS_WECHAT = "微信界面+环信IM";
-    private final String PJS_WORK_DEMO = "工作需求demo";
     private final String PJS_NEWS = "mvp+databinding超简单使用案例";
 
-    private String[] mItems = {PJS_IFLYTEK, PJS_SHOWAPI, PJS_WANANDROID, PJS_WECHAT, PJS_WORK_DEMO, PJS_NEWS};
+    private String[] mItems = {PJS_IFLYTEK, PJS_SHOWAPI, PJS_WANANDROID, PJS_WECHAT, PJS_NEWS};
 
 
     @Override protected void initView() {
@@ -42,9 +41,6 @@ public class PjsFm extends LightFm<LightPresenter, PagePureListviewBinding> {
                     break;
                 case PJS_WECHAT:
                     ARouter.getInstance().build(Const.ARouter.pj_wechat_main).navigation();
-                    break;
-                case PJS_WORK_DEMO:
-                    ARouter.getInstance().build(Const.ARouter.work_demo_main).navigation();
                     break;
                 case PJS_NEWS:
                     ARouter.getInstance().build(Const.ARouter.start_login).navigation();

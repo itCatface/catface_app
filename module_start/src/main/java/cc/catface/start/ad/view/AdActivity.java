@@ -36,6 +36,12 @@ public class AdActivity extends LightAct<AdPresenterImp, StartActivityAdBinding>
     }
 
     @Override
+    protected void initPresenter() {
+        mPresenter = new AdPresenterImp(this, this);
+        mPresenter.initCrashHandler();
+    }
+
+    @Override
     protected void initAction() {
         mBinding.tvShare.setOnClickListener(this);
         mBinding.tvJump.setOnClickListener(this);

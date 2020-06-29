@@ -1,5 +1,7 @@
 package cc.catface.app_base;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -57,11 +59,12 @@ public class Const {
         public static final String start_main = "/start/main";
 
         /* module_api */
-        public static final String path_api_fm_api = "path_api_api";
+        public static final String api_fm = "/api/fm";
         public static final String api_holder = "/api/api";
         public static final String api_demo_view_holder = "/api/demo_view_holder";
 
         /* module_apis */
+        public static final String apis_fm = "/apis/fm";
         public static final String apis_activity_holder = "/apis/activity/holder";
         public static final String apis_pdf = "/apis/pdf";
         public static final String apis_brvah = "/apis/brvah";
@@ -71,12 +74,6 @@ public class Const {
         public static final String apis_iflytek = "/apis/iflytek";
         public static final String apis_memo = "/apis/memo";
         public static final String apis_loadImg = "/apis/loadImg";
-
-        /* module_work_demo */
-        public static final String work_demo_main = "/work/demo/main";
-        public static final String work_demo_holder = "/work/demo/holder";
-        //
-        public static final int fm_id_work_demo_ifly_swipe_change_page = -0x500001;
 
         /* module_pj_showapi */
         public static final String pj_showapi_main = "/pj_showapi/main";
@@ -94,30 +91,61 @@ public class Const {
          * fragment's id
          */
         public static final String fm_id_key = "fm_id_key";
-        public static final String fm_id_api_small_func = "fm_id_api_small_func";
-        public static final String fm_id_api_frame = "fm_id_api_frame";
-        public static final String fm_id_api_font_type = "fm_id_api_font_type";
-        public static final String fm_id_api_toast = "fm_id_api_toast";
-        public static final String fm_id_api_prop = "fm_id_api_prop";
-        public static final String fm_id_api_dialog = "fm_id_api_dialog";
-        public static final String fm_id_api_popup = "fm_id_api_popup";
-        public static final String fm_id_api_view_anim = "fm_id_api_view_anim";
-        public static final String fm_id_api_hardware = "fm_id_api_hardware";
-        public static final String fm_id_api_eleme = "fm_id_api_eleme";
-        public static final String fm_id_rv_api_toutiao = "fm_id_rv_api_toutiao";
-        public static final String fm_id_rv_api_banner = "fm_id_rv_api_banner";
-        public static final String fm_id_api_load_large_image = "fm_id_api_load_large_image";
-        public static final String fm_id_api_system_info = "fm_id_api_system_info";
-        public static final String fm_id_api_multi_touch = "fm_id_api_multi_touch";
-        public static final String fm_id_api_textview_serial = "fm_id_api_textview_serial";
-        public static final String fm_id_api_imageview_serial = "fm_id_api_imageview_serial";
-        public static final String fm_id_api_constraintlayout = "fm_id_api_constraintlayout";
-        public static final String fm_id_api_data_binding = "fm_id_api_data_binding";
-        public static final String fm_id_api_room = "fm_id_api_room";
-        public static final String fm_id_api_crash = "fm_id_api_crash";
-        public static final String fm_id_api_toolbar = "fm_id_api_toolbar";
-        public static final String fm_id_api_viewpager2 = "fm_id_api_viewpager2";
-        public static final String fm_id_api_clipboard = "fm_id_api_clipboard";
+
+        public static final String fm_id_api_small_func = "demo-小功能示例";
+        public static final String fm_id_api_frame = "demo-框架-基础框架示例";
+        public static final String fm_id_api_font_type = "demo-系统-字体示例";
+        public static final String fm_id_api_toast = "demo-系统-toast示例";
+        public static final String fm_id_api_prop = "demo-系统-properties示例";
+        public static final String fm_id_api_dialog = "demo-系统-dialog示例";
+        public static final String fm_id_api_popup = "demo-系统-popup示例";
+        public static final String fm_id_api_view_anim = "demo-系统-view&animator示例";
+        public static final String fm_id_api_hardware = "demo-系统-硬件示例";
+        public static final String fm_id_api_eleme = "demo-功能-饿了么菜单";
+        public static final String fm_id_rv_api_toutiao = "demo-rv-(toutiao)";
+        public static final String fm_id_rv_api_banner = "demo-rv-banner";
+        public static final String fm_id_api_load_large_image = "demo-功能-加载大图片";
+        public static final String fm_id_api_system_info = "demo系统-系统信息";
+        public static final String fm_id_api_multi_touch = "demo系统-多点触控示例";
+        public static final String fm_id_api_textview_serial = "demo-系统控件-TextView效果示例";
+        public static final String fm_id_api_imageview_serial = "demo-系统控件-IV-scaleType属性示例";
+        public static final String fm_id_api_constraintlayout = "demo-系统-ConstraintLayout示例";
+        public static final String fm_id_api_data_binding = "demo-系统-data_binding示例";
+        public static final String fm_id_api_room = "demo-系统-room示例";
+        public static final String fm_id_api_crash = "demo-系统-crash处理示例";
+        public static final String fm_id_api_toolbar = "demo-系统-toolbar使用示例";
+        public static final String fm_id_api_viewpager2 = "demo-viewpager2示例";
+        public static final String fm_id_api_clipboard = "demo-clipboard示例";
+
+        public static List<String> apiFmApiList() {
+            List<String> list = new ArrayList<>();
+            list.add(fm_id_api_small_func);
+            list.add(fm_id_api_frame);
+            list.add(fm_id_api_font_type);
+            list.add(fm_id_api_toast);
+            list.add(fm_id_api_prop);
+            list.add(fm_id_api_dialog);
+            list.add(fm_id_api_popup);
+            list.add(fm_id_api_view_anim);
+            list.add(fm_id_api_hardware);
+            list.add(fm_id_api_eleme);
+            list.add(fm_id_rv_api_toutiao);
+            list.add(fm_id_rv_api_banner);
+            list.add(fm_id_api_load_large_image);
+            list.add(fm_id_api_system_info);
+            list.add(fm_id_api_multi_touch);
+            list.add(fm_id_api_textview_serial);
+            list.add(fm_id_api_imageview_serial);
+            list.add(fm_id_api_constraintlayout);
+            list.add(fm_id_api_data_binding);
+            list.add(fm_id_api_room);
+            list.add(fm_id_api_crash);
+            list.add(fm_id_api_toolbar);
+            list.add(fm_id_api_viewpager2);
+            list.add(fm_id_api_clipboard);
+            return list;
+        }
+
 
         public static final int fm_id_view_astr = -0x100001;
         public static final int fm_id_view_interpolator = -0x100002;
@@ -139,5 +167,6 @@ public class Const {
         public static final int fm_id_apis_test_retrofit = -0x190001;
         public static final int fm_id_apis_half_scroll = -0x190002;
         public static final int fm_id_apis_lottie = -0x190003;
+        public static final int fm_id_apis_mmkv = -0x190004;
     }
 }

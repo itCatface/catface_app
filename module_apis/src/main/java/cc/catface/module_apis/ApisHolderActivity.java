@@ -10,18 +10,22 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.module_apis.databinding.ApisActivityApisHolderBinding;
 import cc.catface.module_apis.half_scroll.HalfScrollFm;
 import cc.catface.module_apis.lottie.LottieFm;
+import cc.catface.module_apis.mmkv.MMKVFm;
 import cc.catface.module_apis.test_retrofit.ApisTestRetrofitFm;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Route(path = Const.ARouter.apis_activity_holder) public class ApisHolderActivity extends LightAct<LightPresenter, ApisActivityApisHolderBinding> {
+@Route(path = Const.ARouter.apis_activity_holder)
+public class ApisHolderActivity extends LightAct<LightPresenter, ApisActivityApisHolderBinding> {
 
-    @Override public int layoutId() {
+    @Override
+    public int layoutId() {
         return R.layout.apis_activity_apis_holder;
     }
 
-    @Override protected void initView() {
+    @Override
+    protected void initView() {
         int fm_id = getIntent().getIntExtra(Const.ARouter.fm_id_key, -1);
         switch (fm_id) {
             case Const.ARouter.fm_id_apis_test_retrofit:
@@ -32,6 +36,9 @@ import cc.catface.module_apis.test_retrofit.ApisTestRetrofitFm;
                 break;
             case Const.ARouter.fm_id_apis_lottie:
                 replace(new LottieFm());
+                break;
+            case Const.ARouter.fm_id_apis_mmkv:
+                replace(new MMKVFm());
                 break;
         }
     }

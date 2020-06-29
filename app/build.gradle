@@ -67,9 +67,6 @@ dependencies {
     if (!rootProject.ext.debug_module_apis) {
         implementation project(':module_apis')
     }
-    if (!rootProject.ext.debug_module_work_demo) {
-        implementation project(':module_work_demo')
-    }
     if (!rootProject.ext.debug_module_pj_wanandroid) {
         implementation project(":module_pj_wanandroid")
     }

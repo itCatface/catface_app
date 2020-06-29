@@ -1,5 +1,6 @@
-package cc.catface.start.main.mess;
+package cc.catface.module_apis;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.ArrayList;
@@ -12,15 +13,15 @@ import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightPresenter;
 import cc.catface.base.databinding.PagePureListviewBinding;
 import cc.catface.base.utils.android.coomon_listview.TListView;
-import cc.catface.start.R;
-import cc.catface.start.main.mvp.view.MainActivity;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
+@Route(path = Const.ARouter.apis_fm)
 public class ApisFm extends LightFm<LightPresenter, PagePureListviewBinding> {
 
-    @Override public int layoutId() {
+    @Override
+    public int layoutId() {
         return R.layout.page_pure_listview;
     }
 
@@ -35,14 +36,16 @@ public class ApisFm extends LightFm<LightPresenter, PagePureListviewBinding> {
     private final String DEMO_MEMO = "demo-green dao使用";
     private final String LOAD_IMG = "demo-各图片加载框架使用";
     private final String DEMO_LOTTIE = "demo-动画框架lottie示例";
+    private final String DEMO_MMKV = "demo-mmkv示例";
     private final String TEST_RETROFIT = "test-测试retrofit工具类";
-    private String[] mItems = {PDF_READER, BRVAH, SPACE, DEMO_FLOW_LAYOUT, DEMO_STICKY_LIST, DEMO_NANOHTTPD_SERVER, DEMO_HALF_SCROLL, DEMO_MEMO, LOAD_IMG, DEMO_LOTTIE, TEST_RETROFIT};
+    private String[] mItems = {PDF_READER, BRVAH, SPACE, DEMO_FLOW_LAYOUT, DEMO_STICKY_LIST, DEMO_NANOHTTPD_SERVER, DEMO_HALF_SCROLL, DEMO_MEMO, LOAD_IMG, DEMO_LOTTIE, DEMO_MMKV, TEST_RETROFIT};
 
     /* icon+label */ private List<Map<String, Object>> list = new ArrayList<>();
     private Map<String, Object> map;
     private String[] keys = {"icon", "label"};
 
-    @Override protected void initView() {
+    @Override
+    protected void initView() {
         for (String mItem : mItems) {
             map = new HashMap<>();
             map.put(keys[0], R.mipmap.ic_launcher_round);
@@ -60,7 +63,7 @@ public class ApisFm extends LightFm<LightPresenter, PagePureListviewBinding> {
                     ARouter.getInstance().build(Const.ARouter.apis_brvah).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(BRVAH)).navigation();
                     break;
                 case SPACE:
-                    ((MainActivity) mActivity).process("clicked...");
+                    // ((MainActivity) mActivity).process("clicked...");
                     break;
                 case DEMO_FLOW_LAYOUT:
                     ARouter.getInstance().build(Const.ARouter.apis_flow_layout).withString(Const.ARouter.DEFAULT_STRING_KEY, Const.ARouter.getDefaultIntentStringValue(DEMO_FLOW_LAYOUT)).navigation();
@@ -82,6 +85,9 @@ public class ApisFm extends LightFm<LightPresenter, PagePureListviewBinding> {
                     break;
                 case DEMO_LOTTIE:
                     ARouter.getInstance().build(Const.ARouter.apis_activity_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_apis_lottie).navigation();
+                    break;
+                case DEMO_MMKV:
+                    ARouter.getInstance().build(Const.ARouter.apis_activity_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_apis_mmkv).navigation();
                     break;
                 case TEST_RETROFIT:
                     ARouter.getInstance().build(Const.ARouter.apis_activity_holder).withInt(Const.ARouter.fm_id_key, Const.ARouter.fm_id_apis_test_retrofit).navigation();

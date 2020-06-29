@@ -24,7 +24,7 @@ public class SplashPresenterImp extends LightPresenter<SplashVP.SplashView> impl
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getCtx().startActivity(intent);
             android.os.Process.killProcess(android.os.Process.myPid());
-        }).init(getCtx());
+        }).init();
     }
 
 }

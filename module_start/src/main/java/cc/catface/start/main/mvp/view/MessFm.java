@@ -6,16 +6,18 @@ import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import cc.catface.app_base.Const;
 import cc.catface.base.core_framework.light_mvp.LightFm;
 import cc.catface.base.core_framework.light_mvp.LightView;
 import cc.catface.ctool.view.viewpager.PagerAdapterFm;
 import cc.catface.start.R;
 import cc.catface.start.databinding.StartFmMessBinding;
-import cc.catface.start.main.mess.ApisFm;
 import cc.catface.start.main.mess.PjsFm;
 import cc.catface.start.main.mvp.vp.MessPresenterImp;
 
@@ -23,7 +25,8 @@ import cc.catface.start.main.mvp.vp.MessPresenterImp;
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
 public class MessFm extends LightFm<MessPresenterImp, StartFmMessBinding> implements LightView {
-    @Override public int layoutId() {
+    @Override
+    public int layoutId() {
         return R.layout.start_fm_mess;
     }
 
@@ -31,15 +34,16 @@ public class MessFm extends LightFm<MessPresenterImp, StartFmMessBinding> implem
     //    private String[] mTabTitles = {"GIF", "视频"};
     private List<Fragment> mFms;
 
-    @Override protected void initView() {
+    @Override
+    protected void initView() {
         LinearLayout ll = (LinearLayout) mBinding.tlMess.getChildAt(0);
         ll.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         ll.setDividerPadding(40);
         ll.setDividerDrawable(ContextCompat.getDrawable(mActivity, R.drawable.shape_vertical_line));
 
         mFms = new ArrayList<>();
-        mFms.add(new ApiFm());
-        mFms.add(new ApisFm());
+        mFms.add((Fragment) ARouter.getInstance().build(Const.ARouter.api_fm).navigation());
+        mFms.add((Fragment) ARouter.getInstance().build(Const.ARouter.apis_fm).navigation());
         mFms.add(new PjsFm());
 
         mBinding.vpMess.setOffscreenPageLimit(mTabTitles.length);
@@ -59,11 +63,11 @@ public class MessFm extends LightFm<MessPresenterImp, StartFmMessBinding> implem
         void process(String process);
     }
 
-    @Override public void onAttach(Activity activity) {
+    @Override
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (activity instanceof FragmentListener) mListener = (FragmentListener) activity;
-        else
-            throw new IllegalArgumentException("activity must implements BRVAH_AnimationListener...");
+        else throw new IllegalArgumentException("activity must implements BRVAH_AnimationListener...");
 
         //        if (null != mListener) mListener.process("onAttach...");
     }
@@ -98,7 +102,8 @@ public class MessFm extends LightFm<MessPresenterImp, StartFmMessBinding> implem
     //        if (null != mListener) mListener.process("onDestroy...");
     //    }
 
-    @Override public void onDetach() {
+    @Override
+    public void onDetach() {
         super.onDetach();
         if (null != mListener) {
             mListener.process("onDetach...");

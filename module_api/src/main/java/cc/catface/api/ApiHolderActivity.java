@@ -132,6 +132,7 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
                 break;
             case Const.ARouter.fm_id_rv_api_banner:
                 mTitle = "Banner";
+                mNormalTitle = "切换方向";
                 replace(fmBanner);
                 break;
             case Const.ARouter.fm_id_api_eleme:

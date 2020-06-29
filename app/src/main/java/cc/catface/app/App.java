@@ -7,10 +7,13 @@ import androidx.multidex.MultiDex;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.mmkv.MMKV;
+import com.tencent.mmkv.MMKVLogLevel;
 
 import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
 import cc.catface.ctool.context.TApp;
+import cc.catface.ctool.java.TThreadPool;
 import cc.catface.ctool.system.TLog;
 import cc.catface.ctool.system.sensor.camera.TPhoto;
 
@@ -24,8 +27,12 @@ public class App extends TApp {
         super.onCreate();
         long l = System.currentTimeMillis();
 
-        new Thread(() -> {
+        TThreadPool.EXECUTOR.submit(() -> {
             TPhoto.handle7Camera();
+
+            String mmkvDir = MMKV.initialize("sdcard/catface/mmkv");
+            MMKV.setLogLevel(MMKVLogLevel.LevelDebug);
+            TLog.d("App-->mmkvDir: " + mmkvDir);
 
             /* 初始化日志打印 */
             TLog.init("tag_catface", true, false, "");
@@ -43,10 +50,11 @@ public class App extends TApp {
 
             /* 初始化Fresco[图片加载] */
             Fresco.initialize(this);
-        }).start();
+
+            TLog.d("application oncreate time: " + (System.currentTimeMillis() - l));
+        });
 
 
-        TLog.d("application oncreate time: " + (System.currentTimeMillis() - l));
     }
 
 

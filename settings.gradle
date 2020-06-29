@@ -1,1 +1,4 @@
+// aidl使用案例
+include 'demo_aidl:app_aidl_client', 'demo_aidl:app_aidl_service'
+
 include ':catface_base', ':app', ':app_base', ':module_apis', ':module_start', ':module_api', ':module_pj_wanandroid', ':module_pj_showapi', ':module_pj_iflytek', ':ctool', ':module_pj_wechat', ':lib_hover_scroll', ':module_view'

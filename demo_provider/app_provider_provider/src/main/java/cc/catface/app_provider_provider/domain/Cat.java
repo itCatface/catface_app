@@ -1,4 +1,4 @@
-package cc.catface.api.room.domain;
+package cc.catface.app_provider_provider.domain;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -6,13 +6,15 @@ import androidx.room.PrimaryKey;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-@Entity(tableName = "cat") public class Cat {
+@Entity(tableName = "cat")
+public class Cat {
 
     @PrimaryKey(autoGenerate = true) private int id;
     private String name;
     private int age;
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return "Cat{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';
     }
 

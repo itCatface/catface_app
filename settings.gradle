@@ -1,3 +1,5 @@
+// provider使用案例
+include 'demo_provider:app_provider_client', 'demo_provider:app_provider_provider'
 // aidl使用案例
 include 'demo_aidl:app_aidl_client', 'demo_aidl:app_aidl_service'
 

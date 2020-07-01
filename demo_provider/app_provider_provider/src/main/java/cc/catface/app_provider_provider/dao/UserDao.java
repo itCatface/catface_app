@@ -1,4 +1,4 @@
-package cc.catface.api.room.dao;
+package cc.catface.app_provider_provider.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -8,7 +8,8 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import cc.catface.api.room.domain.User;
+import cc.catface.app_provider_provider.domain.User;
+
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -16,36 +17,32 @@ import cc.catface.api.room.domain.User;
 @Dao
 public interface UserDao {
 
-    /** 查 */
-    @Query("SELECT * FROM user")
+    /**
+     * 查
+     */
+    @Query("SELECT * FROM user order by create_time desc")
     List<User> allUsers();
-
-    @Query("SELECT * FROM user WHERE id % 2 != 0")
-    List<User> oddUsers();
-
-    @Query("SELECT * FROM user ORDER BY id DESC")
-    List<User> descUsers();
-
-    @Query("SELECT * FROM user ORDER BY CASE WHEN NAME like '%和谐%' THEN 0 ELSE 1 END, age DESC")
-    List<User> sortUsers();
 
     @Query("select count(*) from user")
     long totalCount();
 
 
-    /** 增 */
+    /**
+     * 增
+     */
     @Insert
     void insert(User... users);
 
-    /** 改 */
+    /**
+     * 改
+     */
     /* 主键相同时更新数据 */
     @Update
     void update(User... user);
 
-    @Query("update user set age=:age where id=:id")
-    void update(int age, int id);
-
-    /** 删 */
+    /**
+     * 删
+     */
     @Query("DELETE FROM user")
     void deleteAll();
 
@@ -55,9 +52,5 @@ public interface UserDao {
 
     @Query("DELETE FROM user WHERE id = (:id)")
     void delete(int id);
-
-
-//    @Query("select ca.name ")
-//    List<User> q();
 
 }

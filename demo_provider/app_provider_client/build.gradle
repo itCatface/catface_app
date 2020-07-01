@@ -4,16 +4,21 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "cc.catface.app_aidl_service"
+        applicationId "cc.catface.app_provider_client"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -24,4 +29,5 @@ dependencies {
     api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     // Java8 support for Lifecycles
     api 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+
 }

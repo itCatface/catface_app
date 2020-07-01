@@ -1,7 +1,5 @@
 package cc.catface.app_aidl_client;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -13,14 +11,19 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Random;
 
-import cc.catface.aidls.login.SendBean;
 import cc.catface.aidls.login.ILogin;
 import cc.catface.aidls.login.ILoginLoginCallback;
 import cc.catface.aidls.login.ILoginSendCallback;
 import cc.catface.aidls.login.LoginBean;
+import cc.catface.aidls.login.SendBean;
 
+/**
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ */
 public class MainActivity extends AppCompatActivity {
 
     private void log(String msg) {

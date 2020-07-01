@@ -75,10 +75,6 @@ dependencies {
     // 今日头条顶部刷新控件依赖
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 
-    // room
-    implementation "androidx.room:room-runtime:2.2.5"
-    annotationProcessor "androidx.room:room-compiler:2.2.5" // use kapt for Kotlin
-
     // camerax
     implementation "androidx.camera:camera-core:1.0.0-alpha01"
     implementation "androidx.camera:camera-camera2:1.0.0-alpha01"

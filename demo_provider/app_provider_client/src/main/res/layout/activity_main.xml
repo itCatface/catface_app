@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btFinish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="退出" />
+
+        <Button
+            android:id="@+id/btGetContacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取系统联系人" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#000" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="测试content provider" />
+
+        <LinearLayout
+            android:id="@+id/llCP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btCPInsert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="insert"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btCPDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="delete"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btCPUpdate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="update"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btCPQuery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="query"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

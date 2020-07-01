@@ -138,7 +138,6 @@ public class Const {
             list.add(fm_id_api_imageview_serial);
             list.add(fm_id_api_constraintlayout);
             list.add(fm_id_api_data_binding);
-            list.add(fm_id_api_room);
             list.add(fm_id_api_crash);
             list.add(fm_id_api_toolbar);
             list.add(fm_id_api_viewpager2);

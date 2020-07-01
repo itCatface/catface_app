@@ -26,7 +26,6 @@ import cc.catface.api.huge_img.DemoLoadLargeImgFm;
 import cc.catface.api.multi_finger.DemoMultiTouchFm;
 import cc.catface.api.popup.DemoPopupFm;
 import cc.catface.api.properties.DemoPropFm;
-import cc.catface.api.room.DemoRoomFm;
 import cc.catface.api.smallfunc.DemoSmallFuncFm;
 import cc.catface.api.toast.DemoToastFm;
 import cc.catface.api.toolbar.DemoToolBarFm;
@@ -72,7 +71,6 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
     private DemoIVScaleTypeFm fmScaleType = new DemoIVScaleTypeFm();
     private DemoConstraintLayoutFm fmConstrainLayout = new DemoConstraintLayoutFm();
     private DemoDataBindingFm fmDataBinding = new DemoDataBindingFm();
-    private DemoRoomFm fmRoom = new DemoRoomFm();
     private DemoCrashFm fmCrash = new DemoCrashFm();
     private DemoToolBarFm fmToolBar = new DemoToolBarFm();
     private DemoSpinKitFm fmSpinKit = new DemoSpinKitFm();
@@ -167,10 +165,6 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
                 mTitle = "DataBinding";
                 mNormalTitle = "更新";
                 replace(fmDataBinding);
-                break;
-            case Const.ARouter.fm_id_api_room:
-                mTitle = "Room";
-                replace(fmRoom);
                 break;
             case Const.ARouter.fm_id_api_crash:
                 mTitle = "Crash";
@@ -293,8 +287,6 @@ import cc.catface.base.core_framework.light_mvp.LightPresenter;
             case Const.ARouter.fm_id_api_constraintlayout:
                 break;
             case Const.ARouter.fm_id_api_data_binding:
-                break;
-            case Const.ARouter.fm_id_api_room:
                 break;
             case Const.ARouter.fm_id_api_crash:
                 break;

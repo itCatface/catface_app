@@ -7,8 +7,6 @@ import androidx.multidex.MultiDex;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
-import com.tencent.mmkv.MMKV;
-import com.tencent.mmkv.MMKVLogLevel;
 
 import cc.catface.app_base.ARouterApp;
 import cc.catface.app_base.Const;
@@ -29,10 +27,6 @@ public class App extends TApp {
 
         TThreadPool.EXECUTOR.submit(() -> {
             TPhoto.handle7Camera();
-
-            String mmkvDir = MMKV.initialize("sdcard/catface/mmkv");
-            MMKV.setLogLevel(MMKVLogLevel.LevelDebug);
-            TLog.d("App-->mmkvDir: " + mmkvDir);
 
             /* 初始化日志打印 */
             TLog.init("tag_catface", true, false, "");

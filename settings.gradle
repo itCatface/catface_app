@@ -1,3 +1,5 @@
+// mmkv使用案例
+include 'demo_mmkv:app_mmkv_demo'
 // provider使用案例
 include 'demo_provider:app_provider_client', 'demo_provider:app_provider_provider'
 // aidl使用案例

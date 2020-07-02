@@ -166,6 +166,5 @@ public class Const {
         public static final int fm_id_apis_test_retrofit = -0x190001;
         public static final int fm_id_apis_half_scroll = -0x190002;
         public static final int fm_id_apis_lottie = -0x190003;
-        public static final int fm_id_apis_mmkv = -0x190004;
     }
 }

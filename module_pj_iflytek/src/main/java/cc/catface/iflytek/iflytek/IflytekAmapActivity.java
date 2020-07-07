@@ -27,12 +27,14 @@ public class IflytekAmapActivity extends AppCompatActivity {
     private CheckBox cbIsOnce;
     private TextView tvLoc, tvPoi;
 
-    @Override protected void onDestroy() {
+    @Override
+    protected void onDestroy() {
         super.onDestroy();
         mAmapEngine.release();
     }
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apis_iflytek_activity_amap);
 
@@ -72,19 +74,23 @@ public class IflytekAmapActivity extends AppCompatActivity {
         if (null != mAmapEngine) return;
         mAmapEngine = new AmapEngine();
         mAmapEngine.setLocationCallback(new AmapEngine.LocationCallback() {
-            @SuppressLint("SetTextI18n") @Override public void onLocation(long timestamp, AMapLocation location) {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onLocation(long timestamp, AMapLocation location) {
                 if (cbIsOnce.isChecked()) {
                     mAmapEngine.stopLocation();
                 }
                 tvLoc.setText(timestamp + " || " + location.getAddress() + "\n");
             }
 
-            @Override public void onError(int code, String info, String detail) {
+            @Override
+            public void onError(int code, String info, String detail) {
 
             }
         });
         mAmapEngine.setPoiSearchCallback(new AmapEngine.PoiSearchCallback() {
-            @Override public void onResult(PoiResult result) {
+            @Override
+            public void onResult(PoiResult result) {
                 ArrayList<PoiItem> pois = result.getPois();
                 String poiResult = "";
                 for (PoiItem poi : pois) {

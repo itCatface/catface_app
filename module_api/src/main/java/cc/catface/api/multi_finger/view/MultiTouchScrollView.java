@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
+import cc.catface.ctool.system.TLog;
+
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
@@ -22,9 +24,11 @@ public class MultiTouchScrollView extends ScrollView {
     }
 
 
-    @Override public boolean onInterceptTouchEvent(MotionEvent event) {
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
         int nCnt = event.getPointerCount();
-        if(nCnt == 2) {
+        TLog.d("MultiTouchScrollView-onInterceptTouchEvent-event.getPointerCount(): " + nCnt);
+        if (nCnt == 2) {
             return false;
         } else {
             return super.onInterceptTouchEvent(event);

@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "cc.catface.app_amap_demo"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    // ViewModel and LiveData
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    // Java8 support for Lifecycles
+    api 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+    implementation files('libs/AMap_Location_V4.7.0_20190708.jar')
+    implementation files('libs/AMap_Search_V6.9.2_20190709.jar')
+
+    implementation project(':ctool')
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+
+}

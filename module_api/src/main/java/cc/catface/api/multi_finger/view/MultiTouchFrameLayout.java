@@ -4,8 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 
@@ -14,16 +13,16 @@ import cc.catface.ctool.system.TLog;
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
  */
-public class MultiTouchEditText extends EditText {
-    public MultiTouchEditText(Context context) {
+public class MultiTouchFrameLayout extends FrameLayout {
+    public MultiTouchFrameLayout(Context context) {
         super(context);
     }
 
-    public MultiTouchEditText(Context context, @Nullable AttributeSet attrs) {
+    public MultiTouchFrameLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MultiTouchEditText(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MultiTouchFrameLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -33,11 +32,18 @@ public class MultiTouchEditText extends EditText {
     private double mCtrlDistance = 1;    // 手势响应范围
 
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        int nCnt = ev.getPointerCount();
+        TLog.d("MultiTouchFrameLayout-onInterceptTouchEvent-event.getPointerCount(): " + nCnt);
+        return super.onInterceptTouchEvent(ev);
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int nCnt = event.getPointerCount();
-        TLog.d("MultiTouchEditText-onTouchEvent-event.getPointerCount(): " + nCnt);
+        TLog.d("MultiTouchFrameLayout-onTouchEvent-event.getPointerCount(): " + nCnt);
         if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_POINTER_DOWN && 2 == nCnt) {
             x1 = event.getX(0);
             y1 = event.getY(0);

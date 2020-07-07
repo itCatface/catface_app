@@ -9,13 +9,12 @@
         android:fitsSystemWindows="true">
 
         <cc.catface.api.multi_finger.view.MultiTouchScrollView
+            android:id="@+id/msv"
             style="@style/scrollbar_scroll_bar_style_default"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:fillViewport="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible"
             app:layout_constraintTop_toTopOf="parent">
 
             <cc.catface.api.multi_finger.view.MultiTouchEditText
@@ -31,6 +30,21 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </cc.catface.api.multi_finger.view.MultiTouchScrollView>
+
+
+        <cc.catface.api.multi_finger.view.MultiTouchFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/msv">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="测试文本\r\n测试文本\r\n测试文本\r\n测试文本\r\n测试文本\r\n测试文本\r\n测试文本\r\n测试文本\r\n测试文本"
+                android:textSize="20sp" />
+
+        </cc.catface.api.multi_finger.view.MultiTouchFrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

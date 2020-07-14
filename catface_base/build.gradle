@@ -97,7 +97,7 @@ dependencies {
     /**/
     api "com.github.barteksc:android-pdf-viewer:3.2.0-beta.1"
     /**/
-    api "org.greenrobot:greendao:3.2.2"
+    api "org.greenrobot:greendao:3.3.0"
     /**/
     debugApi "com.squareup.leakcanary:leakcanary-android:1.6.3"
     releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"

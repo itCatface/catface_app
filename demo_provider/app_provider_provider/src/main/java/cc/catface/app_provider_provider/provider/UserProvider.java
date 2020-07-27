@@ -16,6 +16,9 @@ import cc.catface.ctool.system.TLog;
 
 import static android.database.sqlite.SQLiteDatabase.CONFLICT_IGNORE;
 
+/**
+ * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
+ */
 public class UserProvider extends ContentProvider {
 
     private static final Pair<String, Integer> TABLE_USER = new Pair<>("user", 0);
@@ -69,6 +72,13 @@ public class UserProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         long row = DBHelper.getInstance().getOpenHelper().getWritableDatabase().insert(getType(uri), CONFLICT_IGNORE, values);
         getContext().getContentResolver().notifyChange(uri, null);
+
+        /* 补充监听回调 */
+        UserProviderListenerHelper.UserProviderListener userProviderListener = UserProviderListenerHelper.getInstance().getUserProviderListener();
+        if (null != userProviderListener) {
+            userProviderListener.onError(-1, "测试UserProviderListenerHelper.UserProviderListener -- onError:失败");
+        }
+
         return ContentUris.withAppendedId(uri, row);
     }
 

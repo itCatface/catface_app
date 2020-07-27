@@ -15,6 +15,15 @@
             <option value="$PROJECT_DIR$/app_base" />
             <option value="$PROJECT_DIR$/catface_base" />
             <option value="$PROJECT_DIR$/ctool" />
+            <option value="$PROJECT_DIR$/demo_aidl" />
+            <option value="$PROJECT_DIR$/demo_aidl/app_aidl_client" />
+            <option value="$PROJECT_DIR$/demo_aidl/app_aidl_service" />
+            <option value="$PROJECT_DIR$/demo_provider" />
+            <option value="$PROJECT_DIR$/demo_provider/app_provider_client" />
+            <option value="$PROJECT_DIR$/demo_provider/app_provider_provider" />
+            <option value="$PROJECT_DIR$/demo_sdks_third" />
+            <option value="$PROJECT_DIR$/demo_sdks_third/app_amap_demo" />
+            <option value="$PROJECT_DIR$/demo_sdks_third/app_mmkv_demo" />
             <option value="$PROJECT_DIR$/lib_hover_scroll" />
             <option value="$PROJECT_DIR$/module_api" />
             <option value="$PROJECT_DIR$/module_apis" />
@@ -24,7 +33,6 @@
             <option value="$PROJECT_DIR$/module_pj_wechat" />
             <option value="$PROJECT_DIR$/module_start" />
             <option value="$PROJECT_DIR$/module_view" />
-            <option value="$PROJECT_DIR$/module_work_demo" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

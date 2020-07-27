@@ -9,18 +9,98 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- 增 -->
         <LinearLayout
-            android:id="@+id/ll_query"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bt_insert"
+                android:id="@+id/btInsert"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="加一" />
+                android:text="加-long"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btInsertReturnList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="加-List"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btInsertAbortReturnList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="加Abort-List"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btInsertReturnArray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="加-Array"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btInsertReplace"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Replace"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btInsertRollback"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rollback"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btInsertAbort"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Abort"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btInsertFail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fail"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btInsertIgnore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ignore"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/bt_delete"

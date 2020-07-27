@@ -18,56 +18,39 @@ import cc.catface.ctool.context.TApp;
 public class AmapEngine implements AMapLocationListener, PoiSearch.OnPoiSearchListener {
 
 
-    /**
-     * 初始化定位
-     */
-    private AMapLocationClient locationClient = null;
-    private AMapLocationClientOption locationOption = null;
+    private static final class Holder {
+        private static final AmapEngine instance = new AmapEngine();
+    }
+
+    public static AmapEngine getInstance() {
+        return Holder.instance;
+    }
 
 
-    /**
-     * 默认的定位参数
-     */
-    private AMapLocationClientOption mOption;
+    private AMapLocationClient mAMapLocationClient;
+    private AMapLocationClientOption mAMapLocationClientOption;
 
-    private AMapLocationClientOption getDefaultOption() {
-        mOption = new AMapLocationClientOption();
-        mOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
-        mOption.setGpsFirst(true);
-        mOption.setHttpTimeOut(3_000);
-        mOption.setGpsFirstTimeout(3_000);
-        mOption.setInterval(mContinuedLocationInterval);
-        mOption.setNeedAddress(true);
-        mOption.setOnceLocation(true);  // 仅定位一次
-        mOption.setOnceLocationLatest(false);
+
+    private AmapEngine() {
+        /* 初始化amap设置 */
+        mAMapLocationClientOption = new AMapLocationClientOption();
+        mAMapLocationClientOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
+        mAMapLocationClientOption.setGpsFirst(true);
+        mAMapLocationClientOption.setHttpTimeOut(3_000);
+        mAMapLocationClientOption.setGpsFirstTimeout(3_000);
+        mAMapLocationClientOption.setNeedAddress(true);
+        mAMapLocationClientOption.setInterval(2_000);
+        mAMapLocationClientOption.setOnceLocation(true);
+        mAMapLocationClientOption.setOnceLocationLatest(false);
+        mAMapLocationClientOption.setSensorEnable(false);
+        mAMapLocationClientOption.setWifiScan(true);
+        mAMapLocationClientOption.setLocationCacheEnable(true);
+        mAMapLocationClientOption.setGeoLanguage(AMapLocationClientOption.GeoLanguage.DEFAULT);
         AMapLocationClientOption.setLocationProtocol(AMapLocationClientOption.AMapLocationProtocol.HTTP);
-        mOption.setSensorEnable(false);
-        mOption.setWifiScan(true);
-        mOption.setLocationCacheEnable(true);
-        mOption.setGeoLanguage(AMapLocationClientOption.GeoLanguage.DEFAULT);
-        return mOption;
-    }
 
-    private int mContinuedLocationInterval = 2_000;
-
-    /**
-     * 设置持续定位的时间间隔
-     *
-     * @param interval 单位毫秒ms[1s=1000ms]
-     */
-    @Deprecated
-    public void setContinuedLocationInterval(int interval) {
-        mContinuedLocationInterval = interval;
-    }
-
-
-    /**
-     * 供aidl使用的定位和位置列表搜索的回调
-     */
-    private LocationCallback mLocationCallback;
-
-    public void setLocationCallback(LocationCallback locationCallback) {
-        this.mLocationCallback = locationCallback;
+        /* 初始化amap */
+        mAMapLocationClient = new AMapLocationClient(TApp.getInstance());
+        mAMapLocationClient.setLocationListener(this);
     }
 
 
@@ -77,61 +60,46 @@ public class AmapEngine implements AMapLocationListener, PoiSearch.OnPoiSearchLi
         void onError(int code, String info, String detail);
     }
 
-    private PoiSearchCallback mPoiSearchCallback;
+    private LocationCallback mLocationCallback;
 
-    public void setPoiSearchCallback(PoiSearchCallback poiSearchCallback) {
-        this.mPoiSearchCallback = poiSearchCallback;
+    public void setLocationCallback(LocationCallback locationCallback) {
+        this.mLocationCallback = locationCallback;
     }
 
     public interface PoiSearchCallback {
         void onResult(PoiResult result);
     }
 
+    private PoiSearchCallback mPoiSearchCallback;
 
-    /**
-     * 客户动作
-     */
+    public void setPoiSearchCallback(PoiSearchCallback poiSearchCallback) {
+        this.mPoiSearchCallback = poiSearchCallback;
+    }
+
+
     /* 开始定位 */
     public void startLocation() {
-        locationClient = new AMapLocationClient(TApp.getInstance());
-        locationOption = getDefaultOption();
-        locationClient.setLocationOption(locationOption);
-        locationClient.setLocationListener(this);
-        locationClient.startLocation();
+        mAMapLocationClient.setLocationOption(mAMapLocationClientOption);
+        mAMapLocationClient.startLocation();
     }
 
-    @Override
-    public void onLocationChanged(AMapLocation location) {
-        if (null == mLocationCallback) return;
-        if (null == location) {
-            mLocationCallback.onError(-0x99, "null == location", "null == location");
-            return;
-        }
-
-        int code = location.getErrorCode();
-        if (0 != code) {
-            mLocationCallback.onError(code, location.getErrorInfo(), location.getLocationDetail());
-            return;
-        }
-
-        mLocationCallback.onLocation(System.currentTimeMillis(), location);
-    }
 
     /* 停止定位 */
     public void stopLocation() {
-        if (null != locationClient) {
-            locationClient.stopLocation();
-        }
+        if (null != mAMapLocationClient) mAMapLocationClient.stopLocation();
     }
 
 
     /* 搜索位置列表 */
     public void startPoi(String poi, int pageNum) {
-        startPoi(poi, 20, pageNum);
+        startPoi(poi, 10, pageNum);
     }
 
+    String mCity = "";
+    private String mCityCode = "";
+
     public void startPoi(String poi, int pageSize, int pageNum) {
-        PoiSearch.Query query = new PoiSearch.Query(poi, "", "");
+        PoiSearch.Query query = new PoiSearch.Query(poi, "", mCityCode);
         query.setPageSize(pageSize);  // 每页多少条结果
         query.setPageNum(pageNum);    // 查询页码
         PoiSearch search = new PoiSearch(TApp.getInstance(), query);
@@ -140,24 +108,39 @@ public class AmapEngine implements AMapLocationListener, PoiSearch.OnPoiSearchLi
         search.searchPOIAsyn();
     }
 
+
+    @Override
+    public void onLocationChanged(AMapLocation location) {
+        int code = location.getErrorCode();
+        if (0 != code) {
+            mLocationCallback.onError(code, location.getErrorInfo(), location.getLocationDetail());
+            return;
+        }
+
+        mLocationCallback.onLocation(System.currentTimeMillis(), location);
+        mCity = location.getCity();
+        mCityCode = location.getCityCode();
+    }
+
     @Override
     public void onPoiSearched(PoiResult poiResult, int i) {
-        if (null == mPoiSearchCallback) return;
-        mPoiSearchCallback.onResult(poiResult);
+        if (null != mPoiSearchCallback) mPoiSearchCallback.onResult(poiResult);
     }
 
     @Override
     public void onPoiItemSearched(PoiItem poiItem, int i) { }
 
+    public String getCity() {
+        return mCity;
+    }
 
     /**
      * 退出定位功能，在activity/fragment退出时调用
      */
     public void release() {
         stopLocation();
-        if (null != locationClient) locationClient.unRegisterLocationListener(this);
+        if (null != mAMapLocationClient) mAMapLocationClient.unRegisterLocationListener(this);
         if (null != mLocationCallback) mLocationCallback = null;
         if (null != mPoiSearchCallback) mPoiSearchCallback = null;
-
     }
 }

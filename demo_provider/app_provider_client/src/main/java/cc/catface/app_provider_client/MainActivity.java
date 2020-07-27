@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,13 +18,10 @@ import androidx.databinding.DataBindingUtil;
 import java.util.Random;
 
 import cc.catface.app_provider_client.databinding.ActivityMainBinding;
+import cc.catface.ctool.system.TLog;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
-
-    private void log(String msg) {
-        Log.d("catface", msg);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 while (cursor.moveToNext()) {
                     String displayName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                     String number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                    log("读取联系人：" + displayName + " || " + number);
+                    TLog.d("读取联系人：" + displayName + " || " + number);
                 }
             }
         } catch (Exception e) {
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 int age = cursor.getInt(cursor.getColumnIndex("age"));
                 int sex = cursor.getInt(cursor.getColumnIndex("sex"));
                 long createTime = cursor.getLong(cursor.getColumnIndex("create_time"));
-                log(name + "||" + age + "||" + sex + "||" + createTime);
+                TLog.d(name + "||" + age + "||" + sex + "||" + createTime);
             }
             cursor.close();
         }
@@ -136,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 int age = cursor.getInt(cursor.getColumnIndex("age"));
                 int sex = cursor.getInt(cursor.getColumnIndex("sex"));
                 long createTime = cursor.getLong(cursor.getColumnIndex("create_time"));
-                log(name + "||" + age + "||" + sex + "||" + createTime);
+                TLog.d(name + "||" + age + "||" + sex + "||" + createTime);
             }
             cursor.close();
         });

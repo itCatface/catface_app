@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <base-config cleartextTrafficPermitted="true" />
+    <!--<domain-config>
+        <domain includeSubdomains="true">restapi.amap.com</domain>
+        <trust-anchors>
+            <certificates src="user" />
+            <certificates src="system" />
+        </trust-anchors>
+
+        <pin-set expiration="2021-01-01">
+            <pin digest="SHA-256">/6Wsfasfsagsgfsgagsdgaegergert34gagafasfgssd</pin>
+        </pin-set>
+    </domain-config>-->
 </network-security-config>

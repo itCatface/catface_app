@@ -1,4 +1,4 @@
-// amap示例
+include ':demo_sdks_third:app_dagger2_demo'// amap示例
 include ':demo_sdks_third:app_amap_demo'
 // mmkv示例
 include 'demo_sdks_third:app_mmkv_demo'

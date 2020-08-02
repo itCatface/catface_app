@@ -23,6 +23,7 @@
             <option value="$PROJECT_DIR$/demo_provider/app_provider_provider" />
             <option value="$PROJECT_DIR$/demo_sdks_third" />
             <option value="$PROJECT_DIR$/demo_sdks_third/app_amap_demo" />
+            <option value="$PROJECT_DIR$/demo_sdks_third/app_dagger2_demo" />
             <option value="$PROJECT_DIR$/demo_sdks_third/app_mmkv_demo" />
             <option value="$PROJECT_DIR$/lib_hover_scroll" />
             <option value="$PROJECT_DIR$/module_api" />

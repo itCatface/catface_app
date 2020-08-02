@@ -33,9 +33,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    /* constraintlayout */
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+    /* appcompat */
+    api 'androidx.appcompat:appcompat:1.1.0'
+    /* view model & live data */
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    /* java8 with lifecycle */
+    api 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+    /* recycler view */
+    api 'androidx.recyclerview:recyclerview:1.1.0'
 
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }

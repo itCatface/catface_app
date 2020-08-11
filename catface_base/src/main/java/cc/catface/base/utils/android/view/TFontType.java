@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 /**
  * Created by catfaceWYH --> tel|wechat|qq 130 128 92925
@@ -57,6 +57,7 @@ public class TFontType {
         public static final String gbxs = "fonts/钢笔行书.ttf";
         public static final String fzlsxt = "fonts/非主流手写体.ttf";
         public static final String ffts = "fonts/风帆特色.ttf";
+        public static final String hill_house_raw = "raw/hill_house.ttf";
 
         public static String CURRENT_SYSTEM_TYPE = "fonts/fontawesome_webfont.ttf";
 

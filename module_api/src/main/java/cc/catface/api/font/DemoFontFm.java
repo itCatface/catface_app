@@ -32,6 +32,13 @@ public class DemoFontFm extends LightFm<LightPresenter, ApiActivityDemoFontBindi
         TFontType.use(mBinding.tv7, TFontType.Font.tkjt, getString(R.string.wzhzjqeds));
         TFontType.use(mBinding.tv8, TFontType.Font.qqzt, getString(R.string.wzhzjqeds));
         TFontType.use(mBinding.tv9, TFontType.Font.xzjt, getString(R.string.wzhzjqeds));
+
+
+
+
+
+        // 给TextView设置字体
+        TFontType.use(mBinding.tv10, "fonts/hill_house.ttf", "American Horrible Story...");
     }
 
 

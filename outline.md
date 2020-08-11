@@ -424,6 +424,18 @@ Q Dalvik和ART
 
 
 
+------
+UI&framework源码
+------
+# 事件分发
+
+核心方法有三个：onInterceptTouchEvent、dispatchTouchEvent、onTouchEvent
+主要存在于三个组件中：Activity、ViewGroup、View
+事件主要有ACTION_DOWN、ACTION_MOVE、ACTION_UP、ACTION_CANCLE
+
+
+
+
 
 
 

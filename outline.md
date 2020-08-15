@@ -433,32 +433,116 @@ UI&framework源码
 主要存在于三个组件中：Activity、ViewGroup、View
 事件主要有ACTION_DOWN、ACTION_MOVE、ACTION_UP、ACTION_CANCLE
 
+```java
+// Activity 中该方法的核心部分伪代码
+public boolean dispatchTouchEvent(MotionEvent ev) {
+	if (child.dispatchTouchEvent(ev)) {
+		return true; //如果子 View 消费了该事件,则返回 TRUE，让调用者知道该事件已被消费
+	} else {
+		return onTouchEvent(ev); //如果子 View 没有消费该事件，则调用自身的onTouchEvent 尝试处理。
+	}
+}
 
 
+// ViewGroup 中该方法的核心部分伪代码
+public boolean dispatchTouchEvent(MotionEvent ev) {
+	if (!onInterceptTouchEvent(ev)) {
+		return child.dispatchTouchEvent(ev); //不拦截，则传给子 View 进行分发处理
+	} else {
+		return onTouchEvent(ev); //拦截事件，交由自身对象的 onTouchEvent 方法处理
+	}
+}
 
 
+// View 中该方法的核心部分伪代码
+public boolean dispatchTouchEvent(MotionEvent ev) {
+	//如果该对象的监听成员变量不为空，则会调用其 onTouch 方法，
+	if (mOnTouchListener != null && mOnTouchListener.onTouch(this, event)) {
+		return true; //若 onTouch 方 法返 回 TRUE ， 则表 示 消费 了 该事 件 ，则dispachtouTouchEvent 返回 TRUE，让其调用者知道该事件已被消费。
+	}
+	return onTouchEvent(ev); //若监听成员为空或 onTouch 没有消费该事件，则调用对象自身的 onTouchEvent 方法处理。
+}
+```
+
+# View渲染机制
+
+Q 常用View
+
+- RecyclerView
+- CardView
+- ViewPager
+- WebView
+	- WebViewClient和WebChromeClient区别
+	
+	WebViewClient帮助WV处理通知、请求事件
+		onPageStarted
+		onPageFinished
+		shouldOveerideUrlLoading拦截url
+		onReceiveError访问错误时回调，可在该方法加载错误页面
+	WebChromeClient处理WV的js对话框，网页图标title，加载进度
+		onJsAlert
+		onReceivedTitle
+		onReceiveIcon
+		onProgressChanged加载进度回调
+
+Q 自定义View&动画
 
 
+# 四大组件
+
+- Activity
+	- 生命周期
+		- onCreate-onCreate、onStart(onRestart<)、onResume、onPause、onStop(onRestart>)、onDestroy
+	- 启动模式
+		- standard
+		- single top--会调onNewIntent
+		- single task
+		- single instance
+	- flag
+		- service启动activity--new_task
+		- clear top
+		- clear task
+		- 
+- Fragment
+- Service
+
+# IPC(Inter-Process Communication)P183
+
+# SP
+
+Q commit()和apply()
+	commit--同步提交到磁盘，效率低，有返回值
+	apply--异步原子操作至内存，随后再同步至磁盘，效率高，没有返回值
+
+Q mmkv原理
 
 
+-------
+性能调优
+-------
+
+# 设计思想与代码质量优化C1
+
+# 六大设计原则F1
+
+1. 单一职责
+2. 开闭
+3. 里氏替换
+4. 依赖倒置
+5. 接口隔离
+6. 迪米特
 
 
+## 23中设计模式F2
 
-
----设计思想与代码质量优化
-
-## 六大设计原则
-
-## 23中设计模式
-
-### 创建型
+1. 创建型
 #### 抽象工厂
 #### 生成器
 #### 工厂方法
 #### 原型
 #### 单例
 
-### 结构型
+2. 结构型
 #### 适配器
 #### 桥接
 #### 组装
@@ -674,7 +758,7 @@ after invoke...
 
 # android中的运用*
 
-### 行为型
+3. 行为型
 #### 责任链
 #### 命令
 #### 解释器
@@ -686,6 +770,25 @@ after invoke...
 #### 模版方法
 #### 访问者
 
-## 数据结构
+# 数据结构F3
 
-## 算法
+# 算法F4
+
+# 程序性能优化C2
+
+# OOMF1
+# ANRF2
+# Crash监控F3
+# 启动速度检测优化F4
+# 布局检测优化F5
+# 内存优化F6
+# 耗电优化F7
+# 网络传输与数据存储优化F8
+# APK瘦身F9
+# 屏幕适配F10
+
+# 开发效率C3
+
+# svn
+# git
+# gradle
